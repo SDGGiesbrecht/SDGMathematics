@@ -1,0 +1,6 @@
+clean: true
+xcodebuild_arguments:
+    - "-target"
+    - SDGMathematics
+copyright: Copyright ©2016 Jeremy David Giesbrecht and the SDGMathematics contributors. All rights reserved.
+github_url: https://github.com/SDGGiesbrecht/SDGMathematics
