@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PointType Protocol Reference</title>
+    <title>′(_:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/PointType" class="dashAnchor"></a>
-    <a title="PointType Protocol Reference"></a>
+    <a name="//apple_ref/swift/Function/′(_:)" class="dashAnchor"></a>
+    <a title="′(_:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        PointType Protocol Reference
+        ′(_:) Function Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -336,28 +336,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>PointType</h1>
+            <h1>′(_:)</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PointType</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="k">postfix</span> <span class="kd">func</span> <span class="err">′</span><span class="o">&lt;</span><span class="kt">N</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RealArithmetic.html">RealArithmetic</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">N</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Angle.html">Angle</a></span><span class="o">&lt;</span><span class="kt">N</span><span class="o">&gt;</span></code></pre>
 
                 </div>
               </div>
-            <p>A type that can be used with <code>+(_:_:)</code> and <code>−(_:_:)</code> in conjunction with an associated <code><a href="../Typealiases.html#/s:E14SDGMathematicsSf6Vector">Vector</a></code> type.</p>
-
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    Unlike <code>Strideable</code>, <code>PointType</code>s do not need to conform to <code>Comparable</code>, allowing conformance by two‐dimensional points, etc.
-
-</div>
-
-<p>Conformance Requirements:</p>
-
-<ul>
-<li><code>Equatable</code></li>
-<li><code>static func +=(lhs: inout Self, rhs: Addend)</code></li>
-<li><code>static func −(lhs: Self, rhs: Self) -&gt; Vector</code></li>
-</ul>
+            <p>Returns an angle in minutes.</p>
 
           </section>
           <section class="section task-group-section">
@@ -366,89 +352,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFP14SDGMathematics9PointTypeoi1pFTxwx6Vector_x"></a>
-                    <a name="//apple_ref/swift/Method/+(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP14SDGMathematics9PointTypeoi1pFTxwx6Vector_x">+(_:_:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.</p>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p><code><a href="../Protocols/PointType.html#/s:ZFP14SDGMathematics9PointTypeoi2peFTRxwx6Vector_T_">+=(_:_:)</a></code> (mutating variant)</p>
-
-</div>
-
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.</p>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p><code>+=(_:_:)</code> (mutating variant)</p>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">+</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PointType.html#/s:P14SDGMathematics9PointType6Vector">Vector</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>lhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The starting point.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>rhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The vector to add.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P14SDGMathematics9PointType6Vector"></a>
-                    <a name="//apple_ref/swift/Alias/Vector" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P14SDGMathematics9PointType6Vector">Vector</a>
+                    <a name="/s:tF14SDGMathematicsXoP3DvguRxS_14RealArithmeticrFxGVS_5Anglex_L_1NMx"></a>
+                    <a name="//apple_ref/swift/Parameter/N" class="dashAnchor"></a>
+                    <a class="token" href="#/s:tF14SDGMathematicsXoP3DvguRxS_14RealArithmeticrFxGVS_5Anglex_L_1NMx">N</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -456,244 +362,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The type to be used as a vector.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">Vector</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Negatable.html">Negatable</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">postfix</span> <span class="kd">func</span> <span class="err">′</span><span class="o">&lt;</span><span class="kt">N</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RealArithmetic.html">RealArithmetic</a></span><span class="o">&gt;</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">N</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Angle.html">Angle</a></span><span class="o">&lt;</span><span class="kt">N</span><span class="o">&gt;</span></code></pre>
 
                         </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFP14SDGMathematics9PointTypeoi2peFTRxwx6Vector_T_"></a>
-                    <a name="//apple_ref/swift/Method/+=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP14SDGMathematics9PointTypeoi2peFTRxwx6Vector_T_">+=(_:_:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Moves the point on the left by the vector on the right.</p>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p><code><a href="../Protocols/PointType.html#/s:ZFP14SDGMathematics9PointTypeoi1pFTxwx6Vector_x">+(_:_:)</a></code> (non‐mutating variant)</p>
-
-</div>
-
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Moves the point on the left by the vector on the right.</p>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p><code>+(_:_:)</code> (non‐mutating variant)</p>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">+=</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PointType.html#/s:P14SDGMathematics9PointType6Vector">Vector</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>lhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The point to modify.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>rhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The vector to add.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFP14SDGMathematics9PointTypeXoi3tJgFTxx_wx6Vector"></a>
-                    <a name="//apple_ref/swift/Method/−(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP14SDGMathematics9PointTypeXoi3tJgFTxx_wx6Vector">−(_:_:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns the vector that leads from the point on the left to the point on the right.</p>
-
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Returns the vector that leads from the point on the left to the point on the right.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="err">−</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/PointType.html#/s:P14SDGMathematics9PointType6Vector">Vector</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>lhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The endpoint.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>rhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The startpoint.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:ZFP14SDGMathematics9PointTypeXoi5e_dboFTRxwx6Vector_T_"></a>
-                    <a name="//apple_ref/swift/Method/−=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP14SDGMathematics9PointTypeXoi5e_dboFTRxwx6Vector_T_">−=(_:_:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Moves the point on the left by the inverse of the vector on the right.</p>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p><code><a href="../Protocols/PointType.html#/s:ZFP14SDGMathematics9PointTypeXoi3tJgFTxx_wx6Vector">−(_:_:)</a></code> (non‐mutating variant)</p>
-
-</div>
-
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Moves the point on the left by the inverse of the vector on the right.</p>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p><code>−(_:_:)</code> (non‐mutating variant)</p>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="err">−</span><span class="o">=</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PointType.html#/s:P14SDGMathematics9PointType6Vector">Vector</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>lhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The point to modify.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>rhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The vector to subtract.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>
