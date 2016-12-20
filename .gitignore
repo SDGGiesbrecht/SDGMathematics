@@ -1,7 +1,15 @@
+# macOS
 .DS_Store
+
+# Swift Package Manager
 /.build
 /Packages
 /*.xcodeproj
+
+# Jazzy (Documentation)
 /build
-/docs/docsets
 /docs/undocumented.json
+/docs/docsets
+
+# SDG
+/.Development\ Tools
