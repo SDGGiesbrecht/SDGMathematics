@@ -57,6 +57,7 @@ public protocol VectorType: AdditiveArithmetic {
     /// - SeeAlso: (recommended over) `/(_:_:)`
     static func ÷(lhs: Self, rhs: Scalar) -> Self
     
+    // swiftlint:disable divide_and_set
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:
@@ -67,6 +68,7 @@ public protocol VectorType: AdditiveArithmetic {
     ///
     /// - SeeAlso: (recommended over) `/=(_:_:)`
     static func ÷=(lhs: inout Self, rhs: Scalar)
+    // swiftlint:enable divide_and_set
 }
 
 extension VectorType {

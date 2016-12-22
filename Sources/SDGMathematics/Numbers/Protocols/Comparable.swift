@@ -9,15 +9,19 @@
 // Licensed under the Apache License, Version 2.0
 // See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
 
+// swiftlint:disable less_than_or_equal
 /// Checks whether the left is ordered before than or the same as the right.
 ///
 /// - SeeAlso: (recommended over) `<=(_:_:)`
 infix operator ≤: ComparisonPrecedence
+// swiftlint:enable less_than_or_equal
 
+// swiftlint:disable greater_than_or_equal
 /// Checks whether the left is ordered after or the same as the right.
 ///
 /// - SeeAlso: (recommended over) `>=(_:_:)`
 infix operator ≥: ComparisonPrecedence
+// swiftlint:enable greater_than_or_equal
 
 /// Reduces the value of the left so that it is less than or equal to the right.
 ///
@@ -31,6 +35,7 @@ infix operator ≥=: AssignmentPrecedence
 
 extension Comparable {
 
+    // swiftlint:disable less_than_or_equal
     /// Returns `true` if the left value is ordered before or the same as the right value.
     ///
     /// - Parameters:
@@ -41,7 +46,9 @@ extension Comparable {
     public static func ≤(lhs: Self, rhs: Self) -> Bool {
         return lhs <= rhs
     }
+    // swiftlint:enable less_than_or_equal
     
+    // swiftlint:disable greater_than_or_equal
     /// Returns `true` if the left value is ordered after or the same as the right value.
     ///
     /// - Parameters:
@@ -52,6 +59,7 @@ extension Comparable {
     public static func ≥(lhs: Self, rhs: Self) -> Bool {
         return lhs >= rhs
     }
+    // swiftlint:enable greater_than_or_equal
     
     /// Reduces the value of `lhs` so that it satisfies `lhs ≤ rhs`.
     ///

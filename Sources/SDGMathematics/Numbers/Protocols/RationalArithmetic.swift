@@ -18,12 +18,14 @@ import SDGLogic
 /// - SeeAlso: (recommended over) `/(_:_:)`
 infix operator ÷: MultiplicationPrecedence
 
+// swiftlint:disable divide_and_set
 /// Modifies the left by dividing it by the right.
 ///
 /// - SeeAlso: ÷`(_:_:)` (non‐mutating variant)
 ///
 /// - SeeAlso: (recommended over) `/=(_:_:)`
 infix operator ÷=: AssignmentPrecedence
+// swiftlint:enable divide_and_set
 
 /// A type that can be used for rational arithmetic.
 ///
@@ -45,6 +47,7 @@ public protocol RationalArithmetic: ExpressibleByFloatLiteral, IntegralArithmeti
     /// - SeeAlso: (recommended over) `/(_:_:)`
     static func ÷(lhs: Self, rhs: Self) -> Self
     
+    // swiftlint:disable divide_and_set
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:
@@ -55,6 +58,7 @@ public protocol RationalArithmetic: ExpressibleByFloatLiteral, IntegralArithmeti
     ///
     /// - SeeAlso: (recommended over) `/=(_:_:)`
     static func ÷=(lhs: inout Self, rhs: Self)
+    // swiftlint:enable divide_and_set
     
     /// Creates a random value within a particular range.
     ///
@@ -121,6 +125,7 @@ extension RationalArithmetic {
 extension RationalArithmetic where Self : FloatType {
     // MARK: - where Self : FloatType
     
+    // swiftlint:disable division
     /// Returns the (rational) quotient of the left divided by the right.
     ///
     /// - Parameters:
@@ -133,7 +138,9 @@ extension RationalArithmetic where Self : FloatType {
     public static func ÷(lhs: Self, rhs: Self) -> Self {
         return lhs / rhs
     }
+    // swiftlint:enable division
     
+    // swiftlint:disable divide_and_set
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:
@@ -146,4 +153,5 @@ extension RationalArithmetic where Self : FloatType {
     public static func ÷=(lhs: inout Self, rhs: Self) {
         lhs /= rhs
     }
+    // swiftlint:enable divide_and_set
 }

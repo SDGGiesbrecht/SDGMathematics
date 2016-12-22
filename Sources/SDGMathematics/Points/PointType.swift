@@ -49,7 +49,9 @@ public protocol PointType: Equatable {
     ///
     /// - SeeAlso: `−=(_:_:)` (mutating variant)
     //static func −(lhs: Self, rhs: Vector) -> Self
+    // swiftlint:disable not
     // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.1) commented because it falsely triggers “ambiguous use of operator” errors (see testSubtractable). This can be used again when the bug is fixed.
+    // swiftlint:enable not
     
     /// Returns the vector that leads from the point on the left to the point on the right.
     ///
@@ -68,7 +70,7 @@ public protocol PointType: Equatable {
     static func −=(lhs: inout Self, rhs: Vector)
 }
 
-extension PointType  {
+extension PointType {
 
     fileprivate static func addAsPointType(_ lhs: Self, _ rhs: Vector) -> Self {
         var result = lhs
