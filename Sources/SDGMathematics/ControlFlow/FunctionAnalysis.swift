@@ -18,7 +18,9 @@ import SDGLogic
 private func findLocalExtreme<I: OneDimensionalPoint, O>(near location: I, within bounds: CountableClosedRange<I>?, inFunction function: (I) -> O, isCloser: (O, O) -> Bool) -> I where I.Vector : IntegerType {
     var location = location
     
+    // swiftlint:disable force_unwrapping
     assert(bounds == nil ∨ bounds!.contains(location), "Location (\(location)) out of bounds (\(bounds)).")
+    // swiftlint:enable force_unwrapping
     
     while location ≠ bounds?.upperBound ∧ isCloser(function(location.successor()), function(location)) {
         location = location.successor()
@@ -47,7 +49,7 @@ private func findLocalExtreme<I: OneDimensionalPoint, O>(near location: I, withi
 ///     - function: The function to analyze.
 /// - Returns: The input (*x*) that results in the local maximum (*y*).
 public func findLocalMaximum<I: OneDimensionalPoint, O: Comparable>(near location: I, within bounds: CountableClosedRange<I>? = nil, inFunction function: (I) -> O) -> I where I.Vector : IntegerType {
-    return findLocalExtreme(near: location, within: bounds, inFunction: function, isCloser: {$0 ≥ $1})
+    return findLocalExtreme(near: location, within: bounds, inFunction: function, isCloser: { $0 ≥ $1 })
 }
 
 /// Returns the input (*x*) corresponding to the local minimum output (*y*) near `location`.
@@ -72,5 +74,5 @@ public func findLocalMaximum<I: OneDimensionalPoint, O: Comparable>(near locatio
 ///     - function: The function to analyze.
 /// - Returns: The input (*x*) that results in the local minimum (*y*).
 public func findLocalMinimum<I: OneDimensionalPoint, O: Comparable>(near location: I, within bounds: CountableClosedRange<I>? = nil, inFunction function: (I) -> O) -> I where I.Vector : IntegerType {
-    return findLocalExtreme(near: location, within: bounds, inFunction: function, isCloser: {$0 ≤ $1})
+    return findLocalExtreme(near: location, within: bounds, inFunction: function, isCloser: { $0 ≤ $1 })
 }

@@ -6,6 +6,9 @@
 /Packages
 /*.xcodeproj
 
+# SwiftLint
+/.swiftlint.yml
+
 # Jazzy (Documentation)
 /build
 /docs/undocumented.json

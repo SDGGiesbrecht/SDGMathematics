@@ -18,12 +18,14 @@ import SDGLogic
 /// - SeeAlso: (recommended over) `*(_:_:)`
 infix operator ×: MultiplicationPrecedence
 
+// swiftlint:disable multiply_and_set
 /// Modifies the left by multiplication with the right.
 ///
 /// - SeeAlso: ×`(_:_:)` (non‐mutating variant)
 ///
 /// - SeeAlso: (recommended over) `*=(_:_:)`
 infix operator ×=: AssignmentPrecedence
+// swiftlint:enable multiply_and_set
 
 /// A precedence group for exponent operators. (e.g. ↑)
 ///
@@ -70,6 +72,7 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     /// - SeeAlso: (recommended over) `*(_:_:)`
     static func ×(lhs: Self, rhs: Self) -> Self
     
+    // swiftlint:disable multiply_and_set
     /// Modifies the left by multiplication with the right.
     ///
     /// - Parameters:
@@ -80,6 +83,7 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     ///
     /// - SeeAlso: (recommended over) `*=(_:_:)`
     static func ×=(lhs: inout Self, rhs: Self)
+    // swiftlint:enable multiply_and_set
     
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
     ///
@@ -106,7 +110,7 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `formRemainder(mod:)` (mutating variant)
     func mod(_ divisor: Self) -> Self
@@ -116,7 +120,7 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `mod(_:)` (non‐mutating variant)
     mutating func formRemainder(mod divisor: Self)
@@ -312,7 +316,7 @@ extension WholeArithmetic {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `formRemainder(mod:)` (mutating variant)
     public func mod(_ divisor: Self) -> Self {
@@ -326,7 +330,7 @@ extension WholeArithmetic {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `mod(_:)` (non‐mutating variant)
     public mutating func formRemainder(mod divisor: Self) {
@@ -563,9 +567,12 @@ extension WholeArithmetic where Self : FloatType {
     ///
     /// - SeeAlso: (recommended over) `*(_:_:)`
     public static func ×(lhs: Self, rhs: Self) -> Self {
+        // swiftlint:disable multiplication
         return lhs * rhs
+        // swiftlint:enable multiplication
     }
     
+    // swiftlint:disable multiply_and_set
     /// Modifies the left by multiplication with the right.
     ///
     /// - Parameters:
@@ -578,6 +585,7 @@ extension WholeArithmetic where Self : FloatType {
     public static func ×=(lhs: inout Self, rhs: Self) {
         lhs *= rhs
     }
+    // swiftlint:enable multiply_and_set
     
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
     ///
@@ -721,9 +729,12 @@ extension WholeArithmetic where Self : IntType {
     ///
     /// - SeeAlso: (recommended over) `*(_:_:)`
     public static func ×(lhs: Self, rhs: Self) -> Self {
+        // swiftlint:disable multiplication
         return lhs * rhs
+        // swiftlint:enable multiplication
     }
     
+    // swiftlint:disable multiply_and_set
     /// Modifies the left by multiplication with the right.
     ///
     /// - Parameters:
@@ -736,6 +747,7 @@ extension WholeArithmetic where Self : IntType {
     public static func ×=(lhs: inout Self, rhs: Self) {
         lhs *= rhs
     }
+    // swiftlint:enable multiply_and_set
     
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
     ///
@@ -749,7 +761,9 @@ extension WholeArithmetic where Self : IntType {
         let needsToWrapToPrevious = negative ∧ self % divisor ≠ 0
         // Wrap to previous if negative (ignoring when exactly even)
         
+        // swiftlint:disable divide_and_set
         self /= divisor
+        // swiftlint:enable divide_and_set
         
         if needsToWrapToPrevious {
             self −= 1
@@ -822,9 +836,12 @@ extension WholeArithmetic where Self : UIntType {
     ///
     /// - SeeAlso: (recommended over) `*(_:_:)`
     public static func ×(lhs: Self, rhs: Self) -> Self {
+        // swiftlint:disable multiplication
         return lhs * rhs
+        // swiftlint:enable multiplication
     }
     
+    // swiftlint:disable multiply_and_set
     /// Modifies the left by multiplication with the right.
     ///
     /// - Parameters:
@@ -837,6 +854,7 @@ extension WholeArithmetic where Self : UIntType {
     public static func ×=(lhs: inout Self, rhs: Self) {
         lhs *= rhs
     }
+    // swiftlint:enable multiply_and_set
     
     /// Returns the integral quotient of `self` divided by `divisor`.
     ///
@@ -844,7 +862,9 @@ extension WholeArithmetic where Self : UIntType {
     ///
     /// - SeeAlso: `divideAccordingToEuclid(by:)` (mutating variant)
     public func dividedAccordingToEuclid(by divisor: Self) -> Self {
+        // swiftlint:disable division
         return self / divisor
+        // swiftlint:enable division
     }
     
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
@@ -853,7 +873,9 @@ extension WholeArithmetic where Self : UIntType {
     ///
     /// - SeeAlso: `dividedAccordingToEuclid(by:)` (non‐mutating variant)
     public mutating func divideAccordingToEuclid(by divisor: Self) {
+        // swiftlint:disable divide_and_set
         self /= divisor
+        // swiftlint:enable divide_and_set
     }
     
     /// Returns the Euclidean remainder of `self` ÷ `divisor`.
@@ -861,7 +883,7 @@ extension WholeArithmetic where Self : UIntType {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `formRemainder(mod:)` (mutating variant)
     public func mod(_ divisor: Self) -> Self {
@@ -873,7 +895,7 @@ extension WholeArithmetic where Self : UIntType {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `mod(_:)` (non‐mutating variant)
     public mutating func formRemainder(mod divisor: Self) {

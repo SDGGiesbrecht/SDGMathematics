@@ -21,16 +21,25 @@ postfix operator ′′
 // MARK: - Angles
 
 /// Returns an angle in degrees.
+///
+/// - Parameters:
+///     - value: The value in degrees.
 public postfix func °<N: RealArithmetic>(value: N) -> Angle<N> {
     return value.degrees
 }
 
 /// Returns an angle in minutes.
+///
+/// - Parameters:
+///     - value: The value in minutes.
 public postfix func ′<N: RealArithmetic>(value: N) -> Angle<N> {
     return value.minutes
 }
 
 /// Returns an angle in seconds.
+///
+/// - Parameters:
+///     - value: The value in seconds.
 public postfix func ′′<N: RealArithmetic>(value: N) -> Angle<N> {
     return value.seconds
 }

@@ -4,7 +4,7 @@
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 PrintHeader () {
-    printf "\n\e[0;34m$1\e[0m\n"
+    printf "\n\e[0;34m$1\e[0m\n\n"
 }
 # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
 PrintHeader "Checking for development tool updates..."

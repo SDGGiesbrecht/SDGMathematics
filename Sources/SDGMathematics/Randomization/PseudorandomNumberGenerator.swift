@@ -9,7 +9,9 @@
 // Licensed under the Apache License, Version 2.0
 // See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
 
+// swiftlint:disable disjunction
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+// swiftlint:enable disjunction
     import Foundation
 #elseif os(Linux)
     import Glibc
@@ -62,7 +64,9 @@ public final class PseudorandomNumberGenerator: Randomizer {
     /// Returns a new, randomly generated seed.
     public static func generateSeed() -> Seed {
         func systemSpecificRandom() -> UInt32 {
+            // swiftlint:disable disjunction
             #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+            // swiftlint:enable disjunction
                 
                 return arc4random()
                 
@@ -97,8 +101,11 @@ public final class PseudorandomNumberGenerator: Randomizer {
     
     /// Returns a random value.
     public func randomNumber() -> UInt64 {
+        // swiftlint:disable missing_documentation
         
         // This is derived from the C code of David Blackman and Sebastiano Vigna’s xoroshiro128+ algorithm, which they have dedicated to the public domain. (retrieved on 2016‐12‐08 from http://vigna.di.unimi.it/xorshift/xoroshiro128plus.c)
+        
+        // swiftlint:enable missing_documentation
         
         let result = state.0 &+ state.1
         

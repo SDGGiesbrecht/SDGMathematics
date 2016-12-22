@@ -11,7 +11,10 @@
 
 import XCTest
 
+// swiftlint:disable disjunction
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+// swiftlint:enable disjunction
+    
     import Foundation
 #endif
 
@@ -96,15 +99,15 @@ class SDGMathematicsTests: XCTestCase {
     }
     
     func testComparable() {
-        XCTAssert(ComparableExample(value: -1) < ComparableExample(value: 0))
+        XCTAssert(ComparableExample(value: −1) < ComparableExample(value: 0))
         XCTAssertFalse(ComparableExample(value: 0) < ComparableExample(value: 0))
         XCTAssertFalse(ComparableExample(value: 1) < ComparableExample(value: 0))
         
-        XCTAssert(ComparableExample(value: -1) ≤ ComparableExample(value: 0))
+        XCTAssert(ComparableExample(value: −1) ≤ ComparableExample(value: 0))
         XCTAssert(ComparableExample(value: 0) ≤ ComparableExample(value: 0))
         XCTAssertFalse(ComparableExample(value: 1) ≤ ComparableExample(value: 0))
         
-        XCTAssertFalse(ComparableExample(value: -1) ≥ ComparableExample(value: 0))
+        XCTAssertFalse(ComparableExample(value: −1) ≥ ComparableExample(value: 0))
         XCTAssert(ComparableExample(value: 0) ≥ ComparableExample(value: 0))
         XCTAssert(ComparableExample(value: 1) ≥ ComparableExample(value: 0))
         
@@ -123,7 +126,10 @@ class SDGMathematicsTests: XCTestCase {
     }
     
     func testDouble() {
+        // swiftlint:disable disjunction
         #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+        // swiftlint:enable disjunction
+            
             XCTAssert(¬CGFloat(28).debugDescription.isEmpty)
             XCTAssert(CGFloat("1") ≠ nil)
             XCTAssert(CGFloat("a") == nil)
@@ -133,7 +139,7 @@ class SDGMathematicsTests: XCTestCase {
     func testFunctionAnalysis() {
         let negativeQuatratic = {
             (input: Int) -> Int in
-            return -(input ↑ 2)
+            return −(input ↑ 2)
         }
         XCTAssert(findLocalMaximum(near: 10, inFunction: negativeQuatratic) == 0, "Failed to find local maximum.")
         
@@ -165,8 +171,10 @@ class SDGMathematicsTests: XCTestCase {
             /* Swift.AbsoluteValuable */ XCTAssert(abs(minusOne) == one)
             
             XCTAssert(−one == minusOne)
+            // swiftlint:disable hyphen_minus
             /* Swift.SignedNumber */ XCTAssert(-one == minusOne)
             /* Swift.SignedNumber */ XCTAssert(one - minusOne == two)
+            // swiftlint:enable hyphen_minus
             
             XCTAssert(three.dividedAccordingToEuclid(by: −two) == −two)
             XCTAssert((−three).dividedAccordingToEuclid(by: two) == −two)
