@@ -60,7 +60,8 @@ public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
     /// The absolute value.
     ///
     /// - SeeAlso: `formAbsoluteValue()` (mutating variant)
-    var absoluteValue: Self { get }
+    //var absoluteValue: Self { get }
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
     
     /// Sets `self` to its absolute value.
     ///
