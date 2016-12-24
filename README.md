@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SDGGiesbrecht/SDGMathematics.svg?branch=fix-linux-integration)](https://travis-ci.org/SDGGiesbrecht/SDGMathematics)
+
 # SDGMathematics
 
 SDGMathematics extends support for mathematics.

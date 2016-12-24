@@ -41,6 +41,13 @@ public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
     
     // MARK: - Classification
     
+    // swiftlint:disable disjunction
+    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+    // swiftlint:enable disjunction
+    // swiftlint:disable not
+    // !!!!!BUG!!!!! These optimizable properties are temporarily excluded from Linux as a workaround for a compiler bug (Swift 3.0).
+    // swiftlint:enable not
+    
     /// Returns `true` if `self` is positive.
     var isPositive: Bool { get }
     
@@ -59,6 +66,7 @@ public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
     ///
     /// - SeeAlso: `formAbsoluteValue()` (mutating variant)
     var absoluteValue: Self { get }
+    #endif
     
     /// Sets `self` to its absolute value.
     ///
