@@ -192,7 +192,10 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     var isANaturalNumber: Bool { get }
     
     /// Returns `true` if `self` is a whole number.
-    var isAWholeNumber: Bool { get }
+    //var isAWholeNumber: Bool { get }
+    // swiftlint:disable not
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// Returns `true` if `self` is an integer.
     var isAnInteger: Bool { get }
