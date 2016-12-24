@@ -52,7 +52,8 @@ public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
     var isNonNegative: Bool { get }
     
     /// Returns `true` if `self` is negative or zero.
-    var isNonPositive: Bool { get }
+    //var isNonPositive: Bool { get }
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
     
     // MARK: - Operations
     
