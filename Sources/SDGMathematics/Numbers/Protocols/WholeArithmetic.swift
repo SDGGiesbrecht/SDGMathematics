@@ -188,35 +188,28 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     
     // MARK: - Classification
     
-    /// Returns `true` if `self` is a natural number.
-    //var isANaturalNumber: Bool { get }
+    // swiftlint:disable disjunction
+    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+    // swiftlint:enable disjunction
     // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // !!!!!BUG!!!!! These optimizable properties are temporarily excluded from Linux as a workaround for a compiler bug (Swift 3.0).
     // swiftlint:enable not
+    
+    /// Returns `true` if `self` is a natural number.
+    var isANaturalNumber: Bool { get }
     
     /// Returns `true` if `self` is a whole number.
-    //var isAWholeNumber: Bool { get }
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
-    // swiftlint:enable not
+    var isAWholeNumber: Bool { get }
     
     /// Returns `true` if `self` is an integer.
-    //var isAnInteger: Bool { get }
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
-    // swiftlint:enable not
+    var isAnInteger: Bool { get }
     
     /// Returns true if `self` is an even integer.
-    //var isEven: Bool { get }
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
-    // swiftlint:enable not
+    var isEven: Bool { get }
     
     /// Returns true if `self` is an odd integer.
-    //var isOdd: Bool { get }
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
-    // swiftlint:enable not
+    var isOdd: Bool { get }
+    #endif
     
     // MARK: - Rounding
     

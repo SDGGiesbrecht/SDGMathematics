@@ -41,39 +41,32 @@ public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
     
     // MARK: - Classification
     
-    /// Returns `true` if `self` is positive.
-    //var isPositive: Bool { get }
+    // swiftlint:disable disjunction
+    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+    // swiftlint:enable disjunction
     // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // !!!!!BUG!!!!! These optimizable properties are temporarily excluded from Linux as a workaround for a compiler bug (Swift 3.0).
     // swiftlint:enable not
+    
+    /// Returns `true` if `self` is positive.
+    var isPositive: Bool { get }
     
     /// Returns `true` if `self` is negative.
-    //var isNegative: Bool { get }
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
-    // swiftlint:enable not
+    var isNegative: Bool { get }
     
     /// Returns `true` if `self` is positive or zero.
-    //var isNonNegative: Bool { get }
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
-    // swiftlint:enable not
+    var isNonNegative: Bool { get }
     
     /// Returns `true` if `self` is negative or zero.
-    //var isNonPositive: Bool { get }
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
-    // swiftlint:enable not
+    var isNonPositive: Bool { get }
     
     // MARK: - Operations
     
     /// The absolute value.
     ///
     /// - SeeAlso: `formAbsoluteValue()` (mutating variant)
-    //var absoluteValue: Self { get }
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
-    // swiftlint:enable not
+    var absoluteValue: Self { get }
+    #endif
     
     /// Sets `self` to its absolute value.
     ///
