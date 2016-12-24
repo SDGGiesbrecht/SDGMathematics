@@ -171,10 +171,10 @@ class SDGMathematicsTests: XCTestCase {
             /* Swift.AbsoluteValuable */ XCTAssert(abs(minusOne) == one)
             
             XCTAssert(−one == minusOne)
-            // swiftlint:disable ascii_hyphen_minus
+            // swiftlint:disable hyphen_minus
             /* Swift.SignedNumber */ XCTAssert(-one == minusOne)
             /* Swift.SignedNumber */ XCTAssert(one - minusOne == two)
-            // swiftlint:enable ascii_hyphen_minus
+            // swiftlint:enable hyphen_minus
             
             XCTAssert(three.dividedAccordingToEuclid(by: −two) == −two)
             XCTAssert((−three).dividedAccordingToEuclid(by: two) == −two)

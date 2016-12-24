@@ -17,7 +17,7 @@ import SDGLogic
 ///     let y = |x|
 ///     // y == 1
 ///
-/// - warning: The result of unpaired use is undefined.
+/// - Warning: The result of unpaired use is undefined.
 prefix operator |
 /// Computes the absolute value (in conjuction with prefix `|(_:)`).
 ///
@@ -25,7 +25,7 @@ prefix operator |
 ///     let y = |x|
 ///     // y == 1
 ///
-/// - warning: The result of unpaired use is undefined.
+/// - Warning: The result of unpaired use is undefined.
 postfix operator |
 
 /// An one‐dimensional value that can be added and subtracted.
@@ -101,7 +101,7 @@ extension NumericAdditiveArithmetic {
     ///     let y = |x|
     ///     // y == 1
     ///
-    /// - warning: The result of unpaired use is undefined.
+    /// - Warning: The result of unpaired use is undefined.
     public static prefix func |(operand: Self) -> Self {
         return operand.absoluteValue
     }
@@ -111,7 +111,7 @@ extension NumericAdditiveArithmetic {
     ///     let y = |x|
     ///     // y == 1
     ///
-    /// - warning: The result of unpaired use is undefined.
+    /// - Warning: The result of unpaired use is undefined.
     public static postfix func |(operand: Self) -> Self {
         return operand
     }

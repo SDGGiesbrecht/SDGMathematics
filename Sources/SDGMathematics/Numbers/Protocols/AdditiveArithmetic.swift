@@ -51,7 +51,7 @@ extension AdditiveArithmetic {
 }
 
 extension AdditiveArithmetic where Self : ExpressibleByIntegerLiteral {
-    // where Self : ExpressibleByIntegerLiteral
+    // MARK: - where Self : ExpressibleByIntegerLiteral
     
     /// The additive identity (origin).
     public static var additiveIdentity: Self {
@@ -60,7 +60,7 @@ extension AdditiveArithmetic where Self : ExpressibleByIntegerLiteral {
 }
 
 extension AdditiveArithmetic where Self : Measurement {
-    // where Self : Measurement
+    // MARK: - where Self : Measurement
     
     /// The additive identity.
     public static var additiveIdentity: Self {

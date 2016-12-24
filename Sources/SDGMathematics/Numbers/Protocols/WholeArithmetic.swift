@@ -110,7 +110,7 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `formRemainder(mod:)` (mutating variant)
     func mod(_ divisor: Self) -> Self
@@ -120,7 +120,7 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `mod(_:)` (non‐mutating variant)
     mutating func formRemainder(mod divisor: Self)
@@ -316,7 +316,7 @@ extension WholeArithmetic {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `formRemainder(mod:)` (mutating variant)
     public func mod(_ divisor: Self) -> Self {
@@ -330,7 +330,7 @@ extension WholeArithmetic {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `mod(_:)` (non‐mutating variant)
     public mutating func formRemainder(mod divisor: Self) {
@@ -883,7 +883,7 @@ extension WholeArithmetic where Self : UIntType {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `formRemainder(mod:)` (mutating variant)
     public func mod(_ divisor: Self) -> Self {
@@ -895,7 +895,7 @@ extension WholeArithmetic where Self : UIntType {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `mod(_:)` (non‐mutating variant)
     public mutating func formRemainder(mod divisor: Self) {

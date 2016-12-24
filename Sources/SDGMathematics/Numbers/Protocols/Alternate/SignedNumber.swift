@@ -12,7 +12,7 @@
 extension SignedNumber where Self : IntegralArithmetic {
     // MARK: - where Self : IntegralArithmetic
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the result of negating `x`.
     ///
     /// - Parameters:
@@ -22,9 +22,9 @@ extension SignedNumber where Self : IntegralArithmetic {
     public static prefix func -(x: Self) -> Self {
         return −x
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference between `lhs` and `rhs`.
     ///
     /// - Parameters:
@@ -35,5 +35,5 @@ extension SignedNumber where Self : IntegralArithmetic {
     public static func -(lhs: Self, rhs: Self) -> Self {
         return lhs − rhs
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
 }

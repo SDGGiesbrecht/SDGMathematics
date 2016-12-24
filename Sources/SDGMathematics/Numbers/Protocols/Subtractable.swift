@@ -9,14 +9,14 @@
 // Licensed under the Apache License, Version 2.0
 // See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
 
-// swiftlint:disable ascii_hyphen_minus
+// swiftlint:disable hyphen_minus
 /// Subtracts the right from the left.
 ///
 /// - SeeAlso: `−=(_:_:)` (mutating variant)
 ///
 /// - SeeAlso: (recommended over) `-(_:_:)`
 infix operator −: AdditionPrecedence
-// swiftlint:enable ascii_hyphen_minus
+// swiftlint:enable hyphen_minus
 
 // swiftlint:disable subtract_and_set
 /// Modifies the left by subtracting the right.
@@ -39,7 +39,7 @@ infix operator −=: AssignmentPrecedence
 /// - `static func −=(lhs: inout Self, rhs: Self)`
 public protocol Subtractable: Addable {
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -50,7 +50,7 @@ public protocol Subtractable: Addable {
     ///
     /// - SeeAlso: (recommended over) `-(_:_:)`
     static func −(lhs: Self, rhs: Self) -> Self
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     // swiftlint:disable subtract_and_set
     /// Subtracts the right from the left.
@@ -73,7 +73,7 @@ extension Subtractable {
         result −= rhs
         return result
     }
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -86,7 +86,7 @@ extension Subtractable {
     public static func −(lhs: Self, rhs: Self) -> Self {
         return subtractAsSubtractable(lhs, rhs)
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
 }
 
 extension FloatType {
@@ -100,7 +100,7 @@ extension FloatType {
 extension Subtractable where Self : FloatType, Self.Vector == Self, Self.Stride == Self {
     // MARK: - where Self : FloatType, Vector == Self, Stride == Self
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -113,7 +113,7 @@ extension Subtractable where Self : FloatType, Self.Vector == Self, Self.Stride 
     public static func −(lhs: Self, rhs: Self) -> Self {
         return lhs - rhs
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     // swiftlint:disable subtract_and_set
     /// Subtracts the right from the left.
@@ -134,7 +134,7 @@ extension Subtractable where Self : FloatType, Self.Vector == Self, Self.Stride 
 extension Subtractable where Self : IntType /* Self.Stride ≠ Self */ {
     // MARK: - where Self : IntType
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -147,7 +147,7 @@ extension Subtractable where Self : IntType /* Self.Stride ≠ Self */ {
     public static func −(lhs: Self, rhs: Self) -> Self {
         return lhs - rhs
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     // swiftlint:disable subtract_and_set
     /// Subtracts the right from the left.
@@ -168,7 +168,7 @@ extension Subtractable where Self : IntType /* Self.Stride ≠ Self */ {
 extension Subtractable where Self : IntType, Self.Vector == Self, Self.Stride == Self {
     // MARK: - where Self : IntType, Vector == Self, Stride == Self
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -182,13 +182,13 @@ extension Subtractable where Self : IntType, Self.Vector == Self, Self.Stride ==
         // Disambiguate Subtractable(where IntType).− vs Subtractable(where PointType, Strideable, Stride == Self).−
         return lhs - rhs
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
 }
 
 extension Subtractable where Self : Measurement {
     // MARK: - where Self : Measurement
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -201,7 +201,7 @@ extension Subtractable where Self : Measurement {
     public static func −(lhs: Self, rhs: Self) -> Self {
         return Self(rawValue: lhs.rawValue − rhs.rawValue)
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     // swiftlint:disable subtract_and_set
     /// Subtracts the right from the left.
@@ -222,7 +222,7 @@ extension Subtractable where Self : Measurement {
 extension Subtractable where Self : PointType, Self.Vector == Self {
     // MARK: - where Self : PointType, Vector == Self
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -236,13 +236,13 @@ extension Subtractable where Self : PointType, Self.Vector == Self {
         // Disambiguate Subtractable.− vs PointType.−
         return subtractAsSubtractable(lhs, rhs)
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
 }
 
 extension Subtractable where Self : PointType, Self : Strideable, Self.Vector == Self, Self.Stride == Self {
     // MARK: - where Self : PointType, Self : Strideable, Vector == Self, Stride == Self
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -256,13 +256,13 @@ extension Subtractable where Self : PointType, Self : Strideable, Self.Vector ==
         // Disambiguate Subtractable(where PointType).− vs PointType(where Strideable).−
         return subtractAsSubtractable(lhs, rhs)
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
 }
 
 extension Subtractable where Self : UIntType {
     // MARK: - where Self : UIntType
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -275,7 +275,7 @@ extension Subtractable where Self : UIntType {
     public static func −(lhs: Self, rhs: Self) -> Self {
         return lhs - rhs
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     // swiftlint:disable subtract_and_set
     /// Subtracts the right from the left.

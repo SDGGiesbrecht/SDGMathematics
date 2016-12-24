@@ -61,6 +61,7 @@ extension Comparable {
     }
     // swiftlint:enable greater_than_or_equal
     
+    // swiftlint:disable quotation_marks_code
     /// Reduces the value of `lhs` so that it satisfies `lhs ≤ rhs`.
     ///
     /// This is accomplished by changing the value of `lhs` to match the value of `rhs` if and only if `lhs` does not already satisfy `lhs ≤ rhs`.
@@ -89,7 +90,9 @@ extension Comparable {
             lhs = rhs
         }
     }
+    // swiftlint:enable quotation_marks_code
     
+    // swiftlint:disable quotation_marks_code
     /// Increases the value of `lhs` so that it satisfies `lhs ≥ rhs`.
     ///
     /// This is accomplished by changing the value of `lhs` to match the value of `rhs` if and only if `lhs` does not already satisfy `lhs ≥ rhs`.
@@ -118,6 +121,7 @@ extension Comparable {
             lhs = rhs
         }
     }
+    // swiftlint:enable quotation_marks_code
 }
 
 extension Comparable where Self : Measurement {

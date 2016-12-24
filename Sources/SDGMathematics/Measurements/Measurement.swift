@@ -105,7 +105,7 @@ public protocol Measurement: Addable, Comparable, Equatable, Negatable, NumericA
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `formRemainder(mod:)` (mutating variant)
     func mod(_ divisor: Self) -> Self
@@ -115,7 +115,7 @@ public protocol Measurement: Addable, Comparable, Equatable, Negatable, NumericA
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `mod(_:)` (non‐mutating variant)
     mutating func formRemainder(mod divisor: Self)
@@ -213,7 +213,7 @@ public protocol Measurement: Addable, Comparable, Equatable, Negatable, NumericA
     init(randomInRange range: ClosedRange<Self>, fromRandomizer randomizer: Randomizer)
 }
 
-// MARK: - Measturements
+// MARK: - Measurements
 
 /// Returns the greatest common divisor of `a` and `b`.
 ///
@@ -331,7 +331,7 @@ extension Measurement {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `formRemainder(mod:)` (mutating variant)
     public func mod(_ divisor: Self) -> Self {
@@ -345,7 +345,7 @@ extension Measurement {
     /// - Parameters:
     ///     - divisor: The divisor.
     ///
-    /// - note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
     ///
     /// - SeeAlso: `mod(_:)` (non‐mutating variant)
     public mutating func formRemainder(mod divisor: Self) {

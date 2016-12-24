@@ -9,14 +9,14 @@
 // Licensed under the Apache License, Version 2.0
 // See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
 
-// swiftlint:disable ascii_hyphen_minus
+// swiftlint:disable hyphen_minus
 /// Performs additive inversion.
 ///
 /// - SeeAlso: `−=(_:)` (mutating variant)
 ///
 /// - SeeAlso: (recommended over) `-(_:)`
 prefix operator −
-// swiftlint:enable ascii_hyphen_minus
+// swiftlint:enable hyphen_minus
 
 /// Modifies the operand by additive inversion.
 ///
@@ -32,7 +32,7 @@ postfix operator −=
 /// - `AdditiveArithmetic`
 public protocol Negatable: AdditiveArithmetic {
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -42,7 +42,7 @@ public protocol Negatable: AdditiveArithmetic {
     ///
     /// - SeeAlso: (recommended over) `-(_:)`
     static prefix func −(operand: Self) -> Self
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     /// Sets the operand to its additive inverse.
     ///
@@ -55,7 +55,7 @@ public protocol Negatable: AdditiveArithmetic {
 
 extension Negatable {
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -67,7 +67,7 @@ extension Negatable {
     public static prefix func −(operand: Self) -> Self {
         return _0 − operand
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     /// Sets the operand to its additive inverse.
     ///
@@ -83,7 +83,7 @@ extension Negatable {
 extension Negatable where Self : FloatType {
     // MARK: - where Self : FloatType
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -95,9 +95,9 @@ extension Negatable where Self : FloatType {
     public static prefix func −(operand: Self) -> Self {
         return -operand
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Sets the operand to its additive inverse.
     ///
     /// - Parameters:
@@ -107,13 +107,13 @@ extension Negatable where Self : FloatType {
     public static postfix func −=(operand: inout Self) {
         operand = -operand
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
 }
 
 extension Negatable where Self : IntType {
     // MARK: - where Self : IntType
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -125,9 +125,9 @@ extension Negatable where Self : IntType {
     public static prefix func −(operand: Self) -> Self {
         return -operand
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Sets the operand to its additive inverse.
     ///
     /// - Parameters:
@@ -137,13 +137,13 @@ extension Negatable where Self : IntType {
     public static postfix func −=(operand: inout Self) {
         operand = -operand
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
 }
 
 extension Negatable where Self : Measurement {
     // MARK: - where Self : Measurement
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -155,7 +155,7 @@ extension Negatable where Self : Measurement {
     public static prefix func −(operand: Self) -> Self {
         return Self(rawValue: −operand.rawValue)
     }
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     /// Sets the operand to its additive inverse.
     ///

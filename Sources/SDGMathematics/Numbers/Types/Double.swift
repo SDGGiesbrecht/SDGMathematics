@@ -37,10 +37,10 @@ extension Double: FloatType {
     
     // MARK: - FloatType
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// An instance of ln(2).
     public static let ln2: Double = 0x1.62E42FEFA39EFp-1
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     // MARK: - PointType
     
@@ -100,10 +100,10 @@ extension Float80: FloatType {
     
     // MARK: - FloatType
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// An instance of ln(2).
     public static let ln2: Float80 = 0x1.62E42FEFA39EF358p-1
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     // MARK: - PointType
     
@@ -120,10 +120,10 @@ extension Float: FloatType {
     
     // MARK: - FloatType
     
-    // swiftlint:disable ascii_hyphen_minus
+    // swiftlint:disable hyphen_minus
     /// An instance of ln(2).
     public static let ln2: Float = 0x1.62E430p-1
-    // swiftlint:enable ascii_hyphen_minus
+    // swiftlint:enable hyphen_minus
     
     // MARK: - PointType
     
