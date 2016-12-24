@@ -1,3 +1,4 @@
+module: SDGMathematics
 xcodebuild_arguments:
     - "-target"
     - SDGMathematics

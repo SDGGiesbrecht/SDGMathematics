@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Find and enter repository.
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
@@ -11,10 +11,9 @@ PrintHeader "Refreshing workspace..."
 # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
 
 WORKSPACE_STATUS=""
-if sh ./Refresh\ Workspace.command ; then
+if bash ./Refresh\ Workspace.command "$1" ; then
     WORKSPACE_STATUS="--workspace-up-to-date"
 fi
-if ! sh .Development\ Tools/SDG/Development\ Tools/Validate\ Changes.sh "${WORKSPACE_STATUS}"; then
-    echo "Failed!"
+if ! bash .Development\ Tools/SDG/Development\ Tools/Validate\ Changes.sh "${WORKSPACE_STATUS}" "$1"; then
     exit 1
 fi
