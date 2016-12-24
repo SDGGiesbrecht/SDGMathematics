@@ -40,8 +40,16 @@ public protocol RealArithmetic: RationalArithmetic {
     /// An instance of π.
     static var π: Self { get }
     
+    // swiftlint:disable disjunction
+    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+    // swiftlint:enable disjunction
+    // swiftlint:disable not
+    // !!!!!BUG!!!!! This optimizable property is temporarily excluded from Linux as a workaround for a compiler bug (Swift 3.0).
+    // swiftlint:enable not
+    
     /// An instance of τ.
     static var τ: Self { get }
+    #endif
     
     /// An instance of *e*.
     static var e: Self { get }
