@@ -9,13 +9,6 @@
 // Licensed under the Apache License, Version 2.0
 // See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
 
-// swiftlint:disable disjunction
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-// swiftlint:enable disjunction
-    
-    import Foundation
-#endif
-
 import SDGLogic
 
 /// A type that represents an floating‐point number.
@@ -52,49 +45,6 @@ extension Double: FloatType {
     /// An instance of *e*.
     public static let e: Double = 0x1.5BF0A8B145769p1
 }
-
-// swiftlint:disable disjunction
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-// swiftlint:enable disjunction
-    extension CGFloat: FloatType {
-        
-        // MARK: - CustomDebugStringConvertible
-        
-        /// A textual representation of this instance, suitable for debugging.
-        public var debugDescription: String {
-            return NativeType(self).debugDescription
-        }
-        
-        // MARK: - FloatType
-        
-        /// An instance of ln(2).
-        public static let ln2: CGFloat = CGFloat(Double.ln2)
-        
-        // MARK: - LosslessStringConvertible
-        
-        /// Instantiates an instance of the conforming type from a string representation.
-        ///
-        /// - Parameters:
-        ///     - description: The string representation.
-        public init?(_ description: String) {
-            if let result = NativeType(description) {
-                self = CGFloat(result)
-            } else {
-                return nil
-            }
-        }
-        
-        // MARK: - PointType
-        
-        /// The vector type.
-        public typealias Vector = Stride
-        
-        // MARK: - RealArithmetic
-        
-        /// An instance of *e*.
-        public static let e: CGFloat = CGFloat(Double.e)
-    }
-#endif
 
 extension Float80: FloatType {
     

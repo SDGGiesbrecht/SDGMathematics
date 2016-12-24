@@ -9,14 +9,6 @@
 // Licensed under the Apache License, Version 2.0
 // See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
 
-// swiftlint:disable disjunction
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-// swiftlint:enable disjunction
-    import Foundation
-#elseif os(Linux)
-    import Glibc
-#endif
-
 /// A pseudorandom number generator.
 ///
 /// Currently, `PseudorandomNumberGenerator` uses the [xoroshiro128+](https://en.wikipedia.org/wiki/Xoroshiro128%2B) algorithm designed by David Blackman and Sebastiano Vigna.
@@ -34,49 +26,10 @@ public final class PseudorandomNumberGenerator: Randomizer {
         return PseudorandomNumberGenerator(seed: generateSeed())
     }()
     
-    #if os(Linux)
-        private static var _linuxState: random_data = random_data()
-        private static var __linuxStateStorage: [Int8] = Array(repeating: 0, count: 256) /* Must be static to persist under memory management. */
-        private static let linuxIsSeeded: Bool = {
-            // “static let” in order to be run only once.
-            let instantInt: Int = time(nil)
-            let instant: UInt32 = UInt32(truncatingBitPattern: instantInt)
-    
-            let storagePointer: UnsafeMutablePointer<Int8> = UnsafeMutablePointer(mutating: __linuxStateStorage)
-    
-            let _ = initstate_r(instant, storagePointer, __linuxStateStorage.count, &_linuxState)
-    
-            return true
-        }()
-        private static var linuxState: random_data {
-            get {
-                if linuxIsSeeded {
-                    return _linuxState
-                } else {
-                    preconditionFailure("Failed to seed BSD random number generator.")
-                }
-            }
-            set {
-                _linuxState = newValue
-            }
-        }
-    #endif
     /// Returns a new, randomly generated seed.
     public static func generateSeed() -> Seed {
         func systemSpecificRandom() -> UInt32 {
-            // swiftlint:disable disjunction
-            #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-            // swiftlint:enable disjunction
-                
-                return arc4random()
-                
-            #elseif os(Linux)
-                
-                var result: Int32 = 0
-                let _ = random_r(&linuxState, &result) /* 0 ≤ x < 2 ↑ 31 */
-                return UInt32(bitPattern: result)
-                
-            #endif
+            return 0
         }
         
         func generateHalf() -> UInt64 {
