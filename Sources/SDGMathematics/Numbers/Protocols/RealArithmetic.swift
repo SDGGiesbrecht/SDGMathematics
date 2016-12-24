@@ -41,7 +41,8 @@ public protocol RealArithmetic: RationalArithmetic {
     static var π: Self { get }
     
     /// An instance of τ.
-    static var τ: Self { get }
+    //static var τ: Self { get }
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
     
     /// An instance of *e*.
     static var e: Self { get }
