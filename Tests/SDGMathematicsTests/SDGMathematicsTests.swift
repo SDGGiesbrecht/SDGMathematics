@@ -11,6 +11,13 @@
 
 import XCTest
 
+// swiftlint:disable disjunction
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+// swiftlint:enable disjunction
+    
+    import Foundation
+#endif
+
 import SDGLogic
 
 @testable import SDGMathematics
@@ -119,7 +126,14 @@ class SDGMathematicsTests: XCTestCase {
     }
     
     func testDouble() {
-        
+        // swiftlint:disable disjunction
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+        // swiftlint:enable disjunction
+            
+            XCTAssert(¬CGFloat(28).debugDescription.isEmpty)
+            XCTAssert(CGFloat("1") ≠ nil)
+            XCTAssert(CGFloat("a") == nil)
+        #endif
     }
     
     func testFunctionAnalysis() {
