@@ -189,7 +189,10 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     // MARK: - Classification
     
     /// Returns `true` if `self` is a natural number.
-    var isANaturalNumber: Bool { get }
+    //var isANaturalNumber: Bool { get }
+    // swiftlint:disable not
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// Returns `true` if `self` is a whole number.
     //var isAWholeNumber: Bool { get }
@@ -198,13 +201,22 @@ public protocol WholeArithmetic: ExpressibleByIntegerLiteral, NumericAdditiveAri
     // swiftlint:enable not
     
     /// Returns `true` if `self` is an integer.
-    var isAnInteger: Bool { get }
+    //var isAnInteger: Bool { get }
+    // swiftlint:disable not
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// Returns true if `self` is an even integer.
-    var isEven: Bool { get }
+    //var isEven: Bool { get }
+    // swiftlint:disable not
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// Returns true if `self` is an odd integer.
-    var isOdd: Bool { get }
+    //var isOdd: Bool { get }
+    // swiftlint:disable not
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     // MARK: - Rounding
     
