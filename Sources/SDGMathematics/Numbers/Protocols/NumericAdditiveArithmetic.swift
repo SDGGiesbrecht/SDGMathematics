@@ -42,7 +42,8 @@ public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
     // MARK: - Classification
     
     /// Returns `true` if `self` is positive.
-    var isPositive: Bool { get }
+    //var isPositive: Bool { get }
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
     
     /// Returns `true` if `self` is negative.
     var isNegative: Bool { get }
