@@ -42,7 +42,9 @@ public protocol RealArithmetic: RationalArithmetic {
     
     /// An instance of τ.
     //static var τ: Self { get }
+    // swiftlint:disable not
     // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// An instance of *e*.
     static var e: Self { get }

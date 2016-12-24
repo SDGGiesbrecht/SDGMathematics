@@ -43,18 +43,27 @@ public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
     
     /// Returns `true` if `self` is positive.
     //var isPositive: Bool { get }
+    // swiftlint:disable not
     // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// Returns `true` if `self` is negative.
     //var isNegative: Bool { get }
+    // swiftlint:disable not
     // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// Returns `true` if `self` is positive or zero.
-    var isNonNegative: Bool { get }
+    //var isNonNegative: Bool { get }
+    // swiftlint:disable not
+    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// Returns `true` if `self` is negative or zero.
     //var isNonPositive: Bool { get }
+    // swiftlint:disable not
     // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     // MARK: - Operations
     
@@ -62,7 +71,9 @@ public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
     ///
     /// - SeeAlso: `formAbsoluteValue()` (mutating variant)
     //var absoluteValue: Self { get }
+    // swiftlint:disable not
     // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.2) commented because it causes a segmentation fault on Linux.
+    // swiftlint:enable not
     
     /// Sets `self` to its absolute value.
     ///
