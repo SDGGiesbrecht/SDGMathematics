@@ -1,4 +1,4 @@
-# SDGMathematics 
+# SDGMathematics
 
 SDGMathematics extends support for mathematics.
 
