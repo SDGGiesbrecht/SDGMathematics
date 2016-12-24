@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Find and enter repository.
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
@@ -26,7 +26,7 @@ cd "${SDG}"
 git pull
 
 cd ../..
-if ! sh .Development\ Tools/SDG/Development\ Tools/Refresh\ Workspace.sh; then
+if ! bash .Development\ Tools/SDG/Development\ Tools/Refresh\ Workspace.sh "$1"; then
     # Note failure for Validate Changes.command.
     exit 1
 fi
