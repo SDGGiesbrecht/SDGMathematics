@@ -30,6 +30,9 @@
 /docs/undocumented.json
 /docs/docsets
 
+# Travis CI
+/Originals
+
 # SDG
 /.Development\ Tools
 

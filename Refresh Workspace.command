@@ -102,9 +102,10 @@ PrintHeader "Updating file headers..."
 # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
 
 if [ "$TRAVIS" == "$TRUE" ]; then
+    mkdir "Originals"
     PrintLine "Saving source for header validation..."
-    cp -rf Sources OriginalSources
-    cp -rf Tests OriginalTests
+    cp -rf Sources Originals/Sources
+    cp -rf Tests Originals/Tests
 fi
 
 cd ".Development Tools/SDG/Update File Headers"
@@ -299,7 +300,7 @@ rm -rf $XCODE_PROJ
 # Temporary: Remove documentation (until it can be otherwise excluded from the Xcode project)
 rm -rf build
 if [ "$TRAVIS" == "$TRUE" ]; then
-    cp -rf docs originaldocs
+    cp -rf docs Originals/docs
 fi
 rm -rf docs
 # End Temporary
