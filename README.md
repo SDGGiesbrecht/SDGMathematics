@@ -9,8 +9,6 @@
 <!-- Licensed under the Apache License, Version 2.0 -->
 <!-- See http://www.apache.org/licenses/LICENSE-2.0 for licence information. -->
 
-[![Build Status](https://travis-ci.org/SDGGiesbrecht/SDGMathematics.svg?branch=fix-linux-integration)](https://travis-ci.org/SDGGiesbrecht/SDGMathematics)
-
 # SDGMathematics
 
 SDGMathematics extends support for mathematics.
