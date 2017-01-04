@@ -2,7 +2,7 @@
 //
 // This source file is part of the SDGMathematics open source project.
 //
-// Copyright ©2016 Jeremy David Giesbrecht and the SDGMathematics contributors.
+// Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics contributors.
 //
 // Soli Deo gloria
 //
