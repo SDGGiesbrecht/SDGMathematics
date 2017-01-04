@@ -1,4 +1,13 @@
-[![Build Status](https://travis-ci.org/SDGGiesbrecht/SDGMathematics.svg?branch=fix-linux-integration)](https://travis-ci.org/SDGGiesbrecht/SDGMathematics)
+<!-- README.md -->
+<!--  -->
+<!-- This source file is part of the SDGMathematics open source project. -->
+<!--  -->
+<!-- Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics contributors. -->
+<!--  -->
+<!-- Soli Deo gloria -->
+<!--  -->
+<!-- Licensed under the Apache License, Version 2.0 -->
+<!-- See http://www.apache.org/licenses/LICENSE-2.0 for licence information. -->
 
 # SDGMathematics
 

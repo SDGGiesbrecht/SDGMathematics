@@ -1,3 +1,19 @@
+# .gitignore
+#
+# This source file is part of the SDG open source projects.
+#
+# Copyright ©2016–2017 Jeremy David Giesbrecht and the SDG contributors.
+#
+# Soli Deo gloria
+#
+# Licensed under the Apache License, Version 2.0
+# See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
+
+# !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
+# THIS IS A SHARED FILE FROM THE REPOSITORY AT https://github.com/SDGGiesbrecht/SDG.
+# CHANGES MUST BE MADE THERE.
+# !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
+
 # macOS
 .DS_Store
 
@@ -14,5 +30,13 @@
 /docs/undocumented.json
 /docs/docsets
 
+# Travis CI
+/Originals
+
 # SDG
 /.Development\ Tools
+
+# SDG Development Tools
+/Update\ File\ Headers
+!/Update\ File\ Headers/Package.swift
+!/Update\ File\ Headers/Sources/main.swift
