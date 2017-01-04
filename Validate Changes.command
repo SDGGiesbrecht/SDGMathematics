@@ -155,12 +155,12 @@ else
     fi
 fi
 
-# ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
-PrintHeader "Validating documentation..."
-# ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
-
 DOCUMENTATION_VALID=$FAIL
 if [ "$TRAVIS" == "$TRUE" ]; then
+    # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
+    PrintHeader "Validating documentation..."
+    # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
+
     rm -rf docs/docsets
     rm -f docs/undocumented.json
     DIFFERENCES=$(diff -ar docs originaldocs)
@@ -171,16 +171,17 @@ if [ "$TRAVIS" == "$TRUE" ]; then
     fi
 fi
 
-# ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
-PrintHeader "Validating file headers..."
-# ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
-
 FILE_HEADERS_VALID=$FAIL
 if [ "$TRAVIS" == "$TRUE" ]; then
+    # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
+    PrintHeader "Validating file headers..."
+    # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
+
     DIFFERENCES=$(diff -ar Sources OriginalSources)
     if [ "$DIFFERENCES" == "" ]; then
         DIFFERENCES=$(diff -ar Tests OriginalTests)
         if [ "$DIFFERENCES" == "" ]; then
+            echo "$(cat Tests/LinuxMain.swift)"
             FILE_HEADERS_VALID=$SUCCEED
         else
             echo "$DIFFERENCES"

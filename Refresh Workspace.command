@@ -102,6 +102,7 @@ PrintHeader "Updating file headers..."
 # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
 
 if [ "$TRAVIS" == "$TRUE" ]; then
+    PrintLine "Saving source for header validation..."
     cp -rf Sources OriginalSources
     cp -rf Tests OriginalTests
 fi
