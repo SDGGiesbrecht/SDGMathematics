@@ -177,9 +177,14 @@ PrintHeader "Validating file headers..."
 
 FILE_HEADERS_VALID=$FAIL
 if [ "$TRAVIS" == "$TRUE" ]; then
-    DIFFERENCES=$(diff -ar Sources OriginalSources; diff -ar Tests OriginalTests)
+    DIFFERENCES=$(diff -ar Sources OriginalSources)
     if [ "$DIFFERENCES" == "" ]; then
-        FILE_HEADERS_VALID=$SUCCEED
+        DIFFERENCES=$(diff -ar Tests OriginalTests)
+        if [ "$DIFFERENCES" == "" ]; then
+            FILE_HEADERS_VALID=$SUCCEED
+        else
+            echo "$DIFFERENCES"
+        fi
     else
         echo "$DIFFERENCES"
     fi

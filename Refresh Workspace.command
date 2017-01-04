@@ -119,6 +119,13 @@ rm -f .gitignore
 cp ".Development Tools/SDG/.gitignore" .gitignore
 
 # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
+PrintHeader "Updating Git attributes..."
+# ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
+
+rm -f .gitattributes
+cp ".Development Tools/SDG/.gitattributes" .gitattributes
+
+# ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
 PrintHeader "Updating licence..."
 # ••••••• ••••••• ••••••• ••••••• ••••••• •••••••• ••••••••
 

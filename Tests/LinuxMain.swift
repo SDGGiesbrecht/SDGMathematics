@@ -2,6 +2,7 @@
 //
 // This source file is part of the SDGMathematics open source project.
 //
+// Travis should fail.
 // Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics contributors.
 //
 // Soli Deo gloria
