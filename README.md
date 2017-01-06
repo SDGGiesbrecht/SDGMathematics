@@ -39,7 +39,7 @@ let package = Package(
     ...
     dependencies: [
         ...
-        .Package(url: "https://github.com/SDGGiesbrecht/SDGMathematics", versions: "1.0.0" ..< "2.0.0")
+        .Package(url: "https://github.com/SDGGiesbrecht/SDGMathematics", versions: "1.0.1" ..< "2.0.0")
     ]
 )
 ```

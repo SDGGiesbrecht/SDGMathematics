@@ -14,29 +14,40 @@
 # CHANGES MUST BE MADE THERE.
 # !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
 
+# ••••••• OS •••••••
+
 # macOS
 .DS_Store
+
+# ••••••• Build •••••••
 
 # Swift Package Manager
 /.build
 /Packages
 /*.xcodeproj
 
-# SwiftLint
-/.swiftlint.yml
-
-# Jazzy (Documentation)
-/build
-/docs/undocumented.json
-/docs/docsets
-
-# Travis CI
-/Originals
+# ••••••• SDG •••••••
 
 # SDG
 /.Development\ Tools
 
-# SDG Development Tools
-/Update\ File\ Headers
+# SDG Itself
+/Workspace/*
+!/Workspace/Package.swift
+!/Workspace/Sources/
+/Update\ File\ Headers/*
 !/Update\ File\ Headers/Package.swift
 !/Update\ File\ Headers/Sources/main.swift
+
+# ••••••• Continuous Integration •••••••
+
+# Travis CI
+/Originals
+
+# Jazzy
+/build
+/docs/undocumented.json
+/docs/docsets
+
+# SwiftLint
+/.swiftlint.yml
