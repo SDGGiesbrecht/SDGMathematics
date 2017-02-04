@@ -14,6 +14,7 @@
 // swiftlint:enable disjunction
     
     import Foundation
+    import CoreGraphics
 #endif
 
 import SDGLogic
@@ -96,6 +97,7 @@ extension Double: FloatType {
     }
 #endif
 
+#if os(macOS) || os(Linux)
 extension Float80: FloatType {
     
     // MARK: - FloatType
@@ -115,6 +117,7 @@ extension Float80: FloatType {
     /// An instance of *e*.
     public static let e: Float80 = 0x1.5BF0A8B145769535p1
 }
+#endif
 
 extension Float: FloatType {
     

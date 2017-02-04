@@ -9,45 +9,23 @@
 # Licensed under the Apache License, Version 2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
 
+# [_Begin Workspace Section_]
+
 # !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
-# THIS IS A SHARED FILE FROM THE REPOSITORY AT https://github.com/SDGGiesbrecht/SDG.
-# CHANGES MUST BE MADE THERE.
+# This section is managed by Workspace.
+# Manual changes will not persist.
+# For more information, see:
+# https://github.com/SDGGiesbrecht/Workspace/blob/master/Documentation/Git.md
 # !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
 
-# ••••••• OS •••••••
-
-# macOS
 .DS_Store
-
-# ••••••• Build •••••••
-
-# Swift Package Manager
 /.build
 /Packages
+/.Workspace
+/Validate\ Changes\ (macOS).command
+/Validate\ Changes\ (Linux).sh
+/.Linked Repositories
+/.Test\ Zone
 /*.xcodeproj
 
-# ••••••• SDG •••••••
-
-# SDG
-/.Development\ Tools
-
-# SDG Itself
-/Workspace/*
-!/Workspace/Package.swift
-!/Workspace/Sources/
-/Update\ File\ Headers/*
-!/Update\ File\ Headers/Package.swift
-!/Update\ File\ Headers/Sources/main.swift
-
-# ••••••• Continuous Integration •••••••
-
-# Travis CI
-/Originals
-
-# Jazzy
-/build
-/docs/undocumented.json
-/docs/docsets
-
-# SwiftLint
-/.swiftlint.yml
+# [_End Workspace Section]
