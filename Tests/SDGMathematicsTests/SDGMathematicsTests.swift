@@ -85,7 +85,9 @@ class SDGMathematicsTests: XCTestCase {
             }
         }
         runTests(Double.self)
+        #if os(macOS) || os(Linux)
         runTests(Float80.self)
+        #endif
         runTests(Float.self)
         runTests(RealArithmeticExample.self)
     }
@@ -228,7 +230,9 @@ class SDGMathematicsTests: XCTestCase {
         runTests(Int16.self, value: 1, inverse: −1)
         runTests(Int8.self, value: 1, inverse: −1)
         runTests(Double.self, value: 1, inverse: −1)
+        #if os(macOS) || os(Linux)
         runTests(Float80.self, value: 1, inverse: −1)
+        #endif
         runTests(Float.self, value: 1, inverse: −1)
         runTests(NegatableExample.self, value: NegatableExample(1), inverse: NegatableExample(−1))
     }
@@ -336,7 +340,9 @@ class SDGMathematicsTests: XCTestCase {
             }
         }
         runTests(Double.self)
+        #if os(macOS) || os(Linux)
         runTests(Float80.self)
+        #endif
         runTests(Float.self)
         runTests(RationalNumberTypeExample.self)
         runTests(RealArithmeticExample.self)
@@ -394,7 +400,9 @@ class SDGMathematicsTests: XCTestCase {
             XCTAssert(((2.677_94 as N).rad ..< (2.677_95 as N).rad).contains(arccot(_1 × −2)))
         }
         runTests(Double.self)
+        #if os(macOS) || os(Linux)
         runTests(Float80.self)
+        #endif
         runTests(Float.self)
         runTests(RealArithmeticExample.self)
     }
@@ -415,7 +423,9 @@ class SDGMathematicsTests: XCTestCase {
         let _: Int16 = 3 − 2
         let _: Int8 = 3 − 2
         let _: Double = 3 − 2
+        #if os(macOS) || os(Linux)
         let _: Float80 = 3 − 2
+        #endif
         let _: Float = 3 − 2
         let _: RationalNumberTypeExample = RationalNumberTypeExample(3) − RationalNumberTypeExample(2)
         let _: RealArithmeticExample = RealArithmeticExample(3) − RealArithmeticExample(2)
