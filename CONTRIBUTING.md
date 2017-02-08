@@ -14,84 +14,56 @@
 
 <!--
  !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
- THIS IS A SHARED FILE FROM THE REPOSITORY AT https://github.com/SDGGiesbrecht/SDG.
- CHANGES MUST BE MADE THERE.
+ This file is managed by Workspace.
+ Manual changes will not persist.
+ For more information, see:
+ https://github.com/SDGGiesbrecht/Workspace/blob/master/Documentation/Contributing Instructions.md
  !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
  -->
 
-# Contributing to SDG Projects
+# Contributing to SDGMathematics
 
-Everyone is welcome to contribute to SDG projects!
+Everyone is welcome to contribute to SDGMathematics!
 
-## Reporting Bugs
+## Step 1: Report
 
-1. Please **start by checking whether the bug has already been reported** by searching on GitHub under Issues.
-    * If there is an existing issue, join the conversation and add any additional information you have.
-    * Otherwise, open a new issue. Provide a clear description and as much relevant information as you can.
+From the smallest typo to the severest crash, whether you are reporting a bug or requesting a new feature, whether you already have a solution in mind or not, please **always start by reporting it**.
 
-2. Consider submitting a pull request with a test that demonstrates the bug.
+Please start by searching the [existing issues](../../issues) to see if something related has already been reported.
 
-3. If you are aware of a solution, submit a pull request.
+- If there is already a related issue, please join that conversation and share any additional information you have.
+- Otherwise, open a [new issue](../../issues/new). Please provide as much of the following as you can:
 
-## Contributing Code
+    1. A concise and specific description of the bug or feature.
+    2. If it is a bug, try to provide a demonstration of the problem:
+        - Optimally, provide a minimal example—a few short lines of source that trigger the problem when they are copied, pasted and run.
+        - As a fallback option, if your own code is public, you could provide a link to your source code at the point where the problem occurs.
+        - If neither of the above options is possible, please at least try to describe in words how to reproduce the problem.
+    3. Say whether or not you would like the honour of helping implement the fix or feature yourself.
+    4. Share any ideas you may have of possible solutions or designs.
 
-Pull requests of all kinds are welcome, whether bug fixes, new features, or documentation improvements.
+Even if you think you have the solution, please **do not start working on it** until you hear from one of the project administrators. This may save you some work in the event that someone else is already working on it, or if your idea ends up deemed beyond the scope of the project goals.
 
-To work on an SDG module, clone the repository and run `Refresh Workspace.command` in the repository root. It will set up (or update) the workspace for you, generating an Xcode project and setting up the tools used during development (documentation generation, style checking, etc).
+## Step 2: Branch
 
-Before submitting the pull request, ask yourself the following:
+If you have [reported](#step-1-report) your idea and an administrator has given you the green light, follow these steps to get a local copy you can work on.
 
-* **Is this the right module?** If your pull request involves new features, check that the module you are submitting to is really the best match. Your features my be better suited to another SDG module.
-* **Does my request follow the style guides?**
-    * SDG generally follows Swift’s own [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-    * SDG has a few guidelines of its own. See [below](#StyleGuide).
-* **Am I okay with the project licence?** Your pull request implies that you are the copyright owner for the code you submit and that you are giving permission for it to be licenced with the rest of the project. (See LICENSE.md in the project repository.)
-* **Have I run `Validate Changes.command`?** It will help you test whether several basic requirements have been met.
+1. **Fork the repository** by clicking “Fork” in the top‐right of the repository page. (Skip this step if you have been given write access.)
+2. **Create a local clone**. `git clone https://github.com/`user`/SDGMathematics`
+3. **Create a development branch**. `git checkout -b `branch-name` `
+4. **Set up the workspace** by double‐clicking `Refresh Workspace` in the root folder.
 
-## Style Guide<a name="StyleGuide"></a>
+Now you are all set to try out your idea.
 
-### File Header
+## Step 3: Submit
 
-Every source file should have licence information at the top. If you add a file, please copy and paste the header from another file in the same project to use as a template.
+Once you have your idea working properly, follow these steps to submit your changes.
 
-### Use Unicode
-
-Clear, unambiguous Unicode representations are preferred over ASCII workarounds wherever possible. (See the [appendix](#UnicodeAppendix) for help entering such characters.)
-
-For example:
-
-Avoid       | Use instead                                                                          |
------------ | ------------------------------------------------------------------------------------ |
-&#x22; (22) | “ and ” (201C/201D)                                                                  |
-&#x27; (27) | ‘ and ’ (quotation, 2018/2019), ’ (apostrophe, 2019), ′ (prime, 2032)                |
-&#x2D; (2D) | ‐ (hyphen, 2010), − (minus, 2212), — (dash, 2014), – (range, 2013), • (bullet, 2022) |
-&#x5E; (5E) | x̂ (302)                                                                              |
-&#x60; (60) | x̀ (300)                                                                              |
-&#x7E; (7E) | x̃ (303), ∼ (operator, 203C), ⁓ (dash, 2053)                                          |
-
-Use         | As                     | But not as a replacent for           |
------------ | ---------------------- | ------------------------------------ |
-&#x21; (21) | exclamation, factorial | ¬ (not) ≠ (not equal)                |
-&#x26; (26) | and                    | ∧ (conjunction)                      |
-&#x2A; (2A) | footnote               | × (multiplication), • (bullet)       |
-&#x2F; (2F) | slash                  | ÷ (division), ⁄ (fraction)           |
-&#x3C; (3C) | less than              | ≤ (less than or equal), ‹ (quote),   |
-&#x3E; (3E) | greater than           | ≥ (greater than or equal), › (quote) |
-&#x7C; (7C) | absolute value         | ∨ (disjunction)                      |
-
-Use of [compatibility characters](https://en.wikipedia.org/wiki/Unicode_compatibility_characters) is discouraged.
-
-This section always applies to user‐facing strings and documentation. It also applies to source code as much as possible. SDG provides aliases for consistency. For example, after `import SDGLogic`, `if x ≠ y { ... }` can be used instead of `if x != y { ... }`.
-
-This section does not apply when it would otherwise break functionality. For example, `let x = “rounded quotation marks”` does not compile, and `www.unambiguous‐hyphen.com` fails DNS look‐up.
-
-### Appendix: Entering Unicode<a name="UnicodeAppendix"></a>
-
-There are many ways to enter the thousands of characters not found on your keyboard. Here are several, listed from the easiest one‐time use, to the most efficient permanent set‐up:
-
-1. Copy and paste. (⌘C and ⌘V • Ctrl + C and Ctrl + V)
-2. Use a Character Viewer. ([Mac](https://support.apple.com/HT201586) • [Windows](https://support.microsoft.com/en-us/kb/315684))
-3. Set up text replacement. ([Mac](https://support.apple.com/kb/PH25699) • [Windows](https://www.google.com/search?q=windows+text+replacement))
-4. Edit the keyboard layout. ([Ukelele (Mac)](http://scripts.sil.org/cms/scripts/page.php?item_id=ukelele) • [Windows](https://www.google.com/search?q=windows+keyboard+editor))
-
-An SDG project is in the works that will make the best of options 3 and 4 even more accessible on a Mac. Stay tuned!
+1. **Validate your changes** by double‐clicking `Validate Changes` in the root folder.
+2. **Commit your changes**. `git commit -m "`Description of changes.`"`
+3. **Push your changes**. `git push`
+4. **Submit a pull request** by clicking “New Pull Request” in the branch list on GitHub. In your description, please:
+    - Link to the original issue with `#`000` `.
+    - State your agreement to licensing your contributions under the [project licence](LICENSE.md).
+5. **Wait for continuous integration** to complete its validation.
+6. **Request a review** from SDGGiesbrecht by clicking the gear in the top right of the pull request page.
