@@ -17,3 +17,6 @@
 Project Website: https://github.com/SDGGiesbrecht/SDGMathematics
 
 Skip Simulator: True
+
+([_Workaround: Some code seems inexplicably unreachable._])
+Enforce Code Coverage: False
