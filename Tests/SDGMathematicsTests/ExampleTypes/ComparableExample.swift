@@ -12,18 +12,18 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-struct ComparableExample: Comparable {
+struct ComparableExample : Comparable {
     var value: Int
-    
+
     // Comparable
-    
-    static func <(lhs: ComparableExample, rhs: ComparableExample) -> Bool {
+
+    static func < (lhs: ComparableExample, rhs: ComparableExample) -> Bool {
         return lhs.value < rhs.value
     }
-    
+
     // Equatable
-    
-    static func ==(lhs: ComparableExample, rhs: ComparableExample) -> Bool {
+
+    static func == (lhs: ComparableExample, rhs: ComparableExample) -> Bool {
         return lhs.value == rhs.value
     }
 }

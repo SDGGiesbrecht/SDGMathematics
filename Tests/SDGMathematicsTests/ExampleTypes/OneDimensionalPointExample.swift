@@ -14,41 +14,41 @@
 
 @testable import SDGMathematics
 
-struct OneDimensionalPointExample: OneDimensionalPoint {
-    
+struct OneDimensionalPointExample : OneDimensionalPoint {
+
     typealias Value = Int64
-    
+
     var value: Value
-    
+
     init(_ value: Value) {
         self.value = value
     }
-    
+
     // Comparable
-    
-    static func <(lhs: OneDimensionalPointExample, rhs: OneDimensionalPointExample) -> Bool {
+
+    static func < (lhs: OneDimensionalPointExample, rhs: OneDimensionalPointExample) -> Bool {
         return lhs.value < rhs.value
     }
-    
+
     // Equatable
-    
-    static func ==(lhs: OneDimensionalPointExample, rhs: OneDimensionalPointExample) -> Bool {
+
+    static func == (lhs: OneDimensionalPointExample, rhs: OneDimensionalPointExample) -> Bool {
         return lhs.value == rhs.value
     }
-    
+
     // PointType
-    
+
     typealias Vector = Value.Stride
-    
-    static func +=(lhs: inout OneDimensionalPointExample, rhs: Vector) {
+
+    static func += (lhs: inout OneDimensionalPointExample, rhs: Vector) {
         lhs.value += rhs
     }
-    
-    static func −(lhs: OneDimensionalPointExample, rhs: OneDimensionalPointExample) -> Vector {
+
+    static func − (lhs: OneDimensionalPointExample, rhs: OneDimensionalPointExample) -> Vector {
         return lhs.value − rhs.value
     }
-    
+
     // Strideable
-    
+
     typealias Stride = Vector
 }

@@ -22,27 +22,37 @@
 # Stop if a command fails.
 set -e
 
-# Find and enter repository.
-cd "${0%/*}"
+# Find repository.
+
+# REPOSITORY="$(pwd)"
+# Does not work for double‐click on macOS, or as a command on macOS or Linux from a different directory.
+
+# REPOSITORY="${0%/*}"
+# Does not work for double‐click on Linux or as a command on macOS or Linux from a different directory.
+
+REPOSITORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # ••••••• ••••••• ••••••• ••••••• ••••••• ••••••• •••••••
 # Update Workspace
 # ••••••• ••••••• ••••••• ••••••• ••••••• ••••••• •••••••
 
 # Get Workspace if necessary.
-WORKSPACE=".Workspace"
-if [ ! -d "${WORKSPACE}" ]; then
+WORKSPACE="$HOME/.Workspace/Workspace"
+if [ ! -d "${WORKSPACE}/Sources" ]; then
 
-    # The following changes for testing must be made after Validate Changes, but before committing.
+    # The following changes for testing continuous integration behaviour must be made after Validate Changes, but before committing.
+    # Travis CI’s cache must also be deleted. (The cache must be deleted again afterward in order to revert to normal behaviour.)
 
     # To test a fork of Workspace, replace the URL on the next line with that of the fork.
     git clone https://github.com/SDGGiesbrecht/Workspace "${WORKSPACE}"
 
-    # To test a development branch of Workspace, uncomment the following four lines and use the real branch name.
-    # BRANCH="branch-name"
-    # cd "${WORKSPACE}"
-    # git checkout -b "${BRANCH}" "origin/${BRANCH}"
-    # cd ..
+    # To test a development branch of Workspace, change this to a real branch name.
+    BRANCH="branch-name"
+
+    if [ "$BRANCH" != "branch-name" ]; then
+        cd "${WORKSPACE}"
+        git checkout -b "${BRANCH}" "origin/${BRANCH}"
+    fi
 fi
 
 # Update Workspace.
@@ -54,10 +64,13 @@ else
     swift package update
     swift build --configuration release
 fi
-cd ..
 
 # ••••••• ••••••• ••••••• ••••••• ••••••• ••••••• •••••••
 # Run Workspace command
 # ••••••• ••••••• ••••••• ••••••• ••••••• ••••••• •••••••
 
-.Workspace/.build/release/workspace refresh
+# Enter repository.
+cd "${REPOSITORY}"
+
+# Run.
+~/.Workspace/Workspace/.build/release/workspace refresh

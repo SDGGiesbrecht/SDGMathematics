@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Subtractable Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Subtractable" class="dashAnchor"></a>
+    <a title="Subtractable Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SDGMathematics Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/SDGGiesbrecht/SDGMathematics"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SDGMathematics Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Subtractable Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CyclicalNumberGenerator.html">CyclicalNumberGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PseudorandomNumberGenerator.html">PseudorandomNumberGenerator</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/AbsoluteValuable.html">AbsoluteValuable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Comparable.html">Comparable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Equatable.html">Equatable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Float.html">Float</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Float80.html">Float80</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FloatingPoint.html">FloatingPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/SignedNumber.html">SignedNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Strideable.html">Strideable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UInt64.html">UInt64</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics2_0uRxS_18AdditiveArithmeticrFT_x">_0()</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics6arccosuRxS_14RealArithmeticrFxGVS_5Anglex_">arccos(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics6arccotuRxS_14RealArithmeticrFxGVS_5Anglex_">arccot(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics6arccscuRxS_14RealArithmeticrFxGVS_5Anglex_">arccsc(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics6arcsecuRxS_14RealArithmeticrFxGVS_5Anglex_">arcsec(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics6arcsinuRxS_14RealArithmeticrFxGVS_5Anglex_">arcsin(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics6arctanuRxS_14RealArithmeticrFxGVS_5Anglex_">arctan(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3cosuRxS_14RealArithmeticrFGVS_5Anglex_x">cos(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3cotuRxS_14RealArithmeticrFGVS_5Anglex_x">cot(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3cscuRxS_14RealArithmeticrFGVS_5Anglex_x">csc(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics1euRxS_14RealArithmeticrFT_x">e()</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics16findLocalMaximumu0_RxS_19OneDimensionalPoint_s10Comparablewx6VectorS_11IntegerTypewx6Strides13SignedIntegerrFT4nearx6withinGSqGVs20CountableClosedRangex__10inFunctionFxq__x">findLocalMaximum(near:within:inFunction:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics16findLocalMinimumu0_RxS_19OneDimensionalPoint_s10Comparablewx6VectorS_11IntegerTypewx6Strides13SignedIntegerrFT4nearx6withinGSqGVs20CountableClosedRangex__10inFunctionFxq__x">findLocalMinimum(near:within:inFunction:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3gcduRxS_11MeasurementrFTxx_x">gcd(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3gcduRxS_15WholeArithmeticrFTxx_x">gcd(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3lcmuRxS_11MeasurementrFTxx_x">lcm(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3lcmuRxS_15WholeArithmeticrFTxx_x">lcm(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics2lnuRxS_14RealArithmeticrFxx">ln(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3loguRxS_14RealArithmeticrFxx">log(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3loguRxS_14RealArithmeticrFT6toBasex2ofx_x">log(toBase:of:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3secuRxS_14RealArithmeticrFGVS_5Anglex_x">sec(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3sinuRxS_14RealArithmeticrFGVS_5Anglex_x">sin(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematics3tanuRxS_14RealArithmeticrFGVS_5Anglex_x">tan(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoP3nbauRxS_14RealArithmeticrFxGVS_5Anglex_">°(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsX3BxauRxS_14RealArithmeticrFT_x">π()</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsX3FxauRxS_14RealArithmeticrFT_x">τ()</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoP3DvguRxS_14RealArithmeticrFxGVS_5Anglex_">′(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoP4DvgauRxS_14RealArithmeticrFxGVS_5Anglex_">′′(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Fchu0_Rxs10Comparable_S0_rFTTxq__Txq___Sb">≤(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Fchu1_Rxs10Comparable_S0_0_S0_rFTTxq_q0__Txq_q0___Sb">≤(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Fchu2_Rxs10Comparable_S0_0_S0_1_S0_rFTTxq_q0_q1__Txq_q0_q1___Sb">≤(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Fchu3_Rxs10Comparable_S0_0_S0_1_S0_2_S0_rFTTxq_q0_q1_q2__Txq_q0_q1_q2___Sb">≤(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Fchu4_Rxs10Comparable_S0_0_S0_1_S0_2_S0_3_S0_rFTTxq_q0_q1_q2_q3__Txq_q0_q1_q2_q3___Sb">≤(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Gchu0_Rxs10Comparable_S0_rFTTxq__Txq___Sb">≥(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Gchu1_Rxs10Comparable_S0_0_S0_rFTTxq_q0__Txq_q0___Sb">≥(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Gchu2_Rxs10Comparable_S0_0_S0_1_S0_rFTTxq_q0_q1__Txq_q0_q1___Sb">≥(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Gchu3_Rxs10Comparable_S0_0_S0_1_S0_2_S0_rFTTxq_q0_q1_q2__Txq_q0_q1_q2___Sb">≥(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F14SDGMathematicsXoi3Gchu4_Rxs10Comparable_S0_0_S0_1_S0_2_S0_3_S0_rFTTxq_q0_q1_q2_q3__Txq_q0_q1_q2_q3___Sb">≥(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Addable.html">Addable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AdditiveArithmetic.html">AdditiveArithmetic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FloatType.html">FloatType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P14SDGMathematics7IntType">IntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P14SDGMathematics8IntXType">IntXType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P14SDGMathematics11IntegerType">IntegerType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P14SDGMathematics18IntegralArithmetic">IntegralArithmetic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Measurement.html">Measurement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Negatable.html">Negatable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NumericAdditiveArithmetic.html">NumericAdditiveArithmetic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/OneDimensionalPoint.html">OneDimensionalPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/OneDimensionalVector.html">OneDimensionalVector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PointType.html">PointType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Randomizer.html">Randomizer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RationalArithmetic.html">RationalArithmetic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P14SDGMathematics18RationalNumberType">RationalNumberType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RealArithmetic.html">RealArithmetic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P14SDGMathematics14RealNumberType">RealNumberType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Subtractable.html">Subtractable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P14SDGMathematics8UIntType">UIntType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/VectorType.html">VectorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/WholeArithmetic.html">WholeArithmetic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P14SDGMathematics15WholeNumberType">WholeNumberType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Angle.html">Angle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsSd6Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsSf6Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsSi6Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsSu6Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsV12CoreGraphics7CGFloat6Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs4Int86Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs5Int166Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs5Int326Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs5Int646Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs5UInt86Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs6UInt166Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs6UInt326Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs6UInt646Vector">Vector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:E14SDGMathematicsVs7Float806Vector">Vector</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Subtractable</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Subtractable</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Addable.html">Addable</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>A type that can do scalar subtraction.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p><code>Subtractable</code> is distinct from <code><a href="../Protocols/Negatable.html">Negatable</a></code> to allow whole number types to perform subtraction.</p>
+
+</div>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Unlike <code>SignedNumber</code>, <code>Subtractable</code> types do not need to conform to <code>Comparable</code>, allowing conformance by two‐dimensional vectors, etc.</p>
+
+</div>
+
+<p>Conformance Requirements:</p>
+
+<ul>
+<li><code><a href="../Protocols/Addable.html">Addable</a></code></li>
+<li><code>static func −= (lhs: inout Self, rhs: Self)</code></li>
+</ul>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFP14SDGMathematics12SubtractableXoi3tJgFTxx_x"></a>
+                    <a name="//apple_ref/swift/Method/−(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFP14SDGMathematics12SubtractableXoi3tJgFTxx_x">−(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the difference of the left minus the right.</p>
+
+<div class="aside aside-mutating-variant">
+    <p class="aside-title">Mutating variant</p>
+    <p>−=</p>
+
+</div>
+
+<div class="aside aside-recommended-over">
+    <p class="aside-title">Recommended over</p>
+    <p>-</p>
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Returns the difference of the left minus the right.</p>
+
+<div class="aside aside-mutating-variant">
+    <p class="aside-title">Mutating variant</p>
+    <p>−=</p>
+
+</div>
+
+<div class="aside aside-recommended-over">
+    <p class="aside-title">Recommended over</p>
+    <p>-</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">−</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The starting value.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to subtract.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFP14SDGMathematics12SubtractableXoi5e_dboFTRxx_T_"></a>
+                    <a name="//apple_ref/swift/Method/−=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFP14SDGMathematics12SubtractableXoi5e_dboFTRxx_T_">−=(_:_:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Subtracts the right from the left.</p>
+
+<div class="aside aside-nonmutating-variant">
+    <p class="aside-title">Nonmutating variant</p>
+    <p>−</p>
+
+</div>
+
+<div class="aside aside-recommended-over">
+    <p class="aside-title">Recommended over</p>
+    <p>-=</p>
+
+</div>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Subtracts the right from the left.</p>
+
+<div class="aside aside-nonmutating-variant">
+    <p class="aside-title">Nonmutating variant</p>
+    <p>−</p>
+
+</div>
+
+<div class="aside aside-recommended-over">
+    <p class="aside-title">Recommended over</p>
+    <p>-=</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">−</span><span class="o">=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to modify.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to subtract.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>Copyright ©2017 Jeremy David Giesbrecht and the SDGMathematics project contributors. All rights reserved.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

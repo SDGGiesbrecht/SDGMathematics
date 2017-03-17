@@ -14,23 +14,23 @@
 
 extension Strideable where Self : OneDimensionalPoint, Self.Stride == Self.Vector {
     // MARK: - where Self : OneDimensionalPoint, Stride == Vector
-    
+
     /// Returns the value that follows `self` by a distance of `n`.
     ///
     /// - Parameters:
     ///     - n: The distance to advance.
     ///
-    /// - SeeAlso: `+(_:_:)` (recommended)
+    /// - Recommended: +
     public func advanced(by n: Stride) -> Self {
         return self + n
     }
-    
+
     /// Returns the distance from `self` to `other`.
     ///
     /// - Parameters:
     ///     - other: The value to which the distance should be measured.
     ///
-    /// - SeeAlso: `−(_:_:)` (recommended)
+    /// - Recommended: −
     public func distance(to other: Self) -> Stride {
         return other − self
     }

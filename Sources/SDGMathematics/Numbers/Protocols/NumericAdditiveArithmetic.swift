@@ -40,72 +40,69 @@ postfix operator |
 /// - `AdditiveArithmetic`
 /// - `Comparable`
 /// - `Negatable`, `WholeNumberType` or `mutating func formAbsoluteValue()`
-public protocol NumericAdditiveArithmetic: AdditiveArithmetic, Comparable {
-    
+public protocol NumericAdditiveArithmetic : AdditiveArithmetic, Comparable {
+
     // MARK: - Classification
-    
-    // swiftlint:disable disjunction
-    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-    // swiftlint:enable disjunction
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! These optimizable properties are temporarily excluded from Linux as a workaround for a compiler bug (Swift 3.0).
-    // swiftlint:enable not
-    
+
+    #if os(Linux)
+    #else
+    // [_Workaround: Default implementations for variables cause segmentation faults on Linux. (Swift 3.0)_]
+
     /// Returns `true` if `self` is positive.
     var isPositive: Bool { get }
-    
+
     /// Returns `true` if `self` is negative.
     var isNegative: Bool { get }
-    
+
     /// Returns `true` if `self` is positive or zero.
     var isNonNegative: Bool { get }
-    
+
     /// Returns `true` if `self` is negative or zero.
     var isNonPositive: Bool { get }
-    
+
     // MARK: - Operations
-    
+
     /// The absolute value.
     ///
-    /// - SeeAlso: `formAbsoluteValue()` (mutating variant)
+    /// - MutatingVariant: formAbsoluteValue
     var absoluteValue: Self { get }
     #endif
-    
+
     /// Sets `self` to its absolute value.
     ///
-    /// - SeeAlso: `|x|` (non‐mutating variant)
+    /// - NonmutatingVariant: |
     mutating func formAbsoluteValue()
 }
 
 extension NumericAdditiveArithmetic {
-    
+
     /// Returns `true` if `self` is positive.
     public var isPositive: Bool {
         return self > _0
     }
-    
+
     /// Returns `true` if `self` is negative.
     public var isNegative: Bool {
         return self < _0
     }
-    
+
     /// Returns `true` if `self` is positive or zero.
     public var isNonNegative: Bool {
         return self ≥ _0
     }
-    
+
     /// Returns `true` if `self` is negative or zero.
     public var isNonPositive: Bool {
         return self ≤ _0
     }
-    
+
     /// The absolute value.
     public var absoluteValue: Self {
         var result = self
         result.formAbsoluteValue()
         return result
     }
-    
+
     /// Returns the absolute value (in conjuction with postfix `|(_:)`).
     ///
     ///     let x = −1
@@ -113,7 +110,7 @@ extension NumericAdditiveArithmetic {
     ///     // y == 1
     ///
     /// - Warning: The result of unpaired use is undefined.
-    public static prefix func |(operand: Self) -> Self {
+    public static prefix func | (operand: Self) -> Self {
         return operand.absoluteValue
     }
     /// Returns the absolute value (in conjuction with prefix `|(_:)`).
@@ -123,19 +120,19 @@ extension NumericAdditiveArithmetic {
     ///     // y == 1
     ///
     /// - Warning: The result of unpaired use is undefined.
-    public static postfix func |(operand: Self) -> Self {
+    public static postfix func | (operand: Self) -> Self {
         return operand
     }
 }
 
 extension NumericAdditiveArithmetic where Self : FloatType {
     // MARK: - where Self : FloatType
-    
+
     /// The absolute value.
     public var absoluteValue: Self {
         return Self.abs(self)
     }
-    
+
     /// Sets `self` to its absolute value.
     public mutating func formAbsoluteValue() {
         self = Self.abs(self)
@@ -144,12 +141,12 @@ extension NumericAdditiveArithmetic where Self : FloatType {
 
 extension NumericAdditiveArithmetic where Self : IntType {
     // MARK: - where Self : IntType
-    
+
     /// The absolute value.
     public var absoluteValue: Self {
         return Swift.abs(self)
     }
-    
+
     /// Sets `self` to its absolute value.
     public mutating func formAbsoluteValue() {
         self = Swift.abs(self)
@@ -158,37 +155,37 @@ extension NumericAdditiveArithmetic where Self : IntType {
 
 extension NumericAdditiveArithmetic where Self : Measurement {
     // MARK: - where Self : Measurement
-    
+
     /// Returns `true` if `self` is positive.
     public var isPositive: Bool {
         return rawValue.isPositive
     }
-    
+
     /// Returns `true` if `self` is negative.
     public var isNegative: Bool {
         return rawValue.isNegative
     }
-    
+
     /// Returns `true` if `self` is positive or zero.
     public var isNonNegative: Bool {
         return rawValue.isNonNegative
     }
-    
+
     /// Returns `true` if `self` is negative or zero.
     public var isNonPositive: Bool {
         return rawValue.isNonPositive
     }
-    
+
     /// The absolute value.
     ///
-    /// - SeeAlso: `formAbsoluteValue()` (mutating variant)
+    /// - MutatingVariant: formAbsoluteValue
     public var absoluteValue: Self {
         return Self(rawValue: rawValue.absoluteValue)
     }
-    
+
     /// Sets `self` to its absolute value.
     ///
-    /// - SeeAlso: `|x|` (non‐mutating variant)
+    /// - NonmutatingVariant: |
     public mutating func formAbsoluteValue() {
         rawValue.formAbsoluteValue()
     }
@@ -196,7 +193,7 @@ extension NumericAdditiveArithmetic where Self : Measurement {
 
 extension NumericAdditiveArithmetic where Self : Negatable {
     // MARK: - where Self : Negatable
-    
+
     /// Sets `self` to its absolute value.
     public mutating func formAbsoluteValue() {
         if self < _0 {
@@ -207,17 +204,17 @@ extension NumericAdditiveArithmetic where Self : Negatable {
 
 extension NumericAdditiveArithmetic where Self : WholeNumberType {
     // MARK: - where Self : WholeNumberType
-    
+
     /// Returns `true` if `self` is negative.
     public var isNegative: Bool {
         return false
     }
-    
+
     /// Returns `true` if `self` is positive or zero.
     public var isNonNegative: Bool {
         return true
     }
-    
+
     /// Sets `self` to its absolute value.
     public mutating func formAbsoluteValue() {
         // self = self

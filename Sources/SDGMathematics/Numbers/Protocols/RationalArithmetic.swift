@@ -16,19 +16,17 @@ import SDGLogic
 
 /// Performs division.
 ///
-/// - SeeAlso: `÷=(_:_:)` (mutating variant)
+/// - MutatingVariant: ×
 ///
-/// - SeeAlso: (recommended over) `/(_:_:)`
+/// - RecommendedOver: /
 infix operator ÷: MultiplicationPrecedence
 
-// swiftlint:disable divide_and_set
 /// Modifies the left by dividing it by the right.
 ///
-/// - SeeAlso: ÷`(_:_:)` (non‐mutating variant)
+/// - NonmutatingVariant: ÷
 ///
-/// - SeeAlso: (recommended over) `/=(_:_:)`
+/// - RecommendedOver: /=
 infix operator ÷=: AssignmentPrecedence
-// swiftlint:enable divide_and_set
 
 /// A type that can be used for rational arithmetic.
 ///
@@ -36,33 +34,31 @@ infix operator ÷=: AssignmentPrecedence
 ///
 /// - `IntegralArithmetic`
 /// - `ExpressibleByFloatLiteral`
-/// - `static func ÷=(lhs: inout Self, rhs: Self)`
-public protocol RationalArithmetic: ExpressibleByFloatLiteral, IntegralArithmetic {
-    
+/// - `static func ÷= (lhs: inout Self, rhs: Self)`
+public protocol RationalArithmetic : ExpressibleByFloatLiteral, IntegralArithmetic {
+
     /// Returns the (rational) quotient of the left divided by the right.
     ///
     /// - Parameters:
     ///     - lhs: The dividend.
     ///     - rhs: The divisor.
     ///
-    /// - SeeAlso: `÷=(_:_:)` (mutating variant)
+    /// - MutatingVariant: ×
     ///
-    /// - SeeAlso: (recommended over) `/(_:_:)`
-    static func ÷(lhs: Self, rhs: Self) -> Self
-    
-    // swiftlint:disable divide_and_set
+    /// - RecommendedOver: /
+    static func ÷ (lhs: Self, rhs: Self) -> Self
+
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
     ///     - rhs: The divisor.
     ///
-    /// - SeeAlso: `÷(_:_:)` (non‐mutating variant)
+    /// - NonmutatingVariant: ÷
     ///
-    /// - SeeAlso: (recommended over) `/=(_:_:)`
-    static func ÷=(lhs: inout Self, rhs: Self)
-    // swiftlint:enable divide_and_set
-    
+    /// - RecommendedOver: /=
+    static func ÷= (lhs: inout Self, rhs: Self)
+
     /// Creates a random value within a particular range.
     ///
     /// - Precondition: `range` is not empty.
@@ -70,7 +66,7 @@ public protocol RationalArithmetic: ExpressibleByFloatLiteral, IntegralArithmeti
     /// - Parameters:
     ///     - range: The allowed range for the random value.
     init(randomInRange range: Range<Self>)
-    
+
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Precondition: `range` is not empty.
@@ -82,22 +78,22 @@ public protocol RationalArithmetic: ExpressibleByFloatLiteral, IntegralArithmeti
 }
 
 extension RationalArithmetic {
-    
+
     /// Returns the (rational) quotient of the left divided by the right.
     ///
     /// - Parameters:
     ///     - lhs: The dividend.
     ///     - rhs: The divisor.
     ///
-    /// - SeeAlso: `÷=(_:_:)` (mutating variant)
+    /// - MutatingVariant: ×
     ///
-    /// - SeeAlso: (recommended over) `/(_:_:)`
-    public static func ÷(lhs: Self, rhs: Self) -> Self {
+    /// - RecommendedOver: /
+    public static func ÷ (lhs: Self, rhs: Self) -> Self {
         var result = lhs
         result ÷= rhs
         return result
     }
-    
+
     /// Creates a random value within a particular range.
     ///
     /// - Parameters:
@@ -105,56 +101,52 @@ extension RationalArithmetic {
     public init(randomInRange range: Range<Self>) {
         self.init(randomInRange: range, fromRandomizer: PseudorandomNumberGenerator.defaultGenerator)
     }
-    
+
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
     ///     - randomizer: The randomizer to use to generate the random value.
     public init(randomInRange range: Range<Self>, fromRandomizer randomizer: Randomizer) {
-        
+
         assert(¬range.isEmpty, "Empty range.")
-        
+
         var random = range.upperBound
-        
+
         while random == range.upperBound {
             random = Self(randomInRange: range.lowerBound ... range.upperBound, fromRandomizer: randomizer)
         }
-        
+
         self = random
     }
 }
 
 extension RationalArithmetic where Self : FloatType {
     // MARK: - where Self : FloatType
-    
-    // swiftlint:disable division
+
     /// Returns the (rational) quotient of the left divided by the right.
     ///
     /// - Parameters:
     ///     - lhs: The dividend.
     ///     - rhs: The divisor.
     ///
-    /// - SeeAlso: `÷=(_:_:)` (mutating variant)
+    /// - MutatingVariant: ×
     ///
-    /// - SeeAlso: (recommended over) `/(_:_:)`
-    public static func ÷(lhs: Self, rhs: Self) -> Self {
+    /// - RecommendedOver: /
+    public static func ÷ (lhs: Self, rhs: Self) -> Self {
         return lhs / rhs
     }
-    // swiftlint:enable division
-    
-    // swiftlint:disable divide_and_set
+
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
     ///     - rhs: The divisor.
     ///
-    /// - SeeAlso: `÷(_:_:)` (non‐mutating variant)
+    /// - NonmutatingVariant: ÷
     ///
-    /// - SeeAlso: (recommended over) `/=(_:_:)`
-    public static func ÷=(lhs: inout Self, rhs: Self) {
+    /// - RecommendedOver: /=
+    public static func ÷= (lhs: inout Self, rhs: Self) {
         lhs /= rhs
     }
-    // swiftlint:enable divide_and_set
 }

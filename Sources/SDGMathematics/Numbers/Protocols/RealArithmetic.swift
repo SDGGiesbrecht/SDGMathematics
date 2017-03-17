@@ -36,63 +36,60 @@ postfix operator √=
 /// - `mutating func formLogarithm(toBase base: Self)`
 /// - `static func sin(_ angle: Angle<Self>) -> Self`
 /// - `static func arctan(_ tangent: Self) -> Angle<Self>`
-public protocol RealArithmetic: RationalArithmetic {
-    
+public protocol RealArithmetic : RationalArithmetic {
+
     // MARK: - Constants
-    
+
     /// An instance of π.
     static var π: Self { get }
-    
-    // swiftlint:disable disjunction
-    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-    // swiftlint:enable disjunction
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! This optimizable property is temporarily excluded from Linux as a workaround for a compiler bug (Swift 3.0).
-    // swiftlint:enable not
-    
+
+    #if os(Linux)
+    #else
+    // [_Workaround: Default implementations for variables cause segmentation faults on Linux. (Swift 3.0)._]
+
     /// An instance of τ.
     static var τ: Self { get }
     #endif
-    
+
     /// An instance of *e*.
     static var e: Self { get }
-    
+
     // MARK: - Operations
-    
+
     /// Returns the `lhs`‐th root of `rhs`.
     ///
     /// - Parameters:
     ///     - lhs: The root.
     ///     - rhs: The radicand.
     ///
-    /// - SeeAlso: `√=(_:_:)` (mutating variant)
-    static func √(lhs: Self, rhs: Self) -> Self
-    
+    /// - MutatingVariant: √=
+    static func √ (lhs: Self, rhs: Self) -> Self
+
     /// Sets `lhs` to its `rhs`‐th root.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
     ///     - rhs: The root.
     ///
-    /// - SeeAlso: `√(_:_:)` (non‐mutating variant)
-    static func √=(lhs: inout Self, rhs: Self)
-    
+    /// - NonmutatingVariant: √
+    static func √= (lhs: inout Self, rhs: Self)
+
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
     ///     - operand: The radicand.
     ///
-    /// - SeeAlso: `√=(_:)` (mutating variant)
-    static prefix func √(operand: Self) -> Self
-    
+    /// - MutatingVariant: √=
+    static prefix func √ (operand: Self) -> Self
+
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
     ///     - operand: The value to modify.
     ///
-    /// - SeeAlso: `√(_:` (non‐mutating variant)
-    static postfix func √=(operand: inout Self)
-    
+    /// - NonmutatingVariant: √
+    static postfix func √= (operand: inout Self)
+
     /// Returns the base `base` logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -105,9 +102,9 @@ public protocol RealArithmetic: RationalArithmetic {
     ///     - base: The base.
     ///     - antilogarithm: The antilogarithm.
     ///
-    /// - SeeAlso: `formLogarithm(toBase:)` (mutating variant)
+    /// - MutatingVariant: formLogarithm
     static func log(toBase base: Self, of antilogarithm: Self) -> Self
-    
+
     /// Sets `self` to its base `base` logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -119,9 +116,9 @@ public protocol RealArithmetic: RationalArithmetic {
     /// - Parameters:
     ///     - base: The base.
     ///
-    /// - SeeAlso: `log(toBase:of:)` (non‐mutating variant)
+    /// - NonmutatingVariant: log
     mutating func formLogarithm(toBase base: Self)
-    
+
     /// Returns the common logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -129,16 +126,16 @@ public protocol RealArithmetic: RationalArithmetic {
     /// - Parameters:
     ///     - antilogarithm: The antilogarithm.
     ///
-    /// - SeeAlso: `formCommonLogarithm()` (mutating variant)
+    /// - MutatingVariant: formCommonLogarithm
     static func log(_ antilogarithm: Self) -> Self
-    
+
     /// Sets `self` to its common logarithm.
     ///
     /// - Precondition: `self` > 0
     ///
-    /// - SeeAlso: `log(_:)` (non‐mutating variant)
+    /// - NonmutatingVariant: log
     mutating func formCommonLogarithm()
-    
+
     /// Returns the natural logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -146,52 +143,52 @@ public protocol RealArithmetic: RationalArithmetic {
     /// - Parameters:
     ///     - antilogarithm: The antilogarithm.
     ///
-    /// - SeeAlso: `formNaturalLogarithm()` (mutating variant)
+    /// - MutatingVariant: formNaturalLogarithm
     static func ln(_ antilogarithm: Self) -> Self
-    
+
     /// Sets `self` to its natural logarithm.
     ///
     /// - Precondition: `self` > 0
     ///
-    /// - SeeAlso: `ln(_:)` (non‐mutating variant)
+    /// - NonmutatingVariant: ln
     mutating func formNaturalLogarithm()
-    
+
     /// Returns the sine of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func sin(_ angle: Angle<Self>) -> Self
-    
+
     /// Returns the cosine of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func cos(_ angle: Angle<Self>) -> Self
-    
+
     /// Returns the tangent of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func tan(_ angle: Angle<Self>) -> Self
-    
+
     /// Returns the cosecant of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func csc(_ angle: Angle<Self>) -> Self
-    
+
     /// Returns the secant of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func sec(_ angle: Angle<Self>) -> Self
-    
+
     /// Returns the cotangent of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func cot(_ angle: Angle<Self>) -> Self
-    
+
     /// Returns the arcsine of a value.
     ///
     /// The returned angle will be between −90° and 90° inclusive.
@@ -201,7 +198,7 @@ public protocol RealArithmetic: RationalArithmetic {
     /// - Parameters:
     ///     - sine: The sine.
     static func arcsin(_ sine: Self) -> Angle<Self>
-    
+
     /// Returns the arccosine of a value.
     ///
     /// The returned angle will be between 0° and 180° inclusive.
@@ -211,7 +208,7 @@ public protocol RealArithmetic: RationalArithmetic {
     /// - Parameters:
     ///     - cosine: The cosine.
     static func arccos(_ cosine: Self) -> Angle<Self>
-    
+
     /// Returns the arctangent of a value.
     ///
     /// The returned angle will be between −90° and 90°.
@@ -219,7 +216,7 @@ public protocol RealArithmetic: RationalArithmetic {
     /// - Parameters:
     ///     - tangent: The tangent.
     static func arctan(_ tangent: Self) -> Angle<Self>
-    
+
     /// Returns the arccosecant of a value.
     ///
     /// The returned angle will be between −90° and 90° inclusive, but never 0°.
@@ -229,7 +226,7 @@ public protocol RealArithmetic: RationalArithmetic {
     /// - Parameters:
     ///     - cosecant: The cosecant.
     static func arccsc(_ cosecant: Self) -> Angle<Self>
-    
+
     /// Returns the arcsecant of a value.
     ///
     /// The returned angle will be between 0° and 180° inclusive, but never 90°.
@@ -239,7 +236,7 @@ public protocol RealArithmetic: RationalArithmetic {
     /// - Parameters:
     ///     - secant: The secant.
     static func arcsec(_ secant: Self) -> Angle<Self>
-    
+
     /// Returns the arccotangent of a value.
     ///
     /// The returned angle will be between 0° and 180°.
@@ -254,21 +251,21 @@ public protocol RealArithmetic: RationalArithmetic {
 /// An instance of π in the desired return type.
 ///
 /// - Note: This is an alias for `N.π` to improve the legibility of code involving mathematical equations.
-public func π<N: RealArithmetic>() -> N {
+public func π<N : RealArithmetic>() -> N {
     return N.π
 }
 
 /// An instance of τ in the desired return type.
 ///
 /// - Note: This is an alias for `N.τ` to improve the legibility of code involving mathematical equations.
-public func τ<N: RealArithmetic>() -> N {
+public func τ<N : RealArithmetic>() -> N {
     return N.τ
 }
 
 /// An instance of *e* in the desired return type.
 ///
 /// - Note: This is an alias for `N.e` to improve the legibility of code involving mathematical equations.
-public func e<N: RealArithmetic>() -> N {
+public func e<N : RealArithmetic>() -> N {
     return N.e
 }
 
@@ -284,8 +281,8 @@ public func e<N: RealArithmetic>() -> N {
 ///     - base: The base.
 ///     - antilogarithm: The antilogarithm.
 ///
-/// - SeeAlso: `formLogarithm(toBase:)` (mutating variant)
-public func log<N: RealArithmetic>(toBase base: N, of antilogarithm: N) -> N {
+/// - MutatingVariant: formLogarithm
+public func log<N : RealArithmetic>(toBase base: N, of antilogarithm: N) -> N {
     return N.log(toBase: base, of: antilogarithm)
 }
 
@@ -296,8 +293,8 @@ public func log<N: RealArithmetic>(toBase base: N, of antilogarithm: N) -> N {
 /// - Parameters:
 ///     - antilogarithm: The antilogarithm.
 ///
-/// - SeeAlso: `formCommonLogarithm()` (mutating variant)
-public func log<N: RealArithmetic>(_ antilogarithm: N) -> N {
+/// - MutatingVariant: formCommonLogarithm
+public func log<N : RealArithmetic>(_ antilogarithm: N) -> N {
     return N.log(antilogarithm)
 }
 
@@ -308,8 +305,8 @@ public func log<N: RealArithmetic>(_ antilogarithm: N) -> N {
 /// - Parameters:
 ///     - antilogarithm: The antilogarithm.
 ///
-/// - SeeAlso: `formNaturalLogarithm()` (mutating variant)
-public func ln<N: RealArithmetic>(_ antilogarithm: N) -> N {
+/// - MutatingVariant: formNaturalLogarithm
+public func ln<N : RealArithmetic>(_ antilogarithm: N) -> N {
     return N.ln(antilogarithm)
 }
 
@@ -317,7 +314,7 @@ public func ln<N: RealArithmetic>(_ antilogarithm: N) -> N {
 ///
 /// - Parameters:
 ///     - angle: The angle.
-public func sin<N: RealArithmetic>(_ angle: Angle<N>) -> N {
+public func sin<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.sin(angle)
 }
 
@@ -325,7 +322,7 @@ public func sin<N: RealArithmetic>(_ angle: Angle<N>) -> N {
 ///
 /// - Parameters:
 ///     - angle: The angle.
-public func cos<N: RealArithmetic>(_ angle: Angle<N>) -> N {
+public func cos<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.cos(angle)
 }
 
@@ -333,7 +330,7 @@ public func cos<N: RealArithmetic>(_ angle: Angle<N>) -> N {
 ///
 /// - Parameters:
 ///     - angle: The angle.
-public func tan<N: RealArithmetic>(_ angle: Angle<N>) -> N {
+public func tan<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.tan(angle)
 }
 
@@ -341,7 +338,7 @@ public func tan<N: RealArithmetic>(_ angle: Angle<N>) -> N {
 ///
 /// - Parameters:
 ///     - angle: The angle.
-public func csc<N: RealArithmetic>(_ angle: Angle<N>) -> N {
+public func csc<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.csc(angle)
 }
 
@@ -349,7 +346,7 @@ public func csc<N: RealArithmetic>(_ angle: Angle<N>) -> N {
 ///
 /// - Parameters:
 ///     - angle: The angle.
-public func sec<N: RealArithmetic>(_ angle: Angle<N>) -> N {
+public func sec<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.sec(angle)
 }
 
@@ -357,7 +354,7 @@ public func sec<N: RealArithmetic>(_ angle: Angle<N>) -> N {
 ///
 /// - Parameters:
 ///     - angle: The angle.
-public func cot<N: RealArithmetic>(_ angle: Angle<N>) -> N {
+public func cot<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.cot(angle)
 }
 
@@ -369,7 +366,7 @@ public func cot<N: RealArithmetic>(_ angle: Angle<N>) -> N {
 ///
 /// - Parameters:
 ///     - sine: The sine.
-public func arcsin<N: RealArithmetic>(_ sine: N) -> Angle<N> {
+public func arcsin<N : RealArithmetic>(_ sine: N) -> Angle<N> {
     return N.arcsin(sine)
 }
 
@@ -381,7 +378,7 @@ public func arcsin<N: RealArithmetic>(_ sine: N) -> Angle<N> {
 ///
 /// - Parameters:
 ///     - cosine: The cosine.
-public func arccos<N: RealArithmetic>(_ cosine: N) -> Angle<N> {
+public func arccos<N : RealArithmetic>(_ cosine: N) -> Angle<N> {
     return N.arccos(cosine)
 }
 
@@ -391,7 +388,7 @@ public func arccos<N: RealArithmetic>(_ cosine: N) -> Angle<N> {
 ///
 /// - Parameters:
 ///     - tangent: The tangent.
-public func arctan<N: RealArithmetic>(_ tangent: N) -> Angle<N> {
+public func arctan<N : RealArithmetic>(_ tangent: N) -> Angle<N> {
     return N.arctan(tangent)
 }
 
@@ -403,7 +400,7 @@ public func arctan<N: RealArithmetic>(_ tangent: N) -> Angle<N> {
 ///
 /// - Parameters:
 ///     - cosecant: The cosecant.
-public func arccsc<N: RealArithmetic>(_ cosecant: N) -> Angle<N> {
+public func arccsc<N : RealArithmetic>(_ cosecant: N) -> Angle<N> {
     return N.arccsc(cosecant)
 }
 
@@ -415,7 +412,7 @@ public func arccsc<N: RealArithmetic>(_ cosecant: N) -> Angle<N> {
 ///
 /// - Parameters:
 ///     - secant: The secant.
-public func arcsec<N: RealArithmetic>(_ secant: N) -> Angle<N> {
+public func arcsec<N : RealArithmetic>(_ secant: N) -> Angle<N> {
     return N.arcsec(secant)
 }
 
@@ -425,84 +422,84 @@ public func arcsec<N: RealArithmetic>(_ secant: N) -> Angle<N> {
 ///
 /// - Parameters:
 ///     - cotangent: The cotangent.
-public func arccot<N: RealArithmetic>(_ cotangent: N) -> Angle<N> {
+public func arccot<N : RealArithmetic>(_ cotangent: N) -> Angle<N> {
     return N.arccot(cotangent)
 }
 
 extension RealArithmetic {
-    
+
     /// π in the same type.
     ///
     /// - Note: This is an alias for `Self.π` to improve the legibility of code involving mathematical equations.
     public var π: Self {
         return Self.π
     }
-    
+
     /// An instance of τ.
     public static var τ: Self {
         return 2 × π
     }
-    
+
     /// τ in the same type.
     ///
     /// - Note: This is an alias for `Self.τ` to improve the legibility of code involving mathematical equations.
     public var τ: Self {
         return Self.τ
     }
-    
+
     /// *e* in the same type.
     ///
     /// - Note: This is an alias for `Self.e` to improve the legibility of code involving mathematical equations.
     public var e: Self {
         return Self.e
     }
-    
+
     /// Returns the `lhs`‐th root of `rhs`.
     ///
     /// - Parameters:
     ///     - lhs: The root.
     ///     - rhs: The radicand.
     ///
-    /// - SeeAlso: `√=(_:_:)` (mutating variant)
-    public static func √(lhs: Self, rhs: Self) -> Self {
+    /// - MutatingVariant: √=
+    public static func √ (lhs: Self, rhs: Self) -> Self {
         var result = rhs
         result √= lhs
         return result
     }
-    
+
     /// Sets `lhs` to its `rhs`‐th root.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
     ///     - rhs: The root.
     ///
-    /// - SeeAlso: `√(_:_:)` (non‐mutating variant)
-    public static func √=(lhs: inout Self, rhs: Self) {
+    /// - NonmutatingVariant: √
+    public static func √= (lhs: inout Self, rhs: Self) {
         lhs ↑= (1 ÷ rhs)
     }
-    
+
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
     ///     - operand: The radicand.
     ///
-    /// - SeeAlso: `√=(_:)` (mutating variant)
-    public static prefix func √(operand: Self) -> Self {
+    /// - MutatingVariant: √=
+    public static prefix func √ (operand: Self) -> Self {
         var result = operand
         result√=
         return result
     }
-    
+
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
     ///     - operand: The value to modify.
     ///
-    /// - SeeAlso: `√(_:` (non‐mutating variant)
-    public static postfix func √=(operand: inout Self) {
+    /// - NonmutatingVariant: √
+    public static postfix func √= (operand: inout Self) {
         operand √= 2
     }
-    
+
     /// Returns the base `base` logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -515,13 +512,13 @@ extension RealArithmetic {
     ///     - base: The base.
     ///     - antilogarithm: The antilogarithm.
     ///
-    /// - SeeAlso: `formLogarithm(toBase:)` (mutating variant)
+    /// - MutatingVariant: formLogarithm
     public static func log(toBase base: Self, of antilogarithm: Self) -> Self {
         var result = antilogarithm
         result.formLogarithm(toBase: base)
         return result
     }
-    
+
     /// Returns the common logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -529,22 +526,22 @@ extension RealArithmetic {
     /// - Parameters:
     ///     - antilogarithm: The antilogarithm.
     ///
-    /// - SeeAlso: `formCommonLogarithm()` (mutating variant)
+    /// - MutatingVariant: formCommonLogarithm
     public static func log(_ antilogarithm: Self) -> Self {
         var result = antilogarithm
         result.formCommonLogarithm()
         return result
     }
-    
+
     /// Sets `self` to its common logarithm.
     ///
     /// - Precondition: `self` > 0
     ///
-    /// - SeeAlso: `log(_:)` (non‐mutating variant)
+    /// - NonmutatingVariant: log
     public mutating func formCommonLogarithm() {
         formLogarithm(toBase: 10)
     }
-    
+
     /// Returns the natural logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -552,22 +549,22 @@ extension RealArithmetic {
     /// - Parameters:
     ///     - antilogarithm: The antilogarithm.
     ///
-    /// - SeeAlso: `formNaturalLogarithm()` (mutating variant)
+    /// - MutatingVariant: formNaturalLogarithm
     public static func ln(_ antilogarithm: Self) -> Self {
         var result = antilogarithm
         result.formNaturalLogarithm()
         return result
     }
-    
+
     /// Sets `self` to its natural logarithm.
     ///
     /// - Precondition: `self` > 0
     ///
-    /// - SeeAlso: `ln(_:)` (non‐mutating variant)
+    /// - NonmutatingVariant: ln
     public mutating func formNaturalLogarithm() {
         formLogarithm(toBase: e)
     }
-    
+
     /// Returns the cosine of an angle.
     ///
     /// - Parameters:
@@ -575,7 +572,7 @@ extension RealArithmetic {
     public static func cos(_ angle: Angle<Self>) -> Self {
         return sin(angle + (π ÷ 2).rad)
     }
-    
+
     /// Returns the tangent of an angle.
     ///
     /// - Parameters:
@@ -583,7 +580,7 @@ extension RealArithmetic {
     public static func tan(_ angle: Angle<Self>) -> Self {
         return sin(angle) ÷ cos(angle)
     }
-    
+
     /// Returns the cosecant of an angle.
     ///
     /// - Parameters:
@@ -591,7 +588,7 @@ extension RealArithmetic {
     public static func csc(_ angle: Angle<Self>) -> Self {
         return 1 ÷ sin(angle)
     }
-    
+
     /// Returns the secant of an angle.
     ///
     /// - Parameters:
@@ -599,7 +596,7 @@ extension RealArithmetic {
     public static func sec(_ angle: Angle<Self>) -> Self {
         return 1 ÷ cos(angle)
     }
-    
+
     /// Returns the cotangent of an angle.
     ///
     /// - Parameters:
@@ -607,7 +604,7 @@ extension RealArithmetic {
     public static func cot(_ angle: Angle<Self>) -> Self {
         return 1 ÷ tan(angle)
     }
-    
+
     /// Returns the arcsine of a value.
     ///
     /// The returned angle will be between −90° and 90° inclusive.
@@ -620,7 +617,7 @@ extension RealArithmetic {
         assert((−1 ... 1).contains(sine), "There is no arcsine angle for any number x, where |x| > 1. In this case, the number \(sine).")
         return arctan(sine ÷ √(1 − sine ↑ 2))
     }
-    
+
     /// Returns the arccosine of a value.
     ///
     /// The returned angle will be between 0° and 180° inclusive.
@@ -633,7 +630,7 @@ extension RealArithmetic {
         assert((−1 ... 1).contains(cosine), "There is no arccosine angle for any number x, where |x| > 1. In this case, the number \(cosine).")
         return (π ÷ 2).rad − arcsin(cosine)
     }
-    
+
     /// Returns the arccosecant of a value.
     ///
     /// The returned angle will be between −90° and 90° inclusive, but never 0°.
@@ -646,7 +643,7 @@ extension RealArithmetic {
         assert(¬(−1 ... 1).contains(cosecant), "There is no arccosecant angle for any number x, where |x| < 1. In this case, the number \(cosecant).")
         return arcsin(1 ÷ cosecant)
     }
-    
+
     /// Returns the arcsecant of a value.
     ///
     /// The returned angle will be between 0° and 180° inclusive, but never 90°.
@@ -659,7 +656,7 @@ extension RealArithmetic {
         assert(¬(−1 ... 1).contains(secant), "There is no arccosecant angle for any number x, where |x| < 1. In this case, the number \(secant).")
         return arccos(1 ÷ secant)
     }
-    
+
     /// Returns the arccotangent of a value.
     ///
     /// The returned angle will be between 0° and 180°.
@@ -674,9 +671,9 @@ extension RealArithmetic {
             return reference
         }
     }
-    
+
     // MARK: - Angles
-    
+
     /// Returns an angle in radians.
     public var radians: Angle<Self> {
         return Angle(radians: self)
@@ -685,27 +682,27 @@ extension RealArithmetic {
     public var rad: Angle<Self> {
         return radians
     }
-    
+
     /// Returns an angle in rotations.
     public var rotations: Angle<Self> {
         return Angle(rotations: self)
     }
-    
+
     /// Returns an angle in degrees.
     public var degrees: Angle<Self> {
         return Angle(degrees: self)
     }
-    
+
     /// Returns an angle in minutes.
     public var minutes: Angle<Self> {
         return Angle(minutes: self)
     }
-    
+
     /// Returns an angle in seconds.
     public var seconds: Angle<Self> {
         return Angle(seconds: self)
     }
-    
+
     /// Returns an angle in gradians.
     public var gradians: Angle<Self> {
         return Angle(gradians: self)
@@ -714,38 +711,38 @@ extension RealArithmetic {
 
 extension RealArithmetic where Self : FloatType {
     // MARK: - where Self : FloatType
-    
+
     /// An instance of π.
     public static var π: Self {
         return pi
     }
-    
+
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
     ///     - operand: The radicand.
     ///
-    /// - SeeAlso: `√=(_:)` (mutating variant)
-    public static prefix func √(operand: Self) -> Self {
+    /// - MutatingVariant: √=
+    public static prefix func √ (operand: Self) -> Self {
         return operand.squareRoot()
     }
-    
+
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
     ///     - operand: The value to modify.
     ///
-    /// - SeeAlso: `√(_:` (non‐mutating variant)
-    public static postfix func √=(operand: inout Self) {
+    /// - NonmutatingVariant: √
+    public static postfix func √= (operand: inout Self) {
         operand = operand.squareRoot()
     }
-    
+
     private mutating func tryConvenientLogarithms(toBase base: Self) -> Bool {
-        
+
         assert(self > 0, "Logarithms of non‐positive numbers are undefined. (In this case, the logarithm of \(self).)")
         assert(base > 0, "Logarithms in a non‐positive base are undefined. (In this case, the base \(base) logarithm.")
         assert(base ≠ 1, "Logarithms in base 1 are undefined.")
-        
+
         if self == 1 {
             self = 0 // x ↑ 0 = 1
             return true
@@ -757,7 +754,7 @@ extension RealArithmetic where Self : FloatType {
             return false
         }
     }
-    
+
     /// Sets `self` to its base `base` logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -769,34 +766,34 @@ extension RealArithmetic where Self : FloatType {
     /// - Parameters:
     ///     - base: The base.
     ///
-    /// - SeeAlso: `log(toBase:of:)` (non‐mutating variant)
+    /// - NonmutatingVariant: log
     public mutating func formLogarithm(toBase base: Self) {
-        
+
         if ¬tryConvenientLogarithms(toBase: base) {
-            
+
             // log (a) = log (a) ÷ log (b)
             //    b         x         x
-            
+
             formNaturalLogarithm()
             self ÷= ln(base)
         }
     }
-    
+
     /// Sets `self` to its natural logarithm.
     ///
     /// - Precondition: `self` > 0
     ///
-    /// - SeeAlso: `ln(_:)` (non‐mutating variant)
+    /// - NonmutatingVariant: ln
     public mutating func formNaturalLogarithm() {
-        
+
         if ¬tryConvenientLogarithms(toBase: e) {
-            
+
             if self == 2 {
                 self = Self.ln2
             } else {
                 // if y = s × b ↑ x
                 // then ln(y) = ln(s) + x × ln(b)
-                
+
                 let s: Self = significand
                 let x = Self(exponent)
                 // Since 1 ≤ s < 2, (or possibly 0 ≤ s for subnormal values?)
@@ -805,7 +802,7 @@ extension RealArithmetic where Self : FloatType {
                 //   ∞         n + 1          n
                 //   ∑    ( (−1)      _(s_−_1)__ )
                 // n = 1                  n
-                
+
                 self = 0
                 var lastApproximate = self
                 var n: Self = 1
@@ -814,30 +811,30 @@ extension RealArithmetic where Self : FloatType {
                 var numerator: Self = sMinusOne
                 repeat {
                     lastApproximate = self
-                    
+
                     var term = numerator ÷ n
                     if negative {
                         term−=
                     }
                     self += term
-                    
+
                     n += 1
                     negative¬=
                     numerator ×= sMinusOne
-                    
+
                 } while self ≠ lastApproximate
-                
+
                 self += x × Self.ln2
             }
         }
     }
-    
+
     /// Returns the sine of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     public static func sin(_ angle: Angle<Self>) -> Self {
-        
+
         if ¬(_0.rad ..< τ.rad).contains(angle) {
             // Use periodic reference angle.
             return sin(angle.mod(τ.rad))
@@ -849,16 +846,16 @@ extension RealArithmetic where Self : FloatType {
             return sin(π.rad − angle)
         } else {
             // Quadrant I
-            
+
             if angle > (π ÷ 4).rad {
                 // Cosine converges faster in this range.
                 return cos((π ÷ 2).rad − angle)
             } else {
-                
+
                 //   ∞         n + 1     2n − 1
                 //   ∑    ( (−1)      __θ________ )
                 // n = 1               (2n − 1)!
-                
+
                 var result: Self = 0
                 var lastApproximate: Self = result
                 var negative = false
@@ -867,35 +864,36 @@ extension RealArithmetic where Self : FloatType {
                 var denominator: Self = 1
                 repeat {
                     lastApproximate = result
-                    
+
                     var term = numerator ÷ denominator
                     if negative {
                         term−=
                     }
                     result += term
-                    
+
                     negative¬=
-                    func multiplicationStep() {
+
+                    let multiplicationStep = {
                         numerator ×= angle.inRadians
                         _2n_m_1 += 1
                         denominator ×= _2n_m_1
                     }
                     multiplicationStep()
                     multiplicationStep()
-                    
+
                 } while result ≠ lastApproximate
-                
+
                 return result
             }
         }
     }
-    
+
     /// Returns the cosine of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     public static func cos(_ angle: Angle<Self>) -> Self {
-        
+
         if ¬(_0.rad ..< τ.rad).contains(angle) {
             // Use periodic reference angle.
             return cos(angle.mod(τ.rad))
@@ -907,16 +905,16 @@ extension RealArithmetic where Self : FloatType {
             return −cos(π.rad − angle)
         } else {
             // Quadrant I
-            
+
             if angle > (π ÷ 4).rad {
                 // Sine converges faster in this range.
                 return sin((π ÷ 2).rad − angle)
             } else {
-                
+
                 //   ∞         n + 1      2n
                 //   ∑    ( (−1)      ___θ___ )
                 // n = 0               (2n)!
-                
+
                 var result: Self = 0
                 var lastApproximate: Self = result
                 var negative = false
@@ -925,29 +923,30 @@ extension RealArithmetic where Self : FloatType {
                 var denominator: Self = 1
                 repeat {
                     lastApproximate = result
-                    
+
                     var term = numerator ÷ denominator
                     if negative {
                         term−=
                     }
                     result += term
-                    
+
                     negative¬=
-                    func multiplicationStep() {
+
+                    let multiplicationStep = {
                         numerator ×= angle.inRadians
                         _2n += 1
                         denominator ×= _2n
                     }
                     multiplicationStep()
                     multiplicationStep()
-                    
+
                 } while result ≠ lastApproximate
-                
+
                 return result
             }
         }
     }
-    
+
     /// Returns the arctangent of a value.
     ///
     /// The returned angle will be between −90° and 90°.
@@ -955,7 +954,7 @@ extension RealArithmetic where Self : FloatType {
     /// - Parameters:
     ///     - tangent: The tangent.
     public static func arctan(_ tangent: Self) -> Angle<Self> {
-        
+
         if tangent.isNegative {
             return −arctan(−tangent)
         } else if tangent > 1 {
@@ -964,11 +963,11 @@ extension RealArithmetic where Self : FloatType {
             let r3: Self = √3
             return (π ÷ 6).rad + arctan((r3 × tangent − 1) ÷ (r3 + tangent))
         } else {
-            
+
             //   ∞         n + 1     2n − 1
             //   ∑    ( (−1)      __x_______ )
             // n = 1               (2n − 1)
-            
+
             var result: Self = 0
             var lastApproximate: Self = result
             var negative = false
@@ -977,19 +976,19 @@ extension RealArithmetic where Self : FloatType {
             var denominator: Self = 1
             repeat {
                 lastApproximate = result
-                
+
                 var term = numerator ÷ denominator
                 if negative {
                     term−=
                 }
                 result += term
-                
+
                 negative¬=
                 numerator ×= x_2
                 denominator += 2
-                
+
             } while result ≠ lastApproximate
-            
+
             return result.radians
         }
     }

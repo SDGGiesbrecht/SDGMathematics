@@ -17,6 +17,6 @@
 /// Conformance Requirements:
 ///
 /// - `RationalArithmetic`
-public protocol RationalNumberType: RationalArithmetic {
-    
+public protocol RationalNumberType : RationalArithmetic {
+
 }

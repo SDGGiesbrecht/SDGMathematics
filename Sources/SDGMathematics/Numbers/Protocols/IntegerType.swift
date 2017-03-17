@@ -17,6 +17,6 @@
 /// Conformance Requirements:
 ///
 /// - `IntegralArithmetic`
-public protocol IntegerType: IntegralArithmetic {
-    
+public protocol IntegerType : IntegralArithmetic {
+
 }

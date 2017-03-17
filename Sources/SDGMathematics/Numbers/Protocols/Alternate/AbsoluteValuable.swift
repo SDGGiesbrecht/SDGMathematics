@@ -14,13 +14,13 @@
 
 extension AbsoluteValuable where Self : IntegralArithmetic {
     // MARK: - where Self : IntegralArithmetic
-    
+
     /// Returns the absolute value of `x`.
     ///
     /// - Parameters:
     ///     - x: The starting value.
     ///
-    /// - SeeAlso: `|x|` (recommended)
+    /// - Recommended: |
     public static func abs(_ x: Self) -> Self {
         return |x|
     }

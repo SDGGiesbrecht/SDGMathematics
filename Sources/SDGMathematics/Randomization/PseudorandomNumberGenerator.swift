@@ -12,31 +12,29 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-// swiftlint:disable disjunction
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-// swiftlint:enable disjunction
-    import Foundation
-#elseif os(Linux)
+#if os(Linux)
     import Glibc
+#else
+    import Foundation
 #endif
 
 /// A pseudorandom number generator.
 ///
 /// Currently, `PseudorandomNumberGenerator` uses the [xoroshiro128+](https://en.wikipedia.org/wiki/Xoroshiro128%2B) algorithm designed by David Blackman and Sebastiano Vigna.
-public final class PseudorandomNumberGenerator: Randomizer {
-    
+public final class PseudorandomNumberGenerator : Randomizer {
+
     /// The seed.
     public typealias Seed = (UInt64, UInt64)
-    
+
     private var state: Seed
-    
+
     /// An automatically seeded pseudorandom number generator for general use.
     ///
     /// - Note: If deterministic behaviour is needed, use `init(seed: Seed)` instead.
     public static let defaultGenerator: PseudorandomNumberGenerator = {
         return PseudorandomNumberGenerator(seed: generateSeed())
     }()
-    
+
     #if os(Linux)
         private static var _linuxState: random_data = random_data()
         private static var __linuxStateStorage: [Int8] = Array(repeating: 0, count: 256) /* Must be static to persist under memory management. */
@@ -44,11 +42,11 @@ public final class PseudorandomNumberGenerator: Randomizer {
             // “static let” in order to be run only once.
             let instantInt: Int = time(nil)
             let instant: UInt32 = UInt32(truncatingBitPattern: instantInt)
-    
+
             let storagePointer: UnsafeMutablePointer<Int8> = UnsafeMutablePointer(mutating: __linuxStateStorage)
-    
+
             let _ = initstate_r(instant, storagePointer, __linuxStateStorage.count, &_linuxState)
-    
+
             return true
         }()
         private static var linuxState: random_data {
@@ -67,32 +65,30 @@ public final class PseudorandomNumberGenerator: Randomizer {
     /// Returns a new, randomly generated seed.
     public static func generateSeed() -> Seed {
         func systemSpecificRandom() -> UInt32 {
-            // swiftlint:disable disjunction
-            #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-            // swiftlint:enable disjunction
-                
-                return arc4random()
-                
-            #elseif os(Linux)
-                
+            #if os(Linux)
+
                 var result: Int32 = 0
                 let _ = random_r(&linuxState, &result) /* 0 ≤ x < 2 ↑ 31 */
                 return UInt32(bitPattern: result)
-                
+
+            #else
+
+                return arc4random()
+
             #endif
         }
-        
+
         func generateHalf() -> UInt64 {
-            
+
             var result = UInt64(systemSpecificRandom())
             result = result << 32
             result += UInt64(systemSpecificRandom())
             return result
         }
-        
+
         return (generateHalf(), generateHalf())
     }
-    
+
     /// Creates a pseudorandom number generator with a specific seed.
     ///
     /// - Parameters:
@@ -101,25 +97,22 @@ public final class PseudorandomNumberGenerator: Randomizer {
         self.state = seed
         let _ = randomNumber() // Step away from seed itself.
     }
-    
+
     /// Returns a random value.
     public func randomNumber() -> UInt64 {
-        // swiftlint:disable missing_documentation
-        
+
         // This is derived from the C code of David Blackman and Sebastiano Vigna’s xoroshiro128+ algorithm, which they have dedicated to the public domain. (retrieved on 2016‐12‐08 from http://vigna.di.unimi.it/xorshift/xoroshiro128plus.c)
-        
-        // swiftlint:enable missing_documentation
-        
+
         let result = state.0 &+ state.1
-        
+
         state.1 ^= state.0
-        
+
         func bits(of value: UInt64, rotatedLeft distance: UInt64) -> UInt64 {
             return (value << distance) | (value >> (64 − distance))
         }
         state.0 = bits(of: state.0, rotatedLeft: 55) ^ state.1 ^ (state.1 << 14)
         state.1 = bits(of: state.1, rotatedLeft: 36)
-        
+
         return result
     }
 }

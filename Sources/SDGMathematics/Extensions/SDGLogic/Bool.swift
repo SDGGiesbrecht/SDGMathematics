@@ -13,9 +13,9 @@
  */
 
 extension Bool {
-    
+
     private static let randomizationBit: UInt64 = 1 << 48
-    
+
     /// A value a `Randomizer` can return that will result in `false`.
     ///
     /// For example:
@@ -29,7 +29,7 @@ extension Bool {
     ///     let x = Bool(fromRandomizer: alternating)
     ///     // ...now alternate between “false” and “true”.
     public static let falseRandomizerValue: UInt64 = 0
-    
+
     /// A value a `Randomizer` can return that will result in `true`.
     ///
     /// For example:
@@ -43,12 +43,12 @@ extension Bool {
     ///     let x = Bool(fromRandomizer: alternating)
     ///     // ...now alternate between “false” and “true”.
     public static let trueRandomizerValue: UInt64 = randomizationBit
-    
+
     /// Returns a random Boolean value.
     public static func random() -> Bool {
         return Bool(fromRandomizer: PseudorandomNumberGenerator.defaultGenerator)
     }
-    
+
     /// Creates a random Boolean value derived from a particular randomizer.
     ///
     /// - Parameters:

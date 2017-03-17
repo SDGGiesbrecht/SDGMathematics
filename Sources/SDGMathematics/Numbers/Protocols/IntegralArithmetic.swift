@@ -18,6 +18,6 @@
 ///
 /// - `WholeArithmetic`
 /// - `Negatable`
-public protocol IntegralArithmetic: AbsoluteValuable /* requires negatability */, Negatable, SignedNumber, WholeArithmetic {
-    
+public protocol IntegralArithmetic : AbsoluteValuable /* requires negatability */, Negatable, SignedNumber, WholeArithmetic {
+
 }

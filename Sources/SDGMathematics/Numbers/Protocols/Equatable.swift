@@ -14,13 +14,13 @@
 
 extension Equatable where Self : Measurement {
     // MARK: - where Self : Measurement
-    
+
     /// Returns `true` if the two values are equal.
     ///
     /// - Parameters:
     ///     - lhs: A value.
     ///     - rhs: Another value.
-    public static func ==(lhs: Self, rhs: Self) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
 }

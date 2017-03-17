@@ -17,6 +17,6 @@
 /// Conformance Requirements:
 ///
 /// - `WholeArithmetic`
-public protocol WholeNumberType: WholeArithmetic {
-    
+public protocol WholeNumberType : WholeArithmetic {
+
 }

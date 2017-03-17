@@ -21,10 +21,4 @@
 
 /Refresh?Workspace* linguist-vendored=true
 
-# [_End Workspace Section]# !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
-# THIS IS A SHARED FILE FROM THE REPOSITORY AT https://github.com/SDGGiesbrecht/SDG.
-# CHANGES MUST BE MADE THERE.
-# !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
-
-Refresh\ Workspace.command linguist-vendored=true
-Validate\ Changes.command linguist-vendored=true
+# [_End Workspace Section]

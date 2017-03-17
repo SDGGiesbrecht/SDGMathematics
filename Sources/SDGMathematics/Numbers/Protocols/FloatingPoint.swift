@@ -20,13 +20,13 @@ extension FloatingPoint {
 }
 extension FloatingPoint where Self : WholeArithmetic {
     // MARK: - where Self : WholeArithmetic
-    
+
     /// Returns the value rounded to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
     ///     - rule: The rounding rule follow.
     ///
-    /// - SeeAlso: `round(_:)` (mutating variant)
+    /// - MutatingVariant: round
     public func rounded(_ rule: FloatingPointRoundingRule) -> Self {
         // Disambiguate FloatingPoint.rounded(_:) vs WholeArithmetic.rounded(_:)
         return roundedAsFloatingPoint(rule)
