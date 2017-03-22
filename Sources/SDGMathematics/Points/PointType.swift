@@ -2,7 +2,7 @@
  PointType.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -19,58 +19,56 @@
 /// Conformance Requirements:
 ///
 /// - `Equatable`
-/// - `static func +=(lhs: inout Self, rhs: Addend)`
-/// - `static func −(lhs: Self, rhs: Self) -> Vector`
-public protocol PointType: Equatable {
+/// - `static func += (lhs: inout Self, rhs: Addend)`
+/// - `static func − (lhs: Self, rhs: Self) -> Vector`
+public protocol PointType : Equatable {
 
     /// The type to be used as a vector.
-    associatedtype Vector: Negatable
-    
+    associatedtype Vector : Negatable
+
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The starting point.
     ///     - rhs: The vector to add.
     ///
-    /// - SeeAlso: `+=(_:_:)` (mutating variant)
-    static func +(lhs: Self, rhs: Vector) -> Self
-    
+    /// - MutatingVariant: +=
+    static func + (lhs: Self, rhs: Vector) -> Self
+
     /// Moves the point on the left by the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The point to modify.
     ///     - rhs: The vector to add.
     ///
-    /// - SeeAlso: `+(_:_:)` (non‐mutating variant)
-    static func +=(lhs: inout Self, rhs: Vector)
-    
+    /// - NonmutatingVariant: +
+    static func += (lhs: inout Self, rhs: Vector)
+
     /// Returns the point arrived at by starting at the point on the left and moving according to the inverse of the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The starting point.
     ///     - rhs: The vector to subtract.
     ///
-    /// - SeeAlso: `−=(_:_:)` (mutating variant)
-    //static func −(lhs: Self, rhs: Vector) -> Self
-    // swiftlint:disable not
-    // !!!!!BUG!!!!! The above line is temporarily (Swift 3.0.1) commented because it falsely triggers “ambiguous use of operator” errors (see testSubtractable). This can be used again when the bug is fixed.
-    // swiftlint:enable not
-    
+    /// - MutatingVariant: −=
+    //static func − (lhs: Self, rhs: Vector) -> Self
+    // [_Workaround: The above line is temporarily commented because it falsely triggers “ambiguous use of operator” errors. See testSubtractable. (Swift 3.0.2)_]
+
     /// Returns the vector that leads from the point on the left to the point on the right.
     ///
     /// - Parameters:
     ///     - lhs: The endpoint.
     ///     - rhs: The startpoint.
-    static func −(lhs: Self, rhs: Self) -> Vector
-    
+    static func − (lhs: Self, rhs: Self) -> Vector
+
     /// Moves the point on the left by the inverse of the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The point to modify.
     ///     - rhs: The vector to subtract.
     ///
-    /// - SeeAlso: `−(_:_:)` (non‐mutating variant)
-    static func −=(lhs: inout Self, rhs: Vector)
+    /// - NonmutatingVariant: −
+    static func −= (lhs: inout Self, rhs: Vector)
 }
 
 extension PointType {
@@ -86,11 +84,11 @@ extension PointType {
     ///     - lhs: The starting point.
     ///     - rhs: The vector to add.
     ///
-    /// - SeeAlso: `+=(_:_:)` (mutating variant)
-    public static func +(lhs: Self, rhs: Vector) -> Self {
+    /// - MutatingVariant: +=
+    public static func + (lhs: Self, rhs: Vector) -> Self {
         return addAsPointType(lhs, rhs)
     }
-    
+
     fileprivate static func subtractAsPointType(_ lhs: Self, _ rhs: Vector) -> Self {
         var result = lhs
         result −= rhs
@@ -102,34 +100,34 @@ extension PointType {
     ///     - lhs: The starting point.
     ///     - rhs: The vector to subtract.
     ///
-    /// - SeeAlso: `−=(_:_:)` (mutating variant)
-    public static func −(lhs: Self, rhs: Vector) -> Self {
+    /// - MutatingVariant: −=
+    public static func − (lhs: Self, rhs: Vector) -> Self {
         return subtractAsPointType(lhs, rhs)
     }
-    
+
     /// Moves the point on the left by the inverse of the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The point to modify.
     ///     - rhs: The vector to subtract.
     ///
-    /// - SeeAlso: `−(_:_:)` (non‐mutating variant)
-    public static func −=(lhs: inout Self, rhs: Vector) {
+    /// - NonmutatingVariant: −
+    public static func −= (lhs: inout Self, rhs: Vector) {
         lhs += −rhs
     }
 }
 
 extension PointType where Self.Vector == Self {
     // MARK: - Self.Vector == Self
-    
+
     /// Returns the point arrived at by starting at the point on the left and moving according to the inverse of the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The starting point.
     ///     - rhs: The vector to subtract.
     ///
-    /// - SeeAlso: `−=(_:_:)` (mutating variant)
-    public static func −(lhs: Self, rhs: Vector) -> Self {
+    /// - MutatingVariant: −=
+    public static func − (lhs: Self, rhs: Vector) -> Self {
         // Disambiguate Self − Vector = Self vs Self − Self = Vector
         return subtractAsPointType(lhs, rhs)
     }
@@ -137,50 +135,50 @@ extension PointType where Self.Vector == Self {
 
 extension PointType where Self : IntXType, Self.Vector == Self.Stride {
     // MARK: - where Self : IntXType, Vector == Stride
-    
+
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The starting point.
     ///     - rhs: The vector to add.
     ///
-    /// - SeeAlso: `+=(_:_:)` (mutating variant)
-    public static func +(lhs: Self, rhs: Stride) -> Self {
+    /// - MutatingVariant: +=
+    public static func + (lhs: Self, rhs: Stride) -> Self {
         return lhs.advanced(by: rhs)
     }
-    
+
     /// Moves the point on the left by the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The point to modify.
     ///     - rhs: The vector to add.
     ///
-    /// - SeeAlso: `+(_:_:)` (non‐mutating variant)
-    public static func +=(lhs: inout Self, rhs: Stride) {
+    /// - NonmutatingVariant: +
+    public static func += (lhs: inout Self, rhs: Stride) {
         lhs = lhs.advanced(by: rhs)
     }
-    
+
     /// Returns the vector that leads from the point on the left to the point on the right.
     ///
     /// - Parameters:
     ///     - lhs: The endpoint.
     ///     - rhs: The startpoint.
-    public static func −(lhs: Self, rhs: Self) -> Stride {
+    public static func − (lhs: Self, rhs: Self) -> Stride {
         return rhs.distance(to: lhs)
     }
 }
 
 extension PointType where Self : Strideable, Self.Vector == Self.Stride {
     // MARK: - where Self : Strideable, Vector == Stride
-    
+
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The starting point.
     ///     - rhs: The vector to add.
     ///
-    /// - SeeAlso: `+=(_:_:)` (mutating variant)
-    public static func +(lhs: Self, rhs: Vector) -> Self {
+    /// - MutatingVariant: +=
+    public static func + (lhs: Self, rhs: Vector) -> Self {
         // Disambiguate PointType.+ vs Strideable.+
         return addAsPointType(lhs, rhs)
     }
@@ -188,35 +186,35 @@ extension PointType where Self : Strideable, Self.Vector == Self.Stride {
 
 extension PointType where Self : UIntType, Self.Vector == Self.Stride {
     // MARK: - where Self : UIntType, Vector == Stride
-    
+
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The starting point.
     ///     - rhs: The vector to add.
     ///
-    /// - SeeAlso: `+=(_:_:)` (mutating variant)
-    public static func +(lhs: Self, rhs: Stride) -> Self {
+    /// - MutatingVariant: +=
+    public static func + (lhs: Self, rhs: Stride) -> Self {
         return lhs.advanced(by: rhs)
     }
-    
+
     /// Moves the point on the left by the vector on the right.
     ///
     /// - Parameters:
     ///     - lhs: The point to modify.
     ///     - rhs: The vector to add.
     ///
-    /// - SeeAlso: `+(_:_:)` (non‐mutating variant)
-    public static func +=(lhs: inout Self, rhs: Stride) {
+    /// - NonmutatingVariant: +
+    public static func += (lhs: inout Self, rhs: Stride) {
         lhs = lhs.advanced(by: rhs)
     }
-    
+
     /// Returns the vector that leads from the point on the left to the point on the right.
     ///
     /// - Parameters:
     ///     - lhs: The endpoint.
     ///     - rhs: The startpoint.
-    public static func −(lhs: Self, rhs: Self) -> Stride {
+    public static func − (lhs: Self, rhs: Self) -> Stride {
         return rhs.distance(to: lhs)
     }
 }

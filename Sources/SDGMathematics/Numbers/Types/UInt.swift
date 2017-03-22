@@ -2,7 +2,7 @@
  UInt.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -17,27 +17,27 @@ import SDGLogic
 /// A type that represents a fixed‐length unsigned integer.
 ///
 /// This protocol exists so that extensions to it can provide shared functionality for `UInt`, `UInt64`, `UInt32`, `UInt16` and `UInt8`.
-public protocol UIntType: Addable, AdditiveArithmetic, CustomPlaygroundQuickLookable, CustomReflectable, CVarArg, NumericAdditiveArithmetic, OneDimensionalPoint, PointType, Subtractable, UnsignedInteger, WholeArithmetic, WholeNumberType {
-    
+public protocol UIntType : Addable, AdditiveArithmetic, CustomPlaygroundQuickLookable, CustomReflectable, CVarArg, NumericAdditiveArithmetic, OneDimensionalPoint, PointType, Subtractable, UnsignedInteger, WholeArithmetic, WholeNumberType {
+
 }
 
-extension UInt: UIntType {
-    
+extension UInt : UIntType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
 }
 
-extension UInt64: UIntType {
-    
+extension UInt64 : UIntType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
-    
+
     // MARK: - WholeArithmetic
-    
+
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
@@ -48,28 +48,28 @@ extension UInt64: UIntType {
     }
 }
 
-extension UInt32: UIntType {
-    
+extension UInt32 : UIntType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
 }
 
-extension UInt16: UIntType {
-    
+extension UInt16 : UIntType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
-    
+
 }
 
-extension UInt8: UIntType {
-    
+extension UInt8 : UIntType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
-    
+
 }

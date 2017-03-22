@@ -2,7 +2,7 @@
  Angle.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -27,7 +27,7 @@ postfix operator ′′
 ///
 /// - Parameters:
 ///     - value: The value in degrees.
-public postfix func °<N: RealArithmetic>(value: N) -> Angle<N> {
+public postfix func ° <N : RealArithmetic>(value: N) -> Angle<N> {
     return value.degrees
 }
 
@@ -35,7 +35,7 @@ public postfix func °<N: RealArithmetic>(value: N) -> Angle<N> {
 ///
 /// - Parameters:
 ///     - value: The value in minutes.
-public postfix func ′<N: RealArithmetic>(value: N) -> Angle<N> {
+public postfix func ′ <N : RealArithmetic>(value: N) -> Angle<N> {
     return value.minutes
 }
 
@@ -43,55 +43,55 @@ public postfix func ′<N: RealArithmetic>(value: N) -> Angle<N> {
 ///
 /// - Parameters:
 ///     - value: The value in seconds.
-public postfix func ′′<N: RealArithmetic>(value: N) -> Angle<N> {
+public postfix func ′′ <N : RealArithmetic>(value: N) -> Angle<N> {
     return value.seconds
 }
 
 /// An angle.
-public struct Angle<Value: RealArithmetic>: Measurement {
-    
+public struct Angle<Value : RealArithmetic> : Measurement {
+
     // MARK: - Initialization
-    
+
     /// Creates an angle in radians.
     public init(radians: Value) {
         self.inRadians = radians
     }
-    
+
     /// Creates an angle in rotations.
     public init(rotations: Value) {
         self.init()
         inRotations = rotations
     }
-    
+
     /// Creates an angle in degrees.
     public init(degrees: Value) {
         self.init()
         inDegrees = degrees
     }
-    
+
     /// Creates an angle in minutes.
     public init(minutes: Value) {
         self.init()
         inMinutes = minutes
     }
-    
+
     /// Creates an angle in seconds.
     public init(seconds: Value) {
         self.init()
         inSeconds = seconds
     }
-    
+
     /// Creates an angle in gradians.
     public init(gradians: Value) {
         self.init()
         inGradians = gradians
     }
-    
+
     // MARK: - Units
-    
+
     /// The numeric value in radians.
     public var inRadians: Value
-    
+
     private static var radiansPerRotation: Value {
         return Value.τ
     }
@@ -104,7 +104,7 @@ public struct Angle<Value: RealArithmetic>: Measurement {
             inRadians = newValue × Angle.radiansPerRotation
         }
     }
-    
+
     private static var radiansPerDegree: Value {
         return radiansPerRotation ÷ 360
     }
@@ -117,7 +117,7 @@ public struct Angle<Value: RealArithmetic>: Measurement {
             inRadians = newValue × Angle.radiansPerDegree
         }
     }
-    
+
     private static var radiansPerMinute: Value {
         return radiansPerDegree ÷ 60
     }
@@ -130,7 +130,7 @@ public struct Angle<Value: RealArithmetic>: Measurement {
             inRadians = newValue × Angle.radiansPerMinute
         }
     }
-    
+
     private static var radiansPerSecond: Value {
         return radiansPerMinute ÷ 60
     }
@@ -143,7 +143,7 @@ public struct Angle<Value: RealArithmetic>: Measurement {
             inRadians = newValue × Angle.radiansPerSecond
         }
     }
-    
+
     private static var radiansPerGradian: Value {
         return radiansPerRotation ÷ 400
     }
@@ -156,17 +156,17 @@ public struct Angle<Value: RealArithmetic>: Measurement {
             inRadians = newValue × Angle.radiansPerGradian
         }
     }
-    
+
     // MARK: - Measurement
-    
+
     /// The numeric type used to express the value in any given unit.
     public typealias Scalar = Value
-    
+
     /// Creates a measurement from a raw value.
     public init(rawValue: Scalar) {
         inRadians = rawValue
     }
-    
+
     /// A raw value.
     public var rawValue: Scalar {
         get {

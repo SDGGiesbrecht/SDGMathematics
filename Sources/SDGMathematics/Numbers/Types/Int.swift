@@ -2,7 +2,7 @@
  Int.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -17,41 +17,41 @@ import SDGLogic
 /// A type that represents a fixed‐length integer.
 ///
 /// This protocol exists so that extensions to it can provide shared functionality for `Int`, `Int64`, `Int32`, `Int16` and `Int8`.
-public protocol IntType: Addable, AdditiveArithmetic, CustomPlaygroundQuickLookable, CustomReflectable, CVarArg, IntegerType, IntegralArithmetic, MirrorPath, Negatable, NumericAdditiveArithmetic, OneDimensionalPoint, PointType, SignedInteger, Subtractable, WholeArithmetic {
-    
+public protocol IntType : Addable, AdditiveArithmetic, CustomPlaygroundQuickLookable, CustomReflectable, CVarArg, IntegerType, IntegralArithmetic, MirrorPath, Negatable, NumericAdditiveArithmetic, OneDimensionalPoint, PointType, SignedInteger, Subtractable, WholeArithmetic {
+
 }
 
 /// A type that represents a fixed‐length integer.
 ///
 /// This protocol exists so that extensions to it can provide shared functionality for `Int64`, `Int32`, `Int16` and `Int8`.
-public protocol IntXType: IntType {
-    
+public protocol IntXType : IntType {
+
 }
 
-extension Int: IntType {
-    
+extension Int : IntType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
 }
 
-extension Int64: IntXType {
-    
+extension Int64 : IntXType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
-    
+
     // MARK: - WholeArithmetic
-    
+
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
     ///     - randomizer: The randomizer to use to generate the random value.
     public init(randomInRange range: ClosedRange<Int64>, fromRandomizer randomizer: Randomizer) {
-        
+
         if range.lowerBound.isAWholeNumber {
             let unsignedRange: ClosedRange<UInt64> = UInt64(range.lowerBound) ... UInt64(range.upperBound)
             let unsigned = UInt64(randomInRange: unsignedRange)
@@ -63,32 +63,32 @@ extension Int64: IntXType {
             self = range.lowerBound + Int64(unsigned)
         }
     }
-    
+
 }
 
-extension Int32: IntXType {
-    
+extension Int32 : IntXType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
-    
+
 }
 
-extension Int16: IntXType {
-    
+extension Int16 : IntXType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
-    
+
 }
 
-extension Int8: IntXType {
-    
+extension Int8 : IntXType {
+
     // MARK: - PointType
-    
+
     /// The vector type.
     public typealias Vector = Stride
-    
+
 }

@@ -2,7 +2,7 @@
  AbsoluteValuable.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -14,13 +14,13 @@
 
 extension AbsoluteValuable where Self : IntegralArithmetic {
     // MARK: - where Self : IntegralArithmetic
-    
+
     /// Returns the absolute value of `x`.
     ///
     /// - Parameters:
     ///     - x: The starting value.
     ///
-    /// - SeeAlso: `|x|` (recommended)
+    /// - Recommended: |
     public static func abs(_ x: Self) -> Self {
         return |x|
     }

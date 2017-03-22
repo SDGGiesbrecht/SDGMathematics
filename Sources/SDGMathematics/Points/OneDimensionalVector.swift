@@ -2,7 +2,7 @@
  OneDimensionalVector.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -17,17 +17,17 @@
 /// Conformance Requirements:
 ///
 /// - `VectorType`
-/// - `static func ÷(lhs: Self, rhs: Self) -> Scalar`
-public protocol OneDimensionalVector: VectorType {
-    
+/// - `static func ÷ (lhs: Self, rhs: Self) -> Scalar`
+public protocol OneDimensionalVector : VectorType {
+
     /// Returns the quotient of the left divided by the right.
     ///
     /// - Parameters:
     ///     - lhs: The dividend.
     ///     - rhs: The divisor.
     ///
-    /// - SeeAlso: `÷=(_:_:)` (mutating variant)
+    /// - MutatingVariant: ×
     ///
-    /// - SeeAlso: (recommended over) `/(_:_:)`
-    static func ÷(lhs: Self, rhs: Self) -> Scalar
+    /// - RecommendedOver: /
+    static func ÷ (lhs: Self, rhs: Self) -> Scalar
 }

@@ -2,7 +2,7 @@
  FloatingPoint.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -20,13 +20,13 @@ extension FloatingPoint {
 }
 extension FloatingPoint where Self : WholeArithmetic {
     // MARK: - where Self : WholeArithmetic
-    
+
     /// Returns the value rounded to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
     ///     - rule: The rounding rule follow.
     ///
-    /// - SeeAlso: `round(_:)` (mutating variant)
+    /// - MutatingVariant: round
     public func rounded(_ rule: FloatingPointRoundingRule) -> Self {
         // Disambiguate FloatingPoint.rounded(_:) vs WholeArithmetic.rounded(_:)
         return roundedAsFloatingPoint(rule)

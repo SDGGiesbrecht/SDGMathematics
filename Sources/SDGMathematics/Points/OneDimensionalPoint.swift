@@ -2,7 +2,7 @@
  OneDimensionalPoint.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -20,28 +20,28 @@
 ///
 /// - `PointType`
 /// - `Comparable`
-public protocol OneDimensionalPoint: Comparable, PointType, Strideable {
-    
+public protocol OneDimensionalPoint : Comparable, PointType, Strideable {
+
 }
 
 extension OneDimensionalPoint where Vector : IntegerType {
     // MARK: - where Vector : IntegerType
-    
+
     /// Advances to the next value.
     public mutating func increment() {
         self += 1
     }
-    
+
     /// Retreats to the previous value.
     public mutating func decrement() {
         self −= 1
     }
-    
+
     /// Returns the value which comes immediately after.
     public func successor() -> Self {
         return self + 1
     }
-    
+
     /// Returns the value which comes immediately before.
     public func predecessor() -> Self {
         return self − 1

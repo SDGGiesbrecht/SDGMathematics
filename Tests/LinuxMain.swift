@@ -2,7 +2,7 @@
  LinuxMain.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -16,5 +16,5 @@ import XCTest
 @testable import SDGMathematicsTests
 
 XCTMain([
-     testCase(SDGMathematicsTests.allTests),
+     testCase(SDGMathematicsTests.allTests)
 ])

@@ -2,7 +2,7 @@
  RationalNumberTypeExample.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -14,74 +14,74 @@
 
 @testable import SDGMathematics
 
-struct RationalNumberTypeExample: RationalNumberType {
-    
+struct RationalNumberTypeExample : RationalNumberType {
+
     var value: Double
-    
+
     init(_ value: Double) {
         self.value = value
     }
-    
+
     // Addable
-    
-    static func +=(lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
+
+    static func += (lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
         lhs.value += rhs.value
     }
-    
+
     // Comparable
-    
-    static func <(lhs: RationalNumberTypeExample, rhs: RationalNumberTypeExample) -> Bool {
+
+    static func < (lhs: RationalNumberTypeExample, rhs: RationalNumberTypeExample) -> Bool {
         return lhs.value < rhs.value
     }
-    
+
     // Equatable
-    
-    static func ==(lhs: RationalNumberTypeExample, rhs: RationalNumberTypeExample) -> Bool {
+
+    static func == (lhs: RationalNumberTypeExample, rhs: RationalNumberTypeExample) -> Bool {
         return lhs.value == rhs.value
     }
-    
+
     // ExpressibleByFloatLiteral
-    
+
     init(floatLiteral: Double.FloatLiteralType) {
         value = Double(floatLiteral: floatLiteral)
     }
-    
+
     // ExpressibleByIntegerLiteral
-    
+
     init(integerLiteral: Double.IntegerLiteralType) {
-        value = Double(integerLiteral: integerLiteral)
+        value = Double(integerLiteral)
     }
-    
+
     // PointType
-    
+
     typealias Vector = RationalNumberTypeExample
-    
+
     // RationalArithmetic
-    
-    static func ÷=(lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
+
+    static func ÷= (lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
         lhs.value ÷= rhs.value
     }
-    
+
     // Strideable
-    
+
     typealias Stride = Vector
-    
+
     // Subtractable
-    
-    static func −=(lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
+
+    static func −= (lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
         lhs.value −= rhs.value
     }
-    
+
     // WholeArithmetic
-    
-    static func ×=(lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
+
+    static func ×= (lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
         lhs.value ×= rhs.value
     }
-    
+
     mutating func divideAccordingToEuclid(by divisor: RationalNumberTypeExample) {
         value.divideAccordingToEuclid(by: divisor.value)
     }
-    
+
     init(randomInRange range: ClosedRange<RationalNumberTypeExample>, fromRandomizer randomizer: Randomizer) {
         value = Double(randomInRange: range.lowerBound.value ... range.upperBound.value, fromRandomizer: randomizer)
     }

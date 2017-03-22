@@ -2,7 +2,7 @@
  Randomizer.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -27,13 +27,13 @@
 /// Conformance Requirements:
 ///
 /// - `func randomNumber() -> UInt64`
-public protocol Randomizer: class {
-    
+public protocol Randomizer : class {
+
     /// Returns a random value.
     ///
     /// - SeeAlso: `randomNumber(inRange:)`
     func randomNumber() -> UInt64
-    
+
     /// Returns a random value within the specified range.
     ///
     /// The following information applies to the default implementation:
@@ -51,7 +51,7 @@ public protocol Randomizer: class {
 }
 
 extension Randomizer {
-    
+
     /// Returns a random value within the specified range.
     ///
     /// This is the default implementation for `Randomizer`.
@@ -66,33 +66,33 @@ extension Randomizer {
     /// - Parameters:
     ///     - range: The range of acceptable values for the random number.
     public func randomNumber(inRange range: ClosedRange<UInt64>) -> UInt64 {
-        
+
         var unboundedRandom = randomNumber()
-        
+
         if range.contains(unboundedRandom) {
             // Valid, return as‐is.
             return unboundedRandom
-            
+
         } else {
             // Remove valid range.
-            
+
             let rangeSize = UInt64(range.count)
-            
+
             let unboundedMaximum: UInt64 = UInt64.max − rangeSize
             if unboundedRandom > range.upperBound {
                 unboundedRandom −= rangeSize
             }
-            
+
             // Catch modulo bias.
-            
+
             let firstBiasedValue = unboundedMaximum.rounded(.down, toMultipleOf: rangeSize)
             if unboundedRandom ≥ firstBiasedValue {
                 // Try again.
                 return randomNumber(inRange: range)
             } else {
-                
+
                 // Return remainder.
-                
+
                 let remainder = unboundedRandom.mod(rangeSize)
                 return range.lowerBound + remainder
             }

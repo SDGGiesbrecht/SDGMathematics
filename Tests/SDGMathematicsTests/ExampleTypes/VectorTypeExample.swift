@@ -2,7 +2,7 @@
  VectorTypeExample.swift
 
  This source file is part of the SDGMathematics open source project.
- https://github.com/SDGGiesbrecht/SDGMathematics
+ https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
  Copyright ©2016–2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -14,47 +14,47 @@
 
 @testable import SDGMathematics
 
-struct VectorTypeExample: VectorType {
-    
+struct VectorTypeExample : VectorType {
+
     var value: Double
-    
+
     init(_ value: Double) {
         self.value = value
     }
-    
+
     // Addable
-    
-    static func +=(lhs: inout VectorTypeExample, rhs: VectorTypeExample) {
+
+    static func += (lhs: inout VectorTypeExample, rhs: VectorTypeExample) {
         lhs.value += rhs.value
     }
-    
+
     // Equatable
-    
-    static func ==(lhs: VectorTypeExample, rhs: VectorTypeExample) -> Bool {
+
+    static func == (lhs: VectorTypeExample, rhs: VectorTypeExample) -> Bool {
         return lhs.value == rhs.value
     }
-    
+
     // AdditiveArithmetic
-    
+
     static var additiveIdentity: VectorTypeExample {
         return VectorTypeExample(0)
     }
-    
+
     // VectorType
-    
+
     typealias Scalar = Double
-    
-    static func ×=(lhs: inout VectorTypeExample, rhs: Scalar) {
+
+    static func ×= (lhs: inout VectorTypeExample, rhs: Scalar) {
         lhs.value ×= rhs
     }
-    
-    static func ÷=(lhs: inout VectorTypeExample, rhs: Scalar) {
+
+    static func ÷= (lhs: inout VectorTypeExample, rhs: Scalar) {
         lhs.value ÷= rhs
     }
-    
+
     // Subtractable
-    
-    static func −=(lhs: inout VectorTypeExample, rhs: VectorTypeExample) {
+
+    static func −= (lhs: inout VectorTypeExample, rhs: VectorTypeExample) {
         lhs.value −= rhs.value
     }
 }

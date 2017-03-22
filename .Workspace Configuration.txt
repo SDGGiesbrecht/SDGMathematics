@@ -2,7 +2,7 @@
     .Workspace Configuration.txt
 
     This source file is part of the SDGMathematics open source project.
-    https://github.com/SDGGiesbrecht/SDGMathematics
+    https://sdggiesbrecht.github.io/SDGMathematics/macOS
 
     Copyright ©2017 Jeremy David Giesbrecht and the SDGMathematics project contributors.
 
@@ -14,6 +14,33 @@
 
 [_Import https://github.com/SDGGiesbrecht/SDG_]
 
-Project Website: https://github.com/SDGGiesbrecht/SDGMathematics
+Current Version: 1.0.2
+
+Project Website: https://sdggiesbrecht.github.io/SDGMathematics/macOS
+Documentation URL: https://sdggiesbrecht.github.io/SDGMathematics/macOS
+Repository URL: https://github.com/SDGGiesbrecht/SDGMathematics
+
+Short Project Description: SDGMathematics extends support for mathematics.
+
+[_Begin Quotation_]
+מֹאזְנֵי מִרְמָה תּוֹעֲבַת יהוה וְאֶבֶן שְׁלֵמָה רְצוֹנוֹ׃
+Deceptive scales are an abomination to the Lord; an accurate weight is his expectation.
+[_End_]
+Quotation Chapter: Proverbs 11
+Quotation Testament: Old
+Citation: King שלמה/Shlomo
+
+[_Begin Feature List_]
+
+- A hierarchical protocol model for number types: `WholeArithmetic`, `IntegralArithmetic`, `RationalArithmetic`, `RealArithmetic`, etc.
+- Mathematical operations such as exponents, roots, logarithms, and trigonometry.
+- Customizable randomization of numbers and boolean values.
+- A `Measurement` protocol to simplify working with differing units.
+- Automated reversal of complex functions via `findLocalMinimum(near:within:inFunction)`, etc.
+- Operators: `−`, `×`, `÷`, etc.
+[_End_]
 
 Skip Simulator: True
+
+([_Workaround: Some code seems inexplicably unreachable._])
+Enforce Code Coverage: False
