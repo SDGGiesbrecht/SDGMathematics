@@ -86,11 +86,11 @@ func tryTrigonometry() {
 }
 
 func playWithDice() {
-  
+
     func rollDie() -> Int {
         return Int(randomInRange: 1 ... 6)
     }
-  
+
     if rollDie() == 1 ∧ rollDie() == 1 {
         print("Snake eyes!")
     } else {
