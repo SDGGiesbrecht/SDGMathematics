@@ -30,7 +30,9 @@
 
 SDGLogic extends support for Boolean logic.
 
-### [SDGMathematics](https://github.com/SDGGiesbrecht/SDGMathematics)
+### [SDGMathematics](https://sdggiesbrecht.github.io/SDGMathematics/macOS)
+
+SDGMathematics extends support for mathematics.
 
 ## <a name="Language‐Level‐Libraries">Language Level Libraries</a>
 
