@@ -12,7 +12,7 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-// [_Define Example: Read‐Me_]
+// [_Define Example: Read‐Me: en-CA_]
 import SDGLogic
 import SDGMathematics
 
@@ -44,7 +44,7 @@ func playWithDice() {
     }
 }
 
-func analyseParabola() {
+func analyzeParabola() {
     let parabola: (Int) -> Int = {
         (x: Int) -> Int in
         return 2 × x↑2   +   4 × x   −   1
