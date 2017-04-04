@@ -45,7 +45,7 @@ public final class PseudorandomNumberGenerator : Randomizer {
 
             let storagePointer: UnsafeMutablePointer<Int8> = UnsafeMutablePointer(mutating: __linuxStateStorage)
 
-            let _ = initstate_r(instant, storagePointer, __linuxStateStorage.count, &_linuxState)
+            _ = initstate_r(instant, storagePointer, __linuxStateStorage.count, &_linuxState)
 
             return true
         }()
@@ -68,7 +68,7 @@ public final class PseudorandomNumberGenerator : Randomizer {
             #if os(Linux)
 
                 var result: Int32 = 0
-                let _ = random_r(&linuxState, &result) /* 0 ≤ x < 2 ↑ 31 */
+                _ = random_r(&linuxState, &result) /* 0 ≤ x < 2 ↑ 31 */
                 return UInt32(bitPattern: result)
 
             #else
@@ -95,7 +95,7 @@ public final class PseudorandomNumberGenerator : Randomizer {
     ///     - seed: The seed.
     public init(seed: Seed) {
         self.state = seed
-        let _ = randomNumber() // Step away from seed itself.
+        _ = randomNumber() // Step away from seed itself.
     }
 
     /// Returns a random value.

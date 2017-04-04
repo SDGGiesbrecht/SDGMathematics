@@ -346,7 +346,7 @@ class SDGMathematicsTests : XCTestCase {
 
         // Previous Bugs
 
-        let _ = Double(1) ÷ Double(1)
+        _ = Double(1) ÷ Double(1)
     }
 
     func testRealArithmetic() {
@@ -409,6 +409,9 @@ class SDGMathematicsTests : XCTestCase {
         // Previous Bugs
 
         // “ambiguous use of operator”
+
+        // [_Workaround: Disable false positives in SwiftLint. (swiftlint version 0.17.0)_]
+        // swiftlint:disable redundant_discardable_let
         let _: UInt = 3 − 2
         let _: UInt64 = 3 − 2
         let _: UInt32 = 3 − 2
@@ -426,7 +429,7 @@ class SDGMathematicsTests : XCTestCase {
         let _: Float = 3 − 2
         let _: RationalNumberTypeExample = RationalNumberTypeExample(3) − RationalNumberTypeExample(2)
         let _: RealArithmeticExample = RealArithmeticExample(3) − RealArithmeticExample(2)
-
+        // swiftlint:enable redundant_discardable_let
     }
 
     func testTuple() {
