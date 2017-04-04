@@ -21,7 +21,7 @@ import SDGLogic
 private func findLocalExtreme<I : OneDimensionalPoint, O>(near location: I, within bounds: CountableClosedRange<I>?, inFunction function: (I) -> O, isCloser: (O, O) -> Bool) -> I where I.Vector : IntegerType {
     var location = location
 
-    assert(bounds == nil ∨ bounds!.contains(location), "Location (\(location)) out of bounds (\(bounds)).")
+    assert(bounds == nil ∨ bounds!.contains(location), "Location (\(location)) out of bounds (\(String(describing: bounds))).")
 
     while location ≠ bounds?.upperBound ∧ isCloser(function(location.successor()), function(location)) {
         location = location.successor()
