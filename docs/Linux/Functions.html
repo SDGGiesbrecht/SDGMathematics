@@ -133,6 +133,12 @@
                 <a href="Functions.html#/s:F14SDGMathematics3tanuRxS_14RealArithmeticrFGVS_5Anglex_x">tan(_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="Functions.html#/s:F14SDGMathematicsoP1ouRxS_25NumericAdditiveArithmeticrFxGVS_21_PartialAbsoluteValuex_">|(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F14SDGMathematicsop1ouRxS_25NumericAdditiveArithmeticrFGVS_21_PartialAbsoluteValuex_x">|(_:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Functions.html#/s:F14SDGMathematicsXoP3nbauRxS_14RealArithmeticrFxGVS_5Anglex_">°(_:)</a>
               </li>
               <li class="nav-group-task">
@@ -1537,6 +1543,74 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
               </ul>
             </div>
             <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:F14SDGMathematicsop1ouRxS_25NumericAdditiveArithmeticrFGVS_21_PartialAbsoluteValuex_x"></a>
+                    <a name="//apple_ref/swift/Function/|(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:F14SDGMathematicsop1ouRxS_25NumericAdditiveArithmeticrFGVS_21_PartialAbsoluteValuex_x">|(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the absolute value (in conjuction with postfix <code>|(_:)</code>).</p>
+
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="o">−</span><span class="mi">1</span>
+<span class="k">let</span> <span class="nv">y</span> <span class="o">=</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+<span class="c1">// y == 1</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">prefix</span> <span class="kd">func</span> <span class="o">|</span> <span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">operand</span><span class="p">:</span> <span class="n">_PartialAbsoluteValue</span><span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Value</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:F14SDGMathematicsoP1ouRxS_25NumericAdditiveArithmeticrFxGVS_21_PartialAbsoluteValuex_"></a>
+                    <a name="//apple_ref/swift/Function/|(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:F14SDGMathematicsoP1ouRxS_25NumericAdditiveArithmeticrFxGVS_21_PartialAbsoluteValuex_">|(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the absolute value (in conjuction with prefix <code><a href="Functions.html#/s:F14SDGMathematicsop1ouRxS_25NumericAdditiveArithmeticrFGVS_21_PartialAbsoluteValuex_x">|(_:)</a></code>).</p>
+
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="o">−</span><span class="mi">1</span>
+<span class="k">let</span> <span class="nv">y</span> <span class="o">=</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+<span class="c1">// y == 1</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">postfix</span> <span class="kd">func</span> <span class="o">|</span> <span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">operand</span><span class="p">:</span> <span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_PartialAbsoluteValue</span><span class="o">&lt;</span><span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
               <div class="task-name-container">
                 <a name="/Real%20Arithmetic"></a>
                 <a name="//apple_ref/swift/Section/Real Arithmetic" class="dashAnchor"></a>
@@ -2306,7 +2380,7 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
 
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
-    <p>−1 ≤ <code>sine</code> ≤ 1</p>
+    <p>−1 ≥ <code>cosecant</code> ∨ <code>cosecant</code> ≤ 1</p>
 
 </div>
 
@@ -2361,7 +2435,7 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
 
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
-    <p>−1 ≤ <code>sine</code> ≤ 1</p>
+    <p>−1≥ <code>secant</code> ∨ <code>secant</code> ≤ 1</p>
 
 </div>
 
@@ -2410,9 +2484,9 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the arccotangent of a value.</p>
+                        <p>Returns the arctangent of a value.</p>
 
-<p>The returned angle will be between 0° and 180°.</p>
+<p>The returned angle will be between −90° and 90°.</p>
 
                       </div>
                       <div class="declaration">
@@ -2430,12 +2504,12 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                             <tr>
                               <td>
                                 <code>
-                                <em>cotangent</em>
+                                <em>tangent</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The cotangent.</p>
+                                  <p>The tangent.</p>
 
                                 </div>
                               </td>
