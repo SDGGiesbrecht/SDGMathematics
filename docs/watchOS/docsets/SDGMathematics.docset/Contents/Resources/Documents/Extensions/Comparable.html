@@ -321,6 +321,10 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -387,6 +391,10 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -409,15 +417,15 @@
 <p>For example:</p>
 
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">numberOfRolls</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="k">var</span> <span class="nv">lowestRoll</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="k">for</span> <span class="n">roll</span> <span class="k">in</span> <span class="mi">1</span> <span class="o">...</span> <span class="n">numberOfRolls</span> <span class="p">{</span>
-    <span class="n">lowestRoll</span> <span class="o">≤</span><span class="o">=</span> <span class="nf">rollDie</span><span class="p">()</span>
+<span class="k">var</span> <span class="nv">highestRoll</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">1</span> <span class="o">...</span> <span class="n">numberOfRolls</span> <span class="p">{</span>
+    <span class="n">highestRoll</span> <span class="o">≥</span><span class="o">=</span> <span class="nf">rollDie</span><span class="p">()</span>
 <span class="p">}</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">"After rolling the die </span><span class="se">\(</span><span class="n">numberOfRolls</span><span class="se">)</span><span class="s"> time(s), the lowest roll was </span><span class="se">\(</span><span class="n">lowestRoll</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
-<span class="c1">// Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”</span>
-</code></pre>
+<span class="nf">print</span><span class="p">(</span><span class="s">"After rolling the die </span><span class="se">\(</span><span class="n">numberOfRolls</span><span class="se">)</span><span class="s"> time(s), the highest roll was </span><span class="se">\(</span><span class="n">highestRoll</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
+<span class="c1">// Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”</span>
 
-<p>In this example, <code>rollDie()</code> represents a function that randomly returns an <code>Int</code> between <code>1</code> and <code>6</code> inclusive. In each iteration of the <code>for</code> loop, a new random number is generated, and if it is less than <code>lowestRoll</code>’s existing value, <code>≤=</code> changes <code>lowestRoll</code> to reflect the new low.</p>
+<span class="c1">// In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.</span>
+</code></pre>
 
 <div class="aside aside-nonmutating-variant">
     <p class="aside-title">Nonmutating variant</p>
@@ -470,6 +478,10 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -493,14 +505,14 @@
 
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">numberOfRolls</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="k">var</span> <span class="nv">highestRoll</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="k">for</span> <span class="n">roll</span> <span class="k">in</span> <span class="mi">1</span> <span class="o">...</span> <span class="n">numberOfRolls</span> <span class="p">{</span>
+<span class="k">for</span> <span class="n">_</span> <span class="k">in</span> <span class="mi">1</span> <span class="o">...</span> <span class="n">numberOfRolls</span> <span class="p">{</span>
     <span class="n">highestRoll</span> <span class="o">≥</span><span class="o">=</span> <span class="nf">rollDie</span><span class="p">()</span>
 <span class="p">}</span>
 <span class="nf">print</span><span class="p">(</span><span class="s">"After rolling the die </span><span class="se">\(</span><span class="n">numberOfRolls</span><span class="se">)</span><span class="s"> time(s), the highest roll was </span><span class="se">\(</span><span class="n">highestRoll</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
 <span class="c1">// Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”</span>
-</code></pre>
 
-<p>In this example, <code>rollDie()</code> represents a function that randomly returns an <code>Int</code> between <code>1</code> and <code>6</code> inclusive. In each iteration of the <code>for</code> loop, a new random number is generated, and if it is greater than <code>highestRoll</code>’s existing value, <code>≤=</code> changes <code>highestRoll</code> to reflect the new high.</p>
+<span class="c1">// In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.</span>
+</code></pre>
 
 <div class="aside aside-nonmutating-variant">
     <p class="aside-title">Nonmutating variant</p>
