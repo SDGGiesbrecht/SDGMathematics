@@ -12,14 +12,24 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-/// Subtracts the right from the left.
+// [_Inherit Documentation: SDGMathematics.Subtractable.−_]
+/// Returns the difference of the left minus the right.
+///
+/// - Parameters:
+///     - lhs: The starting value.
+///     - rhs: The value to subtract.
 ///
 /// - MutatingVariant: −=
 ///
 /// - RecommendedOver: -
 infix operator −: AdditionPrecedence
 
-/// Modifies the left by subtracting the right.
+// [_Inherit Documentation: SDGMathematics.Subtractable.−=_]
+/// Subtracts the right from the left.
+///
+/// - Parameters:
+///     - lhs: The value to modify.
+///     - rhs: The value to subtract.
 ///
 /// - NonmutatingVariant: −
 ///
@@ -38,6 +48,7 @@ infix operator −=: AssignmentPrecedence
 /// - `static func −= (lhs: inout Self, rhs: Self)`
 public protocol Subtractable : Addable {
 
+    // [_Define Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -49,6 +60,7 @@ public protocol Subtractable : Addable {
     /// - RecommendedOver: -
     static func − (lhs: Self, rhs: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.Subtractable.−=_]
     /// Subtracts the right from the left.
     ///
     /// - Parameters:
@@ -68,6 +80,7 @@ extension Subtractable {
         result −= rhs
         return result
     }
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -91,6 +104,7 @@ extension FloatType {
 extension Subtractable where Self : FloatType, Self.Vector == Self, Self.Stride == Self {
     // MARK: - where Self : FloatType, Vector == Self, Stride == Self
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -104,6 +118,7 @@ extension Subtractable where Self : FloatType, Self.Vector == Self, Self.Stride 
         return lhs - rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−=_]
     /// Subtracts the right from the left.
     ///
     /// - Parameters:
@@ -121,6 +136,7 @@ extension Subtractable where Self : FloatType, Self.Vector == Self, Self.Stride 
 extension Subtractable where Self : IntType /* Self.Stride ≠ Self */ {
     // MARK: - where Self : IntType
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -134,6 +150,7 @@ extension Subtractable where Self : IntType /* Self.Stride ≠ Self */ {
         return lhs - rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−=_]
     /// Subtracts the right from the left.
     ///
     /// - Parameters:
@@ -151,6 +168,7 @@ extension Subtractable where Self : IntType /* Self.Stride ≠ Self */ {
 extension Subtractable where Self : IntType, Self.Vector == Self, Self.Stride == Self {
     // MARK: - where Self : IntType, Vector == Self, Stride == Self
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -169,6 +187,7 @@ extension Subtractable where Self : IntType, Self.Vector == Self, Self.Stride ==
 extension Subtractable where Self : Measurement {
     // MARK: - where Self : Measurement
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -182,6 +201,7 @@ extension Subtractable where Self : Measurement {
         return Self(rawValue: lhs.rawValue − rhs.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−=_]
     /// Subtracts the right from the left.
     ///
     /// - Parameters:
@@ -199,6 +219,7 @@ extension Subtractable where Self : Measurement {
 extension Subtractable where Self : PointType, Self.Vector == Self {
     // MARK: - where Self : PointType, Vector == Self
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -217,6 +238,7 @@ extension Subtractable where Self : PointType, Self.Vector == Self {
 extension Subtractable where Self : PointType, Self : Strideable, Self.Vector == Self, Self.Stride == Self {
     // MARK: - where Self : PointType, Self : Strideable, Vector == Self, Stride == Self
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -235,6 +257,7 @@ extension Subtractable where Self : PointType, Self : Strideable, Self.Vector ==
 extension Subtractable where Self : UIntType {
     // MARK: - where Self : UIntType
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−_]
     /// Returns the difference of the left minus the right.
     ///
     /// - Parameters:
@@ -248,6 +271,7 @@ extension Subtractable where Self : UIntType {
         return lhs - rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−=_]
     /// Subtracts the right from the left.
     ///
     /// - Parameters:
