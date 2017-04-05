@@ -15,6 +15,8 @@
 extension Equatable where Self : Measurement {
     // MARK: - where Self : Measurement
 
+    // [_Workaround: Waiting for inheritability. (SDGLogic 1.2.0)_]
+    // Inherit Documentation: SDGLogic.Equatable.==_]
     /// Returns `true` if the two values are equal.
     ///
     /// - Parameters:
