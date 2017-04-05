@@ -23,9 +23,11 @@
 /// - `static func − (lhs: Self, rhs: Self) -> Vector`
 public protocol PointType : Equatable {
 
+    // [_Define Documentation: SDGMathematics.PointType.Vector_]
     /// The type to be used as a vector.
     associatedtype Vector : Negatable
 
+    // [_Define Documentation: SDGMathematics.PointType.+_]
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
@@ -35,6 +37,7 @@ public protocol PointType : Equatable {
     /// - MutatingVariant: +=
     static func + (lhs: Self, rhs: Vector) -> Self
 
+    // [_Define Documentation: SDGMathematics.PointType.+=_]
     /// Moves the point on the left by the vector on the right.
     ///
     /// - Parameters:
@@ -44,6 +47,7 @@ public protocol PointType : Equatable {
     /// - NonmutatingVariant: +
     static func += (lhs: inout Self, rhs: Vector)
 
+    // [_Define Documentation: SDGMathematics.PointType.−(_:vector:)_]
     /// Returns the point arrived at by starting at the point on the left and moving according to the inverse of the vector on the right.
     ///
     /// - Parameters:
@@ -54,6 +58,7 @@ public protocol PointType : Equatable {
     //static func − (lhs: Self, rhs: Vector) -> Self
     // [_Workaround: The above line is temporarily commented because it falsely triggers “ambiguous use of operator” errors. See testSubtractable. (Swift 3.0.2)_]
 
+    // [_Define Documentation: SDGMathematics.PointType.−_]
     /// Returns the vector that leads from the point on the left to the point on the right.
     ///
     /// - Parameters:
@@ -61,6 +66,7 @@ public protocol PointType : Equatable {
     ///     - rhs: The startpoint.
     static func − (lhs: Self, rhs: Self) -> Vector
 
+    // [_Define Documentation: SDGMathematics.PointType.−=_]
     /// Moves the point on the left by the inverse of the vector on the right.
     ///
     /// - Parameters:
@@ -78,6 +84,7 @@ extension PointType {
         result += rhs
         return result
     }
+    // [_Inherit Documentation: SDGMathematics.PointType.+_]
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
@@ -94,6 +101,7 @@ extension PointType {
         result −= rhs
         return result
     }
+    // [_Inherit Documentation: SDGMathematics.PointType.−(_:vector:)_]
     /// Returns the point arrived at by starting at the point on the left and moving according to the inverse of the vector on the right.
     ///
     /// - Parameters:
@@ -105,6 +113,7 @@ extension PointType {
         return subtractAsPointType(lhs, rhs)
     }
 
+    // [_Inherit Documentation: SDGMathematics.PointType.−=_]
     /// Moves the point on the left by the inverse of the vector on the right.
     ///
     /// - Parameters:
@@ -120,6 +129,7 @@ extension PointType {
 extension PointType where Self.Vector == Self {
     // MARK: - Self.Vector == Self
 
+    // [_Inherit Documentation: SDGMathematics.PointType.−(_:vector:)_]
     /// Returns the point arrived at by starting at the point on the left and moving according to the inverse of the vector on the right.
     ///
     /// - Parameters:
@@ -136,6 +146,7 @@ extension PointType where Self.Vector == Self {
 extension PointType where Self : IntXType, Self.Vector == Self.Stride {
     // MARK: - where Self : IntXType, Vector == Stride
 
+    // [_Inherit Documentation: SDGMathematics.PointType.+_]
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
@@ -147,6 +158,7 @@ extension PointType where Self : IntXType, Self.Vector == Self.Stride {
         return lhs.advanced(by: rhs)
     }
 
+    // [_Inherit Documentation: SDGMathematics.PointType.+=_]
     /// Moves the point on the left by the vector on the right.
     ///
     /// - Parameters:
@@ -158,6 +170,7 @@ extension PointType where Self : IntXType, Self.Vector == Self.Stride {
         lhs = lhs.advanced(by: rhs)
     }
 
+    // [_Inherit Documentation: SDGMathematics.PointType.−_]
     /// Returns the vector that leads from the point on the left to the point on the right.
     ///
     /// - Parameters:
@@ -171,6 +184,7 @@ extension PointType where Self : IntXType, Self.Vector == Self.Stride {
 extension PointType where Self : Strideable, Self.Vector == Self.Stride {
     // MARK: - where Self : Strideable, Vector == Stride
 
+    // [_Inherit Documentation: SDGMathematics.PointType.+_]
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
@@ -187,6 +201,7 @@ extension PointType where Self : Strideable, Self.Vector == Self.Stride {
 extension PointType where Self : UIntType, Self.Vector == Self.Stride {
     // MARK: - where Self : UIntType, Vector == Stride
 
+    // [_Inherit Documentation: SDGMathematics.PointType.+_]
     /// Returns the point arrived at by starting at the point on the left and moving according to the vector on the right.
     ///
     /// - Parameters:
@@ -198,6 +213,7 @@ extension PointType where Self : UIntType, Self.Vector == Self.Stride {
         return lhs.advanced(by: rhs)
     }
 
+    // [_Inherit Documentation: SDGMathematics.PointType.+=_]
     /// Moves the point on the left by the vector on the right.
     ///
     /// - Parameters:
@@ -209,6 +225,7 @@ extension PointType where Self : UIntType, Self.Vector == Self.Stride {
         lhs = lhs.advanced(by: rhs)
     }
 
+    // [_Inherit Documentation: SDGMathematics.PointType.−_]
     /// Returns the vector that leads from the point on the left to the point on the right.
     ///
     /// - Parameters:
