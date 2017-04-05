@@ -14,16 +14,42 @@
 
 import SDGLogic
 
-/// Returns the “left”‐th root of the right.
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:_:)_]
+/// Returns the `lhs`‐th root of `rhs`.
+///
+/// - Parameters:
+///     - lhs: The root.
+///     - rhs: The radicand.
+///
+/// - MutatingVariant: √=
 infix operator √: ExponentPrecedence
 
-/// Sets the “left” to its “right”‐th root.
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:_:)_]
+/// Sets `lhs` to its `rhs`‐th root.
+///
+/// - Parameters:
+///     - lhs: The value to modify.
+///     - rhs: The root.
+///
+/// - NonmutatingVariant: √
 infix operator √=: AssignmentPrecedence
 
-/// Performs a square root operation.
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:)_]
+/// Returns the sequare root of `operand`.
+///
+/// - Parameters:
+///     - operand: The radicand.
+///
+/// - MutatingVariant: √=
 prefix operator √
 
-/// Sets the operand to its square root.
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:)_]
+/// Sets `operand` to its square root.
+///
+/// - Parameters:
+///     - operand: The value to modify.
+///
+/// - NonmutatingVariant: √
 postfix operator √=
 
 /// A type that can be used for real arithmetic.
@@ -40,6 +66,7 @@ public protocol RealArithmetic : RationalArithmetic {
 
     // MARK: - Constants
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.π_]
     /// An instance of π.
     static var π: Self { get }
 
@@ -47,15 +74,18 @@ public protocol RealArithmetic : RationalArithmetic {
     #else
     // [_Workaround: Default implementations for variables cause segmentation faults on Linux. (Swift 3.0)._]
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.τ_]
     /// An instance of τ.
     static var τ: Self { get }
     #endif
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.e_]
     /// An instance of *e*.
     static var e: Self { get }
 
     // MARK: - Operations
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.√(_:_:)_]
     /// Returns the `lhs`‐th root of `rhs`.
     ///
     /// - Parameters:
@@ -65,6 +95,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - MutatingVariant: √=
     static func √ (lhs: Self, rhs: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.√=(_:_:)_]
     /// Sets `lhs` to its `rhs`‐th root.
     ///
     /// - Parameters:
@@ -74,6 +105,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - NonmutatingVariant: √
     static func √= (lhs: inout Self, rhs: Self)
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.√(_:)_]
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
@@ -82,6 +114,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - MutatingVariant: √=
     static prefix func √ (operand: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.√=(_:)_]
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
@@ -90,6 +123,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - NonmutatingVariant: √
     static postfix func √= (operand: inout Self)
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.log(toBase:of:)_]
     /// Returns the base `base` logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -105,6 +139,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - MutatingVariant: formLogarithm
     static func log(toBase base: Self, of antilogarithm: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.formLogarithm(toBase:)_]
     /// Sets `self` to its base `base` logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -119,6 +154,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - NonmutatingVariant: log
     mutating func formLogarithm(toBase base: Self)
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.log(_:)_]
     /// Returns the common logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -129,6 +165,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - MutatingVariant: formCommonLogarithm
     static func log(_ antilogarithm: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.formCommonLogarithm()_]
     /// Sets `self` to its common logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -136,6 +173,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - NonmutatingVariant: log
     mutating func formCommonLogarithm()
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.ln(_:)_]
     /// Returns the natural logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -146,6 +184,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - MutatingVariant: formNaturalLogarithm
     static func ln(_ antilogarithm: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.formNaturalLogarithm()_]
     /// Sets `self` to its natural logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -153,42 +192,49 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - NonmutatingVariant: ln
     mutating func formNaturalLogarithm()
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.sin(_:)_]
     /// Returns the sine of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func sin(_ angle: Angle<Self>) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.cos(_:)_]
     /// Returns the cosine of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func cos(_ angle: Angle<Self>) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.tan(_:)_]
     /// Returns the tangent of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func tan(_ angle: Angle<Self>) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.csc(_:)_]
     /// Returns the cosecant of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func csc(_ angle: Angle<Self>) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.sec(_:)_]
     /// Returns the secant of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func sec(_ angle: Angle<Self>) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.cot(_:)_]
     /// Returns the cotangent of an angle.
     ///
     /// - Parameters:
     ///     - angle: The angle.
     static func cot(_ angle: Angle<Self>) -> Self
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.arcsin(_:)_]
     /// Returns the arcsine of a value.
     ///
     /// The returned angle will be between −90° and 90° inclusive.
@@ -199,6 +245,7 @@ public protocol RealArithmetic : RationalArithmetic {
     ///     - sine: The sine.
     static func arcsin(_ sine: Self) -> Angle<Self>
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.arccos(_:)_]
     /// Returns the arccosine of a value.
     ///
     /// The returned angle will be between 0° and 180° inclusive.
@@ -209,6 +256,7 @@ public protocol RealArithmetic : RationalArithmetic {
     ///     - cosine: The cosine.
     static func arccos(_ cosine: Self) -> Angle<Self>
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.arctan(_:)_]
     /// Returns the arctangent of a value.
     ///
     /// The returned angle will be between −90° and 90°.
@@ -217,6 +265,7 @@ public protocol RealArithmetic : RationalArithmetic {
     ///     - tangent: The tangent.
     static func arctan(_ tangent: Self) -> Angle<Self>
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.arccsc(_:)_]
     /// Returns the arccosecant of a value.
     ///
     /// The returned angle will be between −90° and 90° inclusive, but never 0°.
@@ -227,6 +276,7 @@ public protocol RealArithmetic : RationalArithmetic {
     ///     - cosecant: The cosecant.
     static func arccsc(_ cosecant: Self) -> Angle<Self>
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.arcsec(_:)_]
     /// Returns the arcsecant of a value.
     ///
     /// The returned angle will be between 0° and 180° inclusive, but never 90°.
@@ -237,6 +287,7 @@ public protocol RealArithmetic : RationalArithmetic {
     ///     - secant: The secant.
     static func arcsec(_ secant: Self) -> Angle<Self>
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.arccot(_:)_]
     /// Returns the arccotangent of a value.
     ///
     /// The returned angle will be between 0° and 180°.
@@ -269,6 +320,7 @@ public func e<N : RealArithmetic>() -> N {
     return N.e
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.log(toBase:of:)_]
 /// Returns the base `base` logarithm of `antilogarithm`.
 ///
 /// - Precondition: `antilogarithm` > 0
@@ -286,6 +338,7 @@ public func log<N : RealArithmetic>(toBase base: N, of antilogarithm: N) -> N {
     return N.log(toBase: base, of: antilogarithm)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.log(_:)_]
 /// Returns the common logarithm of `antilogarithm`.
 ///
 /// - Precondition: `antilogarithm` > 0
@@ -298,6 +351,7 @@ public func log<N : RealArithmetic>(_ antilogarithm: N) -> N {
     return N.log(antilogarithm)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.ln(_:)_]
 /// Returns the natural logarithm of `antilogarithm`.
 ///
 /// - Precondition: `antilogarithm` > 0
@@ -310,6 +364,7 @@ public func ln<N : RealArithmetic>(_ antilogarithm: N) -> N {
     return N.ln(antilogarithm)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.sin(_:)_]
 /// Returns the sine of an angle.
 ///
 /// - Parameters:
@@ -318,6 +373,7 @@ public func sin<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.sin(angle)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.cos(_:)_]
 /// Returns the cosine of an angle.
 ///
 /// - Parameters:
@@ -326,6 +382,7 @@ public func cos<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.cos(angle)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.tan(_:)_]
 /// Returns the tangent of an angle.
 ///
 /// - Parameters:
@@ -334,6 +391,7 @@ public func tan<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.tan(angle)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.csc(_:)_]
 /// Returns the cosecant of an angle.
 ///
 /// - Parameters:
@@ -342,6 +400,7 @@ public func csc<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.csc(angle)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.sec(_:)_]
 /// Returns the secant of an angle.
 ///
 /// - Parameters:
@@ -350,6 +409,7 @@ public func sec<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.sec(angle)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.cot(_:)_]
 /// Returns the cotangent of an angle.
 ///
 /// - Parameters:
@@ -358,6 +418,7 @@ public func cot<N : RealArithmetic>(_ angle: Angle<N>) -> N {
     return N.cot(angle)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.arcsin(_:)_]
 /// Returns the arcsine of a value.
 ///
 /// The returned angle will be between −90° and 90° inclusive.
@@ -370,6 +431,7 @@ public func arcsin<N : RealArithmetic>(_ sine: N) -> Angle<N> {
     return N.arcsin(sine)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.arccos(_:)_]
 /// Returns the arccosine of a value.
 ///
 /// The returned angle will be between 0° and 180° inclusive.
@@ -382,6 +444,7 @@ public func arccos<N : RealArithmetic>(_ cosine: N) -> Angle<N> {
     return N.arccos(cosine)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.arctan(_:)_]
 /// Returns the arctangent of a value.
 ///
 /// The returned angle will be between −90° and 90°.
@@ -392,11 +455,12 @@ public func arctan<N : RealArithmetic>(_ tangent: N) -> Angle<N> {
     return N.arctan(tangent)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.arccsc(_:)_]
 /// Returns the arccosecant of a value.
 ///
 /// The returned angle will be between −90° and 90° inclusive, but never 0°.
 ///
-/// - Precondition: −1 ≤ `sine` ≤ 1
+/// - Precondition: −1 ≥ `cosecant` ∨ `cosecant` ≤ 1
 ///
 /// - Parameters:
 ///     - cosecant: The cosecant.
@@ -404,11 +468,12 @@ public func arccsc<N : RealArithmetic>(_ cosecant: N) -> Angle<N> {
     return N.arccsc(cosecant)
 }
 
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.arcsec(_:)_]
 /// Returns the arcsecant of a value.
 ///
 /// The returned angle will be between 0° and 180° inclusive, but never 90°.
 ///
-/// - Precondition: −1 ≤ `sine` ≤ 1
+/// - Precondition: −1≥ `secant` ∨ `secant` ≤ 1
 ///
 /// - Parameters:
 ///     - secant: The secant.
@@ -416,12 +481,13 @@ public func arcsec<N : RealArithmetic>(_ secant: N) -> Angle<N> {
     return N.arcsec(secant)
 }
 
-/// Returns the arccotangent of a value.
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.arctan(_:)_]
+/// Returns the arctangent of a value.
 ///
-/// The returned angle will be between 0° and 180°.
+/// The returned angle will be between −90° and 90°.
 ///
 /// - Parameters:
-///     - cotangent: The cotangent.
+///     - tangent: The tangent.
 public func arccot<N : RealArithmetic>(_ cotangent: N) -> Angle<N> {
     return N.arccot(cotangent)
 }
@@ -435,6 +501,7 @@ extension RealArithmetic {
         return Self.π
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.τ_]
     /// An instance of τ.
     public static var τ: Self {
         return 2 × π
@@ -454,6 +521,7 @@ extension RealArithmetic {
         return Self.e
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:_:)_]
     /// Returns the `lhs`‐th root of `rhs`.
     ///
     /// - Parameters:
@@ -467,6 +535,7 @@ extension RealArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:_:)_]
     /// Sets `lhs` to its `rhs`‐th root.
     ///
     /// - Parameters:
@@ -478,6 +547,7 @@ extension RealArithmetic {
         lhs ↑= (1 ÷ rhs)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:)_]
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
@@ -490,6 +560,7 @@ extension RealArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:)_]
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
@@ -500,6 +571,7 @@ extension RealArithmetic {
         operand √= 2
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.log(toBase:of:)_]
     /// Returns the base `base` logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -519,6 +591,7 @@ extension RealArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.log(_:)_]
     /// Returns the common logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -533,6 +606,7 @@ extension RealArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.formCommonLogarithm()_]
     /// Sets `self` to its common logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -542,6 +616,7 @@ extension RealArithmetic {
         formLogarithm(toBase: 10)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.ln(_:)_]
     /// Returns the natural logarithm of `antilogarithm`.
     ///
     /// - Precondition: `antilogarithm` > 0
@@ -556,6 +631,7 @@ extension RealArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.formNaturalLogarithm()_]
     /// Sets `self` to its natural logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -565,6 +641,7 @@ extension RealArithmetic {
         formLogarithm(toBase: e)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.cos(_:)_]
     /// Returns the cosine of an angle.
     ///
     /// - Parameters:
@@ -573,6 +650,7 @@ extension RealArithmetic {
         return sin(angle + (π ÷ 2).rad)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.tan(_:)_]
     /// Returns the tangent of an angle.
     ///
     /// - Parameters:
@@ -581,6 +659,7 @@ extension RealArithmetic {
         return sin(angle) ÷ cos(angle)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.csc(_:)_]
     /// Returns the cosecant of an angle.
     ///
     /// - Parameters:
@@ -589,6 +668,7 @@ extension RealArithmetic {
         return 1 ÷ sin(angle)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.sec(_:)_]
     /// Returns the secant of an angle.
     ///
     /// - Parameters:
@@ -597,6 +677,7 @@ extension RealArithmetic {
         return 1 ÷ cos(angle)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.cot(_:)_]
     /// Returns the cotangent of an angle.
     ///
     /// - Parameters:
@@ -605,6 +686,7 @@ extension RealArithmetic {
         return 1 ÷ tan(angle)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.arcsin(_:)_]
     /// Returns the arcsine of a value.
     ///
     /// The returned angle will be between −90° and 90° inclusive.
@@ -618,6 +700,7 @@ extension RealArithmetic {
         return arctan(sine ÷ √(1 − sine ↑ 2))
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.arccos(_:)_]
     /// Returns the arccosine of a value.
     ///
     /// The returned angle will be between 0° and 180° inclusive.
@@ -631,11 +714,12 @@ extension RealArithmetic {
         return (π ÷ 2).rad − arcsin(cosine)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.arccsc(_:)_]
     /// Returns the arccosecant of a value.
     ///
     /// The returned angle will be between −90° and 90° inclusive, but never 0°.
     ///
-    /// - Precondition: −1 ≤ `sine` ≤ 1
+    /// - Precondition: −1 ≥ `cosecant` ∨ `cosecant` ≤ 1
     ///
     /// - Parameters:
     ///     - cosecant: The cosecant.
@@ -644,11 +728,12 @@ extension RealArithmetic {
         return arcsin(1 ÷ cosecant)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.arcsec(_:)_]
     /// Returns the arcsecant of a value.
     ///
     /// The returned angle will be between 0° and 180° inclusive, but never 90°.
     ///
-    /// - Precondition: −1 ≤ `sine` ≤ 1
+    /// - Precondition: −1≥ `secant` ∨ `secant` ≤ 1
     ///
     /// - Parameters:
     ///     - secant: The secant.
@@ -657,6 +742,7 @@ extension RealArithmetic {
         return arccos(1 ÷ secant)
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.arccot(_:)_]
     /// Returns the arccotangent of a value.
     ///
     /// The returned angle will be between 0° and 180°.
@@ -674,35 +760,42 @@ extension RealArithmetic {
 
     // MARK: - Angles
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.radians_]
     /// Returns an angle in radians.
     public var radians: Angle<Self> {
         return Angle(radians: self)
     }
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.radians_]
     /// Returns an angle in radians.
     public var rad: Angle<Self> {
         return radians
     }
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.rotations_]
     /// Returns an angle in rotations.
     public var rotations: Angle<Self> {
         return Angle(rotations: self)
     }
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.degrees_]
     /// Returns an angle in degrees.
     public var degrees: Angle<Self> {
         return Angle(degrees: self)
     }
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.minutes_]
     /// Returns an angle in minutes.
     public var minutes: Angle<Self> {
         return Angle(minutes: self)
     }
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.seconds_]
     /// Returns an angle in seconds.
     public var seconds: Angle<Self> {
         return Angle(seconds: self)
     }
 
+    // [_Define Documentation: SDGMathematics.RealArithmetic.gradians_]
     /// Returns an angle in gradians.
     public var gradians: Angle<Self> {
         return Angle(gradians: self)
@@ -712,11 +805,13 @@ extension RealArithmetic {
 extension RealArithmetic where Self : FloatType {
     // MARK: - where Self : FloatType
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.π_]
     /// An instance of π.
     public static var π: Self {
         return pi
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:)_]
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
@@ -727,6 +822,7 @@ extension RealArithmetic where Self : FloatType {
         return operand.squareRoot()
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:)_]
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
@@ -755,6 +851,7 @@ extension RealArithmetic where Self : FloatType {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.formLogarithm(toBase:)_]
     /// Sets `self` to its base `base` logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -779,6 +876,7 @@ extension RealArithmetic where Self : FloatType {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.formNaturalLogarithm()_]
     /// Sets `self` to its natural logarithm.
     ///
     /// - Precondition: `self` > 0
@@ -829,6 +927,7 @@ extension RealArithmetic where Self : FloatType {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.sin(_:)_]
     /// Returns the sine of an angle.
     ///
     /// - Parameters:
@@ -888,6 +987,7 @@ extension RealArithmetic where Self : FloatType {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.cos(_:)_]
     /// Returns the cosine of an angle.
     ///
     /// - Parameters:
@@ -947,6 +1047,7 @@ extension RealArithmetic where Self : FloatType {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.arctan(_:)_]
     /// Returns the arctangent of a value.
     ///
     /// The returned angle will be between −90° and 90°.
