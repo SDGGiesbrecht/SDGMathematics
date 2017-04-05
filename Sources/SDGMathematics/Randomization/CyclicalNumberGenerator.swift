@@ -33,7 +33,9 @@ public final class CyclicalNumberGenerator : Randomizer {
         self.index = sequence.startIndex
     }
 
-    /// Returns a random value.
+    // MARK: - Randomizer
+
+    /// Returns the next value in the sequence.
     public func randomNumber() -> UInt64 {
 
         let result = sequence[index]

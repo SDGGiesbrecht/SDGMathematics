@@ -29,11 +29,13 @@
 /// - `func randomNumber() -> UInt64`
 public protocol Randomizer : class {
 
+    // [_Define Documentation: SDGMathematics.Randomizer.randomNumber()_]
     /// Returns a random value.
     ///
     /// - SeeAlso: `randomNumber(inRange:)`
     func randomNumber() -> UInt64
 
+    // [_Define Documentation: SDGMathematics.Randomizer.randomNumber(inRange:)_]
     /// Returns a random value within the specified range.
     ///
     /// The following information applies to the default implementation:
@@ -52,9 +54,10 @@ public protocol Randomizer : class {
 
 extension Randomizer {
 
+    // [_Inherit Documentation: SDGMathematics.Randomizer.randomNumber(inRange:)_]
     /// Returns a random value within the specified range.
     ///
-    /// This is the default implementation for `Randomizer`.
+    /// The following information applies to the default implementation:
     ///
     /// - If the value returned by `randomNumber()` is in the allowed range, it will be returned unaltered.
     /// - If the value returned by `randomNumber()` is outside the allowed range, it will be mapped to a value in the allowed range.

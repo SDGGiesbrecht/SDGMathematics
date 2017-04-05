@@ -98,7 +98,12 @@ public final class PseudorandomNumberGenerator : Randomizer {
         _ = randomNumber() // Step away from seed itself.
     }
 
+    // MARK: - Randomizer
+
+    // [_Inherit Documentation: SDGMathematics.Randomizer.randomNumber()_]
     /// Returns a random value.
+    ///
+    /// - SeeAlso: `randomNumber(inRange:)`
     public func randomNumber() -> UInt64 {
 
         // This is derived from the C code of David Blackman and Sebastiano Vigna’s xoroshiro128+ algorithm, which they have dedicated to the public domain. (retrieved on 2016‐12‐08 from http://vigna.di.unimi.it/xorshift/xoroshiro128plus.c)
