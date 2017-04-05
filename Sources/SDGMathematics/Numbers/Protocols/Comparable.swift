@@ -17,21 +17,6 @@
 /// - RecommendedOver: <=
 infix operator ≤: ComparisonPrecedence
 
-/// Checks whether the left is ordered after or the same as the right.
-///
-/// - RecommendedOver: >=
-infix operator ≥: ComparisonPrecedence
-
-/// Reduces the value of the left so that it is less than or equal to the right.
-///
-/// - NonmutatingVariant: min
-infix operator ≤=: AssignmentPrecedence
-
-/// Increases the value of the left so that it is greater than or equal to the right.
-///
-/// - NonmutatingVariant: max
-infix operator ≥=: AssignmentPrecedence
-
 extension Comparable {
 
     /// Returns `true` if the left value is ordered before or the same as the right value.
@@ -44,6 +29,14 @@ extension Comparable {
     public static func ≤ (lhs: Self, rhs: Self) -> Bool {
         return lhs <= rhs
     }
+}
+
+/// Checks whether the left is ordered after or the same as the right.
+///
+/// - RecommendedOver: >=
+infix operator ≥: ComparisonPrecedence
+
+extension Comparable {
 
     /// Returns `true` if the left value is ordered after or the same as the right value.
     ///
@@ -55,6 +48,14 @@ extension Comparable {
     public static func ≥ (lhs: Self, rhs: Self) -> Bool {
         return lhs >= rhs
     }
+}
+
+/// Reduces the value of the left so that it is less than or equal to the right.
+///
+/// - NonmutatingVariant: min
+infix operator ≤=: AssignmentPrecedence
+
+extension Comparable {
 
     /// Reduces the value of `lhs` so that it satisfies `lhs ≤ rhs`.
     ///
@@ -86,6 +87,14 @@ extension Comparable {
             lhs = rhs
         }
     }
+}
+
+/// Increases the value of the left so that it is greater than or equal to the right.
+///
+/// - NonmutatingVariant: max
+infix operator ≥=: AssignmentPrecedence
+
+extension Comparable {
 
     /// Increases the value of `lhs` so that it satisfies `lhs ≥ rhs`.
     ///
