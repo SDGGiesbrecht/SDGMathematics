@@ -21,6 +21,7 @@ extension FloatingPoint {
 extension FloatingPoint where Self : WholeArithmetic {
     // MARK: - where Self : WholeArithmetic
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.rounded(_:)_]
     /// Returns the value rounded to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
