@@ -25,7 +25,8 @@ extension UInt : UIntType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 }
 
@@ -33,11 +34,13 @@ extension UInt64 : UIntType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 
     // MARK: - WholeArithmetic
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
@@ -52,7 +55,8 @@ extension UInt32 : UIntType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 }
 
@@ -60,7 +64,8 @@ extension UInt16 : UIntType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 
 }
@@ -69,7 +74,8 @@ extension UInt8 : UIntType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 
 }

@@ -32,7 +32,8 @@ extension Int : IntType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 }
 
@@ -40,11 +41,13 @@ extension Int64 : IntXType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 
     // MARK: - WholeArithmetic
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
@@ -70,7 +73,8 @@ extension Int32 : IntXType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 
 }
@@ -79,13 +83,16 @@ extension Int16 : IntXType {
 
     // MARK: - PointType
 
-    /// The vector type.
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Stride
 
 }
 
 extension Int8 : IntXType {
 
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     // MARK: - PointType
 
     /// The vector type.
