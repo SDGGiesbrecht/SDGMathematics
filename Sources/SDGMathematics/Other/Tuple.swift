@@ -14,110 +14,120 @@
 
 // MARK: - Tuples
 
-/// Returns `true` if the left tuple is ordered before or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≤_]
+/// Returns `true` if the left value is ordered before or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: <=
 public func ≤ <A : Comparable, B : Comparable>(lhs: (A, B), rhs: (A, B)) -> Bool {
     return lhs <= rhs
 }
 
-/// Returns `true` if the left tuple is ordered before or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≤_]
+/// Returns `true` if the left value is ordered before or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: <=
 public func ≤ <A : Comparable, B : Comparable, C : Comparable>(lhs: (A, B, C), rhs: (A, B, C)) -> Bool {
     return lhs <= rhs
 }
 
-/// Returns `true` if the left tuple is ordered before or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≤_]
+/// Returns `true` if the left value is ordered before or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: <=
 public func ≤ <A : Comparable, B : Comparable, C : Comparable, D : Comparable>(lhs: (A, B, C, D), rhs: (A, B, C, D)) -> Bool {
     return lhs <= rhs
 }
 
-/// Returns `true` if the left tuple is ordered before or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≤_]
+/// Returns `true` if the left value is ordered before or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: <=
 public func ≤ <A : Comparable, B : Comparable, C : Comparable, D : Comparable, E : Comparable>(lhs: (A, B, C, D, E), rhs: (A, B, C, D, E)) -> Bool {
     return lhs <= rhs
 }
 
-/// Returns `true` if the left tuple is ordered before or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≤_]
+/// Returns `true` if the left value is ordered before or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: <=
 public func ≤ <A : Comparable, B : Comparable, C : Comparable, D : Comparable, E : Comparable, F : Comparable>(lhs: (A, B, C, D, E, F), rhs: (A, B, C, D, E, F)) -> Bool {
     return lhs <= rhs
 }
 
-/// Returns `true` if the left tuple is ordered after or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≥_]
+/// Returns `true` if the left value is ordered after or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: >=
 public func ≥ <A : Comparable, B : Comparable>(lhs: (A, B), rhs: (A, B)) -> Bool {
     return lhs >= rhs
 }
 
-/// Returns `true` if the left tuple is ordered after or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≥_]
+/// Returns `true` if the left value is ordered after or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: >=
 public func ≥ <A : Comparable, B : Comparable, C : Comparable>(lhs: (A, B, C), rhs: (A, B, C)) -> Bool {
     return lhs >= rhs
 }
 
-/// Returns `true` if the left tuple is ordered after or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≥_]
+/// Returns `true` if the left value is ordered after or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: >=
 public func ≥ <A : Comparable, B : Comparable, C : Comparable, D : Comparable>(lhs: (A, B, C, D), rhs: (A, B, C, D)) -> Bool {
     return lhs >= rhs
 }
 
-/// Returns `true` if the left tuple is ordered after or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≥_]
+/// Returns `true` if the left value is ordered after or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: >=
 public func ≥ <A : Comparable, B : Comparable, C : Comparable, D : Comparable, E : Comparable>(lhs: (A, B, C, D, E), rhs: (A, B, C, D, E)) -> Bool {
     return lhs >= rhs
 }
 
-/// Returns `true` if the left tuple is ordered after or the same as the right tuple in a lexicographical ordering.
+// [_Inherit Documentation: SDGMathematics.Comparable.≥_]
+/// Returns `true` if the left value is ordered after or the same as the right value.
 ///
 /// - Parameters:
-///     - lhs: A tuple to compare.
-///     - rhs: Another tuple to compare.
+///     - lhs: A value to compare.
+///     - rhs: Another value to compare.
 ///
 /// - RecommendedOver: >=
 public func ≥ <A : Comparable, B : Comparable, C : Comparable, D : Comparable, E : Comparable, F : Comparable>(lhs: (A, B, C, D, E, F), rhs: (A, B, C, D, E, F)) -> Bool {
