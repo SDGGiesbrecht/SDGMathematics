@@ -102,6 +102,9 @@ extension NumericAdditiveArithmetic {
 
 /// :nodoc:
 public struct _PartialAbsoluteValue<Wrapped : NumericAdditiveArithmetic> {
+    fileprivate init(contents: Wrapped) {
+        self.contents = contents
+    }
     fileprivate var contents: Wrapped
 }
 
@@ -115,20 +118,17 @@ public struct _PartialAbsoluteValue<Wrapped : NumericAdditiveArithmetic> {
 /// ```
 prefix operator |
 
-extension NumericAdditiveArithmetic {
-
-    // [_Define Documentation: SDGMathematics.NumericAdditiveArithmetic.|x_]
-    // [_Example 1: Absolute Value_]
-    /// Returns the absolute value (in conjuction with postfix `|(_:)`).
-    ///
-    /// ```swift
-    /// let x = −1
-    /// let y = |x|
-    /// // y == 1
-    /// ```
-    public static prefix func | (operand: Self) -> Self {
-        return operand.absoluteValue
-    }
+// [_Define Documentation: SDGMathematics.NumericAdditiveArithmetic.|x_]
+// [_Example 1: Absolute Value_]
+/// Returns the absolute value (in conjuction with postfix `|(_:)`).
+///
+/// ```swift
+/// let x = −1
+/// let y = |x|
+/// // y == 1
+/// ```
+public prefix func | <Value>(operand: _PartialAbsoluteValue<Value>) -> Value {
+    return operand.contents
 }
 
 // [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.x|_]
@@ -141,20 +141,17 @@ extension NumericAdditiveArithmetic {
 /// ```
 postfix operator |
 
-extension NumericAdditiveArithmetic {
-
-    // [_Define Documentation: SDGMathematics.NumericAdditiveArithmetic.x|_]
-    // [_Example 1: Absolute Value_]
-    /// Returns the absolute value (in conjuction with prefix `|(_:)`).
-    ///
-    /// ```swift
-    /// let x = −1
-    /// let y = |x|
-    /// // y == 1
-    /// ```
-    public static postfix func | (operand: Self) -> Self {
-        return operand
-    }
+// [_Define Documentation: SDGMathematics.NumericAdditiveArithmetic.x|_]
+// [_Example 1: Absolute Value_]
+/// Returns the absolute value (in conjuction with prefix `|(_:)`).
+///
+/// ```swift
+/// let x = −1
+/// let y = |x|
+/// // y == 1
+/// ```
+public postfix func | <Value>(operand: Value) -> _PartialAbsoluteValue<Value> {
+    return _PartialAbsoluteValue(contents: operand.absoluteValue)
 }
 
 extension NumericAdditiveArithmetic where Self : FloatType {
