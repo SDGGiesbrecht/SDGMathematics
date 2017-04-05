@@ -28,6 +28,8 @@ private func demonstrateSetLessThan() {
     }
     print("After rolling the die \(numberOfRolls) time(s), the lowest roll was \(lowestRoll).")
     // Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”
+
+    // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is less than lowestRoll’s existing value, ≤= changes lowestRoll to reflect the new low.
     // [_End_]
 }
 
@@ -45,5 +47,7 @@ private func demonstrateSetGreaterThan() {
     }
     print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
     // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
+
+    // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
     // [_End_]
 }

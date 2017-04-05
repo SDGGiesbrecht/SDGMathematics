@@ -83,15 +83,15 @@ extension Comparable {
 ///
 /// ```swift
 /// let numberOfRolls = 5
-/// var lowestRoll = 6
-/// for roll in 1 ... numberOfRolls {
-///     lowestRoll ≤= rollDie()
+/// var highestRoll = 1
+/// for _ in 1 ... numberOfRolls {
+///     highestRoll ≥= rollDie()
 /// }
-/// print("After rolling the die \(numberOfRolls) time(s), the lowest roll was \(lowestRoll).")
-/// // Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”
-/// ```
+/// print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
+/// // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
 ///
-/// In this example, `rollDie()` represents a function that randomly returns an `Int` between `1` and `6` inclusive. In each iteration of the `for` loop, a new random number is generated, and if it is less than `lowestRoll`’s existing value, `≤=` changes `lowestRoll` to reflect the new low.
+/// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
+/// ```
 ///
 /// - Parameters:
 ///     - lhs: The value to decrease.
@@ -103,6 +103,7 @@ infix operator ≤=: AssignmentPrecedence
 extension Comparable {
 
     // [_Define Documentation: SDGMathematics.Comparable.≤=_]
+    // [_Example 1: ≥=_]
     /// Reduces the value of `lhs` so that it satisfies `lhs ≤ rhs`.
     ///
     /// This is accomplished by changing the value of `lhs` to match the value of `rhs` if and only if `lhs` does not already satisfy `lhs ≤ rhs`.
@@ -113,15 +114,15 @@ extension Comparable {
     ///
     /// ```swift
     /// let numberOfRolls = 5
-    /// var lowestRoll = 6
-    /// for roll in 1 ... numberOfRolls {
-    ///     lowestRoll ≤= rollDie()
+    /// var highestRoll = 1
+    /// for _ in 1 ... numberOfRolls {
+    ///     highestRoll ≥= rollDie()
     /// }
-    /// print("After rolling the die \(numberOfRolls) time(s), the lowest roll was \(lowestRoll).")
-    /// // Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”
-    /// ```
+    /// print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
+    /// // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
     ///
-    /// In this example, `rollDie()` represents a function that randomly returns an `Int` between `1` and `6` inclusive. In each iteration of the `for` loop, a new random number is generated, and if it is less than `lowestRoll`’s existing value, `≤=` changes `lowestRoll` to reflect the new low.
+    /// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
+    /// ```
     ///
     /// - Parameters:
     ///     - lhs: The value to decrease.
@@ -147,14 +148,14 @@ extension Comparable {
 /// ```swift
 /// let numberOfRolls = 5
 /// var highestRoll = 1
-/// for roll in 1 ... numberOfRolls {
+/// for _ in 1 ... numberOfRolls {
 ///     highestRoll ≥= rollDie()
 /// }
 /// print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
 /// // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
-/// ```
 ///
-/// In this example, `rollDie()` represents a function that randomly returns an `Int` between `1` and `6` inclusive. In each iteration of the `for` loop, a new random number is generated, and if it is greater than `highestRoll`’s existing value, `≤=` changes `highestRoll` to reflect the new high.
+/// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
+/// ```
 ///
 /// - Parameters:
 ///     - lhs: The value to increase.
@@ -166,6 +167,7 @@ infix operator ≥=: AssignmentPrecedence
 extension Comparable {
 
     // [_Define Documentation: SDGMathematics.Comparable.≥=_]
+    // [_Example 1: ≥=_]
     /// Increases the value of `lhs` so that it satisfies `lhs ≥ rhs`.
     ///
     /// This is accomplished by changing the value of `lhs` to match the value of `rhs` if and only if `lhs` does not already satisfy `lhs ≥ rhs`.
@@ -177,14 +179,14 @@ extension Comparable {
     /// ```swift
     /// let numberOfRolls = 5
     /// var highestRoll = 1
-    /// for roll in 1 ... numberOfRolls {
+    /// for _ in 1 ... numberOfRolls {
     ///     highestRoll ≥= rollDie()
     /// }
     /// print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
     /// // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
-    /// ```
     ///
-    /// In this example, `rollDie()` represents a function that randomly returns an `Int` between `1` and `6` inclusive. In each iteration of the `for` loop, a new random number is generated, and if it is greater than `highestRoll`’s existing value, `≤=` changes `highestRoll` to reflect the new high.
+    /// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
+    /// ```
     ///
     /// - Parameters:
     ///     - lhs: The value to increase.
