@@ -26,16 +26,19 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
 
     // MARK: - Scalar Type
 
+    // [_Define Documentation: SDGMathematics.Measurement.Scalar_]
     /// The numeric type used to express the value in any given unit.
     associatedtype Scalar : RationalArithmetic
 
     // MARK: - Internal Values
 
+    // [_Define Documentation: SDGMathematics.Measurement.init(rawValue:)_]
     /// Creates a measurement from a raw value in undefined but consistent units.
     ///
     /// Used by `Measurement`’s default implementation of methods where various units make no difference (such as multiplication by a scalar).
     init(rawValue: Scalar)
 
+    // [_Define Documentation: SDGMathematics.Measurement.rawValue_]
     /// A raw value in undefined but consistent units.
     ///
     /// Used by `Measurement`’s default implementation of methods where various units make no difference (such as multiplication by a scalar).
@@ -43,11 +46,13 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
 
     // MARK: - Initialization
 
+    // [_Define Documentation: SDGMathematics.Measurement.init()_]
     /// Creates an empty (zero) measurement.
     init()
 
     // MARK: - Operations
 
+    // [_Define Documentation: SDGMathematics.Measurement.×_]
     /// Returns the result of multipling the measurement by the scalar.
     ///
     /// - Parameters:
@@ -57,6 +62,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - MutatingVariant: ×=
     static func × (lhs: Self, rhs: Scalar) -> Self
 
+    // [_Define Documentation: SDGMathematics.Measurement.×=_]
     /// Modifies the measurement by multiplication with a scalar.
     ///
     /// - Parameters:
@@ -66,6 +72,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - NonmutatingVariant: ×
     static func ×= (lhs: inout Self, rhs: Scalar)
 
+    // [_Define Documentation: SDGMathematics.Measurement.÷(_:scalar:)_]
     /// Returns the (rational) quotient of a measurement divided by a scalar.
     ///
     /// - Parameters:
@@ -75,6 +82,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - MutatingVariant: ×
     static func ÷ (lhs: Self, rhs: Scalar) -> Self
 
+    // [_Define Documentation: SDGMathematics.Measurement.÷_]
     /// Returns the (rational) scalar quotient of the left divided by the right.
     ///
     /// - Parameters:
@@ -82,6 +90,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     ///     - rhs: The divisor.
     static func ÷ (lhs: Self, rhs: Self) -> Scalar
 
+    // [_Define Documentation: SDGMathematics.Measurement.÷=_]
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:
@@ -93,6 +102,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
 
     // A MEAUSUREMENT IS NOT AN INTEGER WITHOUT AN ARBITRARY SELECTION OF A UNIT, SO *EUCLIDEAN* DIVISON BY A SCALAR IS MEANINGLESS
 
+    // [_Define Documentation: SDGMathematics.Measurement.dividedAccordingToEuclid(by:)_]
     /// Returns the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
@@ -103,6 +113,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - MutatingVariant: divideAccordingToEuclid
     func dividedAccordingToEuclid(by divisor: Self) -> Scalar
 
+    // [_Define Documentation: SDGMathematics.Measurement.mod(_:)_]
     /// Returns the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -113,6 +124,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - MutatingVariant: formRemainder
     func mod(_ divisor: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.Measurement.formRemainder(mod:)_]
     /// Sets `self` to the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -123,9 +135,11 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - NonmutatingVariant: mod
     mutating func formRemainder(mod divisor: Self)
 
+    // [_Define Documentation: SDGMathematics.Measurement.isDivisible(by:)_]
     /// Returns `true` if `self` is evenly divisible by `divisor`.
     func isDivisible(by divisor: Self) -> Bool
 
+    // [_Define Documentation: SDGMathematics.Measurement.gcd(_:_:)_]
     /// Returns the greatest common divisor of `a` and `b`.
     ///
     /// - Parameters:
@@ -135,6 +149,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - MutatingVariant: formGreatestCommonDivisor
     static func gcd(_ a: Self, _ b: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.Measurement.formGreatestCommonDivisor(with:)_]
     /// Sets `self` to the greatest common divisor of `self` and `other`.
     ///
     /// - Parameters:
@@ -143,6 +158,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - NonmutatingVariant: gcd
     mutating func formGreatestCommonDivisor(with other: Self)
 
+    // [_Define Documentation: SDGMathematics.Measurement.lcm(_:_:)_]
     /// Returns the least common multiple of `a` and `b`.
     ///
     /// - Parameters:
@@ -152,6 +168,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - MutatingVariant: formGreatestCommonDivisor
     static func lcm(_ a: Self, _ b: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.Measurement.formLeastCommonMultiple(with:)_]
     /// Sets `self` to the least common multiple of `self` and `other`.
     ///
     /// - Parameters:
@@ -165,6 +182,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// A rule for rounding.
     typealias RoundingRule = FloatingPointRoundingRule
 
+    // [_Define Documentation: SDGMathematics.Measurement.round(_:toMultipleOf:)_]
     /// Rounds the value to a multiple of `factor` using the specified rounding rule.
     ///
     /// - Parameters:
@@ -174,6 +192,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     /// - NonmutatingVariant: rounded
     mutating func round(_ rule: RoundingRule, toMultipleOf factor: Self)
 
+    // [_Define Documentation: SDGMathematics.Measurement.rounded(_:toMultipleOf:)_]
     /// Returns the value rounded to a multiple of `factor` using the specified rounding rule.
     ///
     /// - Parameters:
@@ -185,6 +204,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
 
     // MARK: - Randomization
 
+    // [_Define Documentation: SDGMathematics.Measurement.init(randomInRange:)_]
     /// Creates a random value within a particular range.
     ///
     /// - Precondition: `range` is not empty.
@@ -193,12 +213,16 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     ///     - range: The allowed range for the random value.
     init(randomInRange range: Range<Self>)
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.init(randomInRange:)_]
     /// Creates a random value within a particular range.
+    ///
+    /// - Precondition: `range` is not empty.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
     init(randomInRange range: ClosedRange<Self>)
 
+    // [_Define Documentation: SDGMathematics.Measurement.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Precondition: `range` is not empty.
@@ -208,7 +232,10 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
     ///     - randomizer: The randomizer to use to generate the random value.
     init(randomInRange range: Range<Self>, fromRandomizer randomizer: Randomizer)
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
+    ///
+    /// - Precondition: `range` is not empty.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
@@ -218,6 +245,7 @@ public protocol Measurement : Addable, Comparable, Equatable, Negatable, Numeric
 
 // MARK: - Measurements
 
+// [_Inherit Documentation: SDGMathematics.Measurement.gcd(_:_:)_]
 /// Returns the greatest common divisor of `a` and `b`.
 ///
 /// - Parameters:
@@ -229,6 +257,7 @@ public func gcd<M : Measurement>(_ a: M, _ b: M) -> M {
     return M.gcd(a, b)
 }
 
+// [_Inherit Documentation: SDGMathematics.Measurement.lcm(_:_:)_]
 /// Returns the least common multiple of `a` and `b`.
 ///
 /// - Parameters:
@@ -242,11 +271,13 @@ public func lcm<M : Measurement>(_ a: M, _ b: M) -> M {
 
 extension Measurement {
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.init()_]
     /// Creates an empty (zero) measurement.
     public init() {
         self.init(rawValue: 0)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.×_]
     /// Returns the result of multipling the measurement by the scalar.
     ///
     /// - Parameters:
@@ -260,17 +291,19 @@ extension Measurement {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.×_]
     /// Returns the result of multipling the measurement by the scalar.
     ///
     /// - Parameters:
-    ///     - lhs: The scalar.
-    ///     - rhs: The measurement.
+    ///     - lhs: The measurement.
+    ///     - rhs: The scalar.
     ///
     /// - MutatingVariant: ×=
     public static func × (lhs: Scalar, rhs: Self) -> Self {
         return rhs × lhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.×=_]
     /// Modifies the measurement by multiplication with a scalar.
     ///
     /// - Parameters:
@@ -282,6 +315,7 @@ extension Measurement {
         lhs.rawValue ×= rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.÷(_:scalar:)_]
     /// Returns the (rational) quotient of a measurement divided by a scalar.
     ///
     /// - Parameters:
@@ -295,6 +329,7 @@ extension Measurement {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.÷_]
     /// Returns the (rational) scalar quotient of the left divided by the right.
     ///
     /// - Parameters:
@@ -304,6 +339,7 @@ extension Measurement {
         return lhs.rawValue ÷ rhs.rawValue
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.÷=_]
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:
@@ -317,6 +353,7 @@ extension Measurement {
 
     // A MEAUSUREMENT IS NOT AN INTEGER WITHOUT AN ARBITRARY SELECTION OF A UNIT, SO *EUCLIDEAN* DIVISON BY A SCALAR IS MEANINGLESS
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.dividedAccordingToEuclid(by:)_]
     /// Returns the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
@@ -329,6 +366,7 @@ extension Measurement {
         return rawValue.dividedAccordingToEuclid(by: divisor.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.mod(_:)_]
     /// Returns the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -343,6 +381,7 @@ extension Measurement {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.formRemainder(mod:)_]
     /// Sets `self` to the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -355,11 +394,13 @@ extension Measurement {
         rawValue.formRemainder(mod: divisor.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.isDivisible(by:)_]
     /// Returns `true` if `self` is evenly divisible by `divisor`.
     public func isDivisible(by divisor: Self) -> Bool {
         return rawValue.isDivisible(by: divisor.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.gcd(_:_:)_]
     /// Returns the greatest common divisor of `a` and `b`.
     ///
     /// - Parameters:
@@ -373,6 +414,7 @@ extension Measurement {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.formGreatestCommonDivisor(with:)_]
     /// Sets `self` to the greatest common divisor of `self` and `other`.
     ///
     /// - Parameters:
@@ -383,6 +425,7 @@ extension Measurement {
         rawValue.formGreatestCommonDivisor(with: other.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.lcm(_:_:)_]
     /// Returns the least common multiple of `a` and `b`.
     ///
     /// - Parameters:
@@ -396,6 +439,7 @@ extension Measurement {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.formLeastCommonMultiple(with:)_]
     /// Sets `self` to the least common multiple of `self` and `other`.
     ///
     /// - Parameters:
@@ -406,6 +450,7 @@ extension Measurement {
         rawValue.formLeastCommonMultiple(with: other.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.round(_:toMultipleOf:)_]
     /// Rounds the value to a multiple of `factor` using the specified rounding rule.
     ///
     /// - Parameters:
@@ -417,6 +462,7 @@ extension Measurement {
         rawValue.round(rule, toMultipleOf: factor.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.rounded(_:toMultipleOf:)_]
     /// Returns the value rounded to a multiple of `factor` using the specified rounding rule.
     ///
     /// - Parameters:
@@ -430,6 +476,7 @@ extension Measurement {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.init(randomInRange:)_]
     /// Creates a random value within a particular range.
     ///
     /// - Precondition: `range` is not empty.
@@ -440,7 +487,10 @@ extension Measurement {
         self.init(randomInRange: range, fromRandomizer: PseudorandomNumberGenerator.defaultGenerator)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.init(randomInRange:)_]
     /// Creates a random value within a particular range.
+    ///
+    /// - Precondition: `range` is not empty.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
@@ -448,6 +498,7 @@ extension Measurement {
         self.init(randomInRange: range, fromRandomizer: PseudorandomNumberGenerator.defaultGenerator)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Precondition: `range` is not empty.
@@ -460,7 +511,10 @@ extension Measurement {
         self.init(rawValue: scalar)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
+    ///
+    /// - Precondition: `range` is not empty.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
