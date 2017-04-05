@@ -14,23 +14,6 @@
 
 import SDGLogic
 
-/// Computes the absolute value (in conjuction with postfix `|(_:)`).
-///
-///     let x = −1
-///     let y = |x|
-///     // y == 1
-///
-/// - Warning: The result of unpaired use is undefined.
-prefix operator |
-/// Computes the absolute value (in conjuction with prefix `|(_:)`).
-///
-///     let x = −1
-///     let y = |x|
-///     // y == 1
-///
-/// - Warning: The result of unpaired use is undefined.
-postfix operator |
-
 /// An one‐dimensional value that can be added and subtracted.
 ///
 /// - Note: Unlike `WholeArithmetic`, `NumericAdditiveArithmetic` does not need a defined scale, allowing conformance by measurements that can use multiple units.
@@ -115,24 +98,60 @@ extension NumericAdditiveArithmetic {
         result.formAbsoluteValue()
         return result
     }
+}
 
+/// :nodoc:
+public struct _PartialAbsoluteValue<Wrapped : NumericAdditiveArithmetic> {
+    fileprivate var contents: Wrapped
+}
+
+// [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.|x_]
+/// Returns the absolute value (in conjuction with postfix `|(_:)`).
+///
+/// ```swift
+/// let x = −1
+/// let y = |x|
+/// // y == 1
+/// ```
+prefix operator |
+
+extension NumericAdditiveArithmetic {
+
+    // [_Define Documentation: SDGMathematics.NumericAdditiveArithmetic.|x_]
+    // [_Example 1: Absolute Value_]
     /// Returns the absolute value (in conjuction with postfix `|(_:)`).
     ///
-    ///     let x = −1
-    ///     let y = |x|
-    ///     // y == 1
-    ///
-    /// - Warning: The result of unpaired use is undefined.
+    /// ```swift
+    /// let x = −1
+    /// let y = |x|
+    /// // y == 1
+    /// ```
     public static prefix func | (operand: Self) -> Self {
         return operand.absoluteValue
     }
+}
+
+// [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.x|_]
+/// Returns the absolute value (in conjuction with prefix `|(_:)`).
+///
+/// ```swift
+/// let x = −1
+/// let y = |x|
+/// // y == 1
+/// ```
+postfix operator |
+
+extension NumericAdditiveArithmetic {
+
+    // [_Define Documentation: SDGMathematics.NumericAdditiveArithmetic.x|_]
+    // [_Example 1: Absolute Value_]
     /// Returns the absolute value (in conjuction with prefix `|(_:)`).
     ///
-    ///     let x = −1
-    ///     let y = |x|
-    ///     // y == 1
-    ///
-    /// - Warning: The result of unpaired use is undefined.
+    /// ```swift
+    /// let x = −1
+    /// let y = |x|
+    /// // y == 1
+    /// ```
     public static postfix func | (operand: Self) -> Self {
         return operand
     }
