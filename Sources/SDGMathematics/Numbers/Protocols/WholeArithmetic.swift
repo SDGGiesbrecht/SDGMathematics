@@ -14,14 +14,24 @@
 
 import SDGLogic
 
-/// Performs multiplication.
+// [_Inherit Documentation: SDGMathematics.WholeArithmetic.×_]
+/// Returns the product of the left times the right.
+///
+/// - Parameters:
+///     - lhs: A value.
+///     - rhs: Another value.
 ///
 /// - MutatingVariant: ×=
 ///
 /// - RecommendedOver: *
 infix operator ×: MultiplicationPrecedence
 
+// [_Inherit Documentation: SDGMathematics.WholeArithmetic.×=_]
 /// Modifies the left by multiplication with the right.
+///
+/// - Parameters:
+///     - lhs: The value to modify.
+///     - rhs: The coefficient by which to multiply.
 ///
 /// - NonmutatingVariant: ×
 ///
@@ -38,12 +48,28 @@ precedencegroup ExponentPrecedence {
     higherThan: MultiplicationPrecedence
 }
 
-/// Performs exponentiation.
+// [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑_]
+/// Returns the result of the left to the power of the right.
+///
+/// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+///
+/// - Parameters:
+///     - lhs: The base.
+///     - rhs: The exponent.
 ///
 /// - MutatingVariant: ↑=
+///
+/// - RecommendedOver: pow
 infix operator ↑: ExponentPrecedence
 
+// [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
 /// Modifies the left by exponentiation with the right.
+///
+/// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+///
+/// - Parameters:
+///     - lhs: The value to modify.
+///     - rhs: The exponent.
 ///
 /// - NonmutatingVariant: ↑
 infix operator ↑=: AssignmentPrecedence
@@ -62,6 +88,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
 
     // MARK: - Operations
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.×_]
     /// Returns the product of the left times the right.
     ///
     /// - Parameters:
@@ -73,6 +100,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - RecommendedOver: *
     static func × (lhs: Self, rhs: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.×=_]
     /// Modifies the left by multiplication with the right.
     ///
     /// - Parameters:
@@ -84,6 +112,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - RecommendedOver: *=
     static func ×= (lhs: inout Self, rhs: Self)
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
@@ -94,6 +123,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - NonmutatingVariant: dividedAccordingToEuclid
     mutating func divideAccordingToEuclid(by divisor: Self)
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.dividedAccordingToEuclid(by:)_]
     /// Returns the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
@@ -104,6 +134,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - MutatingVariant: divideAccordingToEuclid
     func dividedAccordingToEuclid(by divisor: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.mod(_:)_]
     /// Returns the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -114,6 +145,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - MutatingVariant: formRemainder
     func mod(_ divisor: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.formRemainder(mod:)_]
     /// Sets `self` to the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -124,9 +156,11 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - NonmutatingVariant: mod
     mutating func formRemainder(mod divisor: Self)
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isDivisible(by:)_]
     /// Returns `true` if `self` is evenly divisible by `divisor`.
     func isDivisible(by divisor: Self) -> Bool
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.gcd(_:_:)_]
     /// Returns the greatest common divisor of `a` and `b`.
     ///
     /// - Parameters:
@@ -136,6 +170,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - MutatingVariant: formGreatestCommonDivisor
     static func gcd(_ a: Self, _ b: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.formGreatestCommonDivisor(with:)_]
     /// Sets `self` to the greatest common divisor of `self` and `other`.
     ///
     /// - Parameters:
@@ -144,6 +179,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - NonmutatingVariant: gcd
     mutating func formGreatestCommonDivisor(with other: Self)
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.lcm(_:_:)_]
     /// Returns the least common multiple of `a` and `b`.
     ///
     /// - Parameters:
@@ -153,6 +189,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - MutatingVariant: formGreatestCommonDivisor
     static func lcm(_ a: Self, _ b: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.formLeastCommonMultiple(with:)_]
     /// Sets `self` to the least common multiple of `self` and `other`.
     ///
     /// - Parameters:
@@ -161,6 +198,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - NonmutatingVariant: lcm
     mutating func formLeastCommonMultiple(with other: Self)
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.↑_]
     /// Returns the result of the left to the power of the right.
     ///
     /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
@@ -174,6 +212,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - RecommendedOver: pow
     static func ↑ (lhs: Self, rhs: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
     /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
@@ -191,18 +230,23 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     #else
     // [_Workaround: Default implementations for variables cause segmentation faults on Linux. (Swift 3.0)_]
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isNaturalNumber_]
     /// Returns `true` if `self` is a natural number.
-    var isANaturalNumber: Bool { get }
+    var isNaturalNumber: Bool { get }
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isWholeNumber_]
     /// Returns `true` if `self` is a whole number.
-    var isAWholeNumber: Bool { get }
+    var isWholeNumber: Bool { get }
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isInteger_]
     /// Returns `true` if `self` is an integer.
-    var isAnInteger: Bool { get }
+    var isInteger: Bool { get }
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isEven_]
     /// Returns true if `self` is an even integer.
     var isEven: Bool { get }
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isOdd_]
     /// Returns true if `self` is an odd integer.
     var isOdd: Bool { get }
     #endif
@@ -212,6 +256,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// A rule for rounding.
     typealias RoundingRule = FloatingPointRoundingRule
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.round(_:)_]
     /// Rounds the value to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
@@ -220,6 +265,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - NonmutatingVariant: rounded
     mutating func round(_ rule: RoundingRule)
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.rounded(_:)_]
     /// Returns the value rounded to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
@@ -228,6 +274,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - MutatingVariant: round
     func rounded(_ rule: RoundingRule) -> Self
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.round(_:toMultipleOf:)_]
     /// Rounds the value to a multiple of `factor` using the specified rounding rule.
     ///
     /// - Parameters:
@@ -237,6 +284,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - NonmutatingVariant: rounded
     mutating func round(_ rule: RoundingRule, toMultipleOf factor: Self)
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.rounded(_:toMultipleOf:)_]
     /// Returns the value rounded to a multiple of `factor` using the specified rounding rule.
     ///
     /// - Parameters:
@@ -246,12 +294,14 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     /// - MutatingVariant: round
     func rounded(_ rule: RoundingRule, toMultipleOf factor: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:)_]
     /// Creates a random value within a particular range.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
     init(randomInRange range: ClosedRange<Self>)
 
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
@@ -262,6 +312,7 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
 
 // MARK: - Whole Arithmetic
 
+// [_Inherit Documentation: SDGMathematics.WholeArithmetic.gcd(_:_:)_]
 /// Returns the greatest common divisor of `a` and `b`.
 ///
 /// - Parameters:
@@ -273,6 +324,7 @@ public func gcd<N : WholeArithmetic>(_ a: N, _ b: N) -> N {
     return N.gcd(a, b)
 }
 
+// [_Inherit Documentation: SDGMathematics.WholeArithmetic.lcm(_:_:)_]
 /// Returns the least common multiple of `a` and `b`.
 ///
 /// - Parameters:
@@ -286,6 +338,7 @@ public func lcm<N : WholeArithmetic>(_ a: N, _ b: N) -> N {
 
 extension WholeArithmetic {
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×_]
     /// Returns the product of the left times the right.
     ///
     /// - Parameters:
@@ -301,6 +354,7 @@ extension WholeArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.dividedAccordingToEuclid(by:)_]
     /// Returns the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
@@ -315,6 +369,7 @@ extension WholeArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.mod(_:)_]
     /// Returns the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -329,6 +384,7 @@ extension WholeArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.formRemainder(mod:)_]
     /// Sets `self` to the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -341,11 +397,13 @@ extension WholeArithmetic {
         self −= dividedAccordingToEuclid(by: divisor) × divisor
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isDivisible(by:)_]
     /// Returns `true` if `self` is evenly divisible by `divisor`.
     public func isDivisible(by divisor: Self) -> Bool {
         return mod(divisor) == 0
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.gcd(_:_:)_]
     /// Returns the greatest common divisor of `a` and `b`.
     ///
     /// - Parameters:
@@ -359,6 +417,7 @@ extension WholeArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.formGreatestCommonDivisor(with:)_]
     /// Sets `self` to the greatest common divisor of `self` and `other`.
     ///
     /// - Parameters:
@@ -376,6 +435,7 @@ extension WholeArithmetic {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.lcm(_:_:)_]
     /// Returns the least common multiple of `a` and `b`.
     ///
     /// - Parameters:
@@ -389,6 +449,7 @@ extension WholeArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.formLeastCommonMultiple(with:)_]
     /// Sets `self` to the least common multiple of `self` and `other`.
     ///
     /// - Parameters:
@@ -399,7 +460,10 @@ extension WholeArithmetic {
         self ×= other.dividedAccordingToEuclid(by: gcd(self, other))
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑_]
     /// Returns the result of the left to the power of the right.
+    ///
+    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The base.
@@ -429,31 +493,37 @@ extension WholeArithmetic {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isNaturalNumber_]
     /// Returns `true` if `self` is a natural number.
-    public var isANaturalNumber: Bool {
+    public var isNaturalNumber: Bool {
         return isAWholeNumber ∧ self ≠ 0
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isWholeNumber_]
     /// Returns `true` if `self` is a whole number.
-    public var isAWholeNumber: Bool {
+    public var isWholeNumber: Bool {
         return isAnInteger ∧ isNonNegative
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isInteger_]
     /// Returns `true` if `self` is an integer.
-    public var isAnInteger: Bool {
+    public var isInteger: Bool {
         return isDivisible(by: 1)
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isEven_]
     /// Returns true if `self` is an even integer.
     public var isEven: Bool {
         return isDivisible(by: 2)
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isOdd_]
     /// Returns true if `self` is an odd integer.
     public var isOdd: Bool {
         return isAnInteger ∧ ¬isEven
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.round(_:toMultipleOf:)_]
     /// Rounds the value to a multiple of `factor` using the specified rounding rule.
     ///
     /// - Parameters:
@@ -514,6 +584,7 @@ extension WholeArithmetic {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.rounded(_:toMultipleOf:)_]
     /// Returns the value rounded to a multiple of `factor` using the specified rounding rule.
     ///
     /// - Parameters:
@@ -527,6 +598,7 @@ extension WholeArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.round(_:)_]
     /// Rounds the value to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
@@ -537,6 +609,7 @@ extension WholeArithmetic {
         round(rule, toMultipleOf: 1)
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.rounded(_:)_]
     /// Returns the value rounded to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
@@ -549,6 +622,7 @@ extension WholeArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:)_]
     /// Creates a random value within a particular range.
     ///
     /// - Parameters:
@@ -561,6 +635,7 @@ extension WholeArithmetic {
 extension WholeArithmetic where Self : FloatType {
     // MARK: - where Self : FloatType
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×_]
     /// Returns the product of the left times the right.
     ///
     /// - Parameters:
@@ -574,6 +649,7 @@ extension WholeArithmetic where Self : FloatType {
         return lhs * rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×=_]
     /// Modifies the left by multiplication with the right.
     ///
     /// - Parameters:
@@ -587,6 +663,7 @@ extension WholeArithmetic where Self : FloatType {
         lhs *= rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
@@ -600,9 +677,10 @@ extension WholeArithmetic where Self : FloatType {
         self.round(.down)
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
-    /// - Precondition: `lhs` must be positive or else `rhs` must be an integer.
+    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
@@ -655,6 +733,7 @@ extension WholeArithmetic where Self : FloatType {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
@@ -676,9 +755,10 @@ extension WholeArithmetic where Self : FloatType {
 extension WholeArithmetic where Self : IntegerType {
     // MARK: - where Self : IntegerType
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
-    /// - Precondition: `rhs` must be non‐negative.
+    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
@@ -689,11 +769,13 @@ extension WholeArithmetic where Self : IntegerType {
         lhs.raiseIntegerToThePowerOf(integer: rhs)
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isInteger_]
     /// Returns `true` if `self` is an integer.
-    public var isAnInteger: Bool {
+    public var isInteger: Bool {
         return true
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.round(_:)_]
     /// Rounds the value to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
@@ -719,6 +801,7 @@ extension WholeArithmetic where Self : IntegralArithmetic {
 extension WholeArithmetic where Self : IntType {
     // MARK: - where Self : IntType
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×_]
     /// Returns the product of the left times the right.
     ///
     /// - Parameters:
@@ -732,6 +815,7 @@ extension WholeArithmetic where Self : IntType {
         return lhs * rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×=_]
     /// Modifies the left by multiplication with the right.
     ///
     /// - Parameters:
@@ -745,9 +829,13 @@ extension WholeArithmetic where Self : IntType {
         lhs *= rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
+    ///
+    /// - Parameters:
+    ///     - divisor: The divisor.
     ///
     /// - NonmutatingVariant: dividedAccordingToEuclid
     public mutating func divideAccordingToEuclid(by divisor: Self) {
@@ -765,16 +853,19 @@ extension WholeArithmetic where Self : IntType {
         }
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isEven_]
     /// Returns true if `self` is an even integer.
     public var isEven: Bool {
         return ¬isOdd
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isOdd_]
     /// Returns true if `self` is an odd integer.
     public var isOdd: Bool {
         return self & 1 == 1
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
@@ -804,9 +895,10 @@ extension WholeArithmetic where Self : RationalArithmetic {
 extension WholeArithmetic where Self : RationalNumberType {
     // MARK: - where Self : RationalNumberType
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
-    /// - Precondition: `rhs` must be an integer.
+    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
@@ -821,6 +913,7 @@ extension WholeArithmetic where Self : RationalNumberType {
 extension WholeArithmetic where Self : UIntType {
     // MARK: - where Self : UIntType
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×_]
     /// Returns the product of the left times the right.
     ///
     /// - Parameters:
@@ -834,6 +927,7 @@ extension WholeArithmetic where Self : UIntType {
         return lhs * rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×=_]
     /// Modifies the left by multiplication with the right.
     ///
     /// - Parameters:
@@ -847,24 +941,33 @@ extension WholeArithmetic where Self : UIntType {
         lhs *= rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.dividedAccordingToEuclid(by:)_]
     /// Returns the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
+    ///
+    /// - Parameters:
+    ///     - divisor: The divisor.
     ///
     /// - MutatingVariant: divideAccordingToEuclid
     public func dividedAccordingToEuclid(by divisor: Self) -> Self {
         return self / divisor
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
     ///
     /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
+    ///
+    /// - Parameters:
+    ///     - divisor: The divisor.
     ///
     /// - NonmutatingVariant: dividedAccordingToEuclid
     public mutating func divideAccordingToEuclid(by divisor: Self) {
         self /= divisor
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.mod(_:)_]
     /// Returns the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -877,6 +980,7 @@ extension WholeArithmetic where Self : UIntType {
         return self % divisor
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.formRemainder(mod:)_]
     /// Sets `self` to the Euclidean remainder of `self` ÷ `divisor`.
     ///
     /// - Parameters:
@@ -889,16 +993,19 @@ extension WholeArithmetic where Self : UIntType {
         self %= divisor
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isEven_]
     /// Returns true if `self` is an even integer.
     public var isEven: Bool {
         return ¬isOdd
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isOdd_]
     /// Returns true if `self` is an odd integer.
     public var isOdd: Bool {
         return self & 1 == 1
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
@@ -913,7 +1020,10 @@ extension WholeArithmetic where Self : UIntType {
 extension WholeArithmetic where Self : WholeNumberType {
     // MARK: - where Self : WholeNumberType
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
+    ///
+    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
@@ -924,16 +1034,19 @@ extension WholeArithmetic where Self : WholeNumberType {
         lhs.raiseWholeNumberToThePowerOf(wholeNumber: rhs)
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isWholeNumber_]
     /// Returns `true` if `self` is a whole number.
-    public var isAWholeNumber: Bool {
+    public var isWholeNumber: Bool {
         return true
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isInteger_]
     /// Returns `true` if `self` is an integer.
-    public var isAnInteger: Bool {
+    public var isInteger: Bool {
         return true
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.round(_:)_]
     /// Rounds the value to an integral value using the specified rounding rule.
     ///
     /// - Parameters:
