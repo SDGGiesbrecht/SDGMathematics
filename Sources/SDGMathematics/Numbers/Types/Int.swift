@@ -52,7 +52,7 @@ extension Int64 : IntXType {
     ///     - randomizer: The randomizer to use to generate the random value.
     public init(randomInRange range: ClosedRange<Int64>, fromRandomizer randomizer: Randomizer) {
 
-        if range.lowerBound.isAWholeNumber {
+        if range.lowerBound.isWhole {
             let unsignedRange: ClosedRange<UInt64> = UInt64(range.lowerBound) ... UInt64(range.upperBound)
             let unsigned = UInt64(randomInRange: unsignedRange)
             self = Int64(unsigned)

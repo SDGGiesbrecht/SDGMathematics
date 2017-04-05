@@ -230,17 +230,17 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     #else
     // [_Workaround: Default implementations for variables cause segmentation faults on Linux. (Swift 3.0)_]
 
-    // [_Define Documentation: SDGMathematics.WholeArithmetic.isNaturalNumber_]
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isNatural_]
     /// Returns `true` if `self` is a natural number.
-    var isNaturalNumber: Bool { get }
+    var isNatural: Bool { get }
 
-    // [_Define Documentation: SDGMathematics.WholeArithmetic.isWholeNumber_]
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isWhole_]
     /// Returns `true` if `self` is a whole number.
-    var isWholeNumber: Bool { get }
+    var isWhole: Bool { get }
 
-    // [_Define Documentation: SDGMathematics.WholeArithmetic.isInteger_]
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.isIntegral_]
     /// Returns `true` if `self` is an integer.
-    var isInteger: Bool { get }
+    var isIntegral: Bool { get }
 
     // [_Define Documentation: SDGMathematics.WholeArithmetic.isEven_]
     /// Returns true if `self` is an even integer.
@@ -493,21 +493,21 @@ extension WholeArithmetic {
         }
     }
 
-    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isNaturalNumber_]
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isNatural_]
     /// Returns `true` if `self` is a natural number.
-    public var isNaturalNumber: Bool {
-        return isAWholeNumber ∧ self ≠ 0
+    public var isNatural: Bool {
+        return isWhole ∧ self ≠ 0
     }
 
-    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isWholeNumber_]
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isWhole_]
     /// Returns `true` if `self` is a whole number.
-    public var isWholeNumber: Bool {
-        return isAnInteger ∧ isNonNegative
+    public var isWhole: Bool {
+        return isIntegral ∧ isNonNegative
     }
 
-    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isInteger_]
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isIntegral_]
     /// Returns `true` if `self` is an integer.
-    public var isInteger: Bool {
+    public var isIntegral: Bool {
         return isDivisible(by: 1)
     }
 
@@ -520,7 +520,7 @@ extension WholeArithmetic {
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isOdd_]
     /// Returns true if `self` is an odd integer.
     public var isOdd: Bool {
-        return isAnInteger ∧ ¬isEven
+        return isIntegral ∧ ¬isEven
     }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.round(_:toMultipleOf:)_]
@@ -689,9 +689,9 @@ extension WholeArithmetic where Self : FloatType {
     /// - NonmutatingVariant: ↑
     public static func ↑= (lhs: inout Self, rhs: Self) {
 
-        assert(lhs.isNonNegative ∨ rhs.isAnInteger, "The result of a negative number raised to a non‐integer exponent may be outside the set of real numbers. Use a type that can represent complex numbers instead.")
+        assert(lhs.isNonNegative ∨ rhs.isIntegral, "The result of a negative number raised to a non‐integer exponent may be outside the set of real numbers. Use a type that can represent complex numbers instead.")
 
-        if rhs.isAnInteger {
+        if rhs.isIntegral {
             lhs.raiseRationalNumberToThePowerOf(rationalNumber: rhs)
         } else if rhs.isNegative /* but not an integer */ {
             lhs = 1 ÷ lhs ↑ −rhs
@@ -769,9 +769,9 @@ extension WholeArithmetic where Self : IntegerType {
         lhs.raiseIntegerToThePowerOf(integer: rhs)
     }
 
-    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isInteger_]
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isIntegral_]
     /// Returns `true` if `self` is an integer.
-    public var isInteger: Bool {
+    public var isIntegral: Bool {
         return true
     }
 
@@ -882,7 +882,7 @@ extension WholeArithmetic where Self : RationalArithmetic {
 
     internal mutating func raiseRationalNumberToThePowerOf(rationalNumber exponent: Self) {
 
-        assert(exponent.isAnInteger, "The result of a non‐integer exponent may be outside the set of rational numbers. Use a type that conforms to RealArithmeticType instead.")
+        assert(exponent.isIntegral, "The result of a non‐integer exponent may be outside the set of rational numbers. Use a type that conforms to RealArithmeticType instead.")
 
         if exponent.isNegative {
             self = 1 ÷ self ↑ −exponent
@@ -1034,15 +1034,15 @@ extension WholeArithmetic where Self : WholeNumberType {
         lhs.raiseWholeNumberToThePowerOf(wholeNumber: rhs)
     }
 
-    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isWholeNumber_]
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isWhole_]
     /// Returns `true` if `self` is a whole number.
-    public var isWholeNumber: Bool {
+    public var isWhole: Bool {
         return true
     }
 
-    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isInteger_]
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.isIntegral_]
     /// Returns `true` if `self` is an integer.
-    public var isInteger: Bool {
+    public var isIntegral: Bool {
         return true
     }
 

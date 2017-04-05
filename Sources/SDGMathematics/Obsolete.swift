@@ -14,18 +14,42 @@
 
 // Version 1: 2017‐04‐04
 
-extension WholeNumber {
+extension WholeArithmetic {
 
-    @available(*, unavailable, renamed: "isNaturalNumber")
+    @available(*, unavailable, renamed: "isNatural")
     public var isANaturalNumber: Bool {
         fatalError()
     }
-    @available(*, unavailable, renamed: "isWholeNumber")
+
+    @available(*, unavailable, renamed: "isWhole")
     public var isAWholeNumber: Bool {
         fatalError()
     }
 
-    @available(*, unavailable, renamed: "isInteger")
+    @available(*, unavailable, renamed: "isIntegral")
+    public var isAnInteger: Bool {
+        fatalError()
+    }
+}
+
+extension WholeArithmetic where Self : IntegerType {
+    // MARK: - where Self : IntegerType
+
+    @available(*, unavailable, renamed: "isIntegral")
+    public var isAnInteger: Bool {
+        fatalError()
+    }
+}
+
+extension WholeArithmetic where Self : WholeNumberType {
+    // MARK: - where Self : WholeNumberType
+
+    @available(*, unavailable, renamed: "isWhole")
+    public var isAWholeNumber: Bool {
+        fatalError()
+    }
+
+    @available(*, unavailable, renamed: "isIntegral")
     public var isAnInteger: Bool {
         fatalError()
     }

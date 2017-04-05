@@ -524,8 +524,8 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert(zero.isNonNegative)
             XCTAssert(zero.isNonPositive)
 
-            XCTAssert(two.isANaturalNumber)
-            XCTAssert(one.isAnInteger)
+            XCTAssert(two.isNatural)
+            XCTAssert(one.isIntegral)
             XCTAssert(two.isEven)
             XCTAssert(one.isOdd)
 
