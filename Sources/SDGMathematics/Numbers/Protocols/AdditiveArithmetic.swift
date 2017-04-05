@@ -23,6 +23,7 @@
 /// - `ExpressibleByIntegerLiteral` or `static var additiveIdentity: Self { get }`
 public protocol AdditiveArithmetic : Equatable, Subtractable {
 
+    // [_Define Documentation: SDGMathematics.AdditiveArithmetic.additiveIdentity_]
     /// The additive identity (origin).
     static var additiveIdentity: Self { get }
 }
@@ -56,6 +57,7 @@ extension AdditiveArithmetic {
 extension AdditiveArithmetic where Self : ExpressibleByIntegerLiteral {
     // MARK: - where Self : ExpressibleByIntegerLiteral
 
+    // [_Inherit Documentation: SDGMathematics.AdditiveArithmetic.additiveIdentity_]
     /// The additive identity (origin).
     public static var additiveIdentity: Self {
         return 0
@@ -65,7 +67,8 @@ extension AdditiveArithmetic where Self : ExpressibleByIntegerLiteral {
 extension AdditiveArithmetic where Self : Measurement {
     // MARK: - where Self : Measurement
 
-    /// The additive identity.
+    // [_Inherit Documentation: SDGMathematics.AdditiveArithmetic.additiveIdentity_]
+    /// The additive identity (origin).
     public static var additiveIdentity: Self {
         return Self(rawValue: 0)
     }
