@@ -25,12 +25,12 @@ class SDGMathematicsTests : XCTestCase {
         func runTests<T : Addable>(addend: T, augend: T, sum: T) where T : Equatable {
             XCTAssert(addend + augend == sum)
         }
-        
+
         runTests(addend: 1, augend: 2, sum: 3)
         runTests(addend: AddableExample(1), augend: AddableExample(2), sum: AddableExample(3))
         runTests(addend: AddableExampleWhereStrideableAndStrideIsSelf(1), augend: AddableExampleWhereStrideableAndStrideIsSelf(2), sum: AddableExampleWhereStrideableAndStrideIsSelf(3))
     }
-    
+
     func testAngle() {
         func runTests<N : RealArithmetic>(_ type: N.Type) {
             let _1: N = 1
