@@ -137,7 +137,7 @@ extension PointType where Self.Vector == Self {
     ///     - rhs: The vector to subtract.
     ///
     /// - MutatingVariant: −=
-    public static func − (lhs: Self, rhs: Vector) -> Self {
+    public static func − (lhs: Self, rhs: Vector) -> Self { // [_Exempt from Code Coverage_] Apparently unreachable.
         // Disambiguate Self − Vector = Self vs Self − Self = Vector
         return subtractAsPointType(lhs, rhs)
     }

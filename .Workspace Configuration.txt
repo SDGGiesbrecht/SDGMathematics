@@ -51,6 +51,3 @@ Citation: ‎שלמה/Shlomo
 [_End_]
 
 Skip Simulator: True
-
-([_Workaround: Some code seems inexplicably unreachable._])
-Enforce Code Coverage: False
