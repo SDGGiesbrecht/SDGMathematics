@@ -226,10 +226,6 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
 
     // MARK: - Classification
 
-    #if os(Linux)
-    #else
-    // [_Workaround: Default implementations for variables cause segmentation faults on Linux. (Swift 3.0)_]
-
     // [_Define Documentation: SDGMathematics.WholeArithmetic.isNatural_]
     /// Returns `true` if `self` is a natural number.
     var isNatural: Bool { get }
@@ -249,7 +245,6 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     // [_Define Documentation: SDGMathematics.WholeArithmetic.isOdd_]
     /// Returns true if `self` is an odd integer.
     var isOdd: Bool { get }
-    #endif
 
     // MARK: - Rounding
 

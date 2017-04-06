@@ -70,14 +70,9 @@ public protocol RealArithmetic : RationalArithmetic {
     /// An instance of π.
     static var π: Self { get }
 
-    #if os(Linux)
-    #else
-    // [_Workaround: Default implementations for variables cause segmentation faults on Linux. (Swift 3.0)._]
-
     // [_Define Documentation: SDGMathematics.RealArithmetic.τ_]
     /// An instance of τ.
     static var τ: Self { get }
-    #endif
 
     // [_Define Documentation: SDGMathematics.RealArithmetic.e_]
     /// An instance of *e*.

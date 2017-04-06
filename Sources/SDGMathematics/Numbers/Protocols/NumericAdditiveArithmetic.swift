@@ -27,10 +27,6 @@ public protocol NumericAdditiveArithmetic : AdditiveArithmetic, Comparable {
 
     // MARK: - Classification
 
-    #if os(Linux)
-    #else
-    // [_Workaround: Default implementations for variables cause segmentation faults on Linux. (Swift 3.0)_]
-
     // [_Define Documentation: SDGMathematics.NumericAdditiveArithmetic.isPositive_]
     /// Returns `true` if `self` is positive.
     var isPositive: Bool { get }
@@ -54,7 +50,6 @@ public protocol NumericAdditiveArithmetic : AdditiveArithmetic, Comparable {
     ///
     /// - MutatingVariant: formAbsoluteValue
     var absoluteValue: Self { get }
-    #endif
 
     // [_Define Documentation: SDGMathematics.NumericAdditiveArithmetic.formAbsoluteValue_]
     /// Sets `self` to its absolute value.
