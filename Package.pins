@@ -1,0 +1,12 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "SDGLogic",
+      "reason": null,
+      "repositoryURL": "https://github.com/SDGGiesbrecht/SDGLogic",
+      "version": "1.3.0"
+    }
+  ],
+  "version": 1
+}

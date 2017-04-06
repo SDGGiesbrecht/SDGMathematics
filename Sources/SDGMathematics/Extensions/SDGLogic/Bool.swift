@@ -16,32 +16,38 @@ extension Bool {
 
     private static let randomizationBit: UInt64 = 1 << 48
 
+    // [_Example 1: Alternating Booleans_]
     /// A value a `Randomizer` can return that will result in `false`.
     ///
     /// For example:
     ///
-    ///     let alternating = CyclicalNumberGenerator([
-    ///             Bool.falseRandomizerValue,
-    ///             Bool.trueRandomizerValue
-    ///         ])
+    /// ```swift
+    /// let alternating = CyclicalNumberGenerator([
+    ///     Bool.falseRandomizerValue,
+    ///     Bool.trueRandomizerValue
+    ///     ])
     ///
-    ///     // Booleans created using...
-    ///     let x = Bool(fromRandomizer: alternating)
-    ///     // ...now alternate between “false” and “true”.
+    /// // Booleans created using...
+    /// _ = Bool(fromRandomizer: alternating)
+    /// // ...now alternate between “false” and “true”.
+    /// ```
     public static let falseRandomizerValue: UInt64 = 0
 
+    // [_Example 1: Alternating Booleans_]
     /// A value a `Randomizer` can return that will result in `true`.
     ///
     /// For example:
     ///
-    ///     let alternating = CyclicalNumberGenerator([
-    ///             Bool.falseRandomizerValue,
-    ///             Bool.trueRandomizerValue
-    ///         ])
+    /// ```swift
+    /// let alternating = CyclicalNumberGenerator([
+    ///     Bool.falseRandomizerValue,
+    ///     Bool.trueRandomizerValue
+    ///     ])
     ///
-    ///     // Booleans created using...
-    ///     let x = Bool(fromRandomizer: alternating)
-    ///     // ...now alternate between “false” and “true”.
+    /// // Booleans created using...
+    /// _ = Bool(fromRandomizer: alternating)
+    /// // ...now alternate between “false” and “true”.
+    /// ```
     public static let trueRandomizerValue: UInt64 = randomizationBit
 
     /// Returns a random Boolean value.

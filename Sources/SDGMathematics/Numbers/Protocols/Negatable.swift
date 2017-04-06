@@ -33,6 +33,7 @@ postfix operator −=
 /// - `AdditiveArithmetic`
 public protocol Negatable : AdditiveArithmetic {
 
+    // [_Define Documentation: SDGMathematics.Negatable.−_]
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -43,6 +44,7 @@ public protocol Negatable : AdditiveArithmetic {
     /// - RecommendedOver: -
     static prefix func − (operand: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.Negatable.−=_]
     /// Sets the operand to its additive inverse.
     ///
     /// - Parameters:
@@ -54,6 +56,7 @@ public protocol Negatable : AdditiveArithmetic {
 
 extension Negatable {
 
+    // [_Inherit Documentation: SDGMathematics.Negatable.−_]
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -66,6 +69,7 @@ extension Negatable {
         return _0 − operand
     }
 
+    // [_Inherit Documentation: SDGMathematics.Negatable.−=_]
     /// Sets the operand to its additive inverse.
     ///
     /// - Parameters:
@@ -80,6 +84,7 @@ extension Negatable {
 extension Negatable where Self : FloatType {
     // MARK: - where Self : FloatType
 
+    // [_Inherit Documentation: SDGMathematics.Negatable.−_]
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -92,6 +97,7 @@ extension Negatable where Self : FloatType {
         return -operand
     }
 
+    // [_Inherit Documentation: SDGMathematics.Negatable.−=_]
     /// Sets the operand to its additive inverse.
     ///
     /// - Parameters:
@@ -106,6 +112,7 @@ extension Negatable where Self : FloatType {
 extension Negatable where Self : IntType {
     // MARK: - where Self : IntType
 
+    // [_Inherit Documentation: SDGMathematics.Negatable.−_]
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -118,6 +125,7 @@ extension Negatable where Self : IntType {
         return -operand
     }
 
+    // [_Inherit Documentation: SDGMathematics.Negatable.−=_]
     /// Sets the operand to its additive inverse.
     ///
     /// - Parameters:
@@ -132,6 +140,7 @@ extension Negatable where Self : IntType {
 extension Negatable where Self : Measurement {
     // MARK: - where Self : Measurement
 
+    // [_Inherit Documentation: SDGMathematics.Negatable.−_]
     /// Returns the additive inverse of the operand.
     ///
     /// - Parameters:
@@ -144,6 +153,7 @@ extension Negatable where Self : Measurement {
         return Self(rawValue: −operand.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Negatable.−=_]
     /// Sets the operand to its additive inverse.
     ///
     /// - Parameters:

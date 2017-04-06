@@ -21,6 +21,7 @@
 /// - `static func += (lhs: inout Self, rhs: Self)`
 public protocol Addable {
 
+    // [_Define Documentation: SDGMathematics.Addable.+_]
     /// Returns the sum, concatenation, or the result of a similar operation on two values implied by the “+” symbol. Exact behaviour depends on the type.
     ///
     /// - Parameters:
@@ -30,6 +31,7 @@ public protocol Addable {
     /// - MutatingVariant: +=
     static func + (lhs: Self, rhs: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.Addable.+=_]
     /// Adds or concatenates the right value to the left, or performs a similar operation implied by the “+” symbol. Exact behaviour depends on the type.
     ///
     /// - Parameters:
@@ -47,6 +49,7 @@ extension Addable {
         result += rhs
         return result
     }
+    // [_Inherit Documentation: SDGMathematics.Addable.+_]
     /// Returns the sum, concatenation, or the result of a similar operation on two values implied by the “+” symbol. Exact behaviour depends on the type.
     ///
     /// - Parameters:
@@ -57,11 +60,30 @@ extension Addable {
     public static func + (lhs: Self, rhs: Self) -> Self {
         return addAsAddable(lhs, rhs)
     }
+
+    // [_Define Documentation: SDGMathematics.Addable(Summation).+_]
+    /// Returns the sum of the two values.
+    ///
+    /// - Parameters:
+    ///     - lhs: A value.
+    ///     - rhs: Another value.
+    ///
+    /// - MutatingVariant: +=
+
+    // [_Define Documentation: SDGMathematics.Addable(Summation).+=_]
+    /// Adds the right value to the left.
+    ///
+    /// - Parameters:
+    ///     - lhs: The value to modify.
+    ///     - rhs: The value to add.
+    ///
+    /// - NonmutatingVariant: +
 }
 
 extension Addable where Self : Measurement {
     // MARK: - where Self : Measurement
 
+    // [_Inherit Documentation: SDGMathematics.Addable(Summation).+_]
     /// Returns the sum of the two values.
     ///
     /// - Parameters:
@@ -73,6 +95,7 @@ extension Addable where Self : Measurement {
         return Self(rawValue: lhs.rawValue + rhs.rawValue)
     }
 
+    // [_Inherit Documentation: SDGMathematics.Addable(Summation).+=_]
     /// Adds the right value to the left.
     ///
     /// - Parameters:
@@ -88,6 +111,7 @@ extension Addable where Self : Measurement {
 extension Addable where Self : PointType, Self.Vector == Self {
     // MARK: - where Self : PointType, Vector == Self
 
+    // [_Inherit Documentation: SDGMathematics.Addable(Summation).+_]
     /// Returns the sum of the two values.
     ///
     /// - Parameters:
@@ -104,6 +128,7 @@ extension Addable where Self : PointType, Self.Vector == Self {
 extension Addable where Self : PointType, Self : Strideable, Self.Vector == Self, Self.Stride == Self {
     // MARK: - where Self : PointType, Self : Strideable, Vector == Self, Stride == Self
 
+    // [_Inherit Documentation: SDGMathematics.Addable(Summation).+_]
     /// Returns the sum of the two values.
     ///
     /// - Parameters:
@@ -120,6 +145,7 @@ extension Addable where Self : PointType, Self : Strideable, Self.Vector == Self
 extension Addable where Self : Strideable, Self.Stride == Self {
     // MARK: - where Self : Strideable, Stride == Self
 
+    // [_Inherit Documentation: SDGMathematics.Addable(Summation).+_]
     /// Returns the sum of the two values.
     ///
     /// - Parameters:

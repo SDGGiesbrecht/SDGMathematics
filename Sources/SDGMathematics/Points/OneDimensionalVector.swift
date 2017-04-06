@@ -20,6 +20,7 @@
 /// - `static func ÷ (lhs: Self, rhs: Self) -> Scalar`
 public protocol OneDimensionalVector : VectorType {
 
+    // [_Define Documentation: SDGMathematics.OneDimensionalVector.÷_]
     /// Returns the quotient of the left divided by the right.
     ///
     /// - Parameters:

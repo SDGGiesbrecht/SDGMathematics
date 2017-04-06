@@ -14,14 +14,24 @@
 
 import SDGLogic
 
-/// Performs division.
+// [_Inherit Documentation: SDGMathematics.RationalArithmetic.÷_]
+/// Returns the (rational) quotient of the left divided by the right.
+///
+/// - Parameters:
+///     - lhs: The dividend.
+///     - rhs: The divisor.
 ///
 /// - MutatingVariant: ×
 ///
 /// - RecommendedOver: /
 infix operator ÷: MultiplicationPrecedence
 
+// [_Inherit Documentation: SDGMathematics.RationalArithmetic.÷=_]
 /// Modifies the left by dividing it by the right.
+///
+/// - Parameters:
+///     - lhs: The value to modify.
+///     - rhs: The divisor.
 ///
 /// - NonmutatingVariant: ÷
 ///
@@ -37,6 +47,7 @@ infix operator ÷=: AssignmentPrecedence
 /// - `static func ÷= (lhs: inout Self, rhs: Self)`
 public protocol RationalArithmetic : ExpressibleByFloatLiteral, IntegralArithmetic {
 
+    // [_Define Documentation: SDGMathematics.RationalArithmetic.÷_]
     /// Returns the (rational) quotient of the left divided by the right.
     ///
     /// - Parameters:
@@ -48,6 +59,7 @@ public protocol RationalArithmetic : ExpressibleByFloatLiteral, IntegralArithmet
     /// - RecommendedOver: /
     static func ÷ (lhs: Self, rhs: Self) -> Self
 
+    // [_Define Documentation: SDGMathematics.RationalArithmetic.÷=_]
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:
@@ -59,17 +71,15 @@ public protocol RationalArithmetic : ExpressibleByFloatLiteral, IntegralArithmet
     /// - RecommendedOver: /=
     static func ÷= (lhs: inout Self, rhs: Self)
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:)_]
     /// Creates a random value within a particular range.
-    ///
-    /// - Precondition: `range` is not empty.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
     init(randomInRange range: Range<Self>)
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
-    ///
-    /// - Precondition: `range` is not empty.
     ///
     /// - Parameters:
     ///     - range: The allowed range for the random value.
@@ -79,6 +89,7 @@ public protocol RationalArithmetic : ExpressibleByFloatLiteral, IntegralArithmet
 
 extension RationalArithmetic {
 
+    // [_Inherit Documentation: SDGMathematics.RationalArithmetic.÷_]
     /// Returns the (rational) quotient of the left divided by the right.
     ///
     /// - Parameters:
@@ -94,6 +105,7 @@ extension RationalArithmetic {
         return result
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:)_]
     /// Creates a random value within a particular range.
     ///
     /// - Parameters:
@@ -102,6 +114,7 @@ extension RationalArithmetic {
         self.init(randomInRange: range, fromRandomizer: PseudorandomNumberGenerator.defaultGenerator)
     }
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
     /// Creates a random value within a particular range using the specified randomizer.
     ///
     /// - Parameters:
@@ -124,6 +137,7 @@ extension RationalArithmetic {
 extension RationalArithmetic where Self : FloatType {
     // MARK: - where Self : FloatType
 
+    // [_Inherit Documentation: SDGMathematics.RationalArithmetic.÷_]
     /// Returns the (rational) quotient of the left divided by the right.
     ///
     /// - Parameters:
@@ -137,6 +151,7 @@ extension RationalArithmetic where Self : FloatType {
         return lhs / rhs
     }
 
+    // [_Inherit Documentation: SDGMathematics.RationalArithmetic.÷=_]
     /// Modifies the left by dividing it by the right.
     ///
     /// - Parameters:

@@ -12,41 +12,6 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-/// Creates a measurement in degrees.
-postfix operator °
-
-/// Creates a measurement in minutes, the absolute complement of a set, etc. Behaviour depends on the type.
-postfix operator ′
-
-/// Creates a measurement in seconds.
-postfix operator ′′
-
-// MARK: - Angles
-
-/// Returns an angle in degrees.
-///
-/// - Parameters:
-///     - value: The value in degrees.
-public postfix func ° <N : RealArithmetic>(value: N) -> Angle<N> {
-    return value.degrees
-}
-
-/// Returns an angle in minutes.
-///
-/// - Parameters:
-///     - value: The value in minutes.
-public postfix func ′ <N : RealArithmetic>(value: N) -> Angle<N> {
-    return value.minutes
-}
-
-/// Returns an angle in seconds.
-///
-/// - Parameters:
-///     - value: The value in seconds.
-public postfix func ′′ <N : RealArithmetic>(value: N) -> Angle<N> {
-    return value.seconds
-}
-
 /// An angle.
 public struct Angle<Value : RealArithmetic> : Measurement {
 
@@ -159,15 +124,22 @@ public struct Angle<Value : RealArithmetic> : Measurement {
 
     // MARK: - Measurement
 
+    // [_Inherit Documentation: SDGMathematics.Measurement.Scalar_]
     /// The numeric type used to express the value in any given unit.
     public typealias Scalar = Value
 
-    /// Creates a measurement from a raw value.
+    // [_Inherit Documentation: SDGMathematics.Measurement.init(rawValue:)_]
+    /// Creates a measurement from a raw value in undefined but consistent units.
+    ///
+    /// Used by `Measurement`’s default implementation of methods where various units make no difference (such as multiplication by a scalar).
     public init(rawValue: Scalar) {
         inRadians = rawValue
     }
 
-    /// A raw value.
+    // [_Inherit Documentation: SDGMathematics.Measurement.rawValue_]
+    /// A raw value in undefined but consistent units.
+    ///
+    /// Used by `Measurement`’s default implementation of methods where various units make no difference (such as multiplication by a scalar).
     public var rawValue: Scalar {
         get {
             return inRadians
@@ -176,4 +148,54 @@ public struct Angle<Value : RealArithmetic> : Measurement {
             inRadians = newValue
         }
     }
+}
+
+// MARK: - Angles
+
+// [_Inherit Documentation: SDGMathematics.Angle.°_]
+/// Returns an angle in degrees.
+///
+/// - Parameters:
+///     - value: The value in degrees.
+postfix operator °
+
+// [_Define Documentation: SDGMathematics.Angle.°_]
+/// Returns an angle in degrees.
+///
+/// - Parameters:
+///     - value: The value in degrees.
+public postfix func ° <N : RealArithmetic>(value: N) -> Angle<N> {
+    return value.degrees
+}
+
+// [_Inherit Documentation: SDGMathematics.Angle.′_]
+/// Returns an angle in minutes.
+///
+/// - Parameters:
+///     - value: The value in minutes.
+postfix operator ′
+
+// [_Define Documentation: SDGMathematics.Angle.′_]
+/// Returns an angle in minutes.
+///
+/// - Parameters:
+///     - value: The value in minutes.
+public postfix func ′ <N : RealArithmetic>(value: N) -> Angle<N> {
+    return value.minutes
+}
+
+// [_Inherit Documentation: SDGMathematics.Angle.′′_]
+/// Returns an angle in seconds.
+///
+/// - Parameters:
+///     - value: The value in seconds.
+postfix operator ′′
+
+// [_Define Documentation: SDGMathematics.Angle.′′_]
+/// Returns an angle in seconds.
+///
+/// - Parameters:
+///     - value: The value in seconds.
+public postfix func ′′ <N : RealArithmetic>(value: N) -> Angle<N> {
+    return value.seconds
 }
