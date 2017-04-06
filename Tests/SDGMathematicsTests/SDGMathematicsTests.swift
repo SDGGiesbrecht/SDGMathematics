@@ -374,8 +374,8 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert(N.e == N.e.e)
 
             XCTAssert((1.414_21 ..< 1.414_22).contains(√(_1 × 2)))
-            XCTAssert((2.999_99 ..< 3.000_01).contains(4 √ (_1 × 81)))
-            XCTAssert((2.999_99 ..< 3.000_01).contains(3 √ (_1 × 27)))
+            XCTAssert((2.999_99 ..< 3.000_01).contains((_1 × 81).root(ofDegree: 4)))
+            XCTAssert((2.999_99 ..< 3.000_01).contains((_1 × 27).root(ofDegree: 3)))
             variable = 1
             variable√=
             XCTAssert(variable == 1)

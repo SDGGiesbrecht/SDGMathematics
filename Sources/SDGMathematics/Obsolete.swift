@@ -14,6 +14,22 @@
 
 // Version 1: 2017‐04‐04
 
+infix operator √: ExponentPrecedence
+infix operator √=: AssignmentPrecedence
+
+extension RealArithmetic {
+
+    @available(*, unavailable, message: "Use “rhs.root(ofDegree: lhs)” instead.")
+    static func √ (lhs: Self, rhs: Self) -> Self {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use “rhs.formRoot(ofDegree: lhs)” instead.")
+    static func √= (lhs: inout Self, rhs: Self) {
+        fatalError()
+    }
+}
+
 @available(*, unavailable, message: "Use “AdditiveArithmetic.additiveIdentity” instead.")
 public func _0<N : AdditiveArithmetic>() -> N {
     fatalError()
