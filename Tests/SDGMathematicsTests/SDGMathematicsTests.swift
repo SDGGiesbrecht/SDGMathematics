@@ -124,12 +124,12 @@ class SDGMathematicsTests : XCTestCase {
         var value = 3
 
         for entry in list {
-            value ≤= entry
+            value.decrease(to: entry)
         }
         XCTAssert(value == 1)
 
         for entry in list {
-            value ≥= entry
+            value.increase(to: entry)
         }
         XCTAssert(value == 5)
     }

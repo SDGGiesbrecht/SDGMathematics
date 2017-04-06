@@ -70,109 +70,42 @@ extension Comparable {
     public static func ≥ (lhs: Self, rhs: Self) -> Bool {
         return lhs >= rhs
     }
-}
-
-// [_Inherit Documentation: SDGMathematics.Comparable.≤=_]
-/// Reduces the value of `lhs` so that it satisfies `lhs ≤ rhs`.
-///
-/// This is accomplished by changing the value of `lhs` to match the value of `rhs` if and only if `lhs` does not already satisfy `lhs ≤ rhs`.
-///
-/// In other words, `lhs` is changed to the minimum of `lhs` and `rhs`.
-///
-/// For example:
-///
-/// ```swift
-/// let numberOfRolls = 5
-/// var highestRoll = 1
-/// for _ in 1 ... numberOfRolls {
-///     highestRoll ≥= rollDie()
-/// }
-/// print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
-/// // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
-///
-/// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
-/// ```
-///
-/// - Parameters:
-///     - lhs: The value to decrease.
-///     - rhs: The desired maximum for the value.
-///
-/// - NonmutatingVariant: min
-infix operator ≤=: AssignmentPrecedence
-
-extension Comparable {
 
     // [_Define Documentation: SDGMathematics.Comparable.≤=_]
-    // [_Example 1: ≥=_]
-    /// Reduces the value of `lhs` so that it satisfies `lhs ≤ rhs`.
+    // [_Example 1: decrease(to:)_]
+    /// Decreases the value of `self` so that falls at or below `maximum`.
     ///
-    /// This is accomplished by changing the value of `lhs` to match the value of `rhs` if and only if `lhs` does not already satisfy `lhs ≤ rhs`.
-    ///
-    /// In other words, `lhs` is changed to the minimum of `lhs` and `rhs`.
+    /// This is accomplished by changing `self` to match the value of `maximum` if and only if `self` does not already satisfy `self ≤ maximum`.
     ///
     /// For example:
     ///
     /// ```swift
     /// let numberOfRolls = 5
-    /// var highestRoll = 1
+    /// var lowestRoll = 6
     /// for _ in 1 ... numberOfRolls {
-    ///     highestRoll ≥= rollDie()
+    ///     lowestRoll.decrease(to: rollDie())
     /// }
-    /// print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
-    /// // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
+    /// print("After rolling the die \(numberOfRolls) time(s), the lowest roll was \(lowestRoll).")
+    /// // Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”
     ///
-    /// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
+    /// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is less than lowestRoll’s existing value, decrease(to:) changes lowestRoll to reflect the new low.
     /// ```
     ///
     /// - Parameters:
-    ///     - lhs: The value to decrease.
-    ///     - rhs: The desired maximum for the value.
+    ///     - maximum: The desired maximum for the value.
     ///
     /// - NonmutatingVariant: min
-    public static func ≤= (lhs: inout Self, rhs: Self) {
-        if lhs > rhs {
-            lhs = rhs
+    public mutating func decrease(to maximum: Self) {
+        if self > maximum {
+            self = maximum
         }
     }
-}
-
-// [_Inherit Documentation: SDGMathematics.Comparable.≥=_]
-/// Increases the value of `lhs` so that it satisfies `lhs ≥ rhs`.
-///
-/// This is accomplished by changing the value of `lhs` to match the value of `rhs` if and only if `lhs` does not already satisfy `lhs ≥ rhs`.
-///
-/// In other words, `lhs` is changed to the maximum of `lhs` and `rhs`.
-///
-/// For example:
-///
-/// ```swift
-/// let numberOfRolls = 5
-/// var highestRoll = 1
-/// for _ in 1 ... numberOfRolls {
-///     highestRoll ≥= rollDie()
-/// }
-/// print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
-/// // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
-///
-/// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
-/// ```
-///
-/// - Parameters:
-///     - lhs: The value to increase.
-///     - rhs: The desired minimum for the value.
-///
-/// - NonmutatingVariant: max
-infix operator ≥=: AssignmentPrecedence
-
-extension Comparable {
 
     // [_Define Documentation: SDGMathematics.Comparable.≥=_]
-    // [_Example 1: ≥=_]
-    /// Increases the value of `lhs` so that it satisfies `lhs ≥ rhs`.
+    // [_Example 1: increase(to:)_]
+    /// Increases the value of `self` so that falls at or above `minimum`.
     ///
-    /// This is accomplished by changing the value of `lhs` to match the value of `rhs` if and only if `lhs` does not already satisfy `lhs ≥ rhs`.
-    ///
-    /// In other words, `lhs` is changed to the maximum of `lhs` and `rhs`.
+    /// This is accomplished by changing `self` to match the value of `minimum` if and only if `self` does not already satisfy `self ≥ minimum`.
     ///
     /// For example:
     ///
@@ -180,22 +113,21 @@ extension Comparable {
     /// let numberOfRolls = 5
     /// var highestRoll = 1
     /// for _ in 1 ... numberOfRolls {
-    ///     highestRoll ≥= rollDie()
+    ///     highestRoll.increase(to: rollDie())
     /// }
     /// print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
     /// // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
     ///
-    /// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
+    /// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, increase(to:) changes highestRoll to reflect the new high.
     /// ```
     ///
     /// - Parameters:
-    ///     - lhs: The value to increase.
-    ///     - rhs: The desired minimum for the value.
+    ///     - minimum: The desired minimum for the value.
     ///
     /// - NonmutatingVariant: max
-    public static func ≥= (lhs: inout Self, rhs: Self) {
-        if lhs < rhs {
-            lhs = rhs
+    public mutating func increase(to minimum: Self) {
+        if self < minimum {
+            self = minimum
         }
     }
 }

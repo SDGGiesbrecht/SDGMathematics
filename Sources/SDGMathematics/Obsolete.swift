@@ -14,6 +14,30 @@
 
 // Version 1: 2017‐04‐04
 
+infix operator ≤=: AssignmentPrecedence
+
+extension Comparable {
+
+    @available(*, unavailable, message: "Use “lhs.decrease(to: rhs)” instead.")
+    public static func ≤= (lhs: inout Self, rhs: Self) {
+        if lhs > rhs {
+            lhs = rhs
+        }
+    }
+}
+
+infix operator ≥=: AssignmentPrecedence
+
+extension Comparable {
+
+    @available(*, unavailable, message: "Use “lhs.increase(to: rhs)” instead.")
+    public static func ≥= (lhs: inout Self, rhs: Self) {
+        if lhs < rhs {
+            lhs = rhs
+        }
+    }
+}
+
 extension WholeArithmetic {
 
     @available(*, unavailable, renamed: "isNatural")
