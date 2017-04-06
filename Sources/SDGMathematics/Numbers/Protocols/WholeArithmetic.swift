@@ -51,7 +51,12 @@ precedencegroup ExponentPrecedence {
 // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑_]
 /// Returns the result of the left to the power of the right.
 ///
-/// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+/// - Precondition:
+///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+///   - If `Self` conforms to `RealNumberType`, either
+///     - `lhs` must be positive, or
+///     - `rhs` must be an integer.
 ///
 /// - Parameters:
 ///     - lhs: The base.
@@ -65,7 +70,12 @@ infix operator ↑: ExponentPrecedence
 // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
 /// Modifies the left by exponentiation with the right.
 ///
-/// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+/// - Precondition:
+///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+///   - If `Self` conforms to `RealNumberType`, either
+///     - `lhs` must be positive, or
+///     - `rhs` must be an integer.
 ///
 /// - Parameters:
 ///     - lhs: The value to modify.
@@ -201,7 +211,12 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     // [_Define Documentation: SDGMathematics.WholeArithmetic.↑_]
     /// Returns the result of the left to the power of the right.
     ///
-    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+    /// - Precondition:
+    ///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+    ///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+    ///   - If `Self` conforms to `RealNumberType`, either
+    ///     - `lhs` must be positive, or
+    ///     - `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The base.
@@ -215,7 +230,12 @@ public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveAr
     // [_Define Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
-    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+    /// - Precondition:
+    ///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+    ///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+    ///   - If `Self` conforms to `RealNumberType`, either
+    ///     - `lhs` must be positive, or
+    ///     - `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
@@ -458,7 +478,12 @@ extension WholeArithmetic {
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑_]
     /// Returns the result of the left to the power of the right.
     ///
-    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+    /// - Precondition:
+    ///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+    ///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+    ///   - If `Self` conforms to `RealNumberType`, either
+    ///     - `lhs` must be positive, or
+    ///     - `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The base.
@@ -675,7 +700,12 @@ extension WholeArithmetic where Self : FloatType {
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
-    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+    /// - Precondition:
+    ///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+    ///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+    ///   - If `Self` conforms to `RealNumberType`, either
+    ///     - `lhs` must be positive, or
+    ///     - `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
@@ -753,7 +783,12 @@ extension WholeArithmetic where Self : IntegerType {
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
-    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+    /// - Precondition:
+    ///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+    ///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+    ///   - If `Self` conforms to `RealNumberType`, either
+    ///     - `lhs` must be positive, or
+    ///     - `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
@@ -893,7 +928,12 @@ extension WholeArithmetic where Self : RationalNumberType {
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
-    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+    /// - Precondition:
+    ///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+    ///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+    ///   - If `Self` conforms to `RealNumberType`, either
+    ///     - `lhs` must be positive, or
+    ///     - `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
@@ -1018,7 +1058,12 @@ extension WholeArithmetic where Self : WholeNumberType {
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.↑=_]
     /// Modifies the left by exponentiation with the right.
     ///
-    /// - Precondition: (a) If `Self` conforms to `IntegerType`, `rhs` must be non‐negative. (b) If `Self` conforms to `RationalNumberType`, `rhs` must be an integer. (c) If `Self` conforms to `RealNumberType`, `lhs` must be positive or else `rhs` must be an integer.
+    /// - Precondition:
+    ///   - If `Self` conforms to `IntegerType`, `rhs` must be non‐negative.
+    ///   - If `Self` conforms to `RationalNumberType`, `rhs` must be an integer.
+    ///   - If `Self` conforms to `RealNumberType`, either
+    ///     - `lhs` must be positive, or
+    ///     - `rhs` must be an integer.
     ///
     /// - Parameters:
     ///     - lhs: The value to modify.
