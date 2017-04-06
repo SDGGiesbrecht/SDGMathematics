@@ -45,7 +45,7 @@ class SDGMathematicsTests : XCTestCase {
 
             variable = _1.rad
             variable −= _1.rad
-            XCTAssert(variable == Angle<N>._0)
+            XCTAssert(variable == Angle<N>.additiveIdentity)
 
             variable = _1.rad
             variable−=
@@ -71,14 +71,14 @@ class SDGMathematicsTests : XCTestCase {
 
             XCTAssert(_1.rad.isPositive)
             XCTAssert((−_1).rad.isNegative)
-            XCTAssert(Angle<N>._0.isNonPositive)
-            XCTAssert(Angle<N>._0.isNonNegative)
+            XCTAssert(Angle<N>.additiveIdentity.isNonPositive)
+            XCTAssert(Angle<N>.additiveIdentity.isNonNegative)
 
             for _ in 1 ..< 100 {
-                let random = Angle(randomInRange: N._0.rad ..< _1.rad)
-                XCTAssert((N._0.rad ..< _1.rad).contains(random))
-                let random2 = Angle(randomInRange: N._0.rad ... _1.rad)
-                XCTAssert((N._0.rad ... _1.rad).contains(random2))
+                let random = Angle(randomInRange: N.additiveIdentity.rad ..< _1.rad)
+                XCTAssert((N.additiveIdentity.rad ..< _1.rad).contains(random))
+                let random2 = Angle(randomInRange: N.additiveIdentity.rad ... _1.rad)
+                XCTAssert((N.additiveIdentity.rad ... _1.rad).contains(random2))
             }
         }
         runTests(Double.self)
@@ -212,7 +212,7 @@ class SDGMathematicsTests : XCTestCase {
             let _1: N = 1
             XCTAssert(_1.advanced(by: 1) == _1 + 1)
 
-            XCTAssert(N._0.distance(to: _1) == _1)
+            XCTAssert(N.additiveIdentity.distance(to: _1) == _1)
         }
         runStrideableTests(Int.self)
         runStrideableTests(Double.self)
@@ -515,8 +515,7 @@ class SDGMathematicsTests : XCTestCase {
 
             var variable = zero
 
-            XCTAssert(zero == _0())
-            XCTAssert(zero == one._0)
+            XCTAssert(zero == N.additiveIdentity)
 
             XCTAssert(one + one == two)
 

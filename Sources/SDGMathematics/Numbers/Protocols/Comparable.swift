@@ -71,36 +71,6 @@ extension Comparable {
         return lhs >= rhs
     }
 
-    // [_Define Documentation: SDGMathematics.Comparable.≤=_]
-    // [_Example 1: decrease(to:)_]
-    /// Decreases the value of `self` so that falls at or below `maximum`.
-    ///
-    /// This is accomplished by changing `self` to match the value of `maximum` if and only if `self` does not already satisfy `self ≤ maximum`.
-    ///
-    /// For example:
-    ///
-    /// ```swift
-    /// let numberOfRolls = 5
-    /// var lowestRoll = 6
-    /// for _ in 1 ... numberOfRolls {
-    ///     lowestRoll.decrease(to: rollDie())
-    /// }
-    /// print("After rolling the die \(numberOfRolls) time(s), the lowest roll was \(lowestRoll).")
-    /// // Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”
-    ///
-    /// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is less than lowestRoll’s existing value, decrease(to:) changes lowestRoll to reflect the new low.
-    /// ```
-    ///
-    /// - Parameters:
-    ///     - maximum: The desired maximum for the value.
-    ///
-    /// - NonmutatingVariant: min
-    public mutating func decrease(to maximum: Self) {
-        if self > maximum {
-            self = maximum
-        }
-    }
-
     // [_Define Documentation: SDGMathematics.Comparable.≥=_]
     // [_Example 1: increase(to:)_]
     /// Increases the value of `self` so that falls at or above `minimum`.
@@ -128,6 +98,36 @@ extension Comparable {
     public mutating func increase(to minimum: Self) {
         if self < minimum {
             self = minimum
+        }
+    }
+
+    // [_Define Documentation: SDGMathematics.Comparable.≤=_]
+    // [_Example 1: decrease(to:)_]
+    /// Decreases the value of `self` so that falls at or below `maximum`.
+    ///
+    /// This is accomplished by changing `self` to match the value of `maximum` if and only if `self` does not already satisfy `self ≤ maximum`.
+    ///
+    /// For example:
+    ///
+    /// ```swift
+    /// let numberOfRolls = 5
+    /// var lowestRoll = 6
+    /// for _ in 1 ... numberOfRolls {
+    ///     lowestRoll.decrease(to: rollDie())
+    /// }
+    /// print("After rolling the die \(numberOfRolls) time(s), the lowest roll was \(lowestRoll).")
+    /// // Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”
+    ///
+    /// // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is less than lowestRoll’s existing value, decrease(to:) changes lowestRoll to reflect the new low.
+    /// ```
+    ///
+    /// - Parameters:
+    ///     - maximum: The desired maximum for the value.
+    ///
+    /// - NonmutatingVariant: min
+    public mutating func decrease(to maximum: Self) {
+        if self > maximum {
+            self = maximum
         }
     }
 }

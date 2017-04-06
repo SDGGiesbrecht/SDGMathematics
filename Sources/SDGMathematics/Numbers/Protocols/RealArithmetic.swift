@@ -746,7 +746,7 @@ extension RealArithmetic {
     ///     - cotangent: The cotangent.
     public static func arccot(_ cotangent: Self) -> Angle<Self> {
         let reference = arctan(1 ÷ cotangent)
-        if reference < Angle._0 {
+        if reference < Angle.additiveIdentity {
             return reference + π.rad
         } else {
             return reference
@@ -929,7 +929,7 @@ extension RealArithmetic where Self : FloatType {
     ///     - angle: The angle.
     public static func sin(_ angle: Angle<Self>) -> Self {
 
-        if ¬(_0.rad ..< τ.rad).contains(angle) {
+        if ¬(additiveIdentity.rad ..< τ.rad).contains(angle) {
             // Use periodic reference angle.
             return sin(angle.mod(τ.rad))
         } else if angle > π.rad {
@@ -989,7 +989,7 @@ extension RealArithmetic where Self : FloatType {
     ///     - angle: The angle.
     public static func cos(_ angle: Angle<Self>) -> Self {
 
-        if ¬(_0.rad ..< τ.rad).contains(angle) {
+        if ¬(additiveIdentity.rad ..< τ.rad).contains(angle) {
             // Use periodic reference angle.
             return cos(angle.mod(τ.rad))
         } else if angle > π.rad {

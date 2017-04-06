@@ -14,15 +14,31 @@
 
 // Version 1: 2017‐04‐04
 
+@available(*, unavailable, message: "Use “AdditiveArithmetic.additiveIdentity” instead.")
+public func _0<N : AdditiveArithmetic>() -> N {
+    fatalError()
+}
+
+extension AdditiveArithmetic {
+
+    @available(*, unavailable, renamed: "additiveIdentity")
+    public static var _0: Self {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use “Self.additiveIdentity” instead.")
+    public var _0: Self {
+        fatalError()
+    }
+}
+
 infix operator ≤=: AssignmentPrecedence
 
 extension Comparable {
 
     @available(*, unavailable, message: "Use “lhs.decrease(to: rhs)” instead.")
     public static func ≤= (lhs: inout Self, rhs: Self) {
-        if lhs > rhs {
-            lhs = rhs
-        }
+        fatalError()
     }
 }
 
@@ -32,9 +48,7 @@ extension Comparable {
 
     @available(*, unavailable, message: "Use “lhs.increase(to: rhs)” instead.")
     public static func ≥= (lhs: inout Self, rhs: Self) {
-        if lhs < rhs {
-            lhs = rhs
-        }
+        fatalError()
     }
 }
 
