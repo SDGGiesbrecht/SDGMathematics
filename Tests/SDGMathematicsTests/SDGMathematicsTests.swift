@@ -12,12 +12,8 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
+import Foundation
 import XCTest
-
-#if os(Linux)
-#else
-    import Foundation
-#endif
 
 import SDGLogic
 
@@ -99,6 +95,16 @@ class SDGMathematicsTests : XCTestCase {
             values.insert(Bool.random())
         }
         XCTAssert(values.count == 2)
+    }
+
+    func testAddable() {
+        func runTests<T : Addable>(addend: T, augend: T, sum: T) where T : Equatable {
+            XCTAssert(addend + augend == sum)
+        }
+
+        runTests(addend: 1, augend: 2, sum: 3)
+        runTests(addend: AddableExample(1), augend: AddableExample(2), sum: AddableExample(3))
+        runTests(addend: AddableExampleWhereStrideableAndStrideIsSelf(1), augend: AddableExampleWhereStrideableAndStrideIsSelf(2), sum: AddableExampleWhereStrideableAndStrideIsSelf(3))
     }
 
     func testComparable() {
@@ -267,6 +273,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(start: Int64(0), distance: 3, end: 3)
         runTests(start: UInt64(0), distance: 3, end: 3)
         runTests(start: PointTypeExample(0), distance: 3, end: PointTypeExample(3))
+        runTests(start: PointTypeExampleWhereVectorIsSelf(0), distance: PointTypeExampleWhereVectorIsSelf(3), end: PointTypeExampleWhereVectorIsSelf(3))
     }
 
     func testRandomizer() {
@@ -405,6 +412,26 @@ class SDGMathematicsTests : XCTestCase {
     }
 
     func testSubtractable() {
+
+        func runTests<T : Subtractable>(minuend: T, subtrahend: T, difference: T) where T : Equatable {
+            XCTAssert(minuend − subtrahend == difference)
+        }
+        runTests(minuend: UInt(3), subtrahend: 2, difference: 1)
+        runTests(minuend: UInt64(3), subtrahend: 2, difference: 1)
+        runTests(minuend: UInt32(3), subtrahend: 2, difference: 1)
+        runTests(minuend: UInt16(3), subtrahend: 2, difference: 1)
+        runTests(minuend: UInt8(3), subtrahend: 2, difference: 1)
+        runTests(minuend: Int(3), subtrahend: 2, difference: 1)
+        runTests(minuend: Int64(3), subtrahend: 2, difference: 1)
+        runTests(minuend: Int32(3), subtrahend: 2, difference: 1)
+        runTests(minuend: Int16(3), subtrahend: 2, difference: 1)
+        runTests(minuend: Int8(3), subtrahend: 2, difference: 1)
+        runTests(minuend: Double(3), subtrahend: 2, difference: 1)
+        runTests(minuend: Float(3), subtrahend: 2, difference: 1)
+        runTests(minuend: SubtractableExample(3), subtrahend: SubtractableExample(2), difference: SubtractableExample(1))
+        runTests(minuend: SubtractableExampleWherePointTypeAndVectorIsSelf(3), subtrahend: SubtractableExampleWherePointTypeAndVectorIsSelf(2), difference: SubtractableExampleWherePointTypeAndVectorIsSelf(1))
+        runTests(minuend: RationalNumberTypeExample(3), subtrahend: RationalNumberTypeExample(2), difference: RationalNumberTypeExample(1))
+        runTests(minuend: RealArithmeticExample(3), subtrahend: RealArithmeticExample(2), difference: RealArithmeticExample(1))
 
         // Previous Bugs
 

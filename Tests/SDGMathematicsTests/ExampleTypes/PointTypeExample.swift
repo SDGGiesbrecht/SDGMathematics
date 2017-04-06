@@ -40,3 +40,34 @@ struct PointTypeExample : PointType {
         return lhs.value − rhs.value
     }
 }
+
+struct PointTypeExampleWhereVectorIsSelf : Negatable, PointType {
+
+    var value: Int
+
+    init(_ value: Int) {
+        self.value = value
+    }
+
+    // AdditiveArithmetic
+
+    static let additiveIdentity = PointTypeExampleWhereVectorIsSelf(0)
+
+    // Equatable
+
+    static func == (lhs: PointTypeExampleWhereVectorIsSelf, rhs: PointTypeExampleWhereVectorIsSelf) -> Bool {
+        return lhs.value == rhs.value
+    }
+
+    // PointType
+
+    typealias Vector = PointTypeExampleWhereVectorIsSelf
+
+    static func += (lhs: inout PointTypeExampleWhereVectorIsSelf, rhs: Vector) {
+        lhs.value += rhs.value
+    }
+
+    static func − (lhs: PointTypeExampleWhereVectorIsSelf, rhs: PointTypeExampleWhereVectorIsSelf) -> Vector {
+        return PointTypeExampleWhereVectorIsSelf(lhs.value − rhs.value)
+    }
+}

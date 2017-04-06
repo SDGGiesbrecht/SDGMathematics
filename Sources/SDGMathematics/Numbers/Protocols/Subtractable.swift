@@ -229,7 +229,7 @@ extension Subtractable where Self : PointType, Self.Vector == Self {
     /// - MutatingVariant: −=
     ///
     /// - RecommendedOver: -
-    public static func − (lhs: Self, rhs: Self) -> Self {
+    public static func − (lhs: Self, rhs: Self) -> Self { // [_Exempt from Code Coverage_] Apparently unreachable.
         // Disambiguate Subtractable.− vs PointType.−
         return subtractAsSubtractable(lhs, rhs)
     }
