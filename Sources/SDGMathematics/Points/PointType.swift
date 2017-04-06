@@ -56,7 +56,7 @@ public protocol PointType : Equatable {
     ///
     /// - MutatingVariant: −=
     //static func − (lhs: Self, rhs: Vector) -> Self
-    // [_Workaround: The above line is temporarily commented because it falsely triggers “ambiguous use of operator” errors. See testSubtractable. (Swift 3.0.2)_]
+    // [_Workaround: The above line is temporarily commented because it falsely triggers “ambiguous use of operator” errors. See testSubtractable. (Swift 3.1.0)_]
 
     // [_Define Documentation: SDGMathematics.PointType.−_]
     /// Returns the vector that leads from the point on the left to the point on the right.
