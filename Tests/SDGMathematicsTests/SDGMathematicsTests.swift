@@ -39,15 +39,16 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert((_1 × τ()).rad == _1.rotations)
             XCTAssert((_1 × τ()).rad.inRotations == _1)
 
-            XCTAssert(((_1 × 3.141_59).rad ..< (_1 × 3.141_60).rad).contains((_1 × 180)°))
-            XCTAssert(((_1 × 5.999_99)°.inDegrees ..< (_1 × 6.000_01)°.inDegrees).contains(_1 × 6))
+            let πValue: N = πLiteral()
+            XCTAssert((_1 × 180)° ≈ πValue.rad)
+            XCTAssert((_1 × 6)°.inDegrees ≈ _1 × 6)
             XCTAssert((_1 × 60)′ == _1°)
-            XCTAssert(((_1 × 5.999_99)′.inMinutes ..< (_1 × 6.000_01)′.inMinutes).contains(_1 × 6))
+            XCTAssert((_1 × 6)′.inMinutes ≈ _1 × 6)
             XCTAssert((_1 × 60)′′ == _1′)
-            XCTAssert(((_1 × 5.999_99)′′.inSeconds ..< (_1 × 6.000_01)′′.inSeconds).contains(_1 × 6))
+            XCTAssert((_1 × 6)′′.inSeconds ≈ _1 × 6)
 
-            XCTAssert(((_1 × 3.141_59).rad ..< (_1 × 3.141_60).rad).contains((_1 × 200).gradians))
-            XCTAssert(((_1 × 5.999_99).gradians.inGradians ..< (_1 × 6.000_01).gradians.inGradians).contains(_1 × 6))
+            XCTAssert((_1 × 200).gradians ≈ πValue.rad)
+            XCTAssert((_1 × 6).gradians.inGradians ≈ _1 × 6)
 
             variable = _1.rad
             variable += _1.rad
@@ -68,14 +69,14 @@ class SDGMathematicsTests : XCTestCase {
 
             XCTAssert(_1.rad × 2 == (_1 × 2).rad)
             XCTAssert(4 × _1.rad == (_1 × 4).rad)
-            XCTAssert(((_1 × 1.999_99) ..< (_1 × 2.000_01)).contains(_1.rad ÷ (_1 ÷ 2).rad))
+            XCTAssert(_1.rad ÷ (_1 ÷ 2).rad ≈ _1 × 2)
             XCTAssert((_1 × 3).rad.dividedAccordingToEuclid(by: (_1 × 2).rad) == 1)
             XCTAssert((_1 × 2).rad.isDivisible(by: _1.rad))
             let _1_5 = gcd((_1 × 1.5).rad, (_1 × 3).rad)
             let _1_5b = gcd((_1 × 3).rad, (_1 × 1.5).rad)
-            XCTAssert(((_1 × 1.499_99).rad ..< (_1 × 1.500_01).rad).contains(_1_5))
+            XCTAssert(_1_5 ≈ (_1 × 1.5).rad)
             XCTAssert(_1_5 == _1_5b)
-            XCTAssert(((_1 × 1.499_99).rad ..< (_1 × 1.500_01).rad).contains(lcm((_1 × 1.5).rad, (_1 × 0.5).rad)))
+            XCTAssert(lcm((_1 × 1.5).rad, (_1 × 0.5).rad) ≈ (_1 × 1.5).rad)
 
             XCTAssert(_1.rad.rounded(.down, toMultipleOf: _1.rad × 2) == _1.rad × 0)
 
@@ -361,47 +362,50 @@ class SDGMathematicsTests : XCTestCase {
             let _1: N = 1
             var variable: N = 0
 
-            XCTAssert((3.141_59 ..< 3.141_60).contains(N.π))
+            let πValue: N = πLiteral()
+            XCTAssert(N.π ≈ πValue)
             XCTAssert(N.π == π())
             XCTAssert(N.π == N.π.π)
 
-            XCTAssert((6.283_18 ..< 6.283_19).contains(N.τ))
+            let τValue: N = τLiteral()
+            XCTAssert(N.τ ≈ τValue)
             XCTAssert(N.τ == τ())
             XCTAssert(N.τ == N.τ.τ)
 
-            XCTAssert((2.718_28 ..< 2.718_29).contains(N.e))
+            let eValue: N = eLiteral()
+            XCTAssert(N.e ≈ eValue)
             XCTAssert(N.e == e())
             XCTAssert(N.e == N.e.e)
 
-            XCTAssert((1.414_21 ..< 1.414_22).contains(√(_1 × 2)))
-            XCTAssert((2.999_99 ..< 3.000_01).contains((_1 × 81).root(ofDegree: 4)))
-            XCTAssert((2.999_99 ..< 3.000_01).contains((_1 × 27).root(ofDegree: 3)))
+            XCTAssert(√(_1 × 2) ≈ _1 × 1.414_21)
+            XCTAssert((_1 × 81).root(ofDegree: 4) ≈ 3)
+            XCTAssert((_1 × 27).root(ofDegree: 3) ≈ 3)
             variable = 1
             variable√=
             XCTAssert(variable == 1)
 
-            XCTAssert((0.499_99 ..< 0.500_01).contains(log(toBase: 9, of: 3 × _1)))
-            XCTAssert((0.999_99 ..< 1.000_01).contains(log(_1 × 10)))
-            XCTAssert((0.693_14 ..< 0.693_15).contains(ln(_1 × 2)))
-            XCTAssert((4.382_02 ..< 4.382_03).contains(ln(_1 × 80)))
+            XCTAssert(log(toBase: 9, of: 3 × _1) ≈ _1 × 0.5)
+            XCTAssert(log(_1 × 10) ≈ 1)
+            XCTAssert(ln(_1 × 2) ≈ 0.693_14 as N)
+            XCTAssert(ln(_1 × 80) ≈ 4.382_02 as N)
 
-            XCTAssert((0.479_42 ..< 0.479_43).contains(sin(_1.rad ÷ 2)))
-            XCTAssert((0.017_45 ..< 0.017_46).contains(sin(_1°)))
-            XCTAssert((0.944_95 ..< 0.944_96).contains(cos(_1.rad ÷ 3)))
-            XCTAssert((−1.000_01 ..< −0.999_99).contains(cos(_1.rad × −π())))
-            XCTAssert((−3.380_52 ..< −3.380_51).contains(tan(_1.rad × 5)))
-            XCTAssert((1.188_39 ..< 1.188_40).contains(csc(_1.rad)))
-            XCTAssert((−2.403_00 ..< −2.402_99).contains(sec(_1.rad × 2)))
-            XCTAssert((−7.015_26 ..< −7.015_25).contains(cot(_1.rad × 3)))
+            XCTAssert(sin(_1.rad ÷ 2) ≈ 0.479_42 as N)
+            XCTAssert(sin(_1°) ≈ 0.017_45 as N)
+            XCTAssert(cos(_1.rad ÷ 3) ≈ 0.944_95 as N)
+            XCTAssert(cos(_1.rad × −π()) ≈ −1)
+            XCTAssert(tan(_1.rad × 5) ≈ −3.380_52 as N)
+            XCTAssert(csc(_1.rad) ≈ 1.188_39 as N)
+            XCTAssert(sec(_1.rad × 2) ≈ −2.403_00 as N)
+            XCTAssert(cot(_1.rad × 3) ≈ −7.015_26 as N)
 
-            XCTAssert(((0.167_44 as N).rad ..< (0.167_45 as N).rad).contains(arcsin(_1 ÷ 6)))
-            XCTAssert(((1.427_44 as N).rad ..< (1.427_45 as N).rad).contains(arccos(_1 ÷ 7)))
-            XCTAssert(((0.463_64 as N).rad ..< (0.463_65 as N).rad).contains(arctan(_1 ÷ 2)))
-            XCTAssert(((1.107_14 as N).rad ..< (1.107_15 as N).rad).contains(arctan(_1 × 2)))
-            XCTAssert(((0.339_83 as N).rad ..< (0.339_84 as N).rad).contains(arccsc(_1 × 3)))
-            XCTAssert(((1.318_11 as N).rad ..< (1.318_12 as N).rad).contains(arcsec(_1 × 4)))
-            XCTAssert(((0.197_39 as N).rad ..< (0.197_40 as N).rad).contains(arccot(_1 × 5)))
-            XCTAssert(((2.677_94 as N).rad ..< (2.677_95 as N).rad).contains(arccot(_1 × −2)))
+            XCTAssert(arcsin(_1 ÷ 6) ≈ (0.167_44 as N).rad)
+            XCTAssert(arccos(_1 ÷ 7) ≈ (1.427_44 as N).rad)
+            XCTAssert(arctan(_1 ÷ 2) ≈ (0.463_64 as N).rad)
+            XCTAssert(arctan(_1 × 2) ≈ (1.107_14 as N).rad)
+            XCTAssert(arccsc(_1 × 3) ≈ (0.339_83 as N).rad)
+            XCTAssert(arcsec(_1 × 4) ≈ (1.318_11 as N).rad)
+            XCTAssert(arccot(_1 × 5) ≈ (0.197_39 as N).rad)
+            XCTAssert(arccot(_1 × −2) ≈ (2.677_94 as N).rad)
         }
         runTests(Double.self)
         #if os(macOS) || os(Linux)

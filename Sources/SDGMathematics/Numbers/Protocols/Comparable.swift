@@ -132,6 +132,47 @@ extension Comparable {
     }
 }
 
+// [_Inherit Documentation: SDGMathematics.Comparable.≈_]
+/// Returns `true` if `lhs` is within the range described by `rhs`.
+///
+/// ```swift
+/// if 1 ÷ 3 ≈ 0.33333 ± 0.00001 {
+///     print("They are the same except for minor binary rounding errors.")
+/// }
+/// ```
+///
+/// - Parameters:
+///     - lhs: The value to test.
+///     - rhs: The bounds of the range.
+infix operator ≈: ComparisonPrecedence
+
+extension Comparable {
+
+    // [_Define Documentation: SDGMathematics.Comparable.≈_]
+    // [_Example 1: ≈_]
+    /// Returns `true` if `lhs` is within the range described by `rhs`.
+    ///
+    /// ```swift
+    /// if 1 ÷ 3 ≈ 0.33333 ± 0.00001 {
+    ///     print("They are the same except for minor binary rounding errors.")
+    /// }
+    /// ```
+    ///
+    /// - Parameters:
+    ///     - lhs: The value to test.
+    ///     - rhs: The bounds of the range.
+    public static func ≈ (lhs: Self, rhs: (Self, Self)) -> Bool {
+        let range: ClosedRange<Self>
+        if rhs.0 ≥ rhs.1 {
+            range = rhs.1 ... rhs.0
+        } else {
+            range = rhs.0 ... rhs.1
+        }
+
+        return range.contains(lhs)
+    }
+}
+
 extension Comparable where Self : Measurement {
     // MARK: - where Self : Measurement
 

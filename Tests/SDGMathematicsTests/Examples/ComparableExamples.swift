@@ -51,3 +51,12 @@ private func demonstrateDecrease() {
     // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is less than lowestRoll’s existing value, decrease(to:) changes lowestRoll to reflect the new low.
     // [_End_]
 }
+
+private func demonstrateApproximates() {
+
+    // [_Define Example: ≈_]
+    if 1 ÷ 3 ≈ 0.33333 ± 0.00001 {
+        print("It is accurate to at least four digits.")
+    }
+    // [_End_]
+}
