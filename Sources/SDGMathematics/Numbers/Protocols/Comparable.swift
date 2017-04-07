@@ -137,7 +137,7 @@ extension Comparable {
 ///
 /// ```swift
 /// if 1 ÷ 3 ≈ 0.33333 ± 0.00001 {
-///     print("They are the same except for minor binary rounding errors.")
+///     print("It is accurate to at least four digits.")
 /// }
 /// ```
 ///
@@ -154,7 +154,7 @@ extension Comparable {
     ///
     /// ```swift
     /// if 1 ÷ 3 ≈ 0.33333 ± 0.00001 {
-    ///     print("They are the same except for minor binary rounding errors.")
+    ///     print("It is accurate to at least four digits.")
     /// }
     /// ```
     ///
