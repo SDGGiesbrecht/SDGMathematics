@@ -27,6 +27,7 @@ class SDGMathematicsTests : XCTestCase {
         }
 
         runTests(addend: 1, augend: 2, sum: 3)
+        runTests(addend: 1 as WholeNumber, augend: 2, sum: 3)
         runTests(addend: AddableExample(1), augend: AddableExample(2), sum: AddableExample(3))
         runTests(addend: AddableExampleWhereStrideableAndStrideIsSelf(1), augend: AddableExampleWhereStrideableAndStrideIsSelf(2), sum: AddableExampleWhereStrideableAndStrideIsSelf(3))
     }
@@ -273,6 +274,7 @@ class SDGMathematicsTests : XCTestCase {
         }
         runTests(start: Int64(0), distance: 3, end: 3)
         runTests(start: UInt64(0), distance: 3, end: 3)
+        runTests(start: 0 as WholeNumber, distance: 3, end: 3)
         runTests(start: PointTypeExample(0), distance: 3, end: PointTypeExample(3))
         runTests(start: PointTypeExampleWhereVectorIsSelf(0), distance: PointTypeExampleWhereVectorIsSelf(3), end: PointTypeExampleWhereVectorIsSelf(3))
     }
@@ -432,6 +434,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(minuend: Int8(3), subtrahend: 2, difference: 1)
         runTests(minuend: Double(3), subtrahend: 2, difference: 1)
         runTests(minuend: Float(3), subtrahend: 2, difference: 1)
+        runTests(minuend: 3 as WholeNumber, subtrahend: 2, difference: 1)
         runTests(minuend: SubtractableExample(3), subtrahend: SubtractableExample(2), difference: SubtractableExample(1))
         runTests(minuend: SubtractableExampleWherePointTypeAndVectorIsSelf(3), subtrahend: SubtractableExampleWherePointTypeAndVectorIsSelf(2), difference: SubtractableExampleWherePointTypeAndVectorIsSelf(1))
         runTests(minuend: RationalNumberTypeExample(3), subtrahend: RationalNumberTypeExample(2), difference: RationalNumberTypeExample(1))
@@ -440,9 +443,6 @@ class SDGMathematicsTests : XCTestCase {
         // Previous Bugs
 
         // “ambiguous use of operator”
-
-        // [_Workaround: Disable false positives in SwiftLint. (swiftlint version 0.17.0)_]
-        // swiftlint:disable redundant_discardable_let
         let _: UInt = 3 − 2
         let _: UInt64 = 3 − 2
         let _: UInt32 = 3 − 2
@@ -460,7 +460,6 @@ class SDGMathematicsTests : XCTestCase {
         let _: Float = 3 − 2
         let _: RationalNumberTypeExample = RationalNumberTypeExample(3) − RationalNumberTypeExample(2)
         let _: RealArithmeticExample = RealArithmeticExample(3) − RealArithmeticExample(2)
-        // swiftlint:enable redundant_discardable_let
     }
 
     func testTuple() {
@@ -582,6 +581,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Int8.self)
         runTests(Double.self)
         runTests(Float.self)
+        runTests(WholeNumber.self)
     }
 
     static var allTests: [(String, (SDGMathematicsTests) -> () throws -> Void)] {

@@ -16,8 +16,8 @@ import SDGLogic
 
 /// An arbitrary‐precision whole number.
 ///
-/// `WholeNumber` has a current theoretical limit of around 2 to the power of 4 722 366 482 869 645 213 696, but as that would occupy nearly 600 exabytes of memory, in practice `WholeNumber` is limited by the amount of memory available.
-public struct WholeNumber : Addable, Comparable, Equatable {
+/// `WholeNumber` has a current theoretical limit of about 10 ↑ 178 000 000 000 000 000 000, but since that would occupy over 73 exabytes, in practice `WholeNumber` is limited by the amount of memory available.
+public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, PointType, Strideable, Subtractable, WholeArithmetic, WholeNumberType {
 
     // MARK: - Properties
 
@@ -130,5 +130,115 @@ public struct WholeNumber : Addable, Comparable, Equatable {
     ///     - rhs: 🇨🇦🇬🇧🇺🇸 Another value to compare. • 🇩🇪 Ein weiterer Wert, der verglichen werden soll. • 🇫🇷 Une autre valeur à comparer. • 🇬🇷 Μία αλλη τιμή που πρέπει συγκρίνεται.
     public static func == (lhs: WholeNumber, rhs: WholeNumber) -> Bool {
         return lhs.digits.elementsEqual(rhs.digits)
+    }
+
+    // MARK: - ExpressibleByIntegerLiteral
+
+    public typealias IntegerLiteralType = UInt64
+
+    public init(integerLiteral value: IntegerLiteralType) {
+        digits = [value]
+        normalize()
+    }
+
+    // MARK: - PointType
+
+    // [_Warning: Awaiting implementation of Integer._]
+    public typealias Vector = Int
+
+    public static func − (lhs: WholeNumber, rhs: WholeNumber) -> Vector {
+        // [_Warning: Awaiting implementation of Integer._]
+        fatalError()
+    }
+
+    // MARK: - Strideable
+
+    public typealias Stride = Vector
+
+    // MARK: - Subtractable
+
+    // [_Inherit Documentation: SDGMathematics.Subtractable.−=_]
+    /// Subtracts the right from the left.
+    ///
+    /// - Parameters:
+    ///     - lhs: The value to modify.
+    ///     - rhs: The value to subtract.
+    ///
+    /// - NonmutatingVariant: −
+    ///
+    /// - RecommendedOver: -=
+    public static func −= (lhs: inout WholeNumber, rhs: WholeNumber) {
+
+        func subtract(_ subtrahend: Digit, from minuend: inout Digit, borrowingIn borrowing: inout Digit) {
+            let (simpleDifference, overflowed) = Digit.subtractWithOverflow(minuend, subtrahend)
+            if ¬overflowed {
+                minuend = simpleDifference
+            } else {
+                let used = subtrahend − minuend
+                minuend = Digit.max − (subtrahend − used) + 1
+                borrowing += 1
+            }
+        }
+
+        var underflow: Digit = 0
+        for digitIndex in rhs.digits.indices {
+
+            var minuend = lhs[digitIndex]
+            let subtrahend = rhs[digitIndex]
+
+            let borrowed = underflow
+            underflow = 0
+
+            subtract(subtrahend, from: &minuend, borrowingIn: &underflow)
+            subtract(borrowed, from: &minuend, borrowingIn: &underflow)
+
+            lhs[digitIndex] = minuend
+        }
+
+        subtract(underflow, from: &lhs[rhs.digits.endIndex], borrowingIn: /* unused */ &underflow)
+
+        lhs.normalize()
+    }
+
+    // MARK: - WholeArithmetic
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×=_]
+    /// Modifies the left by multiplication with the right.
+    ///
+    /// - Parameters:
+    ///     - lhs: The value to modify.
+    ///     - rhs: The coefficient by which to multiply.
+    ///
+    /// - NonmutatingVariant: ×
+    ///
+    /// - RecommendedOver: *=
+    public static func ×= (lhs: inout WholeNumber, rhs: WholeNumber) {
+        // [_Warning: No implementation yet._]
+        fatalError()
+    }
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
+    /// Sets `self` to the integral quotient of `self` divided by `divisor`.
+    ///
+    /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
+    ///
+    /// - Parameters:
+    ///     - divisor: The divisor.
+    ///
+    /// - NonmutatingVariant: dividedAccordingToEuclid
+    public mutating func divideAccordingToEuclid(by divisor: WholeNumber) {
+        // [_Warning: No implementation yet.._]
+        fatalError()
+    }
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
+    /// Creates a random value within a particular range using the specified randomizer.
+    ///
+    /// - Parameters:
+    ///     - range: The allowed range for the random value.
+    ///     - randomizer: The randomizer to use to generate the random value.
+    public init(randomInRange range: ClosedRange<WholeNumber>, fromRandomizer randomizer: Randomizer) {
+        // [_Warning: No implementation yet.._]
+        fatalError()
     }
 }

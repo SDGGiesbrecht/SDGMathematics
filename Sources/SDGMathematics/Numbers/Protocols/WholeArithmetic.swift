@@ -90,6 +90,7 @@ infix operator ↑=: AssignmentPrecedence
 ///
 /// - `NumericAdditiveArithmetic`
 /// - `ExpressibleByIntegerLiteral`
+/// - `OneDimensionalPoint`
 /// - `static func ×= (lhs: inout Self, rhs: Self)`
 /// - `mutating func divideAccordingToEuclid(by divisor: Self)`
 /// - `WholeNumberType`, `IntegerType`, `RationalNumberType` or `static func ↑= (lhs: inout Self, rhs: Self)`
