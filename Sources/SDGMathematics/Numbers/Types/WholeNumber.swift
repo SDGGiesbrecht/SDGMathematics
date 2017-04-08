@@ -283,9 +283,9 @@ fileprivate extension Digit {
     private typealias Subdigits = Digit
     private typealias /*Subdigits.*/Index = Digit
 
-    //         _d_     _d_
-    //  d       2       2
-    // b  = ( b    )( b    )
+    //   ____      _b_
+    //  /  b        2
+    // √  2    =  2
     private static let subdigitsPerDigit: GeneralNumber = 2
     private static let /*Subdigits.*/endIndex: Subdigits.Index = subdigitsPerDigit
 
