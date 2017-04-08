@@ -14,6 +14,8 @@
 
 import SDGLogic
 
+fileprivate typealias Digit = UIntMax
+
 /// An arbitrary‐precision whole number.
 ///
 /// `WholeNumber` has a current theoretical limit of about 10 ↑ 178 000 000 000 000 000 000, but since that would occupy over 73 exabytes, in practice `WholeNumber` is limited by the amount of memory available.
@@ -21,7 +23,6 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
 
     // MARK: - Properties
 
-    private typealias Digit = UInt64
     private typealias DigitIndex = Int
     private var digits: [Digit] = []
 
@@ -62,34 +63,22 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     /// - NonmutatingVariant: +
     public static func += (lhs: inout WholeNumber, rhs: WholeNumber) {
 
-        func add(_ addend: Digit, to augend: inout Digit, carryingIn carrying: inout Digit) {
-
-            let (simpleSum, overflowed) = Digit.addWithOverflow(augend, addend)
-            if ¬overflowed {
-                augend = simpleSum
-            } else {
-                let used = Digit.max − augend + 1
-                augend = addend − used
-                carrying += 1
-            }
-        }
-
-        var overflow: Digit = 0
+        var carrying: Digit = 0
         for digitIndex in rhs.digits.indices {
 
             var augend = lhs[digitIndex]
             let addend = rhs[digitIndex]
 
-            let carried = overflow
-            overflow = 0
+            let carried = carrying
+            carrying = 0
 
-            add(addend, to: &augend, carryingIn: &overflow)
-            add(carried, to: &augend, carryingIn: &overflow)
+            augend.add(addend, carringIn: &carrying)
+            augend.add(carried, carringIn: &carrying)
 
             lhs[digitIndex] = augend
         }
 
-        add(overflow, to: &lhs[rhs.digits.endIndex], carryingIn: /* unused */ &overflow)
+        lhs[rhs.digits.endIndex] += carrying
 
         lhs.normalize()
     }
@@ -134,7 +123,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
 
     // MARK: - ExpressibleByIntegerLiteral
 
-    public typealias IntegerLiteralType = UInt64
+    public typealias IntegerLiteralType = UIntMax
 
     public init(integerLiteral value: IntegerLiteralType) {
         digits = [value]
@@ -169,38 +158,61 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     /// - RecommendedOver: -=
     public static func −= (lhs: inout WholeNumber, rhs: WholeNumber) {
 
-        func subtract(_ subtrahend: Digit, from minuend: inout Digit, borrowingIn borrowing: inout Digit) {
-            let (simpleDifference, overflowed) = Digit.subtractWithOverflow(minuend, subtrahend)
-            if ¬overflowed {
-                minuend = simpleDifference
-            } else {
-                let used = subtrahend − minuend
-                minuend = Digit.max − (subtrahend − used) + 1
-                borrowing += 1
-            }
-        }
-
-        var underflow: Digit = 0
+        var borrowing: Digit = 0
         for digitIndex in rhs.digits.indices {
 
             var minuend = lhs[digitIndex]
             let subtrahend = rhs[digitIndex]
 
-            let borrowed = underflow
-            underflow = 0
+            let borrowed = borrowing
+            borrowing = 0
 
-            subtract(subtrahend, from: &minuend, borrowingIn: &underflow)
-            subtract(borrowed, from: &minuend, borrowingIn: &underflow)
+            minuend.subtract(subtrahend, borrowingIn: &borrowing)
+            minuend.subtract(borrowed, borrowingIn: &borrowing)
 
             lhs[digitIndex] = minuend
         }
 
-        subtract(underflow, from: &lhs[rhs.digits.endIndex], borrowingIn: /* unused */ &underflow)
+        lhs[rhs.digits.endIndex] −= borrowing
 
         lhs.normalize()
     }
 
     // MARK: - WholeArithmetic
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×_]
+    /// Returns the product of the left times the right.
+    ///
+    /// - Parameters:
+    ///     - lhs: A value.
+    ///     - rhs: Another value.
+    ///
+    /// - MutatingVariant: ×=
+    ///
+    /// - RecommendedOver: *
+    public static func × (lhs: WholeNumber, rhs: WholeNumber) -> WholeNumber {
+
+        var product: WholeNumber = 0
+
+        for rhsIndex in rhs.digits.indices {
+            for lhsIndex in lhs.digits.indices {
+
+                let lhsDigit = lhs.digits[lhsIndex]
+                let rhsDigit = rhs.digits[rhsIndex]
+
+                let digitResult = Digit.multiply(lhsDigit, with: rhsDigit)
+
+                let productIndex = lhsIndex + rhsIndex
+                var addend: WholeNumber = 0
+                addend[productIndex] = digitResult.product
+                addend[productIndex + 1] = digitResult.carried
+
+                product += addend
+            }
+        }
+
+        return product
+    }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×=_]
     /// Modifies the left by multiplication with the right.
@@ -213,8 +225,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     ///
     /// - RecommendedOver: *=
     public static func ×= (lhs: inout WholeNumber, rhs: WholeNumber) {
-        // [_Warning: No implementation yet._]
-        fatalError()
+        lhs = lhs × rhs
     }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
@@ -240,5 +251,101 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     public init(randomInRange range: ClosedRange<WholeNumber>, fromRandomizer randomizer: Randomizer) {
         // [_Warning: No implementation yet.._]
         fatalError()
+    }
+}
+
+fileprivate extension Digit {
+
+    // MARK: - Addition
+
+    fileprivate mutating func add(_ addend: Digit, carringIn carrying: inout Digit) {
+        let (simpleSum, overflowed) = Digit.addWithOverflow(self, addend)
+        self = simpleSum
+        if overflowed {
+            carrying += 1
+        }
+    }
+
+    // MARK: - Subtraction
+
+    fileprivate mutating func subtract(_ subtrahend: Digit, borrowingIn borrowing: inout Digit) {
+        let (simpleDifference, overflowed) = Digit.subtractWithOverflow(self, subtrahend)
+        self = simpleDifference
+        if overflowed {
+            borrowing += 1
+        }
+    }
+
+    // MARK: - Multiplication
+
+    private typealias GeneralNumber = Digit
+    private typealias Subdigit = Digit
+    private typealias Subdigits = Digit
+    private typealias /*Subdigits.*/Index = Digit
+
+    //         _d_     _d_
+    //  d       2       2
+    // b  = ( b    )( b    )
+    private static let subdigitsPerDigit: GeneralNumber = 2
+    private static let /*Subdigits.*/endIndex: Subdigits.Index = subdigitsPerDigit
+
+    private static let /*Subdigits.*/size: Subdigits.Index = {
+        let totalSize = GeneralNumber(MemoryLayout<Digit>.size)
+        assert(totalSize.isDivisible(by: subdigitsPerDigit), "\(Digit.self) has an incompatible memory layout.")
+        return totalSize.dividedAccordingToEuclid(by: subdigitsPerDigit)
+    }()
+    private static let /*Subdigit.*/mask: Subdigit = (1 << Subdigit.size) − 1
+
+    private subscript(index: Subdigits.Index) -> Subdigit {
+        get {
+            assert(index < Subdigits.Index.endIndex)
+            let offset = index × Subdigit.size
+            return (self & (Subdigit.mask << offset)) >> offset
+        }
+        set {
+            assert(index < Subdigits.Index.endIndex)
+            let offset = index × Subdigit.size
+            let oldErased = self & ~(Subdigit.mask << offset)
+            self = oldErased | (newValue << offset)
+        }
+    }
+
+    private init(subdigit: Subdigit, at index: Subdigits.Index) {
+        self = 0
+        self[index] = subdigit
+    }
+
+    fileprivate static func multiply(_ multiplicand: Digit, with multiplier: Digit) -> (product: Digit, carried: Digit) {
+
+        func multiplySubdigit(_ multiplicand: Subdigit, with multiplier: Subdigit) -> (product: Subdigit, carried: Subdigit) {
+
+            let product = multiplicand × multiplier
+            return (product: product[0], carried: product[1])
+        }
+
+        var product: Digit = 0
+        var carried: Digit = 0
+        func add(subdigit: Subdigit, at index: Subdigits.Index) {
+            if index < subdigitsPerDigit {
+                product.add(Digit(subdigit: subdigit, at: index), carringIn: &carried)
+            } else {
+                carried += Digit(subdigit: subdigit, at: index − subdigitsPerDigit)
+            }
+        }
+        for multiplierIndex in 0 ..< subdigitsPerDigit {
+            for multiplicandIndex in 0 ..< subdigitsPerDigit {
+
+                let digitResult = multiplySubdigit(multiplicand[multiplicandIndex], with: multiplier[multiplierIndex])
+
+                let productIndex = multiplicandIndex + multiplierIndex
+                add(subdigit: digitResult.product, at: productIndex)
+
+                if digitResult.carried ≠ 0 {
+                    add(subdigit: digitResult.carried, at: productIndex + 1)
+                }
+            }
+        }
+
+        return (product: product, carried: carried)
     }
 }
