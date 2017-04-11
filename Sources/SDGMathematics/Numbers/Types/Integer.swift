@@ -14,13 +14,13 @@
 
 import SDGLogic
 
-/// An arbitrary‐precision integer.
-public struct Integer : Addable, Equatable, Subtractable {
+/// A typealias for disambiguating the `SDGMathematics.Integer` type from the `Swift.Integer` protocol when necessary.
+public typealias ArbitraryPrecisionInteger = Integer
 
-    // [_Warning: Temporary_]
-    public static let one = Integer(magnitude: 1, isNegative: false)
-    public static let two = Integer(magnitude: 1, isNegative: false)
-    public static let three = Integer(magnitude: 1, isNegative: false)
+/// An arbitrary‐precision integer.
+///
+/// The typealias `ArbitraryPrecisionInteger` is available when disambiguation is necessary.
+public struct Integer : Addable, Equatable, ExpressibleByIntegerLiteral, Negatable, Subtractable {
 
     // MARK: - Properties
 
@@ -65,11 +65,37 @@ public struct Integer : Addable, Equatable, Subtractable {
         return (lhs.isNegative, lhs.magnitude) == (rhs.isNegative, rhs.magnitude)
     }
 
+    // MARK: - ExpressibleByIntegerLiteral
+
+    public typealias IntegerLiteralType = IntMax
+
+    public init(integerLiteral: IntegerLiteralType) {
+
+        isNegative = integerLiteral.isNegative
+
+        let whole = UIntMax(|integerLiteral|)
+        magnitude = WholeNumber(whole)
+
+        normalize()
+    }
+
+    // MARK: - Negatable
+
+    // [_Inherit Documentation: SDGMathematics.Negatable.−=_]
+    /// Sets the operand to its additive inverse.
+    ///
+    /// - Parameters:
+    ///     - operand: The value to modify by inversion.
+    ///
+    /// - NonmutatingVariant: −
+    public static postfix func −= (operand: inout Integer) {
+        operand.isNegative¬=
+    }
+
     // MARK: - Subtractable
 
     // [_Inherit Documentation: SDGMathematics.Subtractable.−=_]
     public static func −= (lhs: inout Integer, rhs: Integer) {
-        // [_Warning: Awaiting Negatable._]
-        fatalError()
+        lhs += −rhs
     }
 }

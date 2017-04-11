@@ -19,6 +19,8 @@ import SDGLogic
 
 @testable import SDGMathematics
 
+typealias Integer = ArbitraryPrecisionInteger
+
 class SDGMathematicsTests : XCTestCase {
 
     func testAddable() {
@@ -28,7 +30,7 @@ class SDGMathematicsTests : XCTestCase {
 
         runTests(addend: 1, augend: 2, sum: 3)
         runTests(addend: 1 as WholeNumber, augend: 2, sum: 3)
-        runTests(addend: Integer.one, augend: Integer.two, sum: Integer.three)
+        runTests(addend: 1 as Integer, augend: 2, sum: 3)
         runTests(addend: AddableExample(1), augend: AddableExample(2), sum: AddableExample(3))
         runTests(addend: AddableExampleWhereStrideableAndStrideIsSelf(1), augend: AddableExampleWhereStrideableAndStrideIsSelf(2), sum: AddableExampleWhereStrideableAndStrideIsSelf(3))
     }
@@ -240,6 +242,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Float80.self, value: 1, inverse: −1)
         #endif
         runTests(Float.self, value: 1, inverse: −1)
+        runTests(Integer.self, value: 1, inverse: −1)
         runTests(NegatableExample.self, value: NegatableExample(1), inverse: NegatableExample(−1))
     }
 
@@ -436,7 +439,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(minuend: Double(3), subtrahend: 2, difference: 1)
         runTests(minuend: Float(3), subtrahend: 2, difference: 1)
         runTests(minuend: 3 as WholeNumber, subtrahend: 2, difference: 1)
-        runTests(minuend: Integer.three, subtrahend: Integer.two, difference: Integer.one)
+        runTests(minuend: 3 as Integer, subtrahend: 2, difference: 1)
         runTests(minuend: SubtractableExample(3), subtrahend: SubtractableExample(2), difference: SubtractableExample(1))
         runTests(minuend: SubtractableExampleWherePointTypeAndVectorIsSelf(3), subtrahend: SubtractableExampleWherePointTypeAndVectorIsSelf(2), difference: SubtractableExampleWherePointTypeAndVectorIsSelf(1))
         runTests(minuend: RationalNumberTypeExample(3), subtrahend: RationalNumberTypeExample(2), difference: RationalNumberTypeExample(1))

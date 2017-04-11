@@ -21,6 +21,13 @@ fileprivate typealias Digit = UIntMax
 /// `WholeNumber` has a current theoretical limit of about 10 ↑ 178 000 000 000 000 000 000, but since that would occupy over 73 exabytes, in practice `WholeNumber` is limited by the amount of memory available.
 public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, PointType, Strideable, Subtractable, WholeArithmetic, WholeNumberType {
 
+    // MARK: - Initialization
+
+    public init<U : UIntType>(_ uInt: U) {
+        digits = [uInt.toUIntMax()]
+        normalize()
+    }
+
     // MARK: - Properties
 
     private typealias DigitIndex = Int
@@ -126,8 +133,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     public typealias IntegerLiteralType = UIntMax
 
     public init(integerLiteral value: IntegerLiteralType) {
-        digits = [value]
-        normalize()
+        self.init(value)
     }
 
     // MARK: - PointType
