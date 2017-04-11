@@ -19,6 +19,6 @@ import PackageDescription
 let package = Package(
     name: "SDGMathematics",
     dependencies: [
-        .Package(url: "https://github.com/SDGGiesbrecht/SDGLogic", versions: "1.3.0" ..< "2.0.0")
+        .Package(url: "https://github.com/SDGGiesbrecht/SDGLogic", majorVersion: 1, minor: 3)
     ]
 )
