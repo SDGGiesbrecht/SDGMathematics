@@ -289,7 +289,7 @@ fileprivate extension Digit {
     private typealias /*Subdigits.*/Index = Digit
 
     //   ____      _b_
-    //  /  b        2
+    //  ╱ b        2
     // √  2    =  2
     private static let subdigitsPerDigit: GeneralNumber = 2
     private static let /*Subdigits.*/endIndex: Subdigits.Index = subdigitsPerDigit
