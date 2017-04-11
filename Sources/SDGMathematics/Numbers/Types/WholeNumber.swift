@@ -135,6 +135,11 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     // [_Warning: Awaiting implementation of Integer._]
     public typealias Vector = Int
 
+    public static func += (lhs: inout WholeNumber, rhs: Vector) {
+        // [_Warning: Awaiting implementation of Integer._]
+        fatalError()
+    }
+
     public static func − (lhs: WholeNumber, rhs: WholeNumber) -> Vector {
         // [_Warning: Awaiting implementation of Integer._]
         fatalError()
