@@ -138,14 +138,30 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
 
     // MARK: - PointType
 
-    // [_Warning: Awaiting implementation of Integer._]
+    // [_Warning: Awaiting implementation of Integer : IntegralArithmetic._]
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
     public typealias Vector = Int
 
+    // [_Inherit Documentation: SDGMathematics.PointType.+=_]
+    /// Moves the point on the left by the vector on the right.
+    ///
+    /// - Parameters:
+    ///     - lhs: The point to modify.
+    ///     - rhs: The vector to add.
+    ///
+    /// - NonmutatingVariant: +
     public static func += (lhs: inout WholeNumber, rhs: Vector) {
-        // [_Warning: Awaiting implementation of Integer._]
+        // [_Warning: Awaiting implementation of Integer : IntegralArithmetic._]
         fatalError()
     }
 
+    // [_Inherit Documentation: SDGMathematics.PointType.−_]
+    /// Returns the vector that leads from the point on the left to the point on the right.
+    ///
+    /// - Parameters:
+    ///     - lhs: The endpoint.
+    ///     - rhs: The startpoint.
     public static func − (lhs: WholeNumber, rhs: WholeNumber) -> Vector {
         // [_Warning: Awaiting implementation of Integer._]
         fatalError()

@@ -20,12 +20,13 @@ public typealias ArbitraryPrecisionInteger = Integer
 /// An arbitrary‐precision integer.
 ///
 /// The typealias `ArbitraryPrecisionInteger` is available when disambiguation is necessary.
-public struct Integer : Addable, Equatable, ExpressibleByIntegerLiteral, Negatable, Subtractable {
+public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, IntegerType, Negatable, PointType, Subtractable, WholeArithmetic {
 
     // MARK: - Properties
 
-    private var magnitude: WholeNumber
+    public private(set) var magnitude: WholeNumber
     // [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.isNegative_]
+    /// Returns `true` if `self` is negative.
     public private(set) var isNegative: Bool
 
     // MARK: - Normalization
@@ -39,6 +40,13 @@ public struct Integer : Addable, Equatable, ExpressibleByIntegerLiteral, Negatab
     // MARK: - Addable
 
     // [_Inherit Documentation: SDGMathematics.Addable.+=_]
+    /// Adds or concatenates the right value to the left, or performs a similar operation implied by the “+” symbol. Exact behaviour depends on the type.
+    ///
+    /// - Parameters:
+    ///     - lhs: The value to modify.
+    ///     - rhs: The value to add.
+    ///
+    /// - NonmutatingVariant: +
     public static func += (lhs: inout Integer, rhs: Integer) {
         if lhs.isNegative == rhs.isNegative {
             // Moving away from zero.
@@ -58,9 +66,37 @@ public struct Integer : Addable, Equatable, ExpressibleByIntegerLiteral, Negatab
         lhs.normalize()
     }
 
+    // MARK: - Comparable
+
+    // [_Inherit Documentition: SDGMathematics.Comparable.<_]
+    public static func < (lhs: Integer, rhs: Integer) -> Bool {
+        if lhs.isNegative {
+            if rhs.isNegative {
+                // − vs −
+                return lhs.magnitude > rhs.magnitude
+            } else {
+                // − vs +/0
+                return true
+            }
+        } else {
+            if rhs.isNegative {
+                // +/0 vs −
+                return false
+            } else {
+                // +/0 vs +/0
+                return lhs.magnitude < rhs.magnitude
+            }
+        }
+    }
+
     // MARK: - Equatable
 
     // [_Inherit Documentation: SDGLogic.Equatable.==_]
+    /// 🇨🇦🇬🇧🇺🇸 Returns `true` if the two values are equal. • 🇩🇪 Gibt `wahr` zurück, wenn die zwei Werte gleich sind. • 🇫🇷 Retourne `vrai` si les deux valeurs sont égales. • 🇬🇷 Επιστρέφει `αληθής` αν οι τιμές είναι ίσες.
+    ///
+    /// - Parameters:
+    ///     - lhs: 🇨🇦🇬🇧🇺🇸 A value to compare. • 🇩🇪 Ein Wert, der verglichen werden soll. • 🇫🇷 Une valeur á comparer. • 🇬🇷 Μία τιμή που πρέπει συγκρίνεται.
+    ///     - rhs: 🇨🇦🇬🇧🇺🇸 Another value to compare. • 🇩🇪 Ein weiterer Wert, der verglichen werden soll. • 🇫🇷 Une autre valeur à comparer. • 🇬🇷 Μία αλλη τιμή που πρέπει συγκρίνεται.
     public static func == (lhs: Integer, rhs: Integer) -> Bool {
         return (lhs.isNegative, lhs.magnitude) == (rhs.isNegative, rhs.magnitude)
     }
@@ -90,12 +126,96 @@ public struct Integer : Addable, Equatable, ExpressibleByIntegerLiteral, Negatab
     /// - NonmutatingVariant: −
     public static postfix func −= (operand: inout Integer) {
         operand.isNegative¬=
+        operand.normalize()
+    }
+
+    // MARK: - PointType
+
+    // [_Warning: Awaiting IntegralArithmetic._]
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
+    public typealias Vector = Int64
+
+    // [_Warning: Temporary._]
+    public static func += (lhs: inout Integer, rhs: Vector) {
+        fatalError()
+    }
+    public static func − (lhs: Integer, rhs: Integer) -> Vector {
+        fatalError()
     }
 
     // MARK: - Subtractable
 
     // [_Inherit Documentation: SDGMathematics.Subtractable.−=_]
+    /// Subtracts the right from the left.
+    ///
+    /// - Parameters:
+    ///     - lhs: The value to modify.
+    ///     - rhs: The value to subtract.
+    ///
+    /// - NonmutatingVariant: −
+    ///
+    /// - RecommendedOver: -=
     public static func −= (lhs: inout Integer, rhs: Integer) {
         lhs += −rhs
+        lhs.normalize()
+    }
+
+    // MARK: - WholeArithmetic
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×=_]
+    /// Modifies the left by multiplication with the right.
+    ///
+    /// - Parameters:
+    ///     - lhs: The value to modify.
+    ///     - rhs: The coefficient by which to multiply.
+    ///
+    /// - NonmutatingVariant: ×
+    ///
+    /// - RecommendedOver: *=
+    public static func ×= (lhs: inout Integer, rhs: Integer) {
+        // [_Warning: No implementation yet._]
+        fatalError()
+    }
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
+    /// Sets `self` to the integral quotient of `self` divided by `divisor`.
+    ///
+    /// - Note: This is a true mathematical quotient. i.e. (−5) ÷ 3 = −2 remainder 1, *not* −1 remainder −2
+    ///
+    /// - Parameters:
+    ///     - divisor: The divisor.
+    ///
+    /// - NonmutatingVariant: dividedAccordingToEuclid
+    public mutating func divideAccordingToEuclid(by divisor: Integer) {
+
+        let negative = (self.isNegative ∧ divisor.isPositive) ∨ (self.isPositive ∧ divisor.isNegative)
+
+        let needsToWrapToPrevious = negative ∧ ¬magnitude.isDivisible(by: divisor.magnitude)
+        // Wrap to previous if negative (ignoring when exactly even)
+
+        magnitude.divideAccordingToEuclid(by: divisor.magnitude)
+        isNegative = negative
+        normalize()
+
+        if needsToWrapToPrevious {
+            self −= 1
+        }
+    }
+
+    // [_Warning: Temporary._]
+    public static func ↑= (lhs: inout Integer, rhs: Integer) {
+        fatalError()
+    }
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
+    /// Creates a random value within a particular range using the specified randomizer.
+    ///
+    /// - Parameters:
+    ///     - range: The allowed range for the random value.
+    ///     - randomizer: The randomizer to use to generate the random value.
+    public init(randomInRange range: ClosedRange<Integer>, fromRandomizer randomizer: Randomizer) {
+        // [_Warning: No implementation yet._]
+        fatalError()
     }
 }

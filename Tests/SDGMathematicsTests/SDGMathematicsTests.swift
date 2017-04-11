@@ -211,6 +211,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Int8.self)
         runTests(Double.self)
         runTests(Float.self)
+        runTests(Integer.self)
         runTests(RealArithmeticExample.self)
 
         func runStrideableTests<N : IntegralArithmetic>(_ type: N.Type) where N : Strideable, N.Stride == N {
@@ -279,6 +280,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(start: Int64(0), distance: 3, end: 3)
         runTests(start: UInt64(0), distance: 3, end: 3)
         runTests(start: 0 as WholeNumber, distance: 3, end: 3)
+        runTests(start: 0 as Integer, distance: 3, end: 3)
         runTests(start: PointTypeExample(0), distance: 3, end: PointTypeExample(3))
         runTests(start: PointTypeExampleWhereVectorIsSelf(0), distance: PointTypeExampleWhereVectorIsSelf(3), end: PointTypeExampleWhereVectorIsSelf(3))
     }
@@ -463,6 +465,8 @@ class SDGMathematicsTests : XCTestCase {
         let _: Float80 = 3 − 2
         #endif
         let _: Float = 3 − 2
+        let _: WholeNumber = 3 − 2
+        let _: Integer = 3 − 2
         let _: RationalNumberTypeExample = RationalNumberTypeExample(3) − RationalNumberTypeExample(2)
         let _: RealArithmeticExample = RealArithmeticExample(3) − RealArithmeticExample(2)
     }
@@ -587,6 +591,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Double.self)
         runTests(Float.self)
         runTests(WholeNumber.self)
+        runTests(Integer.self)
     }
 
     static var allTests: [(String, (SDGMathematicsTests) -> () throws -> Void)] {

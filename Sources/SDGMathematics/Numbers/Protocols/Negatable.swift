@@ -68,7 +68,7 @@ extension Negatable {
     public static prefix func − (operand: Self) -> Self {
         var result = operand
         result−=
-        return operand
+        return result
     }
 
     // [_Inherit Documentation: SDGMathematics.Negatable.−=_]
