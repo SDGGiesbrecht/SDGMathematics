@@ -58,8 +58,8 @@ extension WholeNumberBinaryView {
         }
 
         internal static func − (lhs: Index, rhs: Index) -> Vector {
-            var bitDistance = rhs.bit − lhs.bit
-            var digitDistance = rhs.digit − lhs.digit
+            var bitDistance = lhs.bit − rhs.bit
+            var digitDistance = lhs.digit − rhs.digit
             if bitDistance.isNegative {
                 bitDistance += SDGMathematics.BinaryView<WholeNumber.Digit>.count
                 digitDistance −= 1

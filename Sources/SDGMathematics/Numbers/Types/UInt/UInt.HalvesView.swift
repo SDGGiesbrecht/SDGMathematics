@@ -63,12 +63,12 @@ internal struct HalvesView<UIntValue : UIntType> : BidirectionalCollection, Coll
 
     internal subscript(index: Index) -> Element {
         get {
-            assert(index < endIndex, "Index out of bounds. \(index) ∈ \(startIndex)–\(endIndex − 1)")
+            assert((startIndex ..< endIndex).contains(index), "Index out of bounds. \(index) ∈ \(startIndex)–\(endIndex − 1)")
             let offset = index × elementSize
             return (uInt & (elementMask << offset)) >> offset
         }
         set {
-            assert(index < endIndex, "Index out of bounds. \(index) ∈ \(startIndex)–\(endIndex − 1)")
+            assert((startIndex ..< endIndex).contains(index), "Index out of bounds. \(index) ∈ \(startIndex)–\(endIndex − 1)")
             let offset = index × elementSize
             let oldErased = uInt & ~(elementMask << offset)
             uInt = oldErased | (newValue << offset)

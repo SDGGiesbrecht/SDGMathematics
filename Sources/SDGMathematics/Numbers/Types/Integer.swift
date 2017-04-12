@@ -24,16 +24,42 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
 
     // MARK: - Properties
 
-    public private(set) var magnitude: WholeNumber
+    private struct Definition {
+        fileprivate var magnitude: WholeNumber
+        fileprivate var isNegative: Bool
+    }
+    private var unsafeDefinition = Definition(magnitude: 0, isNegative: false)
+    private var definition: Definition {
+        get {
+            return unsafeDefinition
+        }
+        set {
+            unsafeDefinition = newValue
+
+            // Normalize
+
+            if unsafeDefinition.isNegative ∧ unsafeDefinition.magnitude == 0 {
+                unsafeDefinition.isNegative = false
+            }
+        }
+    }
+
+    public private(set) var magnitude: WholeNumber {
+        get {
+            return definition.magnitude
+        }
+        set {
+            definition.magnitude = newValue
+        }
+    }
     // [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.isNegative_]
     /// Returns `true` if `self` is negative.
-    public private(set) var isNegative: Bool
-
-    // MARK: - Normalization
-
-    private mutating func normalize() {
-        if isNegative ∧ magnitude == 0 {
-            isNegative = false
+    public private(set) var isNegative: Bool {
+        get {
+            return definition.isNegative
+        }
+        set {
+            definition.isNegative = newValue
         }
     }
 
@@ -48,13 +74,14 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
     ///
     /// - NonmutatingVariant: +
     public static func += (lhs: inout Integer, rhs: Integer) {
+
         if lhs.isNegative == rhs.isNegative {
             // Moving away from zero.
             lhs.magnitude += rhs.magnitude
         } else {
             // Approaching zero...
             if lhs.magnitude ≥ rhs.magnitude {
-                // ...but stopping short of it.
+                // ...but stopping short of crossing it.
                 lhs.magnitude −= rhs.magnitude
             } else {
                 // ...and crossing it.
@@ -62,8 +89,6 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
                 lhs.isNegative¬=
             }
         }
-
-        lhs.normalize()
     }
 
     // MARK: - Comparable
@@ -106,13 +131,8 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
     public typealias IntegerLiteralType = IntMax
 
     public init(integerLiteral: IntegerLiteralType) {
-
+        magnitude = WholeNumber(UIntMax(|integerLiteral|))
         isNegative = integerLiteral.isNegative
-
-        let whole = UIntMax(|integerLiteral|)
-        magnitude = WholeNumber(whole)
-
-        normalize()
     }
 
     // MARK: - Negatable
@@ -126,7 +146,6 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
     /// - NonmutatingVariant: −
     public static postfix func −= (operand: inout Integer) {
         operand.isNegative¬=
-        operand.normalize()
     }
 
     // MARK: - PointType
@@ -149,7 +168,6 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
     /// - RecommendedOver: -=
     public static func −= (lhs: inout Integer, rhs: Integer) {
         lhs += −rhs
-        lhs.normalize()
     }
 
     // MARK: - WholeArithmetic
@@ -191,7 +209,6 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
 
         magnitude.divideAccordingToEuclid(by: divisor.magnitude)
         isNegative = negative
-        normalize()
 
         if needsToWrapToPrevious {
             self −= 1

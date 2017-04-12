@@ -59,11 +59,11 @@ public struct BinaryView<UIntValue : UIntType> : BidirectionalCollection, Collec
 
     public subscript(index: Index) -> Element {
         get {
-            assert(index < endIndex, "Index out of bounds. \(index) ∈ \(startIndex)–\(endIndex − 1)")
+            assert((startIndex ..< endIndex).contains(index), "Index out of bounds. \(index) ∈ \(startIndex)–\(endIndex − 1)")
             return (uInt & (1 << index)) >> index == 1
         }
         set {
-            assert(index < endIndex, "Index out of bounds. \(index) ∈ \(startIndex)–\(endIndex − 1)")
+            assert((startIndex ..< endIndex).contains(index), "Index out of bounds. \(index) ∈ \(startIndex)–\(endIndex − 1)")
             let oldErased = uInt & ~(1 << index)
             uInt = oldErased | ((newValue ? 1 : 0) << index)
         }

@@ -19,13 +19,13 @@ internal struct WholeNumberBinaryView {
 
     // MARK: - Initialization
 
-    internal init(digits: [WholeNumber.Digit]) {
-        self.digits = digits
+    internal init(_ wholeNumber: WholeNumber) {
+        self.wholeNumber = wholeNumber
     }
 
     // MARK: - Properties
 
-    internal var digits: [WholeNumber.Digit]
+    internal var wholeNumber: WholeNumber
 
     // MARK: - Operations
 
@@ -36,30 +36,32 @@ internal struct WholeNumberBinaryView {
 
     // MARK: - Sequences
 
-    internal func indicesBackwards(from end: Index, to start: Index) -> UnfoldSequence<Index, IndexDistance> {
-        assert(start ≤ end, "Invalid range: \(end − 1)–\(start)")
-        return sequence(state: end − start) { (distance: inout IndexDistance) -> Index? in
-            guard distance ≠ 0 else {
+    internal func indicesBackwards(from end: Index, to start: Index) -> UnfoldSequence<Index, Index> {
+        assert(start ≤ end, "Ascending range: \(end − 1)–\(start)")
+        return sequence(state: end) { (index: inout Index) -> Index? in
+            guard index ≠ self.startIndex else {
                 return nil
             }
-            distance −= 1
-            return start + distance
+            index −= 1
+            return index
         }
     }
 
-    internal func indicesBackwards() -> UnfoldSequence<Index, IndexDistance> {
+    internal func indicesBackwards() -> UnfoldSequence<Index, Index> {
         return indicesBackwards(from: endIndex, to: startIndex)
     }
 
-    internal func bitsBackwards(from end: Index, to start: Index) -> LazyMapSequence<UnfoldSequence<Index, IndexDistance>, Bool> {
+    internal func bitsBackwards(from end: Index, to start: Index) -> LazyMapSequence<UnfoldSequence<Index, Index>, Bool> {
         return indicesBackwards(from: end, to: start).lazy.map() { self[$0] }
     }
 
-    internal func bitsBackwards() -> LazyMapSequence<UnfoldSequence<Index, IndexDistance>, Bool> {
+    internal func bitsBackwards() -> LazyMapSequence<UnfoldSequence<Index, Index>, Bool> {
         return bitsBackwards(from: endIndex, to: startIndex)
     }
 
-    internal func lastBitsBackwards(maximum distance: IndexDistance) -> LazyMapSequence<UnfoldSequence<Index, IndexDistance>, Bool> {
+    internal func lastBitsBackwards(maximum distance: IndexDistance) -> LazyMapSequence<UnfoldSequence<Index, Index>, Bool> {
+        assert(distance ≥ 0, "Negative distance: \(distance)")
+
         guard distance ≥ count else {
             return bitsBackwards()
         }
@@ -73,16 +75,16 @@ internal struct WholeNumberBinaryView {
 
     internal let startIndex = Index(digit: 0, bit: 0)
     internal var endIndex: Index {
-        guard let lastDigitIndex = digits.indices.last else {
+        guard let lastDigitIndex = wholeNumber.digitIndices.last else {
             return Index(digit: 0, bit: 0)
         }
 
-        let lastDigit = digits[lastDigitIndex]
+        let lastDigit = wholeNumber[lastDigitIndex]
         let binary = lastDigit.binaryView
         for bitIndex in binary.indices.lazy.reversed() where binary[bitIndex] == true {
             return Index(digit: lastDigitIndex, bit: bitIndex) + 1
         }
-        preconditionFailure("\(digits) is not in normalized form.")
+        preconditionFailure("\(wholeNumber) is not in normalized form.")
     }
     internal var count: IndexDistance {
         return endIndex − startIndex
@@ -90,10 +92,10 @@ internal struct WholeNumberBinaryView {
 
     internal subscript(index: Index) -> Element {
         get {
-            return digits[index.digit].binaryView[index.bit]
+            return wholeNumber[index.digit].binaryView[index.bit]
         }
         set {
-            digits[index.digit].binaryView[index.bit] = newValue
+            wholeNumber[index.digit].binaryView[index.bit] = newValue
         }
     }
 }

@@ -23,16 +23,33 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
 
     public init<U : UIntType>(_ uInt: U) {
         digits = [uInt.toUIntMax()]
-        normalize()
     }
 
     // MARK: - Properties
 
     internal typealias Digit = UIntMax
-    private typealias DigitIndex = Int
-    private var digits: [Digit] = []
+    internal typealias DigitIndex = Int
+    private var unsafeDigits: [Digit] = []
+    private var digits: [Digit] {
+        get {
+            return unsafeDigits
+        }
+        set {
+            unsafeDigits = newValue
 
-    private subscript(digitIndex: DigitIndex) -> Digit {
+            // Normalize
+
+            while unsafeDigits.last == 0 {
+                unsafeDigits.removeLast()
+            }
+        }
+    }
+
+    internal var digitIndices: CountableRange<DigitIndex> {
+        return digits.indices
+    }
+
+    internal subscript(digitIndex: DigitIndex) -> Digit {
         get {
             guard digitIndex < digits.endIndex else {
                 return 0
@@ -41,30 +58,25 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
             return digits[digitIndex]
         }
         set {
+            var temporaryLeadingZeroes = digits
+
             let missingDigits = digitIndex + 1 − digits.endIndex
             if missingDigits > 0 {
-                digits.append(contentsOf: [Digit](repeating: 0, count: missingDigits))
+                temporaryLeadingZeroes.append(contentsOf: [Digit](repeating: 0, count: missingDigits))
             }
-            digits[digitIndex] = newValue
+            temporaryLeadingZeroes[digitIndex] = newValue
+
+            digits = temporaryLeadingZeroes
         }
     }
 
     internal typealias BinaryView = WholeNumberBinaryView
     private var binaryView: BinaryView {
         get {
-            return BinaryView(digits: digits)
+            return BinaryView(self)
         }
         set {
-            self.digits = newValue.digits
-            normalize()
-        }
-    }
-
-    // MARK: - Normalization
-
-    private mutating func normalize() {
-        while digits.last == 0 {
-            digits.removeLast()
+            self = newValue.wholeNumber
         }
     }
 
@@ -96,8 +108,6 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
         }
 
         lhs[rhs.digits.endIndex] += carrying
-
-        lhs.normalize()
     }
 
     // MARK: - Comparable
@@ -210,8 +220,6 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
         }
 
         lhs[rhs.digits.endIndex] −= borrowing
-
-        lhs.normalize()
     }
 
     // MARK: - WholeArithmetic
@@ -270,7 +278,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
         var remainingDividend = self
 
         for bitPosition in binaryView.indicesBackwards() {
-            let distance = quotient.binaryView.endIndex − bitPosition
+            let distance = binaryView.endIndex − bitPosition
             if distance ≥ divisor.binaryView.count {
                 var divides = true // If the following iteration finishes, it is exactly equal and divides precicely once.
                 for (dividendBit, divisorBit) in zip(remainingDividend.binaryView.lastBitsBackwards(maximum: divisor.binaryView.count), divisor.binaryView.bitsBackwards()) where dividendBit ≠ divisorBit {
@@ -293,6 +301,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
                 }
             }
         }
+
         return (quotient, remainingDividend)
     }
 
