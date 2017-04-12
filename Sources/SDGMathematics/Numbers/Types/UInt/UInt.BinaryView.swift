@@ -12,7 +12,7 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-public struct BinaryView<UIntValue : UIntType> : BidirectionalCollection, Collection, RandomAccessCollection {
+public struct BinaryView<UIntValue : UIntType> : BidirectionalCollection, Collection, MutableCollection, RandomAccessCollection {
 
     // MARK: - Initialization
 
@@ -22,10 +22,16 @@ public struct BinaryView<UIntValue : UIntType> : BidirectionalCollection, Collec
 
     // MARK: - Static Properties
 
+    public static var endIndex: Index {
+        return Index(count)
+    }
     public static var count: IndexDistance {
         let bytes = MemoryLayout<UIntValue>.size
         assert(bytes == MemoryLayout<UIntValue>.stride, "\(UIntValue.self) has an incompatible memory layout.")
         return bytes × 8
+    }
+    public static var lastIndex: Index {
+        return endIndex − 1
     }
 
     // MARK: - Properties

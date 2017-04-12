@@ -12,8 +12,8 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-extension AbsoluteValuable where Self : IntegralArithmetic {
-    // MARK: - where Self : IntegralArithmetic
+extension AbsoluteValuable where Self : NumericAdditiveArithmetic {
+    // MARK: - where Self : NumericAdditiveArithmetic
 
     /// Returns the absolute value of `x`.
     ///

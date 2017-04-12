@@ -12,8 +12,8 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-extension SignedNumber where Self : IntegralArithmetic {
-    // MARK: - where Self : IntegralArithmetic
+extension SignedNumber where Self : Negatable {
+    // MARK: - where Self : Negatable
 
     /// Returns the result of negating `x`.
     ///
@@ -24,6 +24,10 @@ extension SignedNumber where Self : IntegralArithmetic {
     public static prefix func - (x: Self) -> Self {
         return −x
     }
+}
+
+extension SignedNumber where Self : Subtractable {
+    // MARK: - where Self : Subtractable
 
     /// Returns the difference between `lhs` and `rhs`.
     ///

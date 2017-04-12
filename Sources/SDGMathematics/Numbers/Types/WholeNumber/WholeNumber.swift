@@ -14,8 +14,6 @@
 
 import SDGLogic
 
-fileprivate typealias Digit = UIntMax
-
 /// An arbitrary‐precision whole number.
 ///
 /// `WholeNumber` has a current theoretical limit of about 10 ↑ 178 000 000 000 000 000 000, but since that would occupy over 73 exabytes, in practice `WholeNumber` is limited by the amount of memory available.
@@ -30,6 +28,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
 
     // MARK: - Properties
 
+    internal typealias Digit = UIntMax
     private typealias DigitIndex = Int
     private var digits: [Digit] = []
 
@@ -47,6 +46,17 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
                 digits.append(contentsOf: [Digit](repeating: 0, count: missingDigits))
             }
             digits[digitIndex] = newValue
+        }
+    }
+
+    internal typealias BinaryView = WholeNumberBinaryView
+    private var binaryView: BinaryView {
+        get {
+            return BinaryView(digits: digits)
+        }
+        set {
+            self.digits = newValue.digits
+            normalize()
         }
     }
 
@@ -138,10 +148,9 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
 
     // MARK: - PointType
 
-    // [_Warning: Awaiting implementation of Integer : IntegralArithmetic._]
     // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
     /// The type to be used as a vector.
-    public typealias Vector = Int
+    public typealias Vector = Integer
 
     // [_Inherit Documentation: SDGMathematics.PointType.+=_]
     /// Moves the point on the left by the vector on the right.
@@ -152,7 +161,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     ///
     /// - NonmutatingVariant: +
     public static func += (lhs: inout WholeNumber, rhs: Vector) {
-        // [_Warning: Awaiting implementation of Integer : IntegralArithmetic._]
+        // [_Warning: No implementation yet._]
         fatalError()
     }
 
@@ -163,7 +172,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     ///     - lhs: The endpoint.
     ///     - rhs: The startpoint.
     public static func − (lhs: WholeNumber, rhs: WholeNumber) -> Vector {
-        // [_Warning: Awaiting implementation of Integer._]
+        // [_Warning: No implementation yet._]
         fatalError()
     }
 
@@ -255,6 +264,38 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
         lhs = lhs × rhs
     }
 
+    internal func quotientAndRemainder(for divisor: WholeNumber) -> (quotient: WholeNumber, remainder: WholeNumber) {
+
+        var quotient: WholeNumber = 0
+        var remainingDividend = self
+
+        for bitPosition in binaryView.indicesBackwards() {
+            let distance = quotient.binaryView.endIndex − bitPosition
+            if distance ≥ divisor.binaryView.count {
+                var divides = true // If the following iteration finishes, it is exactly equal and divides precicely once.
+                for (dividendBit, divisorBit) in zip(remainingDividend.binaryView.lastBitsBackwards(maximum: divisor.binaryView.count), divisor.binaryView.bitsBackwards()) where dividendBit ≠ divisorBit {
+                    if dividendBit < divisorBit {
+                        divides = false
+                        break
+                    }
+                    if dividendBit > divisorBit {
+                        divides = true
+                        break
+                    }
+                }
+
+                if divides {
+                    quotient.binaryView[bitPosition] = true
+
+                    var shiftedDivisor = divisor
+                    shiftedDivisor.binaryView.shiftLeft(bitPosition − binaryView.startIndex)
+                    remainingDividend −= shiftedDivisor
+                }
+            }
+        }
+        return (quotient, remainingDividend)
+    }
+
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
     /// Sets `self` to the integral quotient of `self` divided by `divisor`.
     ///
@@ -265,8 +306,20 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     ///
     /// - NonmutatingVariant: dividedAccordingToEuclid
     public mutating func divideAccordingToEuclid(by divisor: WholeNumber) {
-        // [_Warning: No implementation yet.._]
-        fatalError()
+        self = quotientAndRemainder(for: divisor).quotient
+    }
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.formRemainder(mod:)_]
+    /// Sets `self` to the Euclidean remainder of `self` ÷ `divisor`.
+    ///
+    /// - Parameters:
+    ///     - divisor: The divisor.
+    ///
+    /// - Note: This is a true mathematical modulo operation. i.e. (−5) mod 3 = 1, *not* −2
+    ///
+    /// - NonmutatingVariant: mod
+    public mutating func formRemainder(mod divisor: WholeNumber) {
+        self = quotientAndRemainder(for: divisor).remainder
     }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]

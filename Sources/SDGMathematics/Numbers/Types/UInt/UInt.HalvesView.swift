@@ -12,7 +12,7 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-internal struct HalvesView<UIntValue : UIntType> : BidirectionalCollection, Collection, RandomAccessCollection {
+internal struct HalvesView<UIntValue : UIntType> : BidirectionalCollection, Collection, MutableCollection, RandomAccessCollection {
 
     // MARK: - Initialization
 

@@ -131,18 +131,9 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
 
     // MARK: - PointType
 
-    // [_Warning: Awaiting IntegralArithmetic._]
     // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
     /// The type to be used as a vector.
-    public typealias Vector = Int64
-
-    // [_Warning: Temporary._]
-    public static func += (lhs: inout Integer, rhs: Vector) {
-        fatalError()
-    }
-    public static func − (lhs: Integer, rhs: Integer) -> Vector {
-        fatalError()
-    }
+    public typealias Vector = Integer
 
     // MARK: - Subtractable
 
@@ -174,8 +165,12 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
     ///
     /// - RecommendedOver: *=
     public static func ×= (lhs: inout Integer, rhs: Integer) {
-        // [_Warning: No implementation yet._]
-        fatalError()
+        lhs.magnitude ×= rhs.magnitude
+        if lhs.isNegative == rhs.isNegative {
+            lhs.isNegative = false
+        } else {
+            lhs.isNegative = true
+        }
     }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.divideAccordingToEuclid(by:)_]
@@ -201,11 +196,6 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
         if needsToWrapToPrevious {
             self −= 1
         }
-    }
-
-    // [_Warning: Temporary._]
-    public static func ↑= (lhs: inout Integer, rhs: Integer) {
-        fatalError()
     }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(randomInRange:fromRandomizer:)_]
