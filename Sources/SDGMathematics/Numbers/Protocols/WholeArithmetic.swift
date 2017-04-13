@@ -1048,7 +1048,7 @@ extension WholeArithmetic where Self : UIntType {
     ///     - range: The allowed range for the random value.
     ///     - randomizer: The randomizer to use to generate the random value.
     public init(randomInRange range: ClosedRange<Self>, fromRandomizer randomizer: Randomizer) {
-        let value = UInt64(randomInRange: range.lowerBound.toUIntMax() ... range.upperBound.toUIntMax(), fromRandomizer: randomizer)
+        let value = UIntMax(randomInRange: range.lowerBound.toUIntMax() ... range.upperBound.toUIntMax(), fromRandomizer: randomizer)
         self.init(value)
     }
 }

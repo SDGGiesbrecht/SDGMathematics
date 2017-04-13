@@ -33,7 +33,7 @@ public protocol Randomizer : class {
     /// Returns a random value.
     ///
     /// - SeeAlso: `randomNumber(inRange:)`
-    func randomNumber() -> UInt64
+    func randomNumber() -> UIntMax
 
     // [_Define Documentation: SDGMathematics.Randomizer.randomNumber(inRange:)_]
     /// Returns a random value within the specified range.
@@ -49,7 +49,7 @@ public protocol Randomizer : class {
     ///
     /// - Parameters:
     ///     - range: The range of acceptable values for the random number.
-    func randomNumber(inRange range: ClosedRange<UInt64>) -> UInt64
+    func randomNumber(inRange range: ClosedRange<UIntMax>) -> UIntMax
 }
 
 extension Randomizer {
@@ -68,7 +68,7 @@ extension Randomizer {
     ///
     /// - Parameters:
     ///     - range: The range of acceptable values for the random number.
-    public func randomNumber(inRange range: ClosedRange<UInt64>) -> UInt64 {
+    public func randomNumber(inRange range: ClosedRange<UIntMax>) -> UIntMax {
 
         var unboundedRandom = randomNumber()
 
@@ -79,9 +79,9 @@ extension Randomizer {
         } else {
             // Remove valid range.
 
-            let rangeSize = UInt64(range.count)
+            let rangeSize = UIntMax(range.count)
 
-            let unboundedMaximum: UInt64 = UInt64.max − rangeSize
+            let unboundedMaximum: UIntMax = UIntMax.max − rangeSize
             if unboundedRandom > range.upperBound {
                 unboundedRandom −= rangeSize
             }

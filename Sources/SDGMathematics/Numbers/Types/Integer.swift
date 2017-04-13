@@ -28,6 +28,10 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
         self.definition = Definition(magnitude: magnitude, isNegative: isNegative)
     }
 
+    public init(_ wholeNumber: WholeNumber) {
+        self.init(magnitude: wholeNumber, isNegative: false)
+    }
+
     // MARK: - Properties
 
     private struct Definition {
@@ -232,12 +236,12 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
         if range.lowerBound.isWhole {
             let wholeRange: ClosedRange<WholeNumber> = range.lowerBound.magnitude ... range.upperBound.magnitude
             let whole = WholeNumber(randomInRange: wholeRange, fromRandomizer: randomizer)
-            self = Integer(magnitude: whole, isNegative: false)
+            self = Integer(whole)
         } else {
             let span = range.upperBound − range.lowerBound
             let wholeRange: ClosedRange<WholeNumber> = 0 ... span.magnitude
             let whole = WholeNumber(randomInRange: wholeRange, fromRandomizer: randomizer)
-            self = range.lowerBound + Integer(magnitude: whole, isNegative: false)
+            self = range.lowerBound + Integer(whole)
         }
     }
 }

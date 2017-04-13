@@ -38,13 +38,7 @@ extension UInt : UIntType {
     public typealias Vector = Stride
 }
 
-extension UInt64 : UIntType {
-
-    // MARK: - PointType
-
-    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
-    /// The type to be used as a vector.
-    public typealias Vector = Stride
+extension UIntMax {
 
     // MARK: - WholeArithmetic
 
@@ -54,9 +48,18 @@ extension UInt64 : UIntType {
     /// - Parameters:
     ///     - range: The allowed range for the random value.
     ///     - randomizer: The randomizer to use to generate the random value.
-    public init(randomInRange range: ClosedRange<UInt64>, fromRandomizer randomizer: Randomizer) {
+    public init(randomInRange range: ClosedRange<UIntMax>, fromRandomizer randomizer: Randomizer) {
         self = randomizer.randomNumber(inRange: range)
     }
+}
+
+extension UInt64 : UIntType {
+
+    // MARK: - PointType
+
+    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+    /// The type to be used as a vector.
+    public typealias Vector = Stride
 }
 
 extension UInt32 : UIntType {
