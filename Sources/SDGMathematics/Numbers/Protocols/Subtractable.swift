@@ -308,6 +308,9 @@ extension Subtractable where Self : UIntType {
     ///
     /// - RecommendedOver: -=
     public static func −= (lhs: inout Self, rhs: Self) {
+        assert(lhs ≥ rhs, "\(lhs) − \(rhs) is impossible for \(Self.self).")
+
+        // func −=
         lhs -= rhs
     }
 }

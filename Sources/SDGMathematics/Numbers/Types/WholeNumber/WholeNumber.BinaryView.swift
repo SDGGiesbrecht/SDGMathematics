@@ -30,8 +30,32 @@ internal struct WholeNumberBinaryView {
     // MARK: - Operations
 
     internal mutating func shiftLeft(_ distance: IndexDistance) {
-        // [_Warning: No implementation yet._]
-        fatalError()
+
+        // Bits
+
+        let insertionMask: WholeNumber.Digit = (1 << WholeNumber.Digit(distance.bitDistance)) − 1
+        var extractionMask = insertionMask
+        extractionMask.binaryView.reverse()
+        let shiftDistance = WholeNumber.Digit(distance.bitDistance)
+
+        var carried: WholeNumber.Digit = 0
+        for index in wholeNumber.digitIndices {
+            var digit = wholeNumber[index]
+
+            let insertion = carried
+            carried = (digit & extractionMask) >> shiftDistance
+
+            digit = digit << shiftDistance
+            digit = digit | insertion
+
+            wholeNumber[index] = digit
+        }
+
+        // Digits
+
+        for index in wholeNumber.digitIndices.reversed() {
+            wholeNumber[index + distance.digitDistance] = wholeNumber[index]
+        }
     }
 
     // MARK: - Sequences

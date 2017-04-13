@@ -203,6 +203,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     ///
     /// - RecommendedOver: -=
     public static func −= (lhs: inout WholeNumber, rhs: WholeNumber) {
+        assert(lhs ≥ rhs, "\(lhs) − \(rhs) is impossible for \(WholeNumber.self).")
 
         var borrowing: Digit = 0
         for digitIndex in rhs.digits.indices {
@@ -279,7 +280,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
 
         for bitPosition in binaryView.indicesBackwards() {
             let distance = binaryView.endIndex − bitPosition
-            if distance ≥ divisor.binaryView.count {
+            if distance ≥ divisor.binaryView.count ∧ divisor.binaryView.count ≤ remainingDividend.binaryView.count {
                 var divides = true // If the following iteration finishes, it is exactly equal and divides precicely once.
                 for (dividendBit, divisorBit) in zip(remainingDividend.binaryView.lastBitsBackwards(maximum: divisor.binaryView.count), divisor.binaryView.bitsBackwards()) where dividendBit ≠ divisorBit {
                     if dividendBit < divisorBit {
