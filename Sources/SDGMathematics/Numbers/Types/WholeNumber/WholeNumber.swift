@@ -171,8 +171,11 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     ///
     /// - NonmutatingVariant: +
     public static func += (lhs: inout WholeNumber, rhs: Vector) {
-        // [_Warning: No implementation yet._]
-        fatalError()
+        if rhs.isNegative {
+            lhs −= rhs.magnitude
+        } else {
+            lhs += rhs.magnitude
+        }
     }
 
     // [_Inherit Documentation: SDGMathematics.PointType.−_]
@@ -182,8 +185,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     ///     - lhs: The endpoint.
     ///     - rhs: The startpoint.
     public static func − (lhs: WholeNumber, rhs: WholeNumber) -> Vector {
-        // [_Warning: No implementation yet._]
-        fatalError()
+        return Integer(lhs) − Integer(rhs)
     }
 
     // MARK: - Strideable
@@ -339,7 +341,23 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     ///     - range: The allowed range for the random value.
     ///     - randomizer: The randomizer to use to generate the random value.
     public init(randomInRange range: ClosedRange<WholeNumber>, fromRandomizer randomizer: Randomizer) {
-        // [_Warning: No implementation yet.._]
-        fatalError()
+        let rangeSize: WholeNumber = range.upperBound − range.lowerBound
+
+        var atLimit = true
+        var offset: WholeNumber = 0
+        for digitIndex in rangeSize.digitIndices.reversed() {
+            if atLimit {
+                let maximum = rangeSize[digitIndex]
+                let digit = Digit(randomInRange: 0 ... maximum, fromRandomizer: randomizer)
+                if digit ≠ maximum {
+                    atLimit = false
+                }
+                offset[digitIndex] = digit
+            } else {
+                offset[digitIndex] = Digit(randomInRange: 0 ... Digit.max, fromRandomizer: randomizer)
+            }
+        }
+
+        self = range.lowerBound + offset
     }
 }
