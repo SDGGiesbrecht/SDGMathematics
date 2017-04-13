@@ -22,6 +22,12 @@ public typealias ArbitraryPrecisionInteger = Integer
 /// The typealias `ArbitraryPrecisionInteger` is available when disambiguation is necessary.
 public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, IntegerType, Negatable, PointType, Subtractable, WholeArithmetic {
 
+    // MARK: - Initialization
+
+    private init(magnitude: WholeNumber, isNegative: Bool) {
+        self.definition = Definition(magnitude: magnitude, isNegative: isNegative)
+    }
+
     // MARK: - Properties
 
     private struct Definition {
@@ -222,7 +228,16 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
     ///     - range: The allowed range for the random value.
     ///     - randomizer: The randomizer to use to generate the random value.
     public init(randomInRange range: ClosedRange<Integer>, fromRandomizer randomizer: Randomizer) {
-        // [_Warning: No implementation yet._]
-        fatalError()
+
+        if range.lowerBound.isWhole {
+            let wholeRange: ClosedRange<WholeNumber> = range.lowerBound.magnitude ... range.upperBound.magnitude
+            let whole = WholeNumber(randomInRange: wholeRange, fromRandomizer: randomizer)
+            self = Integer(magnitude: whole, isNegative: false)
+        } else {
+            let span = range.upperBound − range.lowerBound
+            let wholeRange: ClosedRange<WholeNumber> = 0 ... span.magnitude
+            let whole = WholeNumber(randomInRange: wholeRange, fromRandomizer: randomizer)
+            self = range.lowerBound + Integer(magnitude: whole, isNegative: false)
+        }
     }
 }
