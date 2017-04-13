@@ -52,6 +52,12 @@ struct RealArithmeticExample : RealArithmetic {
         value = Double(integerLiteral)
     }
 
+    // IntegralArithmetic
+
+    public init(_ int: IntMax) {
+        value = Double(int)
+    }
+
     // PointType
 
     typealias Vector = RealArithmeticExample
@@ -95,6 +101,10 @@ struct RealArithmeticExample : RealArithmetic {
     }
 
     // WholeArithmetic
+
+    public init(_ uInt: UIntMax) {
+        value = Double(uInt)
+    }
 
     static func ×= (lhs: inout RealArithmeticExample, rhs: RealArithmeticExample) {
         lhs.value ×= rhs.value

@@ -20,7 +20,7 @@ public typealias ArbitraryPrecisionInteger = Integer
 /// An arbitrary‐precision integer.
 ///
 /// The typealias `ArbitraryPrecisionInteger` is available when disambiguation is necessary.
-public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, IntegerType, Negatable, PointType, Subtractable, WholeArithmetic {
+public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, IntegerType, IntegralArithmetic, Negatable, PointType, Subtractable, WholeArithmetic {
 
     // MARK: - Initialization
 
@@ -141,8 +141,15 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
     public typealias IntegerLiteralType = IntMax
 
     public init(integerLiteral: IntegerLiteralType) {
-        magnitude = WholeNumber(UIntMax(|integerLiteral|))
-        isNegative = integerLiteral.isNegative
+        self.init(integerLiteral)
+    }
+
+    // MARK: - IntegralArithmetic
+
+    // [_Inherit Documentation: SDGMathematics.IntegralArithmetic.init(int:)_]
+    public init(_ int: IntMax) {
+        magnitude = WholeNumber(UIntMax(|int|))
+        isNegative = int.isNegative
     }
 
     // MARK: - Negatable
@@ -181,6 +188,11 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
     }
 
     // MARK: - WholeArithmetic
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(uInt:)_]
+    public init(_ uInt: UIntMax) {
+        self.init(WholeNumber(uInt))
+    }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×=_]
     /// Modifies the left by multiplication with the right.

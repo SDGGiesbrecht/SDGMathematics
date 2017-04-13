@@ -91,11 +91,21 @@ infix operator ↑=: AssignmentPrecedence
 /// - `NumericAdditiveArithmetic`
 /// - `ExpressibleByIntegerLiteral`
 /// - `OneDimensionalPoint`
+/// - `init(_ uInt: UIntMax)`
 /// - `static func ×= (lhs: inout Self, rhs: Self)`
 /// - `mutating func divideAccordingToEuclid(by divisor: Self)`
 /// - `WholeNumberType`, `IntegerType`, `RationalNumberType` or `static func ↑= (lhs: inout Self, rhs: Self)`
 /// - `init(randomInRange range: ClosedRange<Self>, fromRandomizer randomizer: Randomizer)`
 public protocol WholeArithmetic : ExpressibleByIntegerLiteral, NumericAdditiveArithmetic, OneDimensionalPoint, Strideable {
+
+    // MARK: - Initialization
+
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.init(uInt:)_]
+    /// Creates an instance equal to `uInt`.
+    ///
+    /// - Properties:
+    ///     - uInt: An instance of `UIntMax`.
+    init(_ uInt: UIntMax)
 
     // MARK: - Operations
 
@@ -353,6 +363,15 @@ public func lcm<N : WholeArithmetic>(_ a: N, _ b: N) -> N {
 }
 
 extension WholeArithmetic {
+
+    // [_Define Documentation: SDGMathematics.WholeArithmetic.init(uIntType:)_]
+    /// Creates an instance equal to `uInt`.
+    ///
+    /// - Properties:
+    ///     - uInt: An instance of a type conforming to `UIntType`.
+    public init<U : UIntType>(_ uInt: U) {
+        self.init(uInt.toUIntMax())
+    }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×_]
     /// Returns the product of the left times the right.

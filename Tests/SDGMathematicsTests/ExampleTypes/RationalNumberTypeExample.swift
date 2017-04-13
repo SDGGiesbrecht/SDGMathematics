@@ -52,6 +52,12 @@ struct RationalNumberTypeExample : RationalNumberType {
         value = Double(integerLiteral)
     }
 
+    // IntegralArithmetic
+
+    public init(_ int: IntMax) {
+        value = Double(int)
+    }
+
     // PointType
 
     typealias Vector = RationalNumberTypeExample
@@ -73,6 +79,10 @@ struct RationalNumberTypeExample : RationalNumberType {
     }
 
     // WholeArithmetic
+
+    public init(_ uInt: UIntMax) {
+        value = Double(uInt)
+    }
 
     static func ×= (lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
         lhs.value ×= rhs.value

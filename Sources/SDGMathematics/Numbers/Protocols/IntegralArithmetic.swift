@@ -18,6 +18,25 @@
 ///
 /// - `WholeArithmetic`
 /// - `Negatable`
+/// - `init(_ int: IntMax)`
 public protocol IntegralArithmetic : AbsoluteValuable /* requires negatability */, Negatable, SignedNumber, WholeArithmetic {
 
+    // [_Define Documentation: SDGMathematics.IntegralArithmetic.init(int:)_]
+    /// Creates an instance equal to `int`.
+    ///
+    /// - Properties:
+    ///     - int: An instance of `IntMax`.
+    init(_ int: IntMax)
+}
+
+extension IntegralArithmetic {
+
+    // [_Define Documentation: SDGMathematics.IntegralArithmetic.init(intType:)_]
+    /// Creates an instance equal to `int`.
+    ///
+    /// - Properties:
+    ///     - int: An instance of a type conforming to `IntType`.
+    public init<I : IntType>(_ int: I) {
+        self.init(int.toIntMax())
+    }
 }

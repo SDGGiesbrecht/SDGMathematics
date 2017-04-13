@@ -19,12 +19,6 @@ import SDGLogic
 /// `WholeNumber` has a current theoretical limit of about 10 ↑ 178 000 000 000 000 000 000, but since that would occupy over 73 exabytes, in practice `WholeNumber` is limited by the amount of memory available.
 public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, PointType, Strideable, Subtractable, WholeArithmetic, WholeNumberType {
 
-    // MARK: - Initialization
-
-    public init<U : UIntType>(_ uInt: U) {
-        digits = [uInt.toUIntMax()]
-    }
-
     // MARK: - Properties
 
     internal typealias Digit = UIntMax
@@ -226,6 +220,11 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     }
 
     // MARK: - WholeArithmetic
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(uInt:)_]
+    public init(_ uInt: UIntMax) {
+        digits = [uInt]
+    }
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.×_]
     /// Returns the product of the left times the right.
