@@ -222,6 +222,10 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
     // MARK: - WholeArithmetic
 
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(uInt:)_]
+    /// Creates an instance equal to `uInt`.
+    ///
+    /// - Properties:
+    ///     - uInt: An instance of `UIntMax`.
     public init(_ uInt: UIntMax) {
         digits = [uInt]
     }
