@@ -150,6 +150,55 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
         self.init(value)
     }
 
+    // MARK: - ExpressibleByStringLiteral
+
+    private static let digits: [Set<UnicodeScalar>] = [
+        //    arb  pes  hi   bn   ta   my   km   th   lo
+        ["0", "٠", "۰", "०", "০", "௦", "၀", "០", "๐", "໐"],
+        ["1", "١", "۱", "१", "১", "௧", "၁", "១", "๑", "໑"],
+        ["2", "٢", "۲", "२", "২", "௨", "၂", "២", "๒", "໒"],
+        ["3", "٣", "۳", "३", "৩", "௩", "၃", "៣", "๓", "໓"],
+        ["4", "٤", "۴", "४", "৪", "௪", "၄", "៤", "๔", "໔"],
+        ["5", "٥", "۵", "५", "৫", "௫", "၅", "៥", "๕", "໕"],
+        ["6", "٦", "۶", "६", "৬", "௬", "၆", "៦", "๖", "໖"],
+        ["7", "٧", "۷", "७", "৭", "௭", "၇", "៧", "๗", "໗"],
+        ["8", "٨", "۸", "८", "৮", "௮", "၈", "៨", "๘", "໘"],
+        ["9", "٩", "۹", "९", "৯", "௯", "၉", "៩", "๙", "໙"],
+        ["A", "a"],
+        ["B", "b"],
+        ["C", "c"],
+        ["D", "d"],
+        ["E", "e"],
+        ["F", "f"]
+    ]
+    private static let thousandsSeparators: Set<UnicodeScalar> = [" "]
+
+    private static let digitMapping: [UnicodeScalar: WholeNumber] = {
+        var mapping: [UnicodeScalar: WholeNumber] = [:]
+        for value in digits.indices {
+            let characters = digits[value]
+            for character in characters {
+                mapping[character] = WholeNumber(UIntMax(value))
+            }
+        }
+        return mapping
+    }()
+
+    private init(_ representation: String, base: WholeNumber) {
+
+        self = 0
+        var position: WholeNumber = 0
+        for character in representation.decomposedStringWithCompatibilityMapping.unicodeScalars.reversed() {
+            if let digit = WholeNumber.digitMapping[character], digit < base {
+                self += (base ↑ position) × digit
+                position += 1 as WholeNumber
+            } else {
+                assert(WholeNumber.thousandsSeparators.contains(character), "\(character) is not a valid digit.")
+            }
+
+        }
+    }
+
     // MARK: - PointType
 
     // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
