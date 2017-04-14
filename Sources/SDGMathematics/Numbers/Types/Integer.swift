@@ -20,7 +20,7 @@ public typealias ArbitraryPrecisionInteger = Integer
 /// An arbitrary‐precision integer.
 ///
 /// The typealias `ArbitraryPrecisionInteger` is available when disambiguation is necessary.
-public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, IntegerType, IntegralArithmetic, Negatable, PointType, Subtractable, WholeArithmetic {
+public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByIntegerLiteral, ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, IntegerType, IntegralArithmetic, Negatable, PointType, Subtractable, WholeArithmetic {
 
     // MARK: - Initialization
 
@@ -136,12 +136,34 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByIntegerLite
         return (lhs.isNegative, lhs.magnitude) == (rhs.isNegative, rhs.magnitude)
     }
 
+    // MARK: - ExpressibleByExtendedGraphemeClusterLiteral
+
+    public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
+        self.init(textLiteral: value)
+    }
+
     // MARK: - ExpressibleByIntegerLiteral
 
     public typealias IntegerLiteralType = IntMax
 
     public init(integerLiteral: IntegerLiteralType) {
         self.init(integerLiteral)
+    }
+
+    // MARK: - ExpressibleByStringLiteral
+
+    internal init(textLiteral value: String) {
+        self.init(WholeNumber(textLiteral: value))
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(textLiteral: value)
+    }
+
+    // MARK: - ExpressibleByUnicodeScalarLiteral
+
+    public init(unicodeScalarLiteral value: StringLiteralType) {
+        self.init(textLiteral: value)
     }
 
     // MARK: - IntegralArithmetic

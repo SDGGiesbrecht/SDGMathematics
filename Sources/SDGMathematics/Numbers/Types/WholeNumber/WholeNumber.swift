@@ -17,7 +17,7 @@ import SDGLogic
 /// An arbitrary‐precision whole number.
 ///
 /// `WholeNumber` has a current theoretical limit of about 10 ↑ 178 000 000 000 000 000 000, but since that would occupy over 73 exabytes, in practice `WholeNumber` is limited by the amount of memory available.
-public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, PointType, Strideable, Subtractable, WholeArithmetic, WholeNumberType {
+public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByIntegerLiteral, ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, PointType, Strideable, Subtractable, WholeArithmetic, WholeNumberType {
 
     // MARK: - Properties
 
@@ -142,6 +142,12 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
         return lhs.digits.elementsEqual(rhs.digits)
     }
 
+    // MARK: - ExpressibleByExtendedGraphemeClusterLiteral
+
+    public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
+        self.init(textLiteral: value)
+    }
+
     // MARK: - ExpressibleByIntegerLiteral
 
     public typealias IntegerLiteralType = UIntMax
@@ -197,6 +203,28 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByInteger
             }
 
         }
+    }
+
+    internal init(textLiteral value: String) {
+        if value.hasPrefix("0b") {
+            self.init(value.substring(from: value.index(value.startIndex, offsetBy: 2)), base: 2)
+        } else if value.hasPrefix("0o") {
+            self.init(value.substring(from: value.index(value.startIndex, offsetBy: 2)), base: 8)
+        } else if value.hasPrefix("0x") {
+            self.init(value.substring(from: value.index(value.startIndex, offsetBy: 2)), base: 16)
+        } else {
+            self.init(value, base: 10)
+        }
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(textLiteral: value)
+    }
+
+    // MARK: - ExpressibleByUnicodeScalarLiteral
+
+    public init(unicodeScalarLiteral value: StringLiteralType) {
+        self.init(textLiteral: value)
     }
 
     // MARK: - PointType
