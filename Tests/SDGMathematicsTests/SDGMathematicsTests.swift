@@ -114,6 +114,9 @@ class SDGMathematicsTests : XCTestCase {
 
         let value: WholeNumber = "66 296 448 936 247 622 620"
         XCTAssert(value.dividedAccordingToEuclid(by: 4) == "16 574 112 234 061 905 655")
+
+        let anotherValue: WholeNumber = "18 446 744 073 709 551 616"
+        XCTAssert(anotherValue.dividedAccordingToEuclid(by: 1) == anotherValue)
     }
 
     func testBool() {
