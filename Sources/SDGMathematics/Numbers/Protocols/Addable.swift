@@ -14,7 +14,7 @@
 
 /// A type that can be used with `+(_:_:)`.
 ///
-/// The precise behaviour of “+” depends on the conforming type. It may be arithmetic addition, string concatenation, etc.
+/// The precise behaviour of `+` depends on the conforming type. It may be arithmetic addition, string concatenation, etc.
 ///
 /// Conformance Requirements:
 ///
