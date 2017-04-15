@@ -39,6 +39,7 @@ internal struct WholeNumberBinaryView : CustomStringConvertible {
         let shiftDistance = WholeNumber.Digit(distance.bitDistance)
         let extractionStart: WholeNumber.Digit = shiftDistance == 0 ? 0 : WholeNumber.Digit(BinaryView<WholeNumber.Digit>.count) − shiftDistance
 
+        let endIndex = wholeNumber.digitIndices.endIndex
         var carried: WholeNumber.Digit = 0
         for index in wholeNumber.digitIndices {
             var digit = wholeNumber[index]
@@ -51,6 +52,7 @@ internal struct WholeNumberBinaryView : CustomStringConvertible {
 
             wholeNumber[index] = digit
         }
+        wholeNumber[endIndex] = carried
 
         // Digits
 
