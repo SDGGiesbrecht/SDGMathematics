@@ -33,12 +33,12 @@ SDGMathematics extends support for mathematics.
 
 ## Features
 
-- A hierarchical protocol model for number types: `WholeArithmetic`, `IntegralArithmetic`, `RationalArithmetic`, `RealArithmetic`, etc.
 - Mathematical operations such as exponents, roots, logarithms, and trigonometry.
+- Arbitrary‐precision number types: `WholeNumber`, `Integer` & `RationalNumber`.
 - Customizable randomization of numbers and boolean values.
+- A hierarchical protocol model for number types: `WholeArithmetic`, `IntegralArithmetic`, `RationalArithmetic`, `RealArithmetic`, etc.
 - A `Measurement` protocol to simplify working with differing units.
 - Automated reversal of complex functions via `findLocalMinimum(near:within:inFunction)`, etc.
-- Operators: `−`, `×`, `÷`, etc.
 
 (For a list of related projecs, see [here](🇨🇦EN%20Related%20Projects.md).) <!--Skip in Jazzy-->
 
