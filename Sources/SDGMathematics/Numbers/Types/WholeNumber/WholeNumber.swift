@@ -14,7 +14,14 @@
 
 import SDGLogic
 
+// [_Example 1: WholeNumber Literals_]
 /// An arbitrary‐precision whole number.
+///
+/// ```swift
+/// let million: WholeNumber = 1_000_000
+/// let decillion: WholeNumber = "1 000 000 000 000 000 000 000 000 000 000 000"
+/// let yobiMultiplier: WholeNumber = "0b 1 0000000000 0000000000 0000000000 0000000000 0000000000 0000000000 0000000000 0000000000"
+/// ```
 ///
 /// `WholeNumber` has a current theoretical limit of about 10 ↑ 178 000 000 000 000 000 000, but since that would occupy over 73 exabytes, in practice `WholeNumber` is limited by the amount of memory available.
 public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByIntegerLiteral, ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, PointType, Strideable, Subtractable, WholeArithmetic, WholeNumberType {

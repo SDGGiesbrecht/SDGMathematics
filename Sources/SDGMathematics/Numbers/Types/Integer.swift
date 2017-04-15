@@ -14,12 +14,14 @@
 
 import SDGLogic
 
-/// A typealias for disambiguating the `SDGMathematics.Integer` type from the `Swift.Integer` protocol when necessary.
-public typealias ArbitraryPrecisionInteger = Integer
-
+// [_Example 1: WholeNumber Literals_]
 /// An arbitrary‐precision integer.
 ///
-/// The typealias `ArbitraryPrecisionInteger` is available when disambiguation is necessary.
+/// ```swift
+/// let million: WholeNumber = 1_000_000
+/// let decillion: WholeNumber = "1 000 000 000 000 000 000 000 000 000 000 000"
+/// let yobiMultiplier: WholeNumber = "0b 1 0000000000 0000000000 0000000000 0000000000 0000000000 0000000000 0000000000 0000000000"
+/// ```
 public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByIntegerLiteral, ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, IntegerType, IntegralArithmetic, Negatable, PointType, Subtractable, WholeArithmetic {
 
     // MARK: - Initialization

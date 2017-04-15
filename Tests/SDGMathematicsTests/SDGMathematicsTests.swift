@@ -19,7 +19,7 @@ import SDGLogic
 
 @testable import SDGMathematics
 
-typealias Integer = ArbitraryPrecisionInteger
+typealias Integer = SDGMathematics.Integer
 
 class SDGMathematicsTests : XCTestCase {
 

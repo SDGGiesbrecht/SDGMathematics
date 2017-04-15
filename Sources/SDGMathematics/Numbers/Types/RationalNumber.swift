@@ -14,7 +14,14 @@
 
 import SDGLogic
 
+// [_Example 1: RationalNumber Literals_]
 /// An arbitrary‐precision rational number.
+///
+/// ```swift
+/// let third: RationalNumber = 1 ÷ 3
+/// let decillionth: RationalNumber = "0.000 000 000 000 000 000 000 000 000 000 000 1"
+/// let half: RationalNumber = "0b 0.1"
+/// ```
 public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral, ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, IntegralArithmetic, Negatable, PointType, RationalArithmetic, RationalNumberType, Subtractable, WholeArithmetic {
 
     // MARK: - Initialization
