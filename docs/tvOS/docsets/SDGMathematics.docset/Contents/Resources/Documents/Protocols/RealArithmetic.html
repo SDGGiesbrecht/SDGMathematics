@@ -71,9 +71,6 @@
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:F14SDGMathematics2_0uRxS_18AdditiveArithmeticrFT_x">_0()</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Functions.html#/s:F14SDGMathematics6arccosuRxS_14RealArithmeticrFxGVS_5Anglex_">arccos(_:)</a>
               </li>
               <li class="nav-group-task">
@@ -199,7 +196,7 @@
                 <a href="../Protocols.html#/s:P14SDGMathematics11IntegerType">IntegerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols.html#/s:P14SDGMathematics18IntegralArithmetic">IntegralArithmetic</a>
+                <a href="../Protocols/IntegralArithmetic.html">IntegralArithmetic</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Measurement.html">Measurement</a>
@@ -413,9 +410,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFP14SDGMathematics14RealArithmeticXoi3BJgFTxx_x"></a>
-                    <a name="//apple_ref/swift/Method/√(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP14SDGMathematics14RealArithmeticXoi3BJgFTxx_x">√(_:_:)</a>
+                    <a name="/s:FP14SDGMathematics14RealArithmetic4rootFT8ofDegreex_x"></a>
+                    <a name="//apple_ref/swift/Method/root(ofDegree:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP14SDGMathematics14RealArithmetic4rootFT8ofDegreex_x">root(ofDegree:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -426,22 +423,22 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns the <code>lhs</code>‐th root of <code>rhs</code>.</p>
+                        <p>Returns the <code>degree</code>‐th root of <code>self</code>.</p>
 
 <div class="aside aside-mutating-variant">
     <p class="aside-title">Mutating variant</p>
-    <p>√=</p>
+    <p>formRoot</p>
 
 </div>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Returns the <code>lhs</code>‐th root of <code>rhs</code>.</p>
+                        <p>Returns the <code>degree</code>‐th root of <code>self</code>.</p>
 
 <div class="aside aside-mutating-variant">
     <p class="aside-title">Mutating variant</p>
-    <p>√=</p>
+    <p>formRoot</p>
 
 </div>
 
@@ -450,7 +447,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">√</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">root</span><span class="p">(</span><span class="n">ofDegree</span> <span class="nv">degree</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
@@ -461,25 +458,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>lhs</em>
+                                <em>degree</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The root.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>rhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The radicand.</p>
+                                  <p>The degree of the root.</p>
 
                                 </div>
                               </td>
@@ -493,9 +477,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFP14SDGMathematics14RealArithmeticXoi5e_tboFTRxx_T_"></a>
-                    <a name="//apple_ref/swift/Method/√=(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP14SDGMathematics14RealArithmeticXoi5e_tboFTRxx_T_">√=(_:_:)</a>
+                    <a name="/s:FP14SDGMathematics14RealArithmetic8formRootFT8ofDegreex_T_"></a>
+                    <a name="//apple_ref/swift/Method/formRoot(ofDegree:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP14SDGMathematics14RealArithmetic8formRootFT8ofDegreex_T_">formRoot(ofDegree:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -506,22 +490,22 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Sets <code>lhs</code> to its <code>rhs</code>‐th root.</p>
+                        <p>Sets <code>self</code> to its <code>degree</code>‐th root.</p>
 
 <div class="aside aside-nonmutating-variant">
     <p class="aside-title">Nonmutating variant</p>
-    <p>√</p>
+    <p>root</p>
 
 </div>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Sets <code>lhs</code> to its <code>rhs</code>‐th root.</p>
+                        <p>Sets <code>self</code> to its <code>degree</code>‐th root.</p>
 
 <div class="aside aside-nonmutating-variant">
     <p class="aside-title">Nonmutating variant</p>
-    <p>√</p>
+    <p>root</p>
 
 </div>
 
@@ -530,7 +514,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">√</span><span class="o">=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="k">inout</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="k">mutating</span> <span class="kd">func</span> <span class="nf">formRoot</span><span class="p">(</span><span class="n">ofDegree</span> <span class="nv">degree</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -541,25 +525,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>lhs</em>
+                                <em>degree</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The value to modify.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>rhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The root.</p>
+                                  <p>The degree of the root.</p>
 
                                 </div>
                               </td>

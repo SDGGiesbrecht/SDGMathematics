@@ -70,9 +70,6 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F14SDGMathematics2_0uRxS_18AdditiveArithmeticrFT_x">_0()</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Functions.html#/s:F14SDGMathematics6arccosuRxS_14RealArithmeticrFxGVS_5Anglex_">arccos(_:)</a>
               </li>
               <li class="nav-group-task">
@@ -198,7 +195,7 @@
                 <a href="Protocols.html#/s:P14SDGMathematics11IntegerType">IntegerType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols.html#/s:P14SDGMathematics18IntegralArithmetic">IntegralArithmetic</a>
+                <a href="Protocols/IntegralArithmetic.html">IntegralArithmetic</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/Measurement.html">Measurement</a>
@@ -411,7 +408,7 @@
 
 <ul>
 <li><code>Equatable</code></li>
-<li><code>static func += (lhs: inout Self, rhs: Addend)</code></li>
+<li><code>static func += (lhs: inout Self, rhs: Vector)</code></li>
 <li><code>static func − (lhs: Self, rhs: Self) -&gt; Vector</code></li>
 </ul>
 
@@ -543,7 +540,7 @@
                       <div class="abstract">
                         <p>A type that can be used with <code>+(_:_:)</code>.</p>
 
-<p>The precise behaviour of “+” depends on the conforming type. It may be arithmetic addition, string concatenation, etc.</p>
+<p>The precise behaviour of <code>+</code> depends on the conforming type. It may be arithmetic addition, string concatenation, etc.</p>
 
 <p>Conformance Requirements:</p>
 
@@ -632,7 +629,7 @@
 <p>Conformance Requirements:</p>
 
 <ul>
-<li><code><a href="Protocols.html#/s:P14SDGMathematics18IntegralArithmetic">IntegralArithmetic</a></code></li>
+<li><code><a href="Protocols/IntegralArithmetic.html">IntegralArithmetic</a></code></li>
 </ul>
 
                       </div>
@@ -640,7 +637,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IntegerType</span> <span class="p">:</span> <span class="kt"><a href="Protocols.html#/s:P14SDGMathematics18IntegralArithmetic">IntegralArithmetic</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">IntegerType</span> <span class="p">:</span> <span class="kt"><a href="Protocols/IntegralArithmetic.html">IntegralArithmetic</a></span></code></pre>
 
                         </div>
                       </div>
@@ -671,8 +668,10 @@
 <ul>
 <li><code>WholeArithmetic</code></li>
 <li><code><a href="Protocols/Negatable.html">Negatable</a></code></li>
+<li><code>init(_ int: IntMax)</code></li>
 </ul>
 
+                        <a href="Protocols/IntegralArithmetic.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -797,7 +796,7 @@
 <p>Conformance Requirements:</p>
 
 <ul>
-<li><code><a href="Protocols.html#/s:P14SDGMathematics18IntegralArithmetic">IntegralArithmetic</a></code></li>
+<li><code><a href="Protocols/IntegralArithmetic.html">IntegralArithmetic</a></code></li>
 <li><code>ExpressibleByFloatLiteral</code></li>
 <li><code>static func ÷= (lhs: inout Self, rhs: Self)</code></li>
 </ul>
@@ -808,7 +807,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RationalArithmetic</span> <span class="p">:</span> <span class="kt">ExpressibleByFloatLiteral</span><span class="p">,</span> <span class="kt"><a href="Protocols.html#/s:P14SDGMathematics18IntegralArithmetic">IntegralArithmetic</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RationalArithmetic</span> <span class="p">:</span> <span class="kt">ExpressibleByFloatLiteral</span><span class="p">,</span> <span class="kt"><a href="Protocols/IntegralArithmetic.html">IntegralArithmetic</a></span></code></pre>
 
                         </div>
                       </div>
