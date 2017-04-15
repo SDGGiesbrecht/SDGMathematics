@@ -347,5 +347,7 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
         let scaledNumerator = Integer(randomInRange: 0 ... scaled, fromRandomizer: randomizer)
 
         self = RationalNumber(numerator: scaledNumerator, denominator: RationalNumber.randomPrecision × denominator)
+
+        self += range.lowerBound
     }
 }
