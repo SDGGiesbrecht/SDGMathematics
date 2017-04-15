@@ -59,6 +59,9 @@ internal struct WholeNumberBinaryView : CustomStringConvertible {
         for index in wholeNumber.digitIndices.reversed() {
             wholeNumber[index + distance.digitDistance] = wholeNumber[index]
         }
+        for index in 0 ..< distance.digitDistance {
+            wholeNumber[index] = 0
+        }
     }
 
     // MARK: - Sequences
