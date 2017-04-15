@@ -37,13 +37,14 @@ internal struct WholeNumberBinaryView : CustomStringConvertible {
         var extractionMask = insertionMask
         extractionMask.binaryView.reverse()
         let shiftDistance = WholeNumber.Digit(distance.bitDistance)
+        let extractionStart: WholeNumber.Digit = shiftDistance == 0 ? 0 : WholeNumber.Digit(BinaryView<WholeNumber.Digit>.count) − shiftDistance
 
         var carried: WholeNumber.Digit = 0
         for index in wholeNumber.digitIndices {
             var digit = wholeNumber[index]
 
             let insertion = carried
-            carried = (digit & extractionMask) >> shiftDistance
+            carried = (digit & extractionMask) >> extractionStart
 
             digit = digit << shiftDistance
             digit = digit | insertion
