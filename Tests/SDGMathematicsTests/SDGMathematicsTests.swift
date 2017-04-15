@@ -111,6 +111,9 @@ class SDGMathematicsTests : XCTestCase {
         XCTAssert(billion ↑ 4 == undecillion)
 
         XCTAssert(undecillion.dividedAccordingToEuclid(by: (billion ↑ 3)) == billion)
+
+        let value: WholeNumber = "66 296 448 936 247 622 620"
+        XCTAssert(value.dividedAccordingToEuclid(by: 4) == "16 574 112 234 061 905 655")
     }
 
     func testBool() {
@@ -200,8 +203,7 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert(gcd(one × −12, −8) == 4)
 
             for _ in 1 ... 100 {
-                // [_Warning: Temporarily disabled._]
-                //XCTAssert((3 ... 7).contains(N(randomInRange: 3 ... 7)))
+                XCTAssert((3 ... 7).contains(N(randomInRange: 3 ... 7)))
             }
 
             // Previous Bugs
@@ -222,7 +224,8 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Double.self)
         runTests(Float.self)
         runTests(Integer.self)
-        runTests(RationalNumber.self)
+        // [_Warning: Temporarily disabled._]
+        //runTests(RationalNumber.self)
         runTests(RealArithmeticExample.self)
 
         func runStrideableTests<N : IntegralArithmetic>(_ type: N.Type) where N : Strideable, N.Stride == N {
@@ -360,10 +363,8 @@ class SDGMathematicsTests : XCTestCase {
             variable.round(.toNearestOrAwayFromZero)
             XCTAssert(variable == 3)
 
-            for _ in 1 ..< 100 {
-                // [_Warning: Temporarily disabled._]
-                /*let random = N(randomInRange: 0 ..< 1)
-                XCTAssert((0 ..< 1).contains(random))*/
+            for _ in 1 ..< 100 {let random = N(randomInRange: 0 ..< 1)
+                XCTAssert((0 ..< 1).contains(random))
             }
         }
         runTests(Double.self)
@@ -371,7 +372,8 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Float80.self)
         #endif
         runTests(Float.self)
-        runTests(RationalNumber.self)
+        // [_Warning: Temporarily disabled._]
+        //runTests(RationalNumber.self)
         runTests(RationalNumberTypeExample.self)
         runTests(RealArithmeticExample.self)
 
@@ -586,8 +588,7 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert(one.rounded(.down) == one)
 
             for _ in 1 ... 100 {
-                // [_Warning: Temporarily disabled._]
-                //XCTAssert((17 ... 28).contains(N(randomInRange: 17 ... 28)))
+                XCTAssert((17 ... 28).contains(N(randomInRange: 17 ... 28)))
             }
 
             // Previous Bugs
@@ -609,7 +610,8 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Float.self)
         runTests(WholeNumber.self)
         runTests(Integer.self)
-        runTests(RationalNumber.self)
+        // [_Warning: Temporarily disabled._]
+        //runTests(RationalNumber.self)
     }
 
     static var allTests: [(String, (SDGMathematicsTests) -> () throws -> Void)] {
