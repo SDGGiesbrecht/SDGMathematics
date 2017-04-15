@@ -206,7 +206,8 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert(gcd(one × −12, −8) == 4)
 
             for _ in 1 ... 100 {
-                XCTAssert((3 ... 7).contains(N(randomInRange: 3 ... 7)))
+                let random = N(randomInRange: 3 ... 7)
+                XCTAssert((3 ... 7).contains(random), "\(random) ∉ 3–7")
             }
 
             // Previous Bugs
@@ -227,8 +228,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Double.self)
         runTests(Float.self)
         runTests(Integer.self)
-        // [_Warning: Temporarily disabled._]
-        //runTests(RationalNumber.self)
+        runTests(RationalNumber.self)
         runTests(RealArithmeticExample.self)
 
         func runStrideableTests<N : IntegralArithmetic>(_ type: N.Type) where N : Strideable, N.Stride == N {
@@ -375,8 +375,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Float80.self)
         #endif
         runTests(Float.self)
-        // [_Warning: Temporarily disabled._]
-        //runTests(RationalNumber.self)
+        runTests(RationalNumber.self)
         runTests(RationalNumberTypeExample.self)
         runTests(RealArithmeticExample.self)
 
@@ -613,8 +612,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Float.self)
         runTests(WholeNumber.self)
         runTests(Integer.self)
-        // [_Warning: Temporarily disabled._]
-        //runTests(RationalNumber.self)
+        runTests(RationalNumber.self)
     }
 
     static var allTests: [(String, (SDGMathematicsTests) -> () throws -> Void)] {
