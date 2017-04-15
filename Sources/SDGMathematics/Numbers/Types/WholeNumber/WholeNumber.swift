@@ -177,9 +177,9 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
         ["E", "e"],
         ["F", "f"]
     ]
-    private static let thousandsSeparators: Set<UnicodeScalar> = [" "]
+    private static let thousandsSeparators: Set<UnicodeScalar> = [" ", "٬"]
 
-    private static let digitMapping: [UnicodeScalar: WholeNumber] = {
+    internal static let digitMapping: [UnicodeScalar: WholeNumber] = {
         var mapping: [UnicodeScalar: WholeNumber] = [:]
         for value in digits.indices {
             let characters = digits[value]
@@ -205,15 +205,27 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
         }
     }
 
+    internal static let prefixToBaseMapping: [String: WholeNumber] = [
+        "0b": 2,
+        "0o": 8,
+        "0x": 16
+    ]
+
     internal init(textLiteral value: String) {
-        if value.hasPrefix("0b") {
-            self.init(value.substring(from: value.index(value.startIndex, offsetBy: 2)), base: 2)
-        } else if value.hasPrefix("0o") {
-            self.init(value.substring(from: value.index(value.startIndex, offsetBy: 2)), base: 8)
-        } else if value.hasPrefix("0x") {
-            self.init(value.substring(from: value.index(value.startIndex, offsetBy: 2)), base: 16)
+
+        var numeric: WholeNumber?
+        for (prefix, base) in WholeNumber.prefixToBaseMapping {
+            if value.hasPrefix(prefix) {
+                let scalars = value.unicodeScalars
+                numeric = WholeNumber(String(scalars[scalars.startIndex ..< scalars.index(scalars.startIndex, offsetBy: prefix.unicodeScalars.count)]), base: base)
+                break
+            }
+        }
+
+        if let result = numeric {
+            self = result
         } else {
-            self.init(value, base: 10)
+            self = WholeNumber(value, base: 10)
         }
     }
 
