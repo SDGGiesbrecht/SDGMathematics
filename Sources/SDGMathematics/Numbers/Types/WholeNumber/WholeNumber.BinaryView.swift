@@ -14,7 +14,7 @@
 
 import SDGLogic
 
-internal struct WholeNumberBinaryView {
+internal struct WholeNumberBinaryView : CustomStringConvertible {
     // Cannot conform to Collection, because no SignedInteger is large enough to serve as IndexDistance
 
     // MARK: - Initialization
@@ -121,5 +121,17 @@ internal struct WholeNumberBinaryView {
         set {
             wholeNumber[index.digit].binaryView[index.bit] = newValue
         }
+    }
+
+    // MARK: - CustomStringConvertible
+
+    internal var description: String {
+        var index = endIndex
+        var result = ""
+        while index ≠ startIndex {
+            index −= 1
+            result += self[index] ? "1" : "0"
+        }
+        return result
     }
 }

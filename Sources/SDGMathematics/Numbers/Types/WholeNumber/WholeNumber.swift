@@ -217,7 +217,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
         for (prefix, base) in WholeNumber.prefixToBaseMapping {
             if value.hasPrefix(prefix) {
                 let scalars = value.unicodeScalars
-                numeric = WholeNumber(String(scalars[scalars.startIndex ..< scalars.index(scalars.startIndex, offsetBy: prefix.unicodeScalars.count)]), base: base)
+                numeric = WholeNumber(String(scalars[scalars.index(scalars.startIndex, offsetBy: prefix.unicodeScalars.count) ..< scalars.endIndex]), base: base)
                 break
             }
         }
@@ -372,29 +372,29 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
         var quotient: WholeNumber = 0
         var remainingDividend = self
 
-        for bitPosition in binaryView.indicesBackwards() {
-            let distance = binaryView.endIndex − bitPosition
-            if distance ≥ divisor.binaryView.count ∧ divisor.binaryView.count ≤ remainingDividend.binaryView.count {
-                var divides = true // If the following iteration finishes, it is exactly equal and divides precicely once.
-                for (dividendBit, divisorBit) in zip(remainingDividend.binaryView.lastBitsBackwards(maximum: divisor.binaryView.count), divisor.binaryView.bitsBackwards()) where dividendBit ≠ divisorBit {
-                    if dividendBit < divisorBit {
-                        divides = false
-                        break
-                    }
-                    if dividendBit > divisorBit {
-                        divides = true
-                        break
-                    }
+        while remainingDividend ≥ divisor {
+            var divides = true // If the following iteration finishes, it is exactly equal and divides precicely once.
+            for (dividendBit, divisorBit) in zip(remainingDividend.binaryView.lastBitsBackwards(maximum: divisor.binaryView.count), divisor.binaryView.bitsBackwards()) where dividendBit ≠ divisorBit {
+                if dividendBit < divisorBit {
+                    divides = false
+                    break
                 }
-
-                if divides {
-                    quotient.binaryView[bitPosition] = true
-
-                    var shiftedDivisor = divisor
-                    shiftedDivisor.binaryView.shiftLeft(bitPosition − binaryView.startIndex)
-                    remainingDividend −= shiftedDivisor
+                if dividendBit > divisorBit {
+                    divides = true
+                    break
                 }
             }
+
+            var bitPosition = remainingDividend.binaryView.endIndex − divisor.binaryView.count
+            if ¬divides {
+                bitPosition −= 1
+            }
+
+            quotient.binaryView[bitPosition] = true
+
+            var shiftedDivisor = divisor
+            shiftedDivisor.binaryView.shiftLeft(bitPosition − binaryView.startIndex)
+            remainingDividend −= shiftedDivisor
         }
 
         return (quotient, remainingDividend)

@@ -105,6 +105,14 @@ class SDGMathematicsTests : XCTestCase {
         runTests(RealArithmeticExample.self)
     }
 
+    func testArbitraryPrecision() {
+        let undecillion: WholeNumber = "1 000 000 000 000 000 000 000 000 000 000 000 000"
+        let billion: WholeNumber = 1_000_000_000
+        XCTAssert(billion ↑ 4 == undecillion)
+
+        XCTAssert(undecillion.dividedAccordingToEuclid(by: (billion ↑ 3)) == billion)
+    }
+
     func testBool() {
         var values: Set<Bool> = []
         for _ in 1 ..< 100 {
@@ -325,8 +333,7 @@ class SDGMathematicsTests : XCTestCase {
     }
 
     func testRationalArithmetic() {
-        // [_Workaround: Temporarily disabled._]
-        func runTests<N : RationalArithmetic>(_ type: N.Type) {/*
+        func runTests<N : RationalArithmetic>(_ type: N.Type) {
             let one: N = 1
             let oneAndAHalf: N = 1.5
             let two: N = 2
@@ -354,9 +361,10 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert(variable == 3)
 
             for _ in 1 ..< 100 {
-                let random = N(randomInRange: 0 ..< 1)
-                XCTAssert((0 ..< 1).contains(random))
-            }*/
+                // [_Warning: Temporarily disabled._]
+                /*let random = N(randomInRange: 0 ..< 1)
+                XCTAssert((0 ..< 1).contains(random))*/
+            }
         }
         runTests(Double.self)
         #if os(macOS) || os(Linux)
@@ -608,6 +616,7 @@ class SDGMathematicsTests : XCTestCase {
         return [
             ("testAddable", testAddable),
             ("testAngle", testAngle),
+            ("testArbitraryPrecision", testArbitraryPrecision),
             ("testBool", testBool),
             ("testComparable", testComparable),
             ("testDouble", testDouble),

@@ -33,7 +33,7 @@ extension WholeNumberBinaryView {
         // MARK: - Equatable
 
         internal static func == (lhs: Index, rhs: Index) -> Bool {
-            return (lhs.digit, lhs.bit) == (lhs.digit, rhs.bit)
+            return (lhs.digit, lhs.bit) == (rhs.digit, rhs.bit)
         }
 
         // MARK: - PointType
