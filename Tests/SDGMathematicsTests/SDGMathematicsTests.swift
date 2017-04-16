@@ -124,7 +124,7 @@ class SDGMathematicsTests : XCTestCase {
         }
         runStringLiteralTests(WholeNumber.self)
         runStringLiteralTests(Integer.self)
-        runStringLiteralTests(Rational.self)
+        runStringLiteralTests(RationalNumber.self)
     }
 
     func testBool() {

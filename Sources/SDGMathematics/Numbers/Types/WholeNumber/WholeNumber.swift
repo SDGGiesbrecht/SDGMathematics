@@ -151,7 +151,6 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
 
     // MARK: - ExpressibleByExtendedGraphemeClusterLiteral
 
-
     // [_Define Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral:)_]
     /// Creates an instance from an extended grapheme cluster literal.
     public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
