@@ -142,7 +142,8 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGra
 
     // MARK: - ExpressibleByExtendedGraphemeClusterLiteral
 
-    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral_]
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral:)_]
+    /// Creates an instance from an extended grapheme cluster literal.
     public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
@@ -150,9 +151,11 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGra
     // MARK: - ExpressibleByIntegerLiteral
 
     // [_Inherit Documentation: SDGMathematics.WholeNumber.IntegerLiteralType_]
+    /// The integer literal type.
     public typealias IntegerLiteralType = IntMax
 
     // [_Inherit Documentation: SDGMathematics.WholeNumber.init(integerLiteral:)_]
+    /// Creates an instance from an integer literal.
     public init(integerLiteral: IntegerLiteralType) {
         self.init(integerLiteral)
     }
@@ -162,8 +165,9 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGra
     internal init(textLiteral value: String) {
         self.init(WholeNumber(textLiteral: value))
     }
-    
+
     // [_Inherit Documentation: SDGMathematics.WholeNumber.init(stringLiteral:)_]
+    /// Creates an instance from a string literal.
     public init(stringLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
@@ -171,6 +175,7 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGra
     // MARK: - ExpressibleByUnicodeScalarLiteral
 
     // [_Inherit Documentation: SDGMathematics.WholeNumber.init(unicodeScalarLiteral:)_]
+    /// Creates an instance from a unicode scalar literal.
     public init(unicodeScalarLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }

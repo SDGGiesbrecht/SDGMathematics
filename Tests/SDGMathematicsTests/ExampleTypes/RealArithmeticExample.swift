@@ -55,6 +55,10 @@ struct RealArithmeticExample : RealArithmetic {
     // IntegralArithmetic
 
     // [_Inherit Documentation: SDGMathematics.IntegralArithmetic.init(int:)_]
+    /// Creates an instance equal to `int`.
+    ///
+    /// - Properties:
+    ///     - int: An instance of `IntMax`.
     public init(_ int: IntMax) {
         value = Double(int)
     }
@@ -102,8 +106,12 @@ struct RealArithmeticExample : RealArithmetic {
     }
 
     // WholeArithmetic
-    
+
     // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(uInt:)_]
+    /// Creates an instance equal to `uInt`.
+    ///
+    /// - Properties:
+    ///     - uInt: An instance of `UIntMax`.
     public init(_ uInt: UIntMax) {
         value = Double(uInt)
     }

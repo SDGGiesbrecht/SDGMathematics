@@ -144,14 +144,15 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
     }
 
     // MARK: - ExpressibleByExtendedGraphemeClusterLiteral
-    
-    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral_]
+
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral:)_]
+    /// Creates an instance from an extended grapheme cluster literal.
     public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
 
     // MARK: - ExpressibleByFloatLiteral
-    
+
     /// The float literal type.
     public typealias FloatLiteralType = FloatMax
 
@@ -171,11 +172,13 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
     }
 
     // MARK: - ExpressibleByIntegerLiteral
-    
+
     // [_Inherit Documentation: SDGMathematics.WholeNumber.IntegerLiteralType_]
+    /// The integer literal type.
     public typealias IntegerLiteralType = IntMax
-    
+
     // [_Inherit Documentation: SDGMathematics.WholeNumber.init(integerLiteral:)_]
+    /// Creates an instance from an integer literal.
     public init(integerLiteral: IntegerLiteralType) {
         self.init(integerLiteral)
     }
@@ -235,15 +238,17 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
 
         self = RationalNumber(whole) + RationalNumber(numerator: numerator, denominator: denominator)
     }
-    
+
     // [_Inherit Documentation: SDGMathematics.WholeNumber.init(stringLiteral:)_]
+    /// Creates an instance from a string literal.
     public init(stringLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
 
     // MARK: - ExpressibleByUnicodeScalarLiteral
-    
+
     // [_Inherit Documentation: SDGMathematics.WholeNumber.init(unicodeScalarLiteral:)_]
+    /// Creates an instance from a unicode scalar literal.
     public init(unicodeScalarLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
@@ -281,6 +286,15 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
     // MARK: - RationalArithmetic
 
     // [_Inherit Documentation: SDGMathematics.RationalArithmetic.÷=_]
+    /// Modifies the left by dividing it by the right.
+    ///
+    /// - Parameters:
+    ///     - lhs: The value to modify.
+    ///     - rhs: The divisor.
+    ///
+    /// - NonmutatingVariant: ÷
+    ///
+    /// - RecommendedOver: /=
     public static func ÷= (lhs: inout RationalNumber, rhs: RationalNumber) {
         var irregular = lhs.definition
         irregular.numerator ×= rhs.denominator

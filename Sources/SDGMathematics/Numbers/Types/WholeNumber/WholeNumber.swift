@@ -151,19 +151,19 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
 
     // MARK: - ExpressibleByExtendedGraphemeClusterLiteral
 
-    
-    // [_Define Documentation: SDGMathematics.WholeNumber.IntegerLiteralType_]
+
+    // [_Define Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral:)_]
     /// Creates an instance from an extended grapheme cluster literal.
     public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
 
     // MARK: - ExpressibleByIntegerLiteral
-    
+
     // [_Define Documentation: SDGMathematics.WholeNumber.IntegerLiteralType_]
     /// The integer literal type.
     public typealias IntegerLiteralType = UIntMax
-    
+
     // [_Define Documentation: SDGMathematics.WholeNumber.init(integerLiteral:)_]
     /// Creates an instance from an integer literal.
     public init(integerLiteral value: IntegerLiteralType) {
@@ -242,7 +242,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
             self = WholeNumber(value, base: 10)
         }
     }
-    
+
     // [_Define Documentation: SDGMathematics.WholeNumber.init(stringLiteral:)_]
     /// Creates an instance from a string literal.
     public init(stringLiteral value: StringLiteralType) {
@@ -250,7 +250,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
     }
 
     // MARK: - ExpressibleByUnicodeScalarLiteral
-    
+
     // [_Define Documentation: SDGMathematics.WholeNumber.init(unicodeScalarLiteral:)_]
     /// Creates an instance from a unicode scalar literal.
     public init(unicodeScalarLiteral value: StringLiteralType) {
@@ -291,7 +291,7 @@ public struct WholeNumber : Addable, Comparable, Equatable, ExpressibleByExtende
 
     // MARK: - Strideable
 
-    // [_Inherit Documentation: SDGMathematics.Strideable.Stride_]
+    /// The stride type.
     public typealias Stride = Vector
 
     // MARK: - Subtractable
