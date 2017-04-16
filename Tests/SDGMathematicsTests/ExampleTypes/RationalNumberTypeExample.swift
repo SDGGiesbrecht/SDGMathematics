@@ -54,6 +54,7 @@ struct RationalNumberTypeExample : RationalNumberType {
 
     // IntegralArithmetic
 
+    // [_Inherit Documentation: SDGMathematics.IntegralArithmetic.init(int:)_]
     public init(_ int: IntMax) {
         value = Double(int)
     }
@@ -80,6 +81,7 @@ struct RationalNumberTypeExample : RationalNumberType {
 
     // WholeArithmetic
 
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(uInt:)_]
     public init(_ uInt: UIntMax) {
         value = Double(uInt)
     }

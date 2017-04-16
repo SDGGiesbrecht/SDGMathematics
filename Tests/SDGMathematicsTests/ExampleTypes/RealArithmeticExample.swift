@@ -54,6 +54,7 @@ struct RealArithmeticExample : RealArithmetic {
 
     // IntegralArithmetic
 
+    // [_Inherit Documentation: SDGMathematics.IntegralArithmetic.init(int:)_]
     public init(_ int: IntMax) {
         value = Double(int)
     }
@@ -101,7 +102,8 @@ struct RealArithmeticExample : RealArithmetic {
     }
 
     // WholeArithmetic
-
+    
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(uInt:)_]
     public init(_ uInt: UIntMax) {
         value = Double(uInt)
     }

@@ -95,6 +95,7 @@ extension UIntType {
 
     // MARK: - Binary
 
+    /// A view into the bits of `self` as a collection.
     public var binaryView: BinaryView<Self> {
         get {
             return BinaryView(self)

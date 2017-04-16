@@ -30,10 +30,12 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
         definition = Definition(numerator: numerator, denominator: denominator)
     }
 
+    /// Creates an instance from an integer.
     public init(_ integer: Integer) {
         self.init(numerator: integer, denominator: 1)
     }
 
+    /// Creates an instance from a whole number.
     public init(_ wholeNumber: WholeNumber) {
         self.init(Integer(wholeNumber))
     }
@@ -66,10 +68,12 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
         }
     }
 
+    /// The numerator.
     public var numerator: Integer {
         return definition.numerator
     }
 
+    /// The denominator.
     public var denominator: Integer {
         return definition.denominator
     }
@@ -140,13 +144,15 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
     }
 
     // MARK: - ExpressibleByExtendedGraphemeClusterLiteral
-
+    
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral_]
     public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
 
     // MARK: - ExpressibleByFloatLiteral
-
+    
+    /// The float literal type.
     public typealias FloatLiteralType = FloatMax
 
     internal init(floatingPointLiteral value: FloatMax) {
@@ -159,14 +165,17 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
         self.init(numerator: Integer(IntMax(numerator)), denominator: Integer(IntMax(denominator)))
     }
 
+    /// Creates an instance from a float literal.
     public init(floatLiteral value: FloatLiteralType) {
         self.init(floatingPointLiteral: value)
     }
 
     // MARK: - ExpressibleByIntegerLiteral
-
+    
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.IntegerLiteralType_]
     public typealias IntegerLiteralType = IntMax
-
+    
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(integerLiteral:)_]
     public init(integerLiteral: IntegerLiteralType) {
         self.init(integerLiteral)
     }
@@ -226,13 +235,15 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
 
         self = RationalNumber(whole) + RationalNumber(numerator: numerator, denominator: denominator)
     }
-
+    
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(stringLiteral:)_]
     public init(stringLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
 
     // MARK: - ExpressibleByUnicodeScalarLiteral
-
+    
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(unicodeScalarLiteral:)_]
     public init(unicodeScalarLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
@@ -269,6 +280,7 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
 
     // MARK: - RationalArithmetic
 
+    // [_Inherit Documentation: SDGMathematics.RationalArithmetic.÷=_]
     public static func ÷= (lhs: inout RationalNumber, rhs: RationalNumber) {
         var irregular = lhs.definition
         irregular.numerator ×= rhs.denominator

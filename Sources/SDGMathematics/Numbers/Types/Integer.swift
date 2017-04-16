@@ -30,6 +30,7 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGra
         self.definition = Definition(magnitude: magnitude, isNegative: isNegative)
     }
 
+    /// Creates an instance from a whole number.
     public init(_ wholeNumber: WholeNumber) {
         self.init(magnitude: wholeNumber, isNegative: false)
     }
@@ -56,6 +57,7 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGra
         }
     }
 
+    /// The magnitude.
     public private(set) var magnitude: WholeNumber {
         get {
             return definition.magnitude
@@ -140,14 +142,17 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGra
 
     // MARK: - ExpressibleByExtendedGraphemeClusterLiteral
 
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral_]
     public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
 
     // MARK: - ExpressibleByIntegerLiteral
 
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.IntegerLiteralType_]
     public typealias IntegerLiteralType = IntMax
 
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(integerLiteral:)_]
     public init(integerLiteral: IntegerLiteralType) {
         self.init(integerLiteral)
     }
@@ -157,13 +162,15 @@ public struct Integer : Addable, Comparable, Equatable, ExpressibleByExtendedGra
     internal init(textLiteral value: String) {
         self.init(WholeNumber(textLiteral: value))
     }
-
+    
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(stringLiteral:)_]
     public init(stringLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
 
     // MARK: - ExpressibleByUnicodeScalarLiteral
 
+    // [_Inherit Documentation: SDGMathematics.WholeNumber.init(unicodeScalarLiteral:)_]
     public init(unicodeScalarLiteral value: StringLiteralType) {
         self.init(textLiteral: value)
     }
