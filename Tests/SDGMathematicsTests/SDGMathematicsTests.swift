@@ -117,6 +117,14 @@ class SDGMathematicsTests : XCTestCase {
 
         let anotherValue: WholeNumber = "18 446 744 073 709 551 616"
         XCTAssert(anotherValue.dividedAccordingToEuclid(by: 1) == anotherValue)
+
+        func runStringLiteralTests<N : WholeArithmetic>(_ type: N.Type) where N : ExpressibleByStringLiteral {
+            let one: N = "1"
+            XCTAssert(one == 1)
+        }
+        runStringLiteralTests(WholeNumber.self)
+        runStringLiteralTests(Integer.self)
+        runStringLiteralTests(Rational.self)
     }
 
     func testBool() {
@@ -188,6 +196,7 @@ class SDGMathematicsTests : XCTestCase {
     func testIntegralArithmetic() {
 
         func runTests<N : IntegralArithmetic>(_ type: N.Type) {
+            let minusTwo: N = −2
             let minusOne: N = −1
             let one: N = 1
             let two: N = 2
@@ -211,6 +220,8 @@ class SDGMathematicsTests : XCTestCase {
                 let random = N(randomInRange: 3 ... 7)
                 XCTAssert((3 ... 7).contains(random), "\(random) ∉ 3–7")
             }
+
+            XCTAssert(minusTwo < minusOne)
 
             // Previous Bugs
 
