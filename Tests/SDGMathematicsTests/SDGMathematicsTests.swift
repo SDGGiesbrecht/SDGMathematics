@@ -152,6 +152,8 @@ class SDGMathematicsTests : XCTestCase {
             value.increase(to: entry)
         }
         XCTAssert(value == 5)
+
+        XCTAssert(1 ≈ (0, 2))
     }
 
     func testDouble() {
@@ -592,6 +594,9 @@ class SDGMathematicsTests : XCTestCase {
             for _ in 1 ... 100 {
                 XCTAssert((17 ... 28).contains(N(randomInRange: 17 ... 28)))
             }
+
+            let uInt8: UInt8 = 94
+            XCTAssert(N(uInt8) == 94)
 
             // Previous Bugs
 
