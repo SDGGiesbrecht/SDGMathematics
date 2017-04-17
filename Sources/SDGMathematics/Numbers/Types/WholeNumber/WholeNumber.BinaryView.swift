@@ -14,7 +14,7 @@
 
 import SDGLogic
 
-internal struct WholeNumberBinaryView : CustomStringConvertible {
+internal struct WholeNumberBinaryView {
     // Cannot conform to Collection, because no SignedInteger is large enough to serve as IndexDistance
 
     // MARK: - Initialization
@@ -77,10 +77,6 @@ internal struct WholeNumberBinaryView : CustomStringConvertible {
         }
     }
 
-    internal func indicesBackwards() -> UnfoldSequence<Index, Index> {
-        return indicesBackwards(from: endIndex, to: startIndex)
-    }
-
     internal func bitsBackwards(from end: Index, to start: Index) -> LazyMapSequence<UnfoldSequence<Index, Index>, Bool> {
         return indicesBackwards(from: end, to: start).lazy.map() { self[$0] }
     }
@@ -127,17 +123,5 @@ internal struct WholeNumberBinaryView : CustomStringConvertible {
         set {
             wholeNumber[index.digit].binaryView[index.bit] = newValue
         }
-    }
-
-    // MARK: - CustomStringConvertible
-
-    internal var description: String {
-        var index = endIndex
-        var result = ""
-        while index ≠ startIndex {
-            index −= 1
-            result += self[index] ? "1" : "0"
-        }
-        return result
     }
 }
