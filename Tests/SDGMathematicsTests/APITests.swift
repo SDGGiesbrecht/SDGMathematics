@@ -1,5 +1,5 @@
 /*
- SDGMathematicsTests.swift
+ APITests.swift
 
  This source file is part of the SDGMathematics open source project.
  https://sdggiesbrecht.github.io/SDGMathematics/macOS
@@ -17,11 +17,11 @@ import XCTest
 
 import SDGLogic
 
-@testable import SDGMathematics
+import SDGMathematics
 
 typealias Integer = SDGMathematics.Integer
 
-class SDGMathematicsTests : XCTestCase {
+class APITests : XCTestCase {
 
     func testAddable() {
         func runTests<T : Addable>(addend: T, augend: T, sum: T) where T : Equatable {
@@ -638,7 +638,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(RationalNumber.self)
     }
 
-    static var allTests: [(String, (SDGMathematicsTests) -> () throws -> Void)] {
+    static var allTests: [(String, (APITests) -> () throws -> Void)] {
         return [
             ("testAddable", testAddable),
             ("testAngle", testAngle),

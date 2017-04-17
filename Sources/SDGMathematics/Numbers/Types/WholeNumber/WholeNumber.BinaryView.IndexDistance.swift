@@ -14,7 +14,7 @@
 
 extension WholeNumberBinaryView {
 
-    internal struct IndexDistance : Addable, Comparable, CustomStringConvertible, Equatable, ExpressibleByIntegerLiteral, Negatable, SignedNumber, Subtractable {
+    internal struct IndexDistance : Addable, Comparable, Equatable, ExpressibleByIntegerLiteral, Negatable, SignedNumber, Subtractable {
 
         // MARK: - Initialization
 
@@ -51,12 +51,6 @@ extension WholeNumberBinaryView {
 
         internal static func < (lhs: IndexDistance, rhs: IndexDistance) -> Bool {
             return (lhs.digitDistance, lhs.bitDistance) < (rhs.digitDistance, rhs.bitDistance)
-        }
-
-        // MARK: - CustomStringConvertible
-
-        internal var description: String {
-            return "\(digitDistance).\(bitDistance)"
         }
 
         // MARK: - Equatable
