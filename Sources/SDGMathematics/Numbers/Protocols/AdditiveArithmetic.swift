@@ -28,32 +28,6 @@ public protocol AdditiveArithmetic : Equatable, Subtractable {
     static var additiveIdentity: Self { get }
 }
 
-// MARK: - Additive Arithmetic
-
-/// The additive identity of the desired return type.
-///
-/// - Note: This is an alias for `N.additiveIdentity` to improve the legibility of code involving mathematical equations.
-public func _0<N : AdditiveArithmetic>() -> N {
-    return N._0
-}
-
-extension AdditiveArithmetic {
-
-    /// The additive identity.
-    ///
-    /// - Note: This is an alias for `Self.additiveIdentity` to improve the legibility of code involving mathematical equations.
-    public static var _0: Self {
-        return additiveIdentity
-    }
-
-    /// The additive identity.
-    ///
-    /// - Note: This is an alias for `Self.additiveIdentity` to improve the legibility of code involving mathematical equations.
-    public var _0: Self {
-        return Self._0
-    }
-}
-
 extension AdditiveArithmetic where Self : ExpressibleByIntegerLiteral {
     // MARK: - where Self : ExpressibleByIntegerLiteral
 

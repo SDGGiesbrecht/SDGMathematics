@@ -14,27 +14,7 @@
 
 import SDGLogic
 
-// [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:_:)_]
-/// Returns the `lhs`‐th root of `rhs`.
-///
-/// - Parameters:
-///     - lhs: The root.
-///     - rhs: The radicand.
-///
-/// - MutatingVariant: √=
-infix operator √: ExponentPrecedence
-
-// [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:_:)_]
-/// Sets `lhs` to its `rhs`‐th root.
-///
-/// - Parameters:
-///     - lhs: The value to modify.
-///     - rhs: The root.
-///
-/// - NonmutatingVariant: √
-infix operator √=: AssignmentPrecedence
-
-// [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:)_]
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.√_]
 /// Returns the sequare root of `operand`.
 ///
 /// - Parameters:
@@ -43,7 +23,7 @@ infix operator √=: AssignmentPrecedence
 /// - MutatingVariant: √=
 prefix operator √
 
-// [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:)_]
+// [_Inherit Documentation: SDGMathematics.RealArithmetic.√=_]
 /// Sets `operand` to its square root.
 ///
 /// - Parameters:
@@ -80,27 +60,25 @@ public protocol RealArithmetic : RationalArithmetic {
 
     // MARK: - Operations
 
-    // [_Define Documentation: SDGMathematics.RealArithmetic.√(_:_:)_]
-    /// Returns the `lhs`‐th root of `rhs`.
+    // [_Define Documentation: SDGMathematics.RealArithmetic.root(ofDegree:)_]
+    /// Returns the `degree`‐th root of `self`.
     ///
     /// - Parameters:
-    ///     - lhs: The root.
-    ///     - rhs: The radicand.
+    ///     - degree: The degree of the root.
     ///
-    /// - MutatingVariant: √=
-    static func √ (lhs: Self, rhs: Self) -> Self
+    /// - MutatingVariant: formRoot
+    func root(ofDegree degree: Self) -> Self
 
-    // [_Define Documentation: SDGMathematics.RealArithmetic.√=(_:_:)_]
-    /// Sets `lhs` to its `rhs`‐th root.
+    // [_Define Documentation: SDGMathematics.RealArithmetic.formRoot(ofDegree:)_]
+    /// Sets `self` to its `degree`‐th root.
     ///
     /// - Parameters:
-    ///     - lhs: The value to modify.
-    ///     - rhs: The root.
+    ///     - degree: The degree of the root.
     ///
-    /// - NonmutatingVariant: √
-    static func √= (lhs: inout Self, rhs: Self)
+    /// - NonmutatingVariant: root
+    mutating func formRoot(ofDegree degree: Self)
 
-    // [_Define Documentation: SDGMathematics.RealArithmetic.√(_:)_]
+    // [_Define Documentation: SDGMathematics.RealArithmetic.√_]
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
@@ -109,7 +87,7 @@ public protocol RealArithmetic : RationalArithmetic {
     /// - MutatingVariant: √=
     static prefix func √ (operand: Self) -> Self
 
-    // [_Define Documentation: SDGMathematics.RealArithmetic.√=(_:)_]
+    // [_Define Documentation: SDGMathematics.RealArithmetic.√=_]
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
@@ -516,33 +494,31 @@ extension RealArithmetic {
         return Self.e
     }
 
-    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:_:)_]
-    /// Returns the `lhs`‐th root of `rhs`.
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.root(ofDegree:)_]
+    /// Returns the `degree`‐th root of `self`.
     ///
     /// - Parameters:
-    ///     - lhs: The root.
-    ///     - rhs: The radicand.
+    ///     - degree: The degree of the root.
     ///
-    /// - MutatingVariant: √=
-    public static func √ (lhs: Self, rhs: Self) -> Self {
-        var result = rhs
-        result √= lhs
+    /// - MutatingVariant: formRoot
+    public func root(ofDegree degree: Self) -> Self {
+        var result = self
+        result.formRoot(ofDegree: degree)
         return result
     }
 
-    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:_:)_]
-    /// Sets `lhs` to its `rhs`‐th root.
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.formRoot(ofDegree:)_]
+    /// Sets `self` to its `degree`‐th root.
     ///
     /// - Parameters:
-    ///     - lhs: The value to modify.
-    ///     - rhs: The root.
+    ///     - degree: The degree of the root.
     ///
-    /// - NonmutatingVariant: √
-    public static func √= (lhs: inout Self, rhs: Self) {
-        lhs ↑= (1 ÷ rhs)
+    /// - NonmutatingVariant: root
+    public mutating func formRoot(ofDegree degree: Self) {
+        self ↑= (1 ÷ degree)
     }
 
-    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:)_]
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√_]
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
@@ -555,7 +531,7 @@ extension RealArithmetic {
         return result
     }
 
-    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:)_]
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√=_]
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
@@ -563,7 +539,7 @@ extension RealArithmetic {
     ///
     /// - NonmutatingVariant: √
     public static postfix func √= (operand: inout Self) {
-        operand √= 2
+        operand.formRoot(ofDegree: 2)
     }
 
     // [_Inherit Documentation: SDGMathematics.RealArithmetic.log(toBase:of:)_]
@@ -746,7 +722,7 @@ extension RealArithmetic {
     ///     - cotangent: The cotangent.
     public static func arccot(_ cotangent: Self) -> Angle<Self> {
         let reference = arctan(1 ÷ cotangent)
-        if reference < Angle._0 {
+        if reference < Angle.additiveIdentity {
             return reference + π.rad
         } else {
             return reference
@@ -806,7 +782,7 @@ extension RealArithmetic where Self : FloatType {
         return pi
     }
 
-    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√(_:)_]
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√_]
     /// Returns the sequare root of `operand`.
     ///
     /// - Parameters:
@@ -817,7 +793,7 @@ extension RealArithmetic where Self : FloatType {
         return operand.squareRoot()
     }
 
-    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√=(_:)_]
+    // [_Inherit Documentation: SDGMathematics.RealArithmetic.√=_]
     /// Sets `operand` to its square root.
     ///
     /// - Parameters:
@@ -929,7 +905,7 @@ extension RealArithmetic where Self : FloatType {
     ///     - angle: The angle.
     public static func sin(_ angle: Angle<Self>) -> Self {
 
-        if ¬(_0.rad ..< τ.rad).contains(angle) {
+        if ¬(additiveIdentity.rad ..< τ.rad).contains(angle) {
             // Use periodic reference angle.
             return sin(angle.mod(τ.rad))
         } else if angle > π.rad {
@@ -989,7 +965,7 @@ extension RealArithmetic where Self : FloatType {
     ///     - angle: The angle.
     public static func cos(_ angle: Angle<Self>) -> Self {
 
-        if ¬(_0.rad ..< τ.rad).contains(angle) {
+        if ¬(additiveIdentity.rad ..< τ.rad).contains(angle) {
             // Use periodic reference angle.
             return cos(angle.mod(τ.rad))
         } else if angle > π.rad {

@@ -17,8 +17,8 @@ import SDGLogic
 /// A “random” number generator that returns numbers in a pre‐determined cycle.
 public final class CyclicalNumberGenerator : Randomizer {
 
-    private let sequence: [UInt64]
-    private var index: Array<UInt64>.Index
+    private let sequence: [UIntMax]
+    private var index: Array<UIntMax>.Index
 
     /// Creates a cyclical number generator that returns numbers according to `sequence`.
     ///
@@ -26,7 +26,7 @@ public final class CyclicalNumberGenerator : Randomizer {
     ///
     /// - Parameters:
     ///     - sequence: The sequence.
-    public init(_ sequence: [UInt64]) {
+    public init(_ sequence: [UIntMax]) {
         assert(¬sequence.isEmpty, "Empty sequence.")
 
         self.sequence = sequence
@@ -36,7 +36,7 @@ public final class CyclicalNumberGenerator : Randomizer {
     // MARK: - Randomizer
 
     /// Returns the next value in the sequence.
-    public func randomNumber() -> UInt64 {
+    public func randomNumber() -> UIntMax {
 
         let result = sequence[index]
 

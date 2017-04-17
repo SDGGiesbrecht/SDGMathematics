@@ -36,6 +36,14 @@ infix operator −: AdditionPrecedence
 /// - RecommendedOver: -=
 infix operator −=: AssignmentPrecedence
 
+// [_Inherit Documentation: SDGMathematics.Subtractable.±_]
+/// Returns a tuple containing the sum and difference of `lhs` and `rhs`.
+///
+/// - Parameters:
+///     - lhs: The augend/minuend.
+///     - rhs: The addend/subtrahend.
+infix operator ±: AdditionPrecedence
+
 /// A type that can do scalar subtraction.
 ///
 /// - Note: `Subtractable` is distinct from `Negatable` to allow whole number types to perform subtraction.
@@ -71,6 +79,14 @@ public protocol Subtractable : Addable {
     ///
     /// - RecommendedOver: -=
     static func −= (lhs: inout Self, rhs: Self)
+
+    // [_Define Documentation: SDGMathematics.Subtractable.±_]
+    /// Returns a tuple containing the sum and difference of `lhs` and `rhs`.
+    ///
+    /// - Parameters:
+    ///     - lhs: The augend/minuend.
+    ///     - rhs: The addend/subtrahend.
+    static func ± (lhs: Self, rhs: Self) -> (sum: Self, difference: Self)
 }
 
 extension Subtractable {
@@ -92,6 +108,16 @@ extension Subtractable {
     /// - RecommendedOver: -
     public static func − (lhs: Self, rhs: Self) -> Self {
         return subtractAsSubtractable(lhs, rhs)
+    }
+
+    // [_Inherit Documentation: SDGMathematics.Subtractable.±_]
+    /// Returns a tuple containing the sum and difference of `lhs` and `rhs`.
+    ///
+    /// - Parameters:
+    ///     - lhs: The augend/minuend.
+    ///     - rhs: The addend/subtrahend.
+    public static func ± (lhs: Self, rhs: Self) -> (sum: Self, difference: Self) {
+        return (lhs + rhs, lhs − rhs)
     }
 }
 
@@ -282,6 +308,9 @@ extension Subtractable where Self : UIntType {
     ///
     /// - RecommendedOver: -=
     public static func −= (lhs: inout Self, rhs: Self) {
+        assert(lhs ≥ rhs, "\(lhs) − \(rhs) is impossible for \(Self.self).")
+
+        // func −=
         lhs -= rhs
     }
 }

@@ -16,5 +16,6 @@ import XCTest
 @testable import SDGMathematicsTests
 
 XCTMain([
-     testCase(SDGMathematicsTests.allTests)
+    testCase(InternalTests.allTests),
+    testCase(APITests.allTests)
 ])

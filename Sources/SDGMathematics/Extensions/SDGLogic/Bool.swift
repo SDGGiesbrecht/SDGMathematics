@@ -12,7 +12,9 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-extension Bool {
+import SDGLogic
+
+extension Bool : Comparable {
 
     private static let randomizationBit: UInt64 = 1 << 48
 
@@ -61,5 +63,21 @@ extension Bool {
     ///     - randomizer: The randomizer.
     public init(fromRandomizer randomizer: Randomizer) {
         self = randomizer.randomNumber() & Bool.randomizationBit == Bool.randomizationBit
+    }
+
+    // MARK: - Comparable
+
+    // [_Inherit Documentation: SDGMathematics.Comparable.<_]
+    /// Returns `true` if the left value is less than the right.
+    ///
+    /// - Parameters:
+    ///     - lhs: A value.
+    ///     - rhs: Another value.
+    public static func < (lhs: Bool, rhs: Bool) -> Bool {
+        if lhs == false ∧ rhs == true {
+            return true
+        } else {
+            return false
+        }
     }
 }

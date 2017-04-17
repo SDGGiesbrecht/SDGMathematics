@@ -52,6 +52,17 @@ struct RationalNumberTypeExample : RationalNumberType {
         value = Double(integerLiteral)
     }
 
+    // IntegralArithmetic
+
+    // [_Inherit Documentation: SDGMathematics.IntegralArithmetic.init(int:)_]
+    /// Creates an instance equal to `int`.
+    ///
+    /// - Properties:
+    ///     - int: An instance of `IntMax`.
+    public init(_ int: IntMax) {
+        value = Double(int)
+    }
+
     // PointType
 
     typealias Vector = RationalNumberTypeExample
@@ -73,6 +84,15 @@ struct RationalNumberTypeExample : RationalNumberType {
     }
 
     // WholeArithmetic
+
+    // [_Inherit Documentation: SDGMathematics.WholeArithmetic.init(uInt:)_]
+    /// Creates an instance equal to `uInt`.
+    ///
+    /// - Properties:
+    ///     - uInt: An instance of `UIntMax`.
+    public init(_ uInt: UIntMax) {
+        value = Double(uInt)
+    }
 
     static func ×= (lhs: inout RationalNumberTypeExample, rhs: RationalNumberTypeExample) {
         lhs.value ×= rhs.value

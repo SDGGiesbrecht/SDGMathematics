@@ -1,5 +1,5 @@
 /*
- SDGMathematicsTests.swift
+ APITests.swift
 
  This source file is part of the SDGMathematics open source project.
  https://sdggiesbrecht.github.io/SDGMathematics/macOS
@@ -17,9 +17,24 @@ import XCTest
 
 import SDGLogic
 
-@testable import SDGMathematics
+import SDGMathematics
 
-class SDGMathematicsTests : XCTestCase {
+typealias Integer = SDGMathematics.Integer
+
+class APITests : XCTestCase {
+
+    func testAddable() {
+        func runTests<T : Addable>(addend: T, augend: T, sum: T) where T : Equatable {
+            XCTAssert(addend + augend == sum)
+        }
+
+        runTests(addend: 1, augend: 2, sum: 3)
+        runTests(addend: 1 as WholeNumber, augend: 2, sum: 3)
+        runTests(addend: 1 as Integer, augend: 2, sum: 3)
+        runTests(addend: 1 as RationalNumber, augend: 2, sum: 3)
+        runTests(addend: AddableExample(1), augend: AddableExample(2), sum: AddableExample(3))
+        runTests(addend: AddableExampleWhereStrideableAndStrideIsSelf(1), augend: AddableExampleWhereStrideableAndStrideIsSelf(2), sum: AddableExampleWhereStrideableAndStrideIsSelf(3))
+    }
 
     func testAngle() {
         func runTests<N : RealArithmetic>(_ type: N.Type) {
@@ -29,15 +44,16 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert((_1 × τ()).rad == _1.rotations)
             XCTAssert((_1 × τ()).rad.inRotations == _1)
 
-            XCTAssert(((_1 × 3.141_59).rad ..< (_1 × 3.141_60).rad).contains((_1 × 180)°))
-            XCTAssert(((_1 × 5.999_99)°.inDegrees ..< (_1 × 6.000_01)°.inDegrees).contains(_1 × 6))
+            let πValue: N = πLiteral()
+            XCTAssert((_1 × 180)° ≈ πValue.rad)
+            XCTAssert((_1 × 6)°.inDegrees ≈ _1 × 6)
             XCTAssert((_1 × 60)′ == _1°)
-            XCTAssert(((_1 × 5.999_99)′.inMinutes ..< (_1 × 6.000_01)′.inMinutes).contains(_1 × 6))
+            XCTAssert((_1 × 6)′.inMinutes ≈ _1 × 6)
             XCTAssert((_1 × 60)′′ == _1′)
-            XCTAssert(((_1 × 5.999_99)′′.inSeconds ..< (_1 × 6.000_01)′′.inSeconds).contains(_1 × 6))
+            XCTAssert((_1 × 6)′′.inSeconds ≈ _1 × 6)
 
-            XCTAssert(((_1 × 3.141_59).rad ..< (_1 × 3.141_60).rad).contains((_1 × 200).gradians))
-            XCTAssert(((_1 × 5.999_99).gradians.inGradians ..< (_1 × 6.000_01).gradians.inGradians).contains(_1 × 6))
+            XCTAssert((_1 × 200).gradians ≈ πValue.rad)
+            XCTAssert((_1 × 6).gradians.inGradians ≈ _1 × 6)
 
             variable = _1.rad
             variable += _1.rad
@@ -45,7 +61,7 @@ class SDGMathematicsTests : XCTestCase {
 
             variable = _1.rad
             variable −= _1.rad
-            XCTAssert(variable == Angle<N>._0)
+            XCTAssert(variable == Angle<N>.additiveIdentity)
 
             variable = _1.rad
             variable−=
@@ -58,27 +74,27 @@ class SDGMathematicsTests : XCTestCase {
 
             XCTAssert(_1.rad × 2 == (_1 × 2).rad)
             XCTAssert(4 × _1.rad == (_1 × 4).rad)
-            XCTAssert(((_1 × 1.999_99) ..< (_1 × 2.000_01)).contains(_1.rad ÷ (_1 ÷ 2).rad))
+            XCTAssert(_1.rad ÷ (_1 ÷ 2).rad ≈ _1 × 2)
             XCTAssert((_1 × 3).rad.dividedAccordingToEuclid(by: (_1 × 2).rad) == 1)
             XCTAssert((_1 × 2).rad.isDivisible(by: _1.rad))
             let _1_5 = gcd((_1 × 1.5).rad, (_1 × 3).rad)
             let _1_5b = gcd((_1 × 3).rad, (_1 × 1.5).rad)
-            XCTAssert(((_1 × 1.499_99).rad ..< (_1 × 1.500_01).rad).contains(_1_5))
+            XCTAssert(_1_5 ≈ (_1 × 1.5).rad)
             XCTAssert(_1_5 == _1_5b)
-            XCTAssert(((_1 × 1.499_99).rad ..< (_1 × 1.500_01).rad).contains(lcm((_1 × 1.5).rad, (_1 × 0.5).rad)))
+            XCTAssert(lcm((_1 × 1.5).rad, (_1 × 0.5).rad) ≈ (_1 × 1.5).rad)
 
             XCTAssert(_1.rad.rounded(.down, toMultipleOf: _1.rad × 2) == _1.rad × 0)
 
             XCTAssert(_1.rad.isPositive)
             XCTAssert((−_1).rad.isNegative)
-            XCTAssert(Angle<N>._0.isNonPositive)
-            XCTAssert(Angle<N>._0.isNonNegative)
+            XCTAssert(Angle<N>.additiveIdentity.isNonPositive)
+            XCTAssert(Angle<N>.additiveIdentity.isNonNegative)
 
             for _ in 1 ..< 100 {
-                let random = Angle(randomInRange: N._0.rad ..< _1.rad)
-                XCTAssert((N._0.rad ..< _1.rad).contains(random))
-                let random2 = Angle(randomInRange: N._0.rad ... _1.rad)
-                XCTAssert((N._0.rad ... _1.rad).contains(random2))
+                let random = Angle(randomInRange: N.additiveIdentity.rad ..< _1.rad)
+                XCTAssert((N.additiveIdentity.rad ..< _1.rad).contains(random))
+                let random2 = Angle(randomInRange: N.additiveIdentity.rad ... _1.rad)
+                XCTAssert((N.additiveIdentity.rad ... _1.rad).contains(random2))
             }
         }
         runTests(Double.self)
@@ -89,22 +105,39 @@ class SDGMathematicsTests : XCTestCase {
         runTests(RealArithmeticExample.self)
     }
 
+    func testArbitraryPrecision() {
+        let undecillion: WholeNumber = "1 000 000 000 000 000 000 000 000 000 000 000 000"
+        let billion: WholeNumber = 1_000_000_000
+        XCTAssert(billion ↑ 4 == undecillion)
+
+        XCTAssert(undecillion.dividedAccordingToEuclid(by: (billion ↑ 3)) == billion)
+
+        let value: WholeNumber = "66 296 448 936 247 622 620"
+        XCTAssert(value.dividedAccordingToEuclid(by: 4) == "16 574 112 234 061 905 655")
+
+        let anotherValue: WholeNumber = "18 446 744 073 709 551 616"
+        XCTAssert(anotherValue.dividedAccordingToEuclid(by: 1) == anotherValue)
+
+        func runStringLiteralTests<N : WholeArithmetic>(_ type: N.Type) where N : ExpressibleByStringLiteral {
+            let one: N = "1"
+            XCTAssert(one == 1)
+        }
+        runStringLiteralTests(WholeNumber.self)
+        runStringLiteralTests(Integer.self)
+        runStringLiteralTests(RationalNumber.self)
+
+        XCTAssert(RationalNumber(undecillion).numerator.magnitude == undecillion)
+
+        let rational: RationalNumber = "0b 0.000 1"
+        XCTAssert(rational == 1 ÷ 16)
+    }
+
     func testBool() {
         var values: Set<Bool> = []
         for _ in 1 ..< 100 {
             values.insert(Bool.random())
         }
         XCTAssert(values.count == 2)
-    }
-
-    func testAddable() {
-        func runTests<T : Addable>(addend: T, augend: T, sum: T) where T : Equatable {
-            XCTAssert(addend + augend == sum)
-        }
-
-        runTests(addend: 1, augend: 2, sum: 3)
-        runTests(addend: AddableExample(1), augend: AddableExample(2), sum: AddableExample(3))
-        runTests(addend: AddableExampleWhereStrideableAndStrideIsSelf(1), augend: AddableExampleWhereStrideableAndStrideIsSelf(2), sum: AddableExampleWhereStrideableAndStrideIsSelf(3))
     }
 
     func testComparable() {
@@ -124,14 +157,16 @@ class SDGMathematicsTests : XCTestCase {
         var value = 3
 
         for entry in list {
-            value ≤= entry
+            value.decrease(to: entry)
         }
         XCTAssert(value == 1)
 
         for entry in list {
-            value ≥= entry
+            value.increase(to: entry)
         }
         XCTAssert(value == 5)
+
+        XCTAssert(1 ≈ (0, 2))
     }
 
     func testDouble() {
@@ -166,6 +201,7 @@ class SDGMathematicsTests : XCTestCase {
     func testIntegralArithmetic() {
 
         func runTests<N : IntegralArithmetic>(_ type: N.Type) {
+            let minusTwo: N = −2
             let minusOne: N = −1
             let one: N = 1
             let two: N = 2
@@ -186,8 +222,13 @@ class SDGMathematicsTests : XCTestCase {
             XCTAssert(gcd(one × −12, −8) == 4)
 
             for _ in 1 ... 100 {
-                XCTAssert((3 ... 7).contains(N(randomInRange: 3 ... 7)))
+                let random = N(randomInRange: 3 ... 7)
+                XCTAssert((3 ... 7).contains(random), "\(random) ∉ 3–7")
+                let negativeRandom = N(randomInRange: −10 ... −4)
+                XCTAssert((−10 ... −4).contains(negativeRandom), "\(negativeRandom) ∉ −10 to −4")
             }
+
+            XCTAssert(minusTwo < minusOne)
 
             // Previous Bugs
 
@@ -206,13 +247,15 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Int8.self)
         runTests(Double.self)
         runTests(Float.self)
+        runTests(Integer.self)
+        runTests(RationalNumber.self)
         runTests(RealArithmeticExample.self)
 
         func runStrideableTests<N : IntegralArithmetic>(_ type: N.Type) where N : Strideable, N.Stride == N {
             let _1: N = 1
             XCTAssert(_1.advanced(by: 1) == _1 + 1)
 
-            XCTAssert(N._0.distance(to: _1) == _1)
+            XCTAssert(N.additiveIdentity.distance(to: _1) == _1)
         }
         runStrideableTests(Int.self)
         runStrideableTests(Double.self)
@@ -237,6 +280,8 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Float80.self, value: 1, inverse: −1)
         #endif
         runTests(Float.self, value: 1, inverse: −1)
+        runTests(Integer.self, value: 1, inverse: −1)
+        runTests(RationalNumber.self, value: 1, inverse: −1)
         runTests(NegatableExample.self, value: NegatableExample(1), inverse: NegatableExample(−1))
     }
 
@@ -272,6 +317,9 @@ class SDGMathematicsTests : XCTestCase {
         }
         runTests(start: Int64(0), distance: 3, end: 3)
         runTests(start: UInt64(0), distance: 3, end: 3)
+        runTests(start: 0 as WholeNumber, distance: 3, end: 3)
+        runTests(start: 0 as Integer, distance: 3, end: 3)
+        runTests(start: 0 as RationalNumber, distance: 3, end: 3)
         runTests(start: PointTypeExample(0), distance: 3, end: PointTypeExample(3))
         runTests(start: PointTypeExampleWhereVectorIsSelf(0), distance: PointTypeExampleWhereVectorIsSelf(3), end: PointTypeExampleWhereVectorIsSelf(3))
     }
@@ -338,8 +386,7 @@ class SDGMathematicsTests : XCTestCase {
             variable.round(.toNearestOrAwayFromZero)
             XCTAssert(variable == 3)
 
-            for _ in 1 ..< 100 {
-                let random = N(randomInRange: 0 ..< 1)
+            for _ in 1 ..< 100 {let random = N(randomInRange: 0 ..< 1)
                 XCTAssert((0 ..< 1).contains(random))
             }
         }
@@ -348,6 +395,7 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Float80.self)
         #endif
         runTests(Float.self)
+        runTests(RationalNumber.self)
         runTests(RationalNumberTypeExample.self)
         runTests(RealArithmeticExample.self)
 
@@ -361,47 +409,50 @@ class SDGMathematicsTests : XCTestCase {
             let _1: N = 1
             var variable: N = 0
 
-            XCTAssert((3.141_59 ..< 3.141_60).contains(N.π))
+            let πValue: N = πLiteral()
+            XCTAssert(N.π ≈ πValue)
             XCTAssert(N.π == π())
             XCTAssert(N.π == N.π.π)
 
-            XCTAssert((6.283_18 ..< 6.283_19).contains(N.τ))
+            let τValue: N = τLiteral()
+            XCTAssert(N.τ ≈ τValue)
             XCTAssert(N.τ == τ())
             XCTAssert(N.τ == N.τ.τ)
 
-            XCTAssert((2.718_28 ..< 2.718_29).contains(N.e))
+            let eValue: N = eLiteral()
+            XCTAssert(N.e ≈ eValue)
             XCTAssert(N.e == e())
             XCTAssert(N.e == N.e.e)
 
-            XCTAssert((1.414_21 ..< 1.414_22).contains(√(_1 × 2)))
-            XCTAssert((2.999_99 ..< 3.000_01).contains(4 √ (_1 × 81)))
-            XCTAssert((2.999_99 ..< 3.000_01).contains(3 √ (_1 × 27)))
+            XCTAssert(√(_1 × 2) ≈ _1 × 1.414_21)
+            XCTAssert((_1 × 81).root(ofDegree: 4) ≈ 3)
+            XCTAssert((_1 × 27).root(ofDegree: 3) ≈ 3)
             variable = 1
             variable√=
             XCTAssert(variable == 1)
 
-            XCTAssert((0.499_99 ..< 0.500_01).contains(log(toBase: 9, of: 3 × _1)))
-            XCTAssert((0.999_99 ..< 1.000_01).contains(log(_1 × 10)))
-            XCTAssert((0.693_14 ..< 0.693_15).contains(ln(_1 × 2)))
-            XCTAssert((4.382_02 ..< 4.382_03).contains(ln(_1 × 80)))
+            XCTAssert(log(toBase: 9, of: 3 × _1) ≈ _1 × 0.5)
+            XCTAssert(log(_1 × 10) ≈ 1)
+            XCTAssert(ln(_1 × 2) ≈ 0.693_14 as N)
+            XCTAssert(ln(_1 × 80) ≈ 4.382_02 as N)
 
-            XCTAssert((0.479_42 ..< 0.479_43).contains(sin(_1.rad ÷ 2)))
-            XCTAssert((0.017_45 ..< 0.017_46).contains(sin(_1°)))
-            XCTAssert((0.944_95 ..< 0.944_96).contains(cos(_1.rad ÷ 3)))
-            XCTAssert((−1.000_01 ..< −0.999_99).contains(cos(_1.rad × −π())))
-            XCTAssert((−3.380_52 ..< −3.380_51).contains(tan(_1.rad × 5)))
-            XCTAssert((1.188_39 ..< 1.188_40).contains(csc(_1.rad)))
-            XCTAssert((−2.403_00 ..< −2.402_99).contains(sec(_1.rad × 2)))
-            XCTAssert((−7.015_26 ..< −7.015_25).contains(cot(_1.rad × 3)))
+            XCTAssert(sin(_1.rad ÷ 2) ≈ 0.479_42 as N)
+            XCTAssert(sin(_1°) ≈ 0.017_45 as N)
+            XCTAssert(cos(_1.rad ÷ 3) ≈ 0.944_95 as N)
+            XCTAssert(cos(_1.rad × −π()) ≈ −1)
+            XCTAssert(tan(_1.rad × 5) ≈ −3.380_52 as N)
+            XCTAssert(csc(_1.rad) ≈ 1.188_39 as N)
+            XCTAssert(sec(_1.rad × 2) ≈ −2.403_00 as N)
+            XCTAssert(cot(_1.rad × 3) ≈ −7.015_26 as N)
 
-            XCTAssert(((0.167_44 as N).rad ..< (0.167_45 as N).rad).contains(arcsin(_1 ÷ 6)))
-            XCTAssert(((1.427_44 as N).rad ..< (1.427_45 as N).rad).contains(arccos(_1 ÷ 7)))
-            XCTAssert(((0.463_64 as N).rad ..< (0.463_65 as N).rad).contains(arctan(_1 ÷ 2)))
-            XCTAssert(((1.107_14 as N).rad ..< (1.107_15 as N).rad).contains(arctan(_1 × 2)))
-            XCTAssert(((0.339_83 as N).rad ..< (0.339_84 as N).rad).contains(arccsc(_1 × 3)))
-            XCTAssert(((1.318_11 as N).rad ..< (1.318_12 as N).rad).contains(arcsec(_1 × 4)))
-            XCTAssert(((0.197_39 as N).rad ..< (0.197_40 as N).rad).contains(arccot(_1 × 5)))
-            XCTAssert(((2.677_94 as N).rad ..< (2.677_95 as N).rad).contains(arccot(_1 × −2)))
+            XCTAssert(arcsin(_1 ÷ 6) ≈ (0.167_44 as N).rad)
+            XCTAssert(arccos(_1 ÷ 7) ≈ (1.427_44 as N).rad)
+            XCTAssert(arctan(_1 ÷ 2) ≈ (0.463_64 as N).rad)
+            XCTAssert(arctan(_1 × 2) ≈ (1.107_14 as N).rad)
+            XCTAssert(arccsc(_1 × 3) ≈ (0.339_83 as N).rad)
+            XCTAssert(arcsec(_1 × 4) ≈ (1.318_11 as N).rad)
+            XCTAssert(arccot(_1 × 5) ≈ (0.197_39 as N).rad)
+            XCTAssert(arccot(_1 × −2) ≈ (2.677_94 as N).rad)
         }
         runTests(Double.self)
         #if os(macOS) || os(Linux)
@@ -428,6 +479,9 @@ class SDGMathematicsTests : XCTestCase {
         runTests(minuend: Int8(3), subtrahend: 2, difference: 1)
         runTests(minuend: Double(3), subtrahend: 2, difference: 1)
         runTests(minuend: Float(3), subtrahend: 2, difference: 1)
+        runTests(minuend: 3 as WholeNumber, subtrahend: 2, difference: 1)
+        runTests(minuend: 3 as Integer, subtrahend: 2, difference: 1)
+        runTests(minuend: 3 as RationalNumber, subtrahend: 2, difference: 1)
         runTests(minuend: SubtractableExample(3), subtrahend: SubtractableExample(2), difference: SubtractableExample(1))
         runTests(minuend: SubtractableExampleWherePointTypeAndVectorIsSelf(3), subtrahend: SubtractableExampleWherePointTypeAndVectorIsSelf(2), difference: SubtractableExampleWherePointTypeAndVectorIsSelf(1))
         runTests(minuend: RationalNumberTypeExample(3), subtrahend: RationalNumberTypeExample(2), difference: RationalNumberTypeExample(1))
@@ -436,9 +490,6 @@ class SDGMathematicsTests : XCTestCase {
         // Previous Bugs
 
         // “ambiguous use of operator”
-
-        // [_Workaround: Disable false positives in SwiftLint. (swiftlint version 0.17.0)_]
-        // swiftlint:disable redundant_discardable_let
         let _: UInt = 3 − 2
         let _: UInt64 = 3 − 2
         let _: UInt32 = 3 − 2
@@ -454,9 +505,10 @@ class SDGMathematicsTests : XCTestCase {
         let _: Float80 = 3 − 2
         #endif
         let _: Float = 3 − 2
+        let _: WholeNumber = 3 − 2
+        let _: Integer = 3 − 2
         let _: RationalNumberTypeExample = RationalNumberTypeExample(3) − RationalNumberTypeExample(2)
         let _: RealArithmeticExample = RealArithmeticExample(3) − RealArithmeticExample(2)
-        // swiftlint:enable redundant_discardable_let
     }
 
     func testTuple() {
@@ -515,8 +567,7 @@ class SDGMathematicsTests : XCTestCase {
 
             var variable = zero
 
-            XCTAssert(zero == _0())
-            XCTAssert(zero == one._0)
+            XCTAssert(zero == N.additiveIdentity)
 
             XCTAssert(one + one == two)
 
@@ -562,6 +613,9 @@ class SDGMathematicsTests : XCTestCase {
                 XCTAssert((17 ... 28).contains(N(randomInRange: 17 ... 28)))
             }
 
+            let uInt8: UInt8 = 94
+            XCTAssert(N(uInt8) == 94)
+
             // Previous Bugs
 
             let five: N = 10 − 5
@@ -579,11 +633,16 @@ class SDGMathematicsTests : XCTestCase {
         runTests(Int8.self)
         runTests(Double.self)
         runTests(Float.self)
+        runTests(WholeNumber.self)
+        runTests(Integer.self)
+        runTests(RationalNumber.self)
     }
 
-    static var allTests: [(String, (SDGMathematicsTests) -> () throws -> Void)] {
+    static var allTests: [(String, (APITests) -> () throws -> Void)] {
         return [
+            ("testAddable", testAddable),
             ("testAngle", testAngle),
+            ("testArbitraryPrecision", testArbitraryPrecision),
             ("testBool", testBool),
             ("testComparable", testComparable),
             ("testDouble", testDouble),

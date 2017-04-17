@@ -63,25 +63,25 @@ extension NumericAdditiveArithmetic {
     // [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.isPositive_]
     /// Returns `true` if `self` is positive.
     public var isPositive: Bool {
-        return self > _0
+        return self > Self.additiveIdentity
     }
 
     // [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.isNegative_]
     /// Returns `true` if `self` is negative.
     public var isNegative: Bool {
-        return self < _0
+        return self < Self.additiveIdentity
     }
 
     // [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.isNonNegative_]
     /// Returns `true` if `self` is positive or zero.
     public var isNonNegative: Bool {
-        return self ≥ _0
+        return self ≥ Self.additiveIdentity
     }
 
     // [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.isNonPositive_]
     /// Returns `true` if `self` is negative or zero.
     public var isNonPositive: Bool {
-        return self ≤ _0
+        return self ≤ Self.additiveIdentity
     }
 
     // [_Inherit Documentation: SDGMathematics.NumericAdditiveArithmetic.absoluteValue_]
@@ -241,7 +241,7 @@ extension NumericAdditiveArithmetic where Self : Negatable {
     ///
     /// - NonmutatingVariant: |
     public mutating func formAbsoluteValue() {
-        if self < _0 {
+        if self < Self.additiveIdentity {
             self−=
         }
     }

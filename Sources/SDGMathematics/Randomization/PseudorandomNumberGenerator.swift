@@ -104,7 +104,7 @@ public final class PseudorandomNumberGenerator : Randomizer {
     /// Returns a random value.
     ///
     /// - SeeAlso: `randomNumber(inRange:)`
-    public func randomNumber() -> UInt64 {
+    public func randomNumber() -> UIntMax {
 
         // This is derived from the C code of David Blackman and Sebastiano Vigna’s xoroshiro128+ algorithm, which they have dedicated to the public domain. (retrieved on 2016‐12‐08 from http://vigna.di.unimi.it/xorshift/xoroshiro128plus.c)
 

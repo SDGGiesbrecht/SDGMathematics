@@ -19,7 +19,7 @@
 /// Conformance Requirements:
 ///
 /// - `Equatable`
-/// - `static func += (lhs: inout Self, rhs: Addend)`
+/// - `static func += (lhs: inout Self, rhs: Vector)`
 /// - `static func − (lhs: Self, rhs: Self) -> Vector`
 public protocol PointType : Equatable {
 

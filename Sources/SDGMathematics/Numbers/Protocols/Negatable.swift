@@ -66,7 +66,9 @@ extension Negatable {
     ///
     /// - RecommendedOver: -
     public static prefix func − (operand: Self) -> Self {
-        return _0 − operand
+        var result = operand
+        result−=
+        return result
     }
 
     // [_Inherit Documentation: SDGMathematics.Negatable.−=_]
@@ -77,7 +79,7 @@ extension Negatable {
     ///
     /// - NonmutatingVariant: −
     public static postfix func −= (operand: inout Self) {
-        operand = _0 − operand
+        operand = additiveIdentity − operand
     }
 }
 

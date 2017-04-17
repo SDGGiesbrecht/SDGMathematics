@@ -57,12 +57,12 @@ extension Int64 : IntXType {
 
         if range.lowerBound.isWhole {
             let unsignedRange: ClosedRange<UInt64> = UInt64(range.lowerBound) ... UInt64(range.upperBound)
-            let unsigned = UInt64(randomInRange: unsignedRange)
+            let unsigned = UInt64(randomInRange: unsignedRange, fromRandomizer: randomizer)
             self = Int64(unsigned)
         } else {
             let span = range.upperBound − range.lowerBound
             let unsignedRange: ClosedRange<UInt64> = 0 ... UInt64(span)
-            let unsigned = UInt64(randomInRange: unsignedRange)
+            let unsigned = UInt64(randomInRange: unsignedRange, fromRandomizer: randomizer)
             self = range.lowerBound + Int64(unsigned)
         }
     }

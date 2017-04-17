@@ -14,40 +14,49 @@
 
 import SDGMathematics
 
-private func demonstrateSetLessThan() {
+private func demonstrateincrease() {
 
     func rollDie() -> Int {
         fatalError()
     }
 
-    // [_Define Example: ≤=_]
-    let numberOfRolls = 5
-    var lowestRoll = 6
-    for _ in 1 ... numberOfRolls {
-        lowestRoll ≤= rollDie()
-    }
-    print("After rolling the die \(numberOfRolls) time(s), the lowest roll was \(lowestRoll).")
-    // Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”
-
-    // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is less than lowestRoll’s existing value, ≤= changes lowestRoll to reflect the new low.
-    // [_End_]
-}
-
-private func demonstrateSetGreaterThan() {
-
-    func rollDie() -> Int {
-        fatalError()
-    }
-
-    // [_Define Example: ≥=_]
+    // [_Define Example: increase(to:)_]
     let numberOfRolls = 5
     var highestRoll = 1
     for _ in 1 ... numberOfRolls {
-        highestRoll ≥= rollDie()
+        highestRoll.increase(to: rollDie())
     }
     print("After rolling the die \(numberOfRolls) time(s), the highest roll was \(highestRoll).")
     // Prints, for example, “After rolling the die 5 time(s), the highest roll was 4.”
 
-    // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, ≤= changes highestRoll to reflect the new high.
+    // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is greater than highestRoll’s existing value, increase(to:) changes highestRoll to reflect the new high.
+    // [_End_]
+}
+
+private func demonstrateDecrease() {
+
+    func rollDie() -> Int {
+        fatalError()
+    }
+
+    // [_Define Example: decrease(to:)_]
+    let numberOfRolls = 5
+    var lowestRoll = 6
+    for _ in 1 ... numberOfRolls {
+        lowestRoll.decrease(to: rollDie())
+    }
+    print("After rolling the die \(numberOfRolls) time(s), the lowest roll was \(lowestRoll).")
+    // Prints, for example, “After rolling the die 5 time(s), the lowest roll was 2.”
+
+    // In this example, rollDie() represents a function that randomly returns an Int between 1 and 6 inclusive. In each iteration of the for loop, a new random number is generated, and if it is less than lowestRoll’s existing value, decrease(to:) changes lowestRoll to reflect the new low.
+    // [_End_]
+}
+
+private func demonstrateApproximates() {
+
+    // [_Define Example: ≈_]
+    if 1 ÷ 3 ≈ 0.33333 ± 0.00001 {
+        print("It is accurate to at least four digits.")
+    }
     // [_End_]
 }

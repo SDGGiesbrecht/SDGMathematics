@@ -1,5 +1,5 @@
 /*
- Double.swift
+ Float.swift
 
  This source file is part of the SDGMathematics open source project.
  https://sdggiesbrecht.github.io/SDGMathematics/macOS
@@ -19,6 +19,12 @@ import Foundation
 #endif
 
 import SDGLogic
+
+#if os(macOS) || os(Linux)
+    public typealias FloatMax = Float80
+#else
+    public typealias FloatMax = Double
+#endif
 
 /// A type that represents a floating‐point number.
 ///
@@ -105,26 +111,26 @@ extension Double : FloatType {
 #endif
 
 #if os(macOS) || os(Linux)
-extension Float80 : FloatType {
+    extension Float80 : FloatType {
 
-    // MARK: - FloatType
+        // MARK: - FloatType
 
-    // [_Inherit Documentation: SDGMathematics.FloatType.ln2_]
-    /// The value of ln2.
-    public static let ln2: Float80 = 0x1.62E42FEFA39EF358p-1
+        // [_Inherit Documentation: SDGMathematics.FloatType.ln2_]
+        /// The value of ln2.
+        public static let ln2: Float80 = 0x1.62E42FEFA39EF358p-1
 
-    // MARK: - PointType
+        // MARK: - PointType
 
-    // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
-    /// The type to be used as a vector.
-    public typealias Vector = Stride
+        // [_Inherit Documentation: SDGMathematics.PointType.Vector_]
+        /// The type to be used as a vector.
+        public typealias Vector = Stride
 
-    // MARK: - RealArithmetic
+        // MARK: - RealArithmetic
 
-    // [_Inherit Documentation: SDGMathematics.RealArithmetic.e_]
-    /// An instance of *e*.
-    public static let e: Float80 = 0x1.5BF0A8B145769535p1
-}
+        // [_Inherit Documentation: SDGMathematics.RealArithmetic.e_]
+        /// An instance of *e*.
+        public static let e: Float80 = 0x1.5BF0A8B145769535p1
+    }
 #endif
 
 extension Float : FloatType {
