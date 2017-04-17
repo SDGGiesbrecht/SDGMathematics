@@ -125,6 +125,11 @@ class SDGMathematicsTests : XCTestCase {
         runStringLiteralTests(WholeNumber.self)
         runStringLiteralTests(Integer.self)
         runStringLiteralTests(RationalNumber.self)
+
+        XCTAssert(RationalNumber(undecillion).numerator.magnitude == undecillion)
+
+        let rational: RationalNumber = "0b 0.000 1"
+        XCTAssert(rational == 1 ÷ 16)
     }
 
     func testBool() {
@@ -219,6 +224,8 @@ class SDGMathematicsTests : XCTestCase {
             for _ in 1 ... 100 {
                 let random = N(randomInRange: 3 ... 7)
                 XCTAssert((3 ... 7).contains(random), "\(random) ∉ 3–7")
+                let negativeRandom = N(randomInRange: −10 ... −4)
+                XCTAssert((−10 ... −4).contains(negativeRandom), "\(negativeRandom) ∉ −10 to −4")
             }
 
             XCTAssert(minusTwo < minusOne)

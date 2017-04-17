@@ -147,7 +147,7 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
 
     // [_Inherit Documentation: SDGMathematics.WholeNumber.init(extendedGraphemeClusterLiteral:)_]
     /// Creates an instance from an extended grapheme cluster literal.
-    public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
+    public init(extendedGraphemeClusterLiteral value: StringLiteralType) {  // [_Exempt from Code Coverage_] Apparently unreachable.
         self.init(textLiteral: value)
     }
 
@@ -249,7 +249,7 @@ public struct RationalNumber : Addable, Comparable, Equatable, ExpressibleByExte
 
     // [_Inherit Documentation: SDGMathematics.WholeNumber.init(unicodeScalarLiteral:)_]
     /// Creates an instance from a unicode scalar literal.
-    public init(unicodeScalarLiteral value: StringLiteralType) {
+    public init(unicodeScalarLiteral value: StringLiteralType) { // [_Exempt from Code Coverage_] Apparently unreachable.
         self.init(textLiteral: value)
     }
 
