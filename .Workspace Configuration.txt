@@ -14,7 +14,7 @@
 
 [_Import https://github.com/SDGGiesbrecht/SDG_]
 
-Current Version: 1.0.2
+Current Version: 2.0.0
 
 Project Website: https://sdggiesbrecht.github.io/SDGMathematics/macOS
 Documentation URL: https://sdggiesbrecht.github.io/SDGMathematics/macOS
