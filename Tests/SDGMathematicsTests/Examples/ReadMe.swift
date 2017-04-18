@@ -12,7 +12,7 @@
  See http://www.apache.org/licenses/LICENSE-2.0 for licence information.
  */
 
-// [_Define Example: Read‐Me: en-CA_]
+// [_Define Example: Read‐Me_]
 import SDGLogic
 import SDGMathematics
 
