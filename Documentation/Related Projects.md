@@ -1,5 +1,5 @@
 <!--
- 🇨🇦EN Related Projects.md
+ Related Projects.md
 
  This source file is part of the SDGMathematics open source project.
  https://sdggiesbrecht.github.io/SDGMathematics/macOS

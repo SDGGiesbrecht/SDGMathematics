@@ -21,8 +21,6 @@
  !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!! !!!!!!!
  -->
 
-[🇨🇦EN](Documentation/🇨🇦EN%20Read%20Me.md) <!--Skip in Jazzy-->
-
 APIs: [macOS](https://sdggiesbrecht.github.io/SDGMathematics/macOS) • [Linux](https://sdggiesbrecht.github.io/SDGMathematics/Linux) • [iOS](https://sdggiesbrecht.github.io/SDGMathematics/iOS) • [watchOS](https://sdggiesbrecht.github.io/SDGMathematics/watchOS) • [tvOS](https://sdggiesbrecht.github.io/SDGMathematics/tvOS)
 
 # SDGMathematics
@@ -40,7 +38,7 @@ SDGMathematics extends support for mathematics.
 - A `Measurement` protocol to simplify working with differing units.
 - Automated reversal of complex functions via `findLocalMinimum(near:within:inFunction)`, etc.
 
-(For a list of related projecs, see [here](Documentation/🇨🇦EN%20Related%20Projects.md).) <!--Skip in Jazzy-->
+(For a list of related projecs, see [here](Documentation/Related%20Projects.md).) <!--Skip in Jazzy-->
 
 ## Importing
 
