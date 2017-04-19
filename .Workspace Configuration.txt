@@ -14,18 +14,13 @@
 
 [_Import https://github.com/SDGGiesbrecht/SDG_]
 
-Current Version: 1.0.2
+Current Version: 2.0.0
 
 Project Website: https://sdggiesbrecht.github.io/SDGMathematics/macOS
 Documentation URL: https://sdggiesbrecht.github.io/SDGMathematics/macOS
 Repository URL: https://github.com/SDGGiesbrecht/SDGMathematics
 
-[_Begin Localizations_]
-en-CA
-[_End_]
-
 [_Begin Short Project Description_]
-[_en-CA_]
 SDGMathematics extends support for mathematics.
 [_End_]
 
@@ -33,7 +28,6 @@ SDGMathematics extends support for mathematics.
 מֹאזְנֵי מִרְמָה תּוֹעֲבַת יהוה וְאֶבֶן שְׁלֵמָה רְצוֹנוֹ׃
 [_End_]
 [_Begin Quotation Translation_]
-[_en-CA_]
 Deceptive scales are an abomination to the Lord; an accurate weight is his expectation.
 [_End_]
 Quotation Chapter: Proverbs 11
@@ -41,7 +35,6 @@ Quotation Testament: Old
 Citation: ‎שלמה/Shlomo
 
 [_Begin Feature List_]
-[_en-CA_]
 - Mathematical operations such as exponents, roots, logarithms, and trigonometry.
 - Arbitrary‐precision number types: `WholeNumber`, `Integer` & `RationalNumber`.
 - Customizable randomization of numbers and boolean values.
