@@ -272,7 +272,6 @@
                         <p>Returns the input (<em>x</em>) corresponding to the local maximum output (<em>y</em>) near <code>location</code>.</p>
 
 <p>This function automates a guess‐and‐check strategy and is useful for inverting otherwise one‐way functions. See the related function <code>findLocalMaximum(near:bounds:inFunction:)</code> for an example.</p>
-
 <div class="aside aside-warning">
     <p class="aside-title">Warning</p>
     <p>Behaviour is undefined when:</p>
@@ -291,14 +290,12 @@ _ = findLocalMaximum(near: 0) { (−10 ..&lt; 10).contains($0) ? 1 : −(|$0|) }
 </ul>
 
 </div>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
-    <p>If <code>bounds ≠ nil</code>, a local maximum must be known to exist, otherwise execution will get stuck in an infinite loop. For example:
-<code>swift
-// Never do this:
-_ = findLocalMaximum(near: 0, inFunction: {$0})
-</code></p>
+    <p>If <code>bounds ≠ nil</code>, a local maximum must be known to exist, otherwise execution will get stuck in an infinite loop. For example:</p>
+<pre class="highlight swift"><code><span class="c1">// Never do this:</span>
+<span class="n">_</span> <span class="o">=</span> <span class="nf">findLocalMaximum</span><span class="p">(</span><span class="nv">near</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">inFunction</span><span class="p">:</span> <span class="p">{</span><span class="nv">$0</span><span class="p">})</span>
+</code></pre>
 
 </div>
 
@@ -394,7 +391,6 @@ _ = findLocalMaximum(near: 0, inFunction: {$0})
                         <p>Returns the input (<em>x</em>) corresponding to the local minimum output (<em>y</em>) near <code>location</code>.</p>
 
 <p>This function automates a guess‐and‐check strategy and is useful for inverting otherwise one‐way functions. For example, finding the approximate square root of 120 can be done using only simpler arithmetic like this:</p>
-
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">approximateSquareRootOf120</span> <span class="o">=</span> <span class="nf">findLocalMinimum</span><span class="p">(</span><span class="nv">near</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="nv">guess</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="k">in</span>
 
     <span class="c1">// Find the square of the guess.</span>
@@ -418,7 +414,6 @@ _ = findLocalMaximum(near: 0, inFunction: {$0})
 <span class="nf">print</span><span class="p">(</span><span class="n">approximateSquareRootOf120</span><span class="p">)</span>
 <span class="c1">// Prints “11”</span>
 </code></pre>
-
 <div class="aside aside-warning">
     <p class="aside-title">Warning</p>
     <p>Behaviour is undefined when:</p>
@@ -437,14 +432,12 @@ _ = findLocalMinimum(near: 0) { (−10 ..&lt; 10).contains($0) ? −1 : |$0| }
 </ul>
 
 </div>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
-    <p>If <code>bounds ≠ nil</code>, a local minimum must be known to exist, otherwise execution will get stuck in an infinite loop. For example:
-<code>swift
-// Never do this:
-_ = findLocalMinimum(near: 0, inFunction: {$0})
-</code></p>
+    <p>If <code>bounds ≠ nil</code>, a local minimum must be known to exist, otherwise execution will get stuck in an infinite loop. For example:</p>
+<pre class="highlight swift"><code><span class="c1">// Never do this:</span>
+<span class="n">_</span> <span class="o">=</span> <span class="nf">findLocalMinimum</span><span class="p">(</span><span class="nv">near</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">inFunction</span><span class="p">:</span> <span class="p">{</span><span class="nv">$0</span><span class="p">})</span>
+</code></pre>
 
 </div>
 
@@ -701,7 +694,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the greatest common divisor of <code>a</code> and <code>b</code>.</p>
-
 <div class="aside aside-mutating-variant">
     <p class="aside-title">Mutating variant</p>
     <p>formGreatestCommonDivisor</p>
@@ -767,7 +759,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the least common multiple of <code>a</code> and <code>b</code>.</p>
-
 <div class="aside aside-mutating-variant">
     <p class="aside-title">Mutating variant</p>
     <p>formGreatestCommonDivisor</p>
@@ -844,7 +835,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered before or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&lt;=</p>
@@ -910,7 +900,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered before or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&lt;=</p>
@@ -976,7 +965,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered before or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&lt;=</p>
@@ -1042,7 +1030,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered before or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&lt;=</p>
@@ -1108,7 +1095,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered before or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&lt;=</p>
@@ -1174,7 +1160,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered after or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&gt;=</p>
@@ -1240,7 +1225,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered after or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&gt;=</p>
@@ -1306,7 +1290,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered after or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&gt;=</p>
@@ -1372,7 +1355,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered after or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&gt;=</p>
@@ -1438,7 +1420,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns <code>true</code> if the left value is ordered after or the same as the right value.</p>
-
 <div class="aside aside-recommended-over">
     <p class="aside-title">Recommended over</p>
     <p>&gt;=</p>
@@ -1508,7 +1489,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the absolute value (in conjuction with postfix <code>|(_:)</code>).</p>
-
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="o">−</span><span class="mi">1</span>
 <span class="k">let</span> <span class="nv">y</span> <span class="o">=</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
 <span class="c1">// y == 1</span>
@@ -1540,7 +1520,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the absolute value (in conjuction with prefix <code><a href="Functions.html#/s:F14SDGMathematicsop1ouRxS_25NumericAdditiveArithmeticrFGVS_21_PartialAbsoluteValuex_x">|(_:)</a></code>).</p>
-
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="o">−</span><span class="mi">1</span>
 <span class="k">let</span> <span class="nv">y</span> <span class="o">=</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
 <span class="c1">// y == 1</span>
@@ -1583,7 +1562,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>An instance of π in the desired return type.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     This is an alias for <code>N.π</code> to improve the legibility of code involving mathematical equations.
@@ -1616,7 +1594,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>An instance of τ in the desired return type.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     This is an alias for <code>N.τ</code> to improve the legibility of code involving mathematical equations.
@@ -1649,7 +1626,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>An instance of <em>e</em> in the desired return type.</p>
-
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
     This is an alias for <code>N.e</code> to improve the legibility of code involving mathematical equations.
@@ -1682,25 +1658,21 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the base <code>base</code> logarithm of <code>antilogarithm</code>.</p>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p><code>antilogarithm</code> &gt; 0</p>
 
 </div>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p><code>base</code> &gt; 0</p>
 
 </div>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p><code>base</code> ≠ 1</p>
 
 </div>
-
 <div class="aside aside-mutating-variant">
     <p class="aside-title">Mutating variant</p>
     <p>formLogarithm</p>
@@ -1766,13 +1738,11 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the common logarithm of <code>antilogarithm</code>.</p>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p><code>antilogarithm</code> &gt; 0</p>
 
 </div>
-
 <div class="aside aside-mutating-variant">
     <p class="aside-title">Mutating variant</p>
     <p>formCommonLogarithm</p>
@@ -1825,13 +1795,11 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the natural logarithm of <code>antilogarithm</code>.</p>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p><code>antilogarithm</code> &gt; 0</p>
 
 </div>
-
 <div class="aside aside-mutating-variant">
     <p class="aside-title">Mutating variant</p>
     <p>formNaturalLogarithm</p>
@@ -2168,7 +2136,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                         <p>Returns the arcsine of a value.</p>
 
 <p>The returned angle will be between −90° and 90° inclusive.</p>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p>−1 ≤ <code>sine</code> ≤ 1</p>
@@ -2223,7 +2190,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                         <p>Returns the arccosine of a value.</p>
 
 <p>The returned angle will be between 0° and 180° inclusive.</p>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p>−1 ≤ <code>sine</code> ≤ 1</p>
@@ -2327,7 +2293,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                         <p>Returns the arccosecant of a value.</p>
 
 <p>The returned angle will be between −90° and 90° inclusive, but never 0°.</p>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p>−1 ≥ <code>cosecant</code> ∨ <code>cosecant</code> ≤ 1</p>
@@ -2382,7 +2347,6 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
                         <p>Returns the arcsecant of a value.</p>
 
 <p>The returned angle will be between 0° and 180° inclusive, but never 90°.</p>
-
 <div class="aside aside-precondition">
     <p class="aside-title">Precondition</p>
     <p>−1≥ <code>secant</code> ∨ <code>secant</code> ≤ 1</p>
@@ -2476,7 +2440,7 @@ _ = findLocalMinimum(near: 0, inFunction: {$0})
         </section>
         <section id="footer">
           <p>Copyright ©2017 Jeremy David Giesbrecht and the SDGMathematics project contributors. All rights reserved.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

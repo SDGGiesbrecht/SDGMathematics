@@ -25,6 +25,8 @@ APIs: [macOS](https://sdggiesbrecht.github.io/SDGMathematics/macOS) • [Linux](
 
 # SDGMathematics
 
+**⚠ This project is obsolete. It has been superseded by [SDGCornerstone](https://github.com/SDGGiesbrecht/SDGCornerstone). ⚠**
+
 SDGMathematics extends support for mathematics.
 
 > [מֹאזְנֵי מִרְמָה תּוֹעֲבַת יהוה וְאֶבֶן שְׁלֵמָה רְצוֹנוֹ׃<br>Deceptive scales are an abomination to the Lord; an accurate weight is his expectation.](https://www.biblegateway.com/passage/?search=Proverbs+11&version=WLC;NIV)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;―‎שלמה/Shlomo

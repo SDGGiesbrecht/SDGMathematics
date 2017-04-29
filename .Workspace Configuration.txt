@@ -21,6 +21,8 @@ Documentation URL: https://sdggiesbrecht.github.io/SDGMathematics/macOS
 Repository URL: https://github.com/SDGGiesbrecht/SDGMathematics
 
 [_Begin Short Project Description_]
+**⚠ This project is obsolete. It has been superseded by [SDGCornerstone](https://github.com/SDGGiesbrecht/SDGCornerstone). ⚠**
+
 SDGMathematics extends support for mathematics.
 [_End_]
 
